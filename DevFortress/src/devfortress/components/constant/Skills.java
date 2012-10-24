@@ -2,12 +2,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package devfortress.model.facade;
+package devfortress.components.constant;
 
 /**
  *
  * @author cathoanghuy
  */
-public class Engine implements Model{
+public enum Skills {
+    C,
+    Cplus,
+    
     
 }

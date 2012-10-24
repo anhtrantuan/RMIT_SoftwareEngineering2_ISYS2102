@@ -8,6 +8,6 @@ package devfortress.model.facade;
  *
  * @author cathoanghuy
  */
-public class Engine implements Model{
+public interface Model {
     
 }
