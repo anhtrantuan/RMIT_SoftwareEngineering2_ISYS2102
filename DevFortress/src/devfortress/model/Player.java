@@ -13,6 +13,7 @@ public class Player {
     private int money;
 
     public Player() {
+        money =1000;
     }
 
     public Player(int money) {

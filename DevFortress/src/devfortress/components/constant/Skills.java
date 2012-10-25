@@ -41,8 +41,5 @@ public enum Skills {
     ANALYSIS,
     TEAM_PLAYER,
     COMMUNICATION,
-    CONFIG_MANAGEMENT
-    
-    
-    
+    CONFIG_MANAGEMENT   
 }
