@@ -24,5 +24,7 @@ public interface Model {
     
     void cancelProject(Project project);
     
+    void eventOccure();
     
+    void levelUp(Project project);
 }

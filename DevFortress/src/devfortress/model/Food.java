@@ -8,7 +8,7 @@ package devfortress.model;
  *
  * @author cathoanghuy
  */
-public class Food {
+public class Food implements Item{
 
     private float price;
     private String name;
