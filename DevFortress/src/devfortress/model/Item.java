@@ -9,5 +9,7 @@ package devfortress.model;
  * @author cathoanghuy
  */
 public class Item {
+    private float price;
+    private String name;
     
 }
