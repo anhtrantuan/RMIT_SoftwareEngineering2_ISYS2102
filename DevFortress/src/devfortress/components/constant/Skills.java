@@ -10,7 +10,39 @@ package devfortress.components.constant;
  */
 public enum Skills {
     C,
-    Cplus,
+    C_PLUSS_PLUSS,
+    C_SHARP,
+    VB,
+    PYTHON,
+    PHP,
+    RUBY,
+    PERL,
+    LISP,
+    HASKELL,
+    ERLANG,
+    PROLOG,
+    FORTH,
+    SQL,
+    PL_SQL,
+    T_SQL,
+    VHDL,
+    UNIX,
+    WINDOWS,
+    ORACLE,
+    SQL_SERVER,
+    MY_SQL,
+    NO_SQL,
+    UI_DEVELOPMENT,
+    SCALABILITY,
+    DOCUMENTATION,
+    PERFORMANCE,
+    DESIGN,
+    ALGORITHMS,
+    ANALYSIS,
+    TEAM_PLAYER,
+    COMMUNICATION,
+    CONFIG_MANAGEMENT
+    
     
     
 }
