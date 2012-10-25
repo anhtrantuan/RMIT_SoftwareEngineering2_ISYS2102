@@ -28,14 +28,40 @@ public class Employee {
         this.skillList = skillList;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public float getSalary() {
+        return salary;
+    }
+
+    public void setSalary(float salary) {
+        this.salary = salary;
+    }
+
+    public Map getSkillList() {
+        return skillList;
+    }
+
+    public void setSkillList(Map skillList) {
+        this.skillList = skillList;
+    }
+
     public void skillLevelUp(Skills sk) {
         if (skillList.containsKey(sk)) {
             for (Object object : skillList.keySet()) {
                 if (object == sk) {
-                    int val = ((Integer)skillList.get(sk)).intValue();
+                    int val = ((Integer) skillList.get(sk)).intValue();
                     skillList.put(sk, val++);
                 }
             }
+        } else {
+            skillList.put(sk, 1);
         }
     }
 }

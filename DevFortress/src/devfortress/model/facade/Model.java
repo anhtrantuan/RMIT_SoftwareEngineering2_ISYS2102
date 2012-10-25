@@ -4,10 +4,14 @@
  */
 package devfortress.model.facade;
 
+import devfortress.model.Item;
+
 /**
  *
  * @author cathoanghuy
  */
 public interface Model {
+
+    void buyFood(Item item);  
     
 }
