@@ -2,14 +2,13 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package devfortress.model;
+package devfortress.components.constant;
 
 /**
  *
  * @author cathoanghuy
  */
-public class Item {
-    private float price;
-    private String name;
-    
+public enum Status {
+    HAPPY,
+    UNHAPPY 
 }
