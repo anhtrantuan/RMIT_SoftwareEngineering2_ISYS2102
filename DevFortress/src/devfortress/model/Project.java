@@ -16,7 +16,7 @@ public class Project {
     private int projectLevel;
     //how long a project lasts
     private DateTime projectTime;
-    private SortedMap<Integer,Integer> skillRequirementMap;
+    private SortedMap skillRequirementMap;
 
     public Project(int payment, int projectLevel, DateTime projectTime, SortedMap<Integer, Integer> skillRequirementMap) {
         this.payment = payment;
