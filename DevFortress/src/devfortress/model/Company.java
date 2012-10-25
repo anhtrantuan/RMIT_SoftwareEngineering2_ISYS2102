@@ -8,15 +8,15 @@ package devfortress.model;
  *
  * @author Sherlock
  */
-public class Player {
+public class Company {
 
     private int money;
 
-    public Player() {
+    public Company() {
         money =1000;
     }
 
-    public Player(int money) {
+    public Company(int money) {
         this.money = money;
     }
 
