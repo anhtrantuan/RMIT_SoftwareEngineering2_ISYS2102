@@ -30,4 +30,8 @@ public class Player {
     public void decreaseMoney(int amount) {
         money -= amount;
     }
+    
+    public void test(){
+        
+    }
 }
