@@ -4,7 +4,9 @@
  */
 package devfortress.model.facade;
 
+import devfortress.model.Employee;
 import devfortress.model.Item;
+import devfortress.model.Project;
 
 /**
  *
@@ -13,5 +15,14 @@ import devfortress.model.Item;
 public interface Model {
 
     void buyFood(Item item);  
+    
+    void hireEmployee(Employee employee);
+    
+    void fireEmployee(Employee employee);
+    
+    void takeProject(Project project);
+    
+    void cancelProject(Project project);
+    
     
 }

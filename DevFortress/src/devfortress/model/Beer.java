@@ -10,10 +10,8 @@ package devfortress.model;
  */
 public class Beer {
     private float price;
-    private String name;
-
-    public Beer(float price, String name) {
+    
+    public Beer(float price) {
         this.price = price;
-        this.name = name;
     }
 }

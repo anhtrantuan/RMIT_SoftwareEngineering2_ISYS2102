@@ -15,7 +15,7 @@ public class Employee {
 
     private String name;
     private float salary;
-    private Map skillList;
+    private Map<Skills,Integer> skillList;
 
     public Employee(String name, float salary, Map skillList) {
         this.name = name;
@@ -54,7 +54,7 @@ public class Employee {
 
     public void skillLevelUp(Skills sk) {
         if (skillList.containsKey(sk)) {
-            for (Object object : skillList.keySet()) {
+            for (Skills object : skillList.keySet()) {
                 if (object == sk) {
                     int val = ((Integer) skillList.get(sk)).intValue();
                     skillList.put(sk, val++);
@@ -63,5 +63,17 @@ public class Employee {
         } else {
             skillList.put(sk, 1);
         }
+    }
+    
+    public Skills getMainSkill(){
+        Skills main = null;
+        int highest = 0;
+        for (Skills object : skillList.keySet()) {
+            if(skillList.get(object)>highest){
+                main = object;
+                highest = skillList.get(object);
+            }                
+        }
+        return main;
     }
 }
