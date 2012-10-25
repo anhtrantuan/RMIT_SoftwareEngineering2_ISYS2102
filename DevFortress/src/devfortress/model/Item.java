@@ -9,7 +9,12 @@ package devfortress.model;
  * @author cathoanghuy
  */
 public class Item {
+
     private float price;
     private String name;
-    
+
+    public Item(float price, String name) {
+        this.price = price;
+        this.name = name;
+    }
 }
