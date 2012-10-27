@@ -8,11 +8,16 @@ package devfortress.model;
  *
  * @author cathoanghuy
  */
-public class Computer implements Item{
+public class Computer implements Item {
+
     private float price;
 
     public Computer(float price) {
         this.price = price;
+    }
+
+    public Computer() {
+        this.price = 20;
     }
 
     @Override
@@ -24,5 +29,4 @@ public class Computer implements Item{
     public String getName() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-        
 }
