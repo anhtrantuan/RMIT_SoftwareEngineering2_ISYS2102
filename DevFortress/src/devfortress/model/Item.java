@@ -10,5 +10,7 @@ package devfortress.model;
  */
 public interface Item {
 
-    
+    float getPrice();
+
+    String getName();
 }

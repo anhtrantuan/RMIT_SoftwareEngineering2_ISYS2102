@@ -8,7 +8,7 @@ package devfortress.model;
  *
  * @author cathoanghuy
  */
-public class Food implements Item{
+public class Food implements Item {
 
     private float price;
     private String name;
@@ -16,5 +16,15 @@ public class Food implements Item{
     public Food(float price, String name) {
         this.price = price;
         this.name = name;
+    }
+
+    @Override
+    public float getPrice() {
+        return this.price;
+    }
+
+    @Override
+    public String getName() {
+        return this.name;
     }
 }

@@ -14,4 +14,14 @@ public class Beer implements Item{
     public Beer(float price) {
         this.price = price;
     }
+
+    @Override
+    public float getPrice() {
+        return this.price;
+    }
+
+    @Override
+    public String getName() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
