@@ -43,6 +43,14 @@ public class Company {
         employeeList.remove(emp);
     }
     
+    public void buyItem(Item item){
+        // TODO implement Company.buyItem
+    }
+    
+    public void paySalary(){
+        // TODO implement Company.paySalary
+    }
+    
     public void test(){
         
     }

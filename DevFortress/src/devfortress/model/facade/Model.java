@@ -14,7 +14,7 @@ import devfortress.model.Project;
  */
 public interface Model {
 
-    void buyFood(Item item);  
+    void buyItem(Item item);  
     
     void hireEmployee(Employee employee);
     

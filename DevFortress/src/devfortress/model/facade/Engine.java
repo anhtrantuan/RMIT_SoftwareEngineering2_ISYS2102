@@ -4,24 +4,26 @@
  */
 package devfortress.model.facade;
 
-import devfortress.model.Employee;
-import devfortress.model.Item;
-import devfortress.model.Project;
+import devfortress.model.*;
 
 /**
  *
  * @author cathoanghuy
  */
-public class Engine implements Model{
+public class Engine implements Model {
+
+    private Company company;
 
     @Override
-    public void buyFood(Item item) {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void buyItem(Item item) {
+        company.buyItem(item);
+        // TODO implement Engine.buyItem
     }
 
     @Override
     public void hireEmployee(Employee employee) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        company.addEmployee(employee);
+        // TODO implement Engine.hireEmployee
     }
 
     @Override
@@ -49,4 +51,7 @@ public class Engine implements Model{
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
+    public void paySalary(){
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
