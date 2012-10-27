@@ -28,7 +28,8 @@ public class Engine implements Model {
 
     @Override
     public void fireEmployee(Employee employee) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        company.removeEmployee(employee);
+        // TOD implement Engine.fireEmployee
     }
 
     @Override
