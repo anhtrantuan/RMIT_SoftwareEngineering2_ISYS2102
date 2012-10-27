@@ -27,4 +27,7 @@ public interface Model {
     void eventOccure();
     
     void levelUp(Project project);
+    
+    void paySalary();
+    
 }

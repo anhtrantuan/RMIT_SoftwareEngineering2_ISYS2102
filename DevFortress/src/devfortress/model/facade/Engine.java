@@ -52,7 +52,8 @@ public class Engine implements Model {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     
+    @Override
     public void paySalary(){
-        throw new UnsupportedOperationException("Not supported yet.");
+        company.paySalary();
     }
 }
