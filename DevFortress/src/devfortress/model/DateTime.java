@@ -44,6 +44,20 @@ class DateTime {
         this.year = year;
     }
     
+    public void nextWeek(){
+        if(weekOfMonth == 4){
+            weekOfMonth = 1;
+        }
+        else weekOfMonth++;
+    }
+    
+    public void nextMonth(){
+        if(monthOfYear == 12){
+            monthOfYear = 1;
+        }
+        else monthOfYear++;
+    }
+    
     public String toString(){
         return "Week ("+weekOfMonth+" of 4) "+ month[monthOfYear-1];
     }
