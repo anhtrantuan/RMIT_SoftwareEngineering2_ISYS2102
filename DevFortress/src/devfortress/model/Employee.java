@@ -72,4 +72,9 @@ public class Employee {
         }
         return main;
     }
+    
+    public int calculateSalary(){
+        for (Skills object : skillList.keySet()) {}
+        return 0;
+    }
 }
