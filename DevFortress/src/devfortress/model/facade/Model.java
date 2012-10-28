@@ -14,20 +14,23 @@ import devfortress.model.Project;
  */
 public interface Model {
 
-    void buyItem(Item item);  
-    
+    void buyItem(Item item);
+
     void hireEmployee(Employee employee);
-    
+
     void fireEmployee(Employee employee);
-    
+
     void takeProject(Project project);
-    
+
     void cancelProject(Project project);
-    
+
     void eventOccure();
-    
+
     void levelUp(Project project);
-    
+
     void paySalary();
-    
+
+    Project generateProject();
+
+    Employee genterateEmployee();
 }
