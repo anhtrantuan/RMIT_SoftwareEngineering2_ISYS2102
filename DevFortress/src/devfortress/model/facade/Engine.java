@@ -8,8 +8,9 @@ import devfortress.model.*;
 import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.UnaffordableException;
 import devfortress.utilities.Name;
+import devfortress.utilities.Skills;
 import java.util.*;
-
+// TODO implement statergy partern
 /**
  *
  * @author cathoanghuy
@@ -86,14 +87,21 @@ public class Engine implements Model {
     public List<Employee> genterateEmployee(int numberofEmployee) {
         List<Employee> employee = new ArrayList<>();
         for (int i = 0; i < numberofEmployee; i++) {
-            //TODO implement Engine.generateEmployee
+            Employee newEmployee = new Employee(generateEmployeeName(), generateSkillList(4));
+
         }
         return employee;
     }
 
-    public String generateEmployee() {
+    public String generateEmployeeName() {
         Random randomGenerator = new Random();
-        return Name.maleName[randomGenerator.nextInt(Name.maleName.length)];
+        return Name.name[randomGenerator.nextInt(Name.name.length)];
 
+    }
+
+    public Map<Skills, Integer> generateSkillList(int numberofskill) {
+        Map<Skills, Integer> skillList = new HashMap<>();
+        // TODO implement generate Skill List
+        return skillList;
     }
 }

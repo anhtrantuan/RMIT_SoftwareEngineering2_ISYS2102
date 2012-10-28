@@ -10,5 +10,5 @@ package devfortress.utilities;
  */
 public class Name {
 
-    public static String[] maleName = {"Jacob", "Michael", "Ethan", "Joshua", "Daniel", "Alexander", "Anthony", "William", "Christopher", "Emma", "Isabella", "Emily", "Madison", "Ava", "Olivia", "Sophia"};
+    public static String[] name = {"Jacob", "Michael", "Ethan", "Joshua", "Daniel", "Alexander", "Anthony", "William", "Christopher", "Emma", "Isabella", "Emily", "Madison", "Ava", "Olivia", "Sophia"};
 }
