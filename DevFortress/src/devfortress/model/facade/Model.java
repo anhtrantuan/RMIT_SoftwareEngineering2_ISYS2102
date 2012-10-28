@@ -7,6 +7,7 @@ package devfortress.model.facade;
 import devfortress.model.Employee;
 import devfortress.model.Item;
 import devfortress.model.Project;
+import java.util.List;
 
 /**
  *
@@ -30,7 +31,7 @@ public interface Model {
 
     void paySalary();
 
-    Project generateProject();
+    List<Project> generateProject(int numberOfProject);
 
-    Employee genterateEmployee();
+    List<Employee> genterateEmployee(int numberOfEmployee);
 }

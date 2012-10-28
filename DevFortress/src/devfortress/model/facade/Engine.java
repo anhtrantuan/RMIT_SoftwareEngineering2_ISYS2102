@@ -5,6 +5,11 @@
 package devfortress.model.facade;
 
 import devfortress.model.*;
+import devfortress.model.exception.MoneyRunOutException;
+import devfortress.model.exception.UnaffordableException;
+import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -14,10 +19,18 @@ public class Engine implements Model {
 
     private Company company;
 
+    public Engine(Company company) {
+        this.company = company;
+    }
+
     @Override
     public void buyItem(Item item) {
-        company.buyItem(item);
-        // TODO implement Engine.buyItem
+        try {
+            company.buyItem(item);
+            // TODO implement Engine.buyItem
+        } catch (UnaffordableException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 
     @Override
@@ -51,9 +64,31 @@ public class Engine implements Model {
     public void levelUp(Project project) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
     @Override
-    public void paySalary(){
-        company.paySalary();
+    public void paySalary() {
+        try {
+            company.paySalary();
+        } catch (MoneyRunOutException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @Override
+    public List<Project> generateProject(int numberOfProject) {
+        List<Project> projects = new ArrayList<>();
+        for (int i = 0; i < numberOfProject; i++) {
+            // TODO implement Engine.generateProject
+        }
+        return projects;
+    }
+
+    @Override
+    public List<Employee> genterateEmployee(int numberofEmployee) {
+        List<Employee> employee = new ArrayList<>();
+        for (int i = 0; i < numberofEmployee; i++) {
+            //TODO implement Engine.generateEmployee
+        }
+        return employee;
     }
 }
