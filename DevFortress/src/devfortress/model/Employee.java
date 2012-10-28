@@ -4,7 +4,7 @@
  */
 package devfortress.model;
 
-import devfortress.components.constant.Skills;
+import devfortress.utilities.Skills;
 import java.util.Map;
 
 /**
