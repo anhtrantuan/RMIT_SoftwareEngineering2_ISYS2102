@@ -7,9 +7,8 @@ package devfortress.model.facade;
 import devfortress.model.*;
 import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.UnaffordableException;
+import devfortress.utilities.Name;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -90,5 +89,11 @@ public class Engine implements Model {
             //TODO implement Engine.generateEmployee
         }
         return employee;
+    }
+
+    public String generateEmployee() {
+        Random randomGenerator = new Random();
+        return Name.maleName[randomGenerator.nextInt(Name.maleName.length)];
+
     }
 }
