@@ -14,7 +14,7 @@ import java.util.Map;
 public class MediumLevel implements GameLevel{
 
     @Override
-    public Map<Skills, Integer> generateSkillLisl(int skillNum) {
+    public Map<Skills, Integer> generateSkillLisl() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
     

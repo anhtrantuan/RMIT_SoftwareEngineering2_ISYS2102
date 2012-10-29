@@ -13,5 +13,5 @@ import java.util.Map;
  */
 public interface GameLevel {
 
-    Map<Skills, Integer> generateSkillLisl(int skillNum);
+    Map<Skills, Integer> generateSkillLisl();
 }

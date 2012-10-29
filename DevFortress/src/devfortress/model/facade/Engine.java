@@ -11,6 +11,7 @@ import devfortress.utilities.Name;
 import devfortress.utilities.Skills;
 import java.util.*;
 // TODO implement statergy partern
+
 /**
  *
  * @author cathoanghuy
@@ -74,34 +75,5 @@ public class Engine implements Model {
         }
     }
 
-    @Override
-    public List<Project> generateProject(int numberOfProject) {
-        List<Project> projects = new ArrayList<>();
-        for (int i = 0; i < numberOfProject; i++) {
-            // TODO implement Engine.generateProject
-        }
-        return projects;
-    }
-
-    @Override
-    public List<Employee> genterateEmployee(int numberofEmployee) {
-        List<Employee> employee = new ArrayList<>();
-        for (int i = 0; i < numberofEmployee; i++) {
-            Employee newEmployee = new Employee(generateEmployeeName(), generateSkillList(4));
-
-        }
-        return employee;
-    }
-
-    public String generateEmployeeName() {
-        Random randomGenerator = new Random();
-        return Name.name[randomGenerator.nextInt(Name.name.length)];
-
-    }
-
-    public Map<Skills, Integer> generateSkillList(int numberofskill) {
-        Map<Skills, Integer> skillList = new HashMap<>();
-        // TODO implement generate Skill List
-        return skillList;
-    }
+    
 }
