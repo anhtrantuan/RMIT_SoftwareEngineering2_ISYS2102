@@ -31,7 +31,5 @@ public interface Model {
 
     void paySalary();
 
-    List<Project> generateProject(int numberOfProject);
-
-    List<Employee> genterateEmployee(int numberOfEmployee);
+    
 }

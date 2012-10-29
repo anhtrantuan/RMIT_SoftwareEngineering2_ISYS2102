@@ -55,7 +55,7 @@ public class Utilities {
     public static List<Employee> genterateEmployee(GameLevel level,int numberofEmployee) {
         List<Employee> employee = new ArrayList<>();
         for (int i = 0; i < numberofEmployee; i++) {
-            Employee newEmployee = new Employee(generateEmployeeName(), generateSkillList(4));
+            Employee newEmployee = new Employee(generateEmployeeName(), level.generateSkillLisl());
 
         }
         return employee;
