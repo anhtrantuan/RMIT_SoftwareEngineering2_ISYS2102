@@ -4,11 +4,14 @@
  */
 package devfortress.utilities;
 
+import java.util.Map;
+
 /**
  *
  * @author cathoanghuy
  */
 public enum Skills {
+
     C,
     C_PLUSS_PLUSS,
     C_SHARP,
@@ -17,11 +20,8 @@ public enum Skills {
     PHP,
     RUBY,
     PERL,
-    LISP,
-    HASKELL,
     ERLANG,
     PROLOG,
-    FORTH,
     SQL,
     PL_SQL,
     T_SQL,
@@ -36,10 +36,14 @@ public enum Skills {
     SCALABILITY,
     DOCUMENTATION,
     PERFORMANCE,
+    CONFIG_MANAGEMENT, 
+    LISP,
+    HASKELL,
+    FORTH,
     DESIGN,
     ALGORITHMS,
     ANALYSIS,
     TEAM_PLAYER,
-    COMMUNICATION,
-    CONFIG_MANAGEMENT   
+    COMMUNICATION
+    
 }
