@@ -17,6 +17,7 @@ public class EasyLevel implements GameLevel {
     @Override
     public Map<Skills, Integer> generateSkillList() {
         throw new UnsupportedOperationException("Not supported yet.");
+        //Enter something
     }
 
     @Override
