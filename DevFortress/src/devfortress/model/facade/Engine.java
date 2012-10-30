@@ -43,7 +43,7 @@ public class Engine implements Model {
     @Override
     public void fireEmployee(Employee employee) {
         company.removeEmployee(employee);
-        // TOD implement Engine.fireEmployee
+        // TODO implement Engine.fireEmployee
     }
 
     @Override
