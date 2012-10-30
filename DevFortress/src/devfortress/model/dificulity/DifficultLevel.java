@@ -28,7 +28,8 @@ public class DifficultLevel implements GameLevel {
 
     @Override
     public int generateProjectPayment() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Random random = new Random();
+        return random.nextInt(2000000)+3000000;
     }
 
     @Override
