@@ -23,16 +23,18 @@ public class MediumLevel implements GameLevel {
     @Override
     public int generateProjectLevel() {
         Random random = new Random();
-        return random.nextInt(3) + 2;
+        return random.nextInt(2) + 2;
     }
 
     @Override
     public int generateProjectPayment() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Random random = new Random();
+        return random.nextInt(800001) + 1000000;
     }
 
     @Override
-    public DateTime generateProjectTime() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public int generateProjectTime() {
+        Random random = new Random();
+        return random.nextInt(8) + 5;
     }
 }
