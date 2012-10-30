@@ -14,11 +14,11 @@ import devfortress.model.DateTime;
  */
 public interface GameLevel {
 
-    Map<Skills, Integer> generateSkillLisl();
+    Map<Skills, Integer> generateSkillList();
 
     int generateProjectLevel();
 
     int generateProjectPayment();
 
-    DateTime generateProjectTime();
+    int generateProjectTime();
 }

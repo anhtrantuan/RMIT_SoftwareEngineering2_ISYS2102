@@ -68,11 +68,11 @@ public class Utilities {
     }
 
     private static Employee generateEmployee(GameLevel level) {
-        return new Employee(generateEmployeeName(), level.generateSkillLisl());
+        return new Employee(generateEmployeeName(), level.generateSkillList());
     }
 
     private static Project generateProject(GameLevel level) {
         return new Project(level.generateProjectPayment(),
-                level.generateProjectLevel(), level.generateProjectTime(), level.generateSkillLisl());
+                level.generateProjectLevel(), level.generateProjectTime(), level.generateSkillList());
     }
 }
