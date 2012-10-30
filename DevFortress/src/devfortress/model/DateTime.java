@@ -8,7 +8,7 @@ package devfortress.model;
  *
  * @author Sherlock
  */
-class DateTime {
+public class DateTime {
     private int weekOfMonth;
     private int monthOfYear;
     private int year;

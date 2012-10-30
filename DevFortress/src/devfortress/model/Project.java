@@ -4,6 +4,8 @@
  */
 package devfortress.model;
 
+import devfortress.utilities.Skills;
+import java.util.Map;
 import java.util.SortedMap;
 
 /**
@@ -12,19 +14,19 @@ import java.util.SortedMap;
  */
 public class Project {
     //how much monmey can earn from this project
+
     private int payment;
     private int projectLevel;
     //how long a project lasts
     private DateTime projectTime;
-    private SortedMap skillRequirementMap;
+    private Map<Skills, Integer> skillRequirementMap;
 
-    public Project(int payment, int projectLevel, DateTime projectTime, SortedMap<Integer, Integer> skillRequirementMap) {
+    public Project(int payment, int projectLevel, DateTime projectTime, Map<Skills, Integer> skillRequirementMap) {
         this.payment = payment;
         this.projectLevel = projectLevel;
         this.projectTime = projectTime;
         this.skillRequirementMap = skillRequirementMap;
     }
-    
 
     public int getPayment() {
         return payment;
@@ -50,13 +52,11 @@ public class Project {
         this.projectTime = projectTime;
     }
 
-    public SortedMap<Integer, Integer> getSkillRequirementMap() {
+    public Map<Skills, Integer> getSkillRequirementMap() {
         return skillRequirementMap;
     }
 
-    public void setSkillRequirementMap(SortedMap<Integer, Integer> skillRequirementMap) {
+    public void setSkillRequirementMap(Map<Skills, Integer> skillRequirementMap) {
         this.skillRequirementMap = skillRequirementMap;
     }
-    
-    
 }

@@ -44,27 +44,35 @@ public class Utilities {
         }
     }
 
-    public static List<Project> generateProject(int numberOfProject) {
+    public static List<Project> generateProjectList(GameLevel level, int numberOfProject) {
         List<Project> projects = new ArrayList<>();
         for (int i = 0; i < numberOfProject; i++) {
-            // TODO implement Engine.generateProject
+            Project newProject = generateProject(level);
+            projects.add(newProject);
         }
         return projects;
     }
 
-    public static List<Employee> genterateEmployee(GameLevel level,int numberofEmployee) {
+    public static List<Employee> genterateEmployeeList(GameLevel level, int numberofEmployee) {
         List<Employee> employee = new ArrayList<>();
         for (int i = 0; i < numberofEmployee; i++) {
-            Employee newEmployee = new Employee(generateEmployeeName(), level.generateSkillLisl());
-
+            Employee newEmployee = generateEmployee(level);
+            employee.add(newEmployee);
         }
         return employee;
     }
-    
-    
+
     private static String generateEmployeeName() {
         Random randomGenerator = new Random();
         return Name.name[randomGenerator.nextInt(Name.name.length)];
+    }
 
+    private static Employee generateEmployee(GameLevel level) {
+        return new Employee(generateEmployeeName(), level.generateSkillLisl());
+    }
+
+    private static Project generateProject(GameLevel level) {
+        return new Project(level.generateProjectPayment(),
+                level.generateProjectLevel(), level.generateProjectTime(), level.generateSkillLisl());
     }
 }
