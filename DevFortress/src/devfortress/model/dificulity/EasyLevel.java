@@ -31,6 +31,6 @@ public class EasyLevel implements GameLevel {
 
     @Override
     public int generateProjectTime() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return new Random().nextInt(7) + 2;
     }
 }
