@@ -1,3 +1,4 @@
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -29,7 +30,7 @@ public class Utilities {
             } else {
                 return calculateSalaryPoint(skill, skillLevel - 1) + 2;
             }
-        } else if (skill >= 25 && skill <= 27) {
+        } else if (skill >= 25 || skill <= 27) {
             if (skillLevel == 1) {
                 return 1;
             } else {
@@ -37,12 +38,7 @@ public class Utilities {
             }
         } else {
             if (skillLevel == 1) {
-                System.out.println("This is shit");
-                if (skill == 29) {
-                    return 3;
-                } else {
-                    return 2;
-                }
+                return 2;
             } else {
                 return calculateSalaryPoint(skill, skillLevel - 1) * 2;
             }
@@ -73,11 +69,12 @@ public class Utilities {
     }
 
     private static Employee generateEmployee(GameLevel level) {
-        return new Employee(generateEmployeeName(), level.generateSkillLisl());
+        return new Employee(generateEmployeeName(), level.generateSkillList());
     }
 
     private static Project generateProject(GameLevel level) {
         return new Project(level.generateProjectPayment(),
-                level.generateProjectLevel(), level.generateProjectTime(), level.generateSkillLisl());
+                level.generateProjectLevel(), level.generateProjectTime(), level.generateSkillList());
     }
 }
+

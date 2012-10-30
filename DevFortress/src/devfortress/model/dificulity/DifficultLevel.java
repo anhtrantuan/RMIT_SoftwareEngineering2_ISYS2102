@@ -16,7 +16,7 @@ import java.util.Random;
 public class DifficultLevel implements GameLevel {
 
     @Override
-    public Map<Skills, Integer> generateSkillLisl() {
+    public Map<Skills, Integer> generateSkillList() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
@@ -29,11 +29,12 @@ public class DifficultLevel implements GameLevel {
     @Override
     public int generateProjectPayment() {
         Random random = new Random();
-        return random.nextInt(2000000)+3000000;
+        return random.nextInt(2000001)+3000000;
     }
 
     @Override
-    public DateTime generateProjectTime() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public int generateProjectTime() {
+        Random random = new Random();
+        return random.nextInt(13)+12;
     }
 }

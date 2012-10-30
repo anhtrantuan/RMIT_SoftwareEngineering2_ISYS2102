@@ -7,31 +7,34 @@ package devfortress.model.dificulity;
 import devfortress.model.DateTime;
 import devfortress.utilities.Skills;
 import java.util.Map;
+import java.util.Random;
 
 /**
  *
  * @author cathoanghuy
  */
-public class MediumLevel implements GameLevel{
+public class MediumLevel implements GameLevel {
 
     @Override
-    public Map<Skills, Integer> generateSkillLisl() {
+    public Map<Skills, Integer> generateSkillList() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
     @Override
     public int generateProjectLevel() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Random random = new Random();
+        return random.nextInt(2) + 2;
     }
 
     @Override
     public int generateProjectPayment() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        Random random = new Random();
+        return random.nextInt(800001) + 1000000;
     }
 
     @Override
-    public DateTime generateProjectTime() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public int generateProjectTime() {
+        Random random = new Random();
+        return random.nextInt(8) + 5;
     }
-    
 }
