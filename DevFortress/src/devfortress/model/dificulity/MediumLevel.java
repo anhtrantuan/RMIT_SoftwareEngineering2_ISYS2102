@@ -5,7 +5,6 @@
  */
 package devfortress.model.dificulity;
 
-import devfortress.model.DateTime;
 import devfortress.model.Project;
 import devfortress.utilities.Constant;
 import devfortress.utilities.Skills;
@@ -59,11 +58,14 @@ public class MediumLevel implements GameLevel {
         int numOfField = random.nextInt(11) + 11;
 
 
+
         for (int i = 0; i < numOfField; i++) {
             int requireFuntionPoint = (random.nextInt(numOfField / 3) + 1);
             map.put(Skills.randonSkill(), requireFuntionPoint);
             maxFuntionPoint -= requireFuntionPoint;
+
             if (maxFuntionPoint <= 0) {
+
                 continue;
             }
         }

@@ -10,7 +10,6 @@ import devfortress.utilities.Skills;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
-import java.util.SortedMap;
 
 /**
  *
@@ -54,14 +53,16 @@ public class EasyLevel implements GameLevel {
 
         int numOfField = random.nextInt(11) + 4;
 
-        
+
         for (int i = 0; i < numOfField; i++) {
             int requireFuntionPoint = (random.nextInt(numOfField / 3) + 1);
             map.put(Skills.randonSkill(), requireFuntionPoint);
             maxFuntionPoint -= requireFuntionPoint;
+
             if (maxFuntionPoint == 0) {
                 continue;
             } 
+
         }
 
         return new Project(this.generateProjectPayment(), this.generateProjectLevel(), projectTime, map);
