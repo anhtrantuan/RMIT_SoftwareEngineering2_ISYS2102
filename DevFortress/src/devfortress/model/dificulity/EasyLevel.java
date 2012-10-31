@@ -5,6 +5,7 @@
 package devfortress.model.dificulity;
 
 import devfortress.model.Project;
+import devfortress.utilities.Constant;
 import devfortress.utilities.Skills;
 import java.util.HashMap;
 import java.util.Map;
@@ -21,7 +22,7 @@ public class EasyLevel implements GameLevel {
     public Map<Skills, Integer> generateSkillList() {
         Map<Skills, Integer> map = new HashMap<>();
         Random random = new Random();
-        int numOfField = random.nextInt(6) + 2;
+        int numOfField = random.nextInt(11) + 4;
         for (int i = 0; i < numOfField; i++) {
             map.put(Skills.randonSkill(), random.nextInt(3) + 1);
         }
@@ -47,14 +48,22 @@ public class EasyLevel implements GameLevel {
     public Project generateProject() {
         Random random = new Random();
         Map<Skills, Integer> map = new HashMap<>();
-        
+
         int projectTime = this.generateProjectTime();
+        int maxFuntionPoint = projectTime * Constant.MAX_FUCNTION_POINT_EASY;
+
+        int numOfField = random.nextInt(11) + 4;
+
         
-        
-        int numOfField = random.nextInt(6) + 2;
         for (int i = 0; i < numOfField; i++) {
-            map.put(Skills.randonSkill(), random.nextInt(3) + 1);
+            int requireFuntionPoint = (random.nextInt(numOfField / 3) + 1);
+            map.put(Skills.randonSkill(), requireFuntionPoint);
+            maxFuntionPoint -= requireFuntionPoint;
+            if (maxFuntionPoint == 0) {
+                continue;
+            } 
         }
-        return new Project(this.generateProjectPayment(),this.generateProjectLevel(),projectTime,map);
+
+        return new Project(this.generateProjectPayment(), this.generateProjectLevel(), projectTime, map);
     }
 }

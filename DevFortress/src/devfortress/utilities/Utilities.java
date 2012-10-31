@@ -52,8 +52,7 @@ public class Utilities {
     public static List<Project> generateProjectList(GameLevel level, int numberOfProject) {
         List<Project> projects = new ArrayList<>();
         for (int i = 0; i < numberOfProject; i++) {
-            Project newProject = generateProject(level);
-            projects.add(newProject);
+            projects.add(level.generateProject());
         }
         return projects;
     }
@@ -74,10 +73,5 @@ public class Utilities {
 
     private static Employee generateEmployee(GameLevel level) {
         return new Employee(generateEmployeeName(), level.generateSkillList());
-    }
-
-    private static Project generateProject(GameLevel level) {
-        return new Project(level.generateProjectPayment(),
-                level.generateProjectLevel(), level.generateProjectTime(), level.generateSkillList());
     }
 }
