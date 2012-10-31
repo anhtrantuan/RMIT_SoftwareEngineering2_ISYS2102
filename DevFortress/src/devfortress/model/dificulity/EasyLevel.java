@@ -58,9 +58,11 @@ public class EasyLevel implements GameLevel {
             int requireFuntionPoint = (random.nextInt(numOfField / 3) + 1);
             map.put(Skills.randonSkill(), requireFuntionPoint);
             maxFuntionPoint -= requireFuntionPoint;
-            if (maxFuntionPoint <= 2) {
+
+            if (maxFuntionPoint == 0) {
                 continue;
-            }
+            } 
+
         }
 
         return new Project(this.generateProjectPayment(), this.generateProjectLevel(), projectTime, map);

@@ -1,3 +1,4 @@
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -54,14 +55,17 @@ public class MediumLevel implements GameLevel {
         int projectTime = this.generateProjectTime();
         int maxFuntionPoint = projectTime * Constant.MAX_FUCNTION_POINT_MEDIUM;
 
-        int numOfField = random.nextInt(13) + 13;
+        int numOfField = random.nextInt(11) + 11;
+
 
 
         for (int i = 0; i < numOfField; i++) {
             int requireFuntionPoint = (random.nextInt(numOfField / 3) + 1);
             map.put(Skills.randonSkill(), requireFuntionPoint);
             maxFuntionPoint -= requireFuntionPoint;
-            if (maxFuntionPoint <= 2) {
+
+            if (maxFuntionPoint <= 0) {
+
                 continue;
             }
         }

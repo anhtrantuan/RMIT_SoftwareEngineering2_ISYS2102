@@ -14,6 +14,8 @@ import java.util.List;
  * @author cathoanghuy
  */
 public interface Model {
+    
+    
 
     void buyItem(Item item);
 
