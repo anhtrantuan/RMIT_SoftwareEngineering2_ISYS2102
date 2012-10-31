@@ -16,6 +16,7 @@ public class Employee {
     private String name;
     private float salary;
     private Map<Skills, Integer> skillList;
+    private Skills mainSkill;
 
     public Employee(String name, float salary, Map skillList) {
         this.name = name;
