@@ -16,6 +16,7 @@ public class Employee {
     private String name;
     private float salary;
     private Map<Skills, Integer> skillList;
+    private Skills mainSkill;
 
     public Employee(String name, float salary, Map skillList) {
         this.name = name;
@@ -70,11 +71,8 @@ public class Employee {
                 highest = skillList.get(object);
             }
         }
+        mainSkill = main;
         return main;
     }
     
-    public int calculateSalary(){
-        for (Skills object : skillList.keySet()) {}
-        return 0;
-    }
 }

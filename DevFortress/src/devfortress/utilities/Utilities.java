@@ -1,3 +1,4 @@
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -29,15 +30,19 @@ public class Utilities {
             } else {
                 return calculateSalaryPoint(skill, skillLevel - 1) + 2;
             }
-        } else if (skill >= 25 || skill <= 27) {
+        } else if (skill >= 25 && skill <= 27) {
             if (skillLevel == 1) {
-                return 1;
+                return 2;
             } else {
                 return calculateSalaryPoint(skill, skillLevel - 1) + 4;
             }
         } else {
             if (skillLevel == 1) {
-                return 2;
+                if (skill == 29) {
+                    return 3;
+                } else {
+                    return 2;
+                }
             } else {
                 return calculateSalaryPoint(skill, skillLevel - 1) * 2;
             }
