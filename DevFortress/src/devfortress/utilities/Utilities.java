@@ -6,13 +6,12 @@
  */
 package devfortress.utilities;
 
+import devfortress.model.Company;
+import devfortress.model.Computer;
 import devfortress.model.Employee;
 import devfortress.model.Project;
 import devfortress.model.dificulity.GameLevel;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
+import java.util.*;
 
 /**
  *
@@ -89,5 +88,16 @@ public class Utilities {
 
     private static Employee generateEmployee(GameLevel level) {
         return new Employee(generateEmployeeName(), level.generateSkillList());
+    }
+    //check if there is any empty computer in company then assign employee into that computer, return true if having empty computer
+    public static boolean assignComputerToEmployee(Company company,Employee employee) {
+        Map computerMap = company.getComputerList();
+        for(Object com:computerMap.keySet()){
+            if(computerMap.get(com) ==null){
+                computerMap.put(com, employee);
+                return true;
+            }
+        }
+        return false;
     }
 }

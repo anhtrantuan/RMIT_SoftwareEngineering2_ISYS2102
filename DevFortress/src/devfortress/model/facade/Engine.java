@@ -9,6 +9,7 @@ import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.UnaffordableException;
 import devfortress.utilities.Name;
 import devfortress.utilities.Skills;
+import devfortress.utilities.Utilities;
 import java.util.*;
 // TODO implement statergy partern
 
@@ -37,6 +38,10 @@ public class Engine implements Model {
     @Override
     public void hireEmployee(Employee employee) {
         company.addEmployee(employee);
+        if(!Utilities.assignComputerToEmployee(company, employee)){
+            System.out.println("Do not enough computer");
+        }
+
         // TODO implement Engine.hireEmployee
     }
 
@@ -74,6 +79,4 @@ public class Engine implements Model {
             System.out.println(ex.getMessage());
         }
     }
-
-    
 }
