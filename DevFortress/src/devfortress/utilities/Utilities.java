@@ -10,6 +10,7 @@ import devfortress.model.Project;
 import devfortress.model.dificulity.GameLevel;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 /**
@@ -18,35 +19,49 @@ import java.util.Random;
  */
 public class Utilities {
 
-    public static int calculateSalaryPoint(int skill, int skillLevel) {
+    public static int calculateSalaryPoint(Skills skill, int skillLevel) {
 
-        if (skill <= 24) {
+        if (skill.ordinal() <= 24) {
             if (skillLevel == 1) {
-                if (skill == 24) {
+                if (skill.ordinal() == 24) {
                     return 5;
                 } else {
                     return 1;
                 }
             } else {
-                return calculateSalaryPoint(skill, skillLevel - 1) + 2;
+                return (calculateSalaryPoint(skill, skillLevel - 1) + 2);
             }
-        } else if (skill >= 25 && skill <= 27) {
+        } else if (skill.ordinal() >= 25 && skill.ordinal() <= 27) {
             if (skillLevel == 1) {
                 return 2;
             } else {
-                return calculateSalaryPoint(skill, skillLevel - 1) + 4;
+                return (calculateSalaryPoint(skill, skillLevel - 1) + 4);
             }
         } else {
             if (skillLevel == 1) {
-                if (skill == 29) {
+                if (skill.ordinal() == 29) {
                     return 3;
                 } else {
                     return 2;
                 }
             } else {
-                return calculateSalaryPoint(skill, skillLevel - 1) * 2;
+                return (calculateSalaryPoint(skill, skillLevel - 1) * 2);
             }
         }
+    }
+
+    public static int calculateSalary(Map<Skills, Integer> skillList) {
+        int salary = 0;
+        for (Skills sk : skillList.keySet()) {
+            if (sk.ordinal() <= 24) {
+                salary+= calculateSalaryPoint(sk, skillList.get(sk)) * 2;
+            } else if (sk.ordinal() >= 25 && sk.ordinal() <= 27) {
+                salary+= calculateSalaryPoint(sk, skillList.get(sk)) * 4;
+            } else {
+                salary+= calculateSalaryPoint(sk, skillList.get(sk)) * 5;
+            }
+        }
+        return salary;
     }
 
     public static List<Project> generateProjectList(GameLevel level, int numberOfProject) {
