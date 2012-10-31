@@ -47,9 +47,8 @@ public enum Skills {
     ALGORITHMS,
     ANALYSIS,
     TEAM_PLAYER,
-    COMMUNICATION
+    COMMUNICATION;
     //...
-    
     private static final List<Skills> VALUES =
             Collections.unmodifiableList(Arrays.asList(values()));
     private static final int SIZE = VALUES.size();

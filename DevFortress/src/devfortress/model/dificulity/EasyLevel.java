@@ -6,6 +6,7 @@ package devfortress.model.dificulity;
 
 import devfortress.model.Project;
 import devfortress.utilities.Skills;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 import java.util.SortedMap;
@@ -18,13 +19,14 @@ public class EasyLevel implements GameLevel {
 
     @Override
     public Map<Skills, Integer> generateSkillList() {
-        Map<Skills, Integer> map = new SortedMap();
+        Map<Skills, Integer> map = new HashMap<>();
         Random random = new Random();
         int numOfField = random.nextInt(6) + 2;
         int numOfFunctionPoint = random.nextInt(3) + 6;
         for (int i = 0; i < numOfField; i++) {
-            map.put(Skills.randonSkill(), random)
+            //map.put(Skills.randonSkill(), random)
         }
+        return map;
     }
 
     @Override
