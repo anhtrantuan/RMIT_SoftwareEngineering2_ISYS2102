@@ -22,9 +22,8 @@ public class EasyLevel implements GameLevel {
         Map<Skills, Integer> map = new HashMap<>();
         Random random = new Random();
         int numOfField = random.nextInt(6) + 2;
-        int numOfFunctionPoint = random.nextInt(3) + 6;
         for (int i = 0; i < numOfField; i++) {
-            //map.put(Skills.randonSkill(), random)
+            map.put(Skills.randonSkill(), random.nextInt(3) + 1);
         }
         return map;
     }
