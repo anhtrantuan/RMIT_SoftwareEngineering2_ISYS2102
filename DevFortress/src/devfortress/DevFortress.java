@@ -11,6 +11,5 @@ package devfortress;
 public class DevFortress {
 
     public static void main(String[] args) {
-        System.out.println("It works!");
     }
 }
