@@ -71,11 +71,8 @@ public class Employee {
                 highest = skillList.get(object);
             }
         }
+        mainSkill = main;
         return main;
     }
     
-    public int calculateSalary(){
-        for (Skills object : skillList.keySet()) {}
-        return 0;
-    }
 }
