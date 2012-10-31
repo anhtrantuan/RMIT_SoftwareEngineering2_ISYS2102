@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite errors="0" failures="2" hostname="Sherlock-PC" name="devfortress.utilities.UtilitiesTest" tests="8" time="0.072" timestamp="2012-10-31T06:40:07">
+<testsuite errors="0" failures="2" hostname="Sherlock-PC" name="devfortress.utilities.UtilitiesTest" tests="8" time="0.077" timestamp="2012-10-31T07:49:17">
   <properties>
     <property name="libs.jsp-compiler.javadoc" value="" />
     <property name="netbeans.autoupdate.country" value="US" />
@@ -79,7 +79,7 @@
     <property name="manifest.available+main.class" value="true" />
     <property name="libs.spring-webmvc3.0.maven-pom" value="" />
     <property name="libs.swing-layout.maven-pom" value="" />
-    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner devfortress.utilities.UtilitiesTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Sherlock\Desktop\rmit-se2-2012C-ABC\DevFortress\build\test\results\TEST-devfortress.utilities.UtilitiesTest.xml crashfile=C:\Users\Sherlock\Desktop\rmit-se2-2012C-ABC\DevFortress\build\junitvmwatcher7792002368739740215.properties propsfile=C:\Users\Sherlock\Desktop\rmit-se2-2012C-ABC\DevFortress\build\junit3041562841466719579.properties" />
+    <property name="sun.java.command" value="org.apache.tools.ant.taskdefs.optional.junit.JUnitTestRunner devfortress.utilities.UtilitiesTest filtertrace=true haltOnError=false haltOnFailure=false showoutput=true outputtoformatters=true logfailedtests=true logtestlistenerevents=true formatter=org.apache.tools.ant.taskdefs.optional.junit.BriefJUnitResultFormatter formatter=org.apache.tools.ant.taskdefs.optional.junit.XMLJUnitResultFormatter,C:\Users\Sherlock\Desktop\rmit-se2-2012C-ABC\DevFortress\build\test\results\TEST-devfortress.utilities.UtilitiesTest.xml crashfile=C:\Users\Sherlock\Desktop\rmit-se2-2012C-ABC\DevFortress\build\junitvmwatcher6156299533068778491.properties propsfile=C:\Users\Sherlock\Desktop\rmit-se2-2012C-ABC\DevFortress\build\junit1861292899361567444.properties" />
     <property name="build.classes.dir" value="build/classes" />
     <property name="netbeans.accept_license_class" value="org.netbeans.license.AcceptLicense" />
     <property name="jnlp.descriptor" value="application" />
@@ -136,7 +136,7 @@
     <property name="javac.debug" value="true" />
     <property name="javadoc.splitindex" value="true" />
     <property name="file.separator" value="\" />
-    <property name="javac.includesfile.binary" value="C:\Users\Sherlock\Desktop\rmit-se2-2012C-ABC\DevFortress\null989394695" />
+    <property name="javac.includesfile.binary" value="C:\Users\Sherlock\Desktop\rmit-se2-2012C-ABC\DevFortress\null542106529" />
     <property name="libs.restlib_gfv3ee6.classpath" value="C:\Program Files\glassfish-3.1.2\glassfish\modules\jackson-core-asl.jar;C:\Program Files\glassfish-3.1.2\glassfish\modules\jackson-jaxrs.jar;C:\Program Files\glassfish-3.1.2\glassfish\modules\jackson-mapper-asl.jar;C:\Program Files\glassfish-3.1.2\glassfish\modules\jersey-client.jar;C:\Program Files\glassfish-3.1.2\glassfish\modules\jersey-core.jar;C:\Program Files\glassfish-3.1.2\glassfish\modules\jersey-gf-server.jar;C:\Program Files\glassfish-3.1.2\glassfish\modules\jersey-json.jar;C:\Program Files\glassfish-3.1.2\glassfish\modules\jersey-multipart.jar;C:\Program Files\glassfish-3.1.2\glassfish\modules\jettison.jar;C:\Program Files\glassfish-3.1.2\glassfish\modules\mimepull.jar" />
     <property name="libs.junit_4.maven-pom" value="" />
     <property name="deployments.Scp.default.deployment.scp.keyfile" value="" />
@@ -513,12 +513,12 @@
     <property name="platform.active" value="default_platform" />
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit" />
   </properties>
-  <testcase classname="devfortress.utilities.UtilitiesTest" name="testCalculateSalaryPoint1" time="0.003" />
+  <testcase classname="devfortress.utilities.UtilitiesTest" name="testCalculateSalaryPoint" time="0.003" />
+  <testcase classname="devfortress.utilities.UtilitiesTest" name="testCalculateSalaryPoint1" time="0.0" />
   <testcase classname="devfortress.utilities.UtilitiesTest" name="testCalculateSalaryPoint2" time="0.0" />
-  <testcase classname="devfortress.utilities.UtilitiesTest" name="testCalculateSalaryPoint" time="0.0" />
   <testcase classname="devfortress.utilities.UtilitiesTest" name="testCalculateSalaryPoint3" time="0.0" />
   <testcase classname="devfortress.utilities.UtilitiesTest" name="testCalculateSalaryPoint4" time="0.0" />
-  <testcase classname="devfortress.utilities.UtilitiesTest" name="testGenerateProjectList" time="0.004">
+  <testcase classname="devfortress.utilities.UtilitiesTest" name="testGenerateProjectList" time="0.005">
     <failure message="expected:&lt;null&gt; but was:&lt;[]&gt;" type="junit.framework.AssertionFailedError">junit.framework.AssertionFailedError: expected:&lt;null&gt; but was:&lt;[]&gt;
 	at devfortress.utilities.UtilitiesTest.testGenerateProjectList(UtilitiesTest.java:124)
 </failure>
@@ -529,9 +529,9 @@
 </failure>
   </testcase>
   <testcase classname="devfortress.utilities.UtilitiesTest" name="testCalculateSalary" time="0.001" />
-  <system-out><![CDATA[calculateSalaryPoint with Lisp
+  <system-out><![CDATA[calculateSalaryPoint with C
+calculateSalaryPoint with Lisp
 calculateSalaryPoint with Design
-calculateSalaryPoint with C
 calculateSalaryPoint with Algorithm
 calculateSalaryPoint with ConfigManagement
 generateProjectList
