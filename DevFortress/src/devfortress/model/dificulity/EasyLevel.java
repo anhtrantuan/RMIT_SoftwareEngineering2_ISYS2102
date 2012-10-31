@@ -45,6 +45,7 @@ public class EasyLevel implements GameLevel {
 
     @Override
     public Project generateProject() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        
+        return new Project(this.generateProjectPayment(),this.generateProjectLevel(),this.generateProjectTime());
     }
 }
