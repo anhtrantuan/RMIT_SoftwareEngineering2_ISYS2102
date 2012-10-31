@@ -43,7 +43,6 @@ public class DevFortressTest {
 
     @Test
     public void sample() {
-        System.out.println("Sample Test");
         assertTrue(true);
     }
 }
