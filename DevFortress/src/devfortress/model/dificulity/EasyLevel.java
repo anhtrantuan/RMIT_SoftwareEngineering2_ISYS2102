@@ -4,9 +4,11 @@
  */
 package devfortress.model.dificulity;
 
+import devfortress.model.Project;
 import devfortress.utilities.Skills;
 import java.util.Map;
 import java.util.Random;
+import java.util.SortedMap;
 
 /**
  *
@@ -16,8 +18,13 @@ public class EasyLevel implements GameLevel {
 
     @Override
     public Map<Skills, Integer> generateSkillList() {
-        throw new UnsupportedOperationException("Not supported yet.");
-        //Enter something
+        Map<Skills, Integer> map = new SortedMap();
+        Random random = new Random();
+        int numOfField = random.nextInt(6) + 2;
+        int numOfFunctionPoint = random.nextInt(3) + 6;
+        for (int i = 0; i < numOfField; i++) {
+            map.put(Skills.randonSkill(), random)
+        }
     }
 
     @Override
@@ -33,5 +40,10 @@ public class EasyLevel implements GameLevel {
     @Override
     public int generateProjectTime() {
         return new Random().nextInt(7) + 2;
+    }
+
+    @Override
+    public Project generateProject() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

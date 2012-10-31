@@ -5,6 +5,7 @@
 package devfortress.model.dificulity;
 
 import devfortress.model.DateTime;
+import devfortress.model.Project;
 import devfortress.utilities.Skills;
 import java.util.Map;
 import java.util.Random;
@@ -36,5 +37,10 @@ public class DifficultLevel implements GameLevel {
     public int generateProjectTime() {
         Random random = new Random();
         return random.nextInt(13)+12;
+    }
+
+    @Override
+    public Project generateProject() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

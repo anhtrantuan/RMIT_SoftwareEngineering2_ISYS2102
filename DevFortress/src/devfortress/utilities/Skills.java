@@ -4,7 +4,10 @@
  */
 package devfortress.utilities;
 
-import java.util.Map;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+import java.util.Random;
 
 /**
  *
@@ -36,7 +39,7 @@ public enum Skills {
     SCALABILITY,
     DOCUMENTATION,
     PERFORMANCE,
-    CONFIG_MANAGEMENT, 
+    CONFIG_MANAGEMENT,
     LISP,
     HASKELL,
     FORTH,
@@ -45,5 +48,14 @@ public enum Skills {
     ANALYSIS,
     TEAM_PLAYER,
     COMMUNICATION
+    //...
     
+    private static final List<Skills> VALUES =
+            Collections.unmodifiableList(Arrays.asList(values()));
+    private static final int SIZE = VALUES.size();
+    private static final Random RANDOM = new Random();
+
+    public static Skills randonSkill() {
+        return VALUES.get(RANDOM.nextInt(SIZE));
+    }
 }
