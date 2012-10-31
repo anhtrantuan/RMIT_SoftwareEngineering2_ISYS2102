@@ -58,10 +58,10 @@ public class DifficultLevel implements GameLevel {
 
 
         for (int i = 0; i < numOfField; i++) {
-            int requireFuntionPoint = (random.nextInt(numOfField / 3) + 1);
+            int requireFuntionPoint = (random.nextInt(maxFuntionPoint/2) + 1);
             map.put(Skills.randonSkill(), requireFuntionPoint);
             maxFuntionPoint -= requireFuntionPoint;
-            if (maxFuntionPoint <= 2) {
+            if (maxFuntionPoint <= 10) {
                 continue;
             }
         }

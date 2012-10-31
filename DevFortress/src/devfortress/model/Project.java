@@ -59,4 +59,14 @@ public class Project {
     public void setSkillRequirementMap(Map<Skills, Integer> skillRequirementMap) {
         this.skillRequirementMap = skillRequirementMap;
     }
+
+    @Override
+    public String toString() {
+        for (Skills object : skillRequirementMap.keySet()) {
+            System.out.println(object.name() + ":" + skillRequirementMap.get(object));
+        }
+        return this.payment + "\n"
+                + this.projectLevel + "\n"
+                + this.projectTime + "\n";
+    }
 }
