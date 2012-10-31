@@ -16,22 +16,22 @@ import static org.junit.Assert.*;
  * @author tommy
  */
 public class DevFortressTest {
-    
+
     public DevFortressTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -43,6 +43,7 @@ public class DevFortressTest {
 
     @Test
     public void sample() {
+        System.out.println("Sample");
         assertTrue(true);
     }
 }
