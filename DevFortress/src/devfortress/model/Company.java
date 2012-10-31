@@ -7,6 +7,7 @@ package devfortress.model;
 import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.UnaffordableException;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -16,13 +17,16 @@ public class Company {
     
     private float money;
     private List<Employee> employeeList;
-    
+    private Map<Computer,Employee> computerList;
+
     public Company() {
         money = 1000;
     }
     
-    public Company(int money) {
+    public Company(int money,List empList,Map computerList) {
         this.money = money;
+        employeeList = empList;
+        this.computerList = computerList;
     }
     
     public float getMoney() {
@@ -63,6 +67,24 @@ public class Company {
         }
         return true;
     }
+
+    public Map<Computer, Employee> getComputerList() {
+        return computerList;
+    }
+
+    public void setComputerList(Map<Computer, Employee> computerList) {
+        this.computerList = computerList;
+    }
+
+    public List<Employee> getEmployeeList() {
+        return employeeList;
+    }
+
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
+    }
+    
+    
     
     public void test() {
     }
