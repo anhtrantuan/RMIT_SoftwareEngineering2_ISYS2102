@@ -8,6 +8,9 @@ package devfortress.utilities;
  *
  * @author cathoanghuy
  */
-public enum Constant {
-    MAX_FUCNTION_POINT
+public class Constant {
+
+    public static int MAX_FUCNTION_POINT_EASY = 100;
+    public static int MAX_FUCNTION_POINT_MEDIUM = 200;
+    public static int MAX_FUNCTION_POINT_DIFFICULT = 400;
 }

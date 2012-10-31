@@ -45,7 +45,16 @@ public class EasyLevel implements GameLevel {
 
     @Override
     public Project generateProject() {
+        Random random = new Random();
+        Map<Skills, Integer> map = new HashMap<>();
         
-        return new Project(this.generateProjectPayment(),this.generateProjectLevel(),this.generateProjectTime());
+        int projectTime = this.generateProjectTime();
+        
+        
+        int numOfField = random.nextInt(6) + 2;
+        for (int i = 0; i < numOfField; i++) {
+            map.put(Skills.randonSkill(), random.nextInt(3) + 1);
+        }
+        return new Project(this.generateProjectPayment(),this.generateProjectLevel(),projectTime,map);
     }
 }
