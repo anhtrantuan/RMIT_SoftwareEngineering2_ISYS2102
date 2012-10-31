@@ -54,11 +54,11 @@ public class Utilities {
         int salary = 0;
         for (Skills sk : skillList.keySet()) {
             if (sk.ordinal() <= 24) {
-                salary+= calculateSalaryPoint(sk, skillList.get(sk)) * 2;
+                salary += calculateSalaryPoint(sk, skillList.get(sk)) * 2;
             } else if (sk.ordinal() >= 25 && sk.ordinal() <= 27) {
-                salary+= calculateSalaryPoint(sk, skillList.get(sk)) * 4;
+                salary += calculateSalaryPoint(sk, skillList.get(sk)) * 4;
             } else {
-                salary+= calculateSalaryPoint(sk, skillList.get(sk)) * 5;
+                salary += calculateSalaryPoint(sk, skillList.get(sk)) * 5;
             }
         }
         return salary;
@@ -67,8 +67,7 @@ public class Utilities {
     public static List<Project> generateProjectList(GameLevel level, int numberOfProject) {
         List<Project> projects = new ArrayList<>();
         for (int i = 0; i < numberOfProject; i++) {
-            Project newProject = generateProject(level);
-            projects.add(newProject);
+            projects.add(level.generateProject());
         }
         return projects;
     }
@@ -89,10 +88,5 @@ public class Utilities {
 
     private static Employee generateEmployee(GameLevel level) {
         return new Employee(generateEmployeeName(), level.generateSkillList());
-    }
-
-    private static Project generateProject(GameLevel level) {
-        return new Project(level.generateProjectPayment(),
-                level.generateProjectLevel(), level.generateProjectTime(), level.generateSkillList());
     }
 }
