@@ -22,7 +22,7 @@ public class MediumLevel implements GameLevel {
     public Map<Skills, Integer> generateSkillList() {
         Map<Skills, Integer> map = new HashMap<>();
         Random random = new Random();
-        int numOfField = random.nextInt(11) + 11;
+        int numOfField = random.nextInt(4) + 6;
         for (int i = 0; i < numOfField; i++) {
             map.put(Skills.randonSkill(), random.nextInt(5) + 3);
         }
@@ -38,7 +38,7 @@ public class MediumLevel implements GameLevel {
     @Override
     public int generateProjectPayment() {
         Random random = new Random();
-        return random.nextInt(800001) + 1000000;
+        return (random.nextInt(81) + 100) * 10000;
     }
 
     @Override
@@ -55,12 +55,12 @@ public class MediumLevel implements GameLevel {
         int projectTime = this.generateProjectTime();
         int maxFuntionPoint = projectTime * Constant.MAX_FUCNTION_POINT_MEDIUM;
 
-        int numOfField = random.nextInt(11) + 11;
+        int numOfField = random.nextInt(6) + 6;
 
 
 
         for (int i = 0; i < numOfField; i++) {
-            int requireFuntionPoint = (random.nextInt(maxFuntionPoint/2) + 1);
+            int requireFuntionPoint = (random.nextInt(maxFuntionPoint / 2) + 1);
             map.put(Skills.randonSkill(), requireFuntionPoint);
             maxFuntionPoint -= requireFuntionPoint;
 
