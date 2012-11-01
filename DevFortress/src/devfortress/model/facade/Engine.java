@@ -6,6 +6,7 @@ package devfortress.model.facade;
 
 import devfortress.model.*;
 import devfortress.model.exception.MoneyRunOutException;
+import devfortress.model.exception.OvercrowdedException;
 import devfortress.model.exception.UnaffordableException;
 import devfortress.utilities.Name;
 import devfortress.utilities.Skills;
@@ -36,12 +37,12 @@ public class Engine implements Model {
     }
 
     @Override
-    public void hireEmployee(Employee employee) {
-        company.addEmployee(employee);
+    public void hireEmployee(Employee employee) throws OvercrowdedException{ 
         if(!Utilities.assignComputerToEmployee(company, employee)){
-            System.out.println("Do not enough computer");
+            throw new OvercrowdedException("Not enough computer");
+            
         }
-
+        company.addEmployee(employee);
         // TODO implement Engine.hireEmployee
     }
 
