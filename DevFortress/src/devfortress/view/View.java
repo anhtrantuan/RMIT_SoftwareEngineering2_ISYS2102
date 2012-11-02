@@ -14,7 +14,7 @@ import java.util.Observer;
 public class View implements Observer, Runnable {
 
     public View() {
-        System.out.println("_View_");
+        System.out.println("View");
     }
 
     @Override
