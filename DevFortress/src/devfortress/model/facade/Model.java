@@ -7,6 +7,7 @@ package devfortress.model.facade;
 import devfortress.model.Employee;
 import devfortress.model.Item;
 import devfortress.model.Project;
+import devfortress.model.dificulity.GameLevel;
 import java.util.List;
 
 /**
@@ -14,8 +15,6 @@ import java.util.List;
  * @author cathoanghuy
  */
 public interface Model {
-    
-    
 
     void buyItem(Item item);
 
@@ -33,5 +32,7 @@ public interface Model {
 
     void paySalary();
 
-    
+    List<Employee> generateEmployeeList();
+
+    List<Project> generateProjectList();
 }

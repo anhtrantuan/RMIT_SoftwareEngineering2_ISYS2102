@@ -5,10 +5,12 @@
 package devfortress.model.facade;
 
 import devfortress.model.*;
-import devfortress.model.exception.MoneyRunOutException;
-import devfortress.model.exception.UnaffordableException;
+import devfortress.model.dificulity.GameLevel;
+import devfortress.model.exception.*;
 import devfortress.utilities.Utilities;
+import java.util.List;
 import java.util.Observable;
+import java.util.Random;
 // TODO implement statergy partern
 
 /**
@@ -18,6 +20,7 @@ import java.util.Observable;
 public class Engine extends Observable implements Model, Runnable {
 
     private Company company;
+    private GameLevel level;
 
     public Engine(Company company) {
         this.company = company;
@@ -79,7 +82,20 @@ public class Engine extends Observable implements Model, Runnable {
     }
 
     @Override
+    public List<Employee> generateEmployeeList() {
+        Random random = new Random();
+        int number = random.nextInt(3) + 3;
+        return Utilities.generateEmployeeList(level, number);
+    }
+
+    @Override
+    public List<Project> generateProjectList() {
+        Random random = new Random();
+        int number = random.nextInt(3) + 8;
+        return Utilities.generateProjectList(level, number);
+    }
+
+    @Override
     public void run() {
-        
     }
 }
