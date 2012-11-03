@@ -7,17 +7,15 @@ package devfortress.model.facade;
 import devfortress.model.*;
 import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.UnaffordableException;
-import devfortress.utilities.Name;
-import devfortress.utilities.Skills;
 import devfortress.utilities.Utilities;
-import java.util.*;
+import java.util.Observable;
 // TODO implement statergy partern
 
 /**
  *
  * @author cathoanghuy
  */
-public class Engine implements Model {
+public class Engine extends Observable implements Model, Runnable {
 
     private Company company;
 
@@ -38,7 +36,7 @@ public class Engine implements Model {
     @Override
     public void hireEmployee(Employee employee) {
         company.addEmployee(employee);
-        if(!Utilities.assignComputerToEmployee(company, employee)){
+        if (!Utilities.assignComputerToEmployee(company, employee)) {
             System.out.println("Do not enough computer");
         }
 
@@ -78,5 +76,10 @@ public class Engine implements Model {
         } catch (MoneyRunOutException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    @Override
+    public void run() {
+        
     }
 }
