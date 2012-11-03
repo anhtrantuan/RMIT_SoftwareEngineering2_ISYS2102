@@ -20,12 +20,14 @@ public class Project {
     //how long a project lasts
     private int projectTime;
     private Map<Skills, Integer> skillRequirementMap;
+    private Map<Skills, Employee> skill_employeeMap;
 
     public Project(int payment, int projectLevel, int projectTime, Map<Skills, Integer> skillRequirementMap) {
         this.payment = payment;
         this.projectLevel = projectLevel;
         this.projectTime = projectTime;
         this.skillRequirementMap = skillRequirementMap;
+        
     }
 
     public int getPayment() {
@@ -59,6 +61,16 @@ public class Project {
     public void setSkillRequirementMap(Map<Skills, Integer> skillRequirementMap) {
         this.skillRequirementMap = skillRequirementMap;
     }
+
+    public Map<Skills, Employee> getSkill_employeeMap() {
+        return skill_employeeMap;
+    }
+
+    public void setSkill_employeeMap(Map<Skills, Employee> skill_employeeMap) {
+        this.skill_employeeMap = skill_employeeMap;
+    }
+    
+    
 
     @Override
     public String toString() {

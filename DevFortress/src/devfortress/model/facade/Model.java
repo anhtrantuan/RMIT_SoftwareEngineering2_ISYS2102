@@ -7,7 +7,11 @@ package devfortress.model.facade;
 import devfortress.model.Employee;
 import devfortress.model.Item;
 import devfortress.model.Project;
+
 import devfortress.model.dificulity.GameLevel;
+
+import devfortress.model.exception.OvercrowdedException;
+
 import java.util.List;
 
 /**
@@ -18,7 +22,7 @@ public interface Model {
 
     void buyItem(Item item);
 
-    void hireEmployee(Employee employee);
+    void hireEmployee(Employee employee) throws OvercrowdedException;
 
     void fireEmployee(Employee employee);
 

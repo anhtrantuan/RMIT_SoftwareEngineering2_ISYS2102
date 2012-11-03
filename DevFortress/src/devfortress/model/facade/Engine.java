@@ -5,8 +5,14 @@
 package devfortress.model.facade;
 
 import devfortress.model.*;
+
 import devfortress.model.dificulity.GameLevel;
 import devfortress.model.exception.*;
+
+import devfortress.model.exception.MoneyRunOutException;
+import devfortress.model.exception.OvercrowdedException;
+import devfortress.model.exception.UnaffordableException;
+
 import devfortress.utilities.Utilities;
 import java.util.List;
 import java.util.Observable;
@@ -37,13 +43,11 @@ public class Engine extends Observable implements Model, Runnable {
     }
 
     @Override
-    public void hireEmployee(Employee employee) {
-        company.addEmployee(employee);
+    public void hireEmployee(Employee employee) throws OvercrowdedException {
         if (!Utilities.assignComputerToEmployee(company, employee)) {
-            System.out.println("Do not enough computer");
+            throw new OvercrowdedException("Not enough computer");
         }
-
-        // TODO implement Engine.hireEmployee
+        company.addEmployee(employee);
     }
 
     @Override

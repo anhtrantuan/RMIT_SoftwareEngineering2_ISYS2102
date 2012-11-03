@@ -18,15 +18,17 @@ public class Company {
     private float money;
     private List<Employee> employeeList;
     private Map<Computer,Employee> computerList;
+    private List<Project> currentProjectList;
 
     public Company() {
         money = 1000;
     }
     
-    public Company(int money,List empList,Map computerList) {
+    public Company(int money,List empList,Map computerList,List projectList) {
         this.money = money;
         employeeList = empList;
         this.computerList = computerList;
+        currentProjectList = projectList;
     }
     
     public float getMoney() {
@@ -55,7 +57,10 @@ public class Company {
             throw new UnaffordableException("You do not have enough money to buy");
         } else {
             decreaseMoney(item.getPrice());
-        }
+            if(item instanceof Computer){
+                computerList.put((Computer)item, null);
+            }
+        } 
     }
     
     public boolean paySalary() throws MoneyRunOutException {
@@ -83,7 +88,14 @@ public class Company {
     public void setEmployeeList(List<Employee> employeeList) {
         this.employeeList = employeeList;
     }
-    
+
+    public List<Project> getCurrentProjectList() {
+        return currentProjectList;
+    }
+
+    public void setCurrentProjectList(List<Project> currentProjectList) {
+        this.currentProjectList = currentProjectList;
+    }
     
     
     public void test() {
