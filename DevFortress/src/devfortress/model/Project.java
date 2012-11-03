@@ -6,6 +6,7 @@ package devfortress.model;
 
 import devfortress.utilities.Skills;
 import java.util.Map;
+import java.util.Random;
 import java.util.SortedMap;
 
 /**
@@ -21,13 +22,14 @@ public class Project {
     private int projectTime;
     private Map<Skills, Integer> skillRequirementMap;
     private Map<Skills, Employee> skill_employeeMap;
+    private Skills mainSkill;
 
     public Project(int payment, int projectLevel, int projectTime, Map<Skills, Integer> skillRequirementMap) {
         this.payment = payment;
         this.projectLevel = projectLevel;
         this.projectTime = projectTime;
         this.skillRequirementMap = skillRequirementMap;
-        
+        getMainSkill();
     }
 
     public int getPayment() {
@@ -80,5 +82,32 @@ public class Project {
         return this.payment + "\n"
                 + this.projectLevel + "\n"
                 + this.projectTime + "\n";
+    }
+
+    public void levelUp() {
+        Random random = new Random();
+        int lvlUpPercent  = (projectLevel * 5)-1;
+        Employee selectedEmployee;
+        for(Skills sk:skill_employeeMap.keySet()){
+            selectedEmployee = skill_employeeMap.get(sk);
+            for (int i = 0; i < projectTime; i++) {
+                if(random.nextInt(99) < lvlUpPercent){
+                    selectedEmployee.skillLevelUp(mainSkill);
+                }
+            }
+        }
+    }
+
+    private Skills getMainSkill() {
+        Skills main = null;
+        int highest = 0;
+        for (Skills sk : skillRequirementMap.keySet()) {
+            if (skillRequirementMap.get(sk) > highest) {
+                main = sk;
+                highest = skillRequirementMap.get(sk);
+            }
+        }
+        mainSkill = main;
+        return main;
     }
 }

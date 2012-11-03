@@ -58,12 +58,12 @@ public class Engine extends Observable implements Model, Runnable {
 
     @Override
     public void takeProject(Project project) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        company.addProject(project);
     }
 
     @Override
     public void cancelProject(Project project) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        company.cancelProject(project);
     }
 
     @Override
@@ -73,7 +73,7 @@ public class Engine extends Observable implements Model, Runnable {
 
     @Override
     public void levelUp(Project project) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        project.levelUp();
     }
 
     @Override

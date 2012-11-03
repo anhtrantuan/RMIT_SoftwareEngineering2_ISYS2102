@@ -97,6 +97,13 @@ public class Company {
         this.currentProjectList = currentProjectList;
     }
     
+    public void addProject(Project project){
+        currentProjectList.add(project);
+    }
+    
+    public void cancelProject(Project project){
+        currentProjectList.remove(project);
+    }
     
     public void test() {
     }
