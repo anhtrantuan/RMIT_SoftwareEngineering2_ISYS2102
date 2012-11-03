@@ -4,17 +4,17 @@
  */
 package devfortress.utilities;
 
-import devfortress.model.dificulity.EasyLevel;
 import devfortress.model.dificulity.GameLevel;
+import devfortress.model.dificulity.MediumLevel;
 import java.util.List;
 
 /**
  *
  * @author cathoanghuy
  */
-public class test {
+public class Test {
     public static void main(String[] args) {
-        GameLevel level = new EasyLevel();
+        GameLevel level = new MediumLevel();
         int numberOfProject = 4;
         List result = Utilities.generateProjectList(level, numberOfProject);
         for (int i = 0; i < result.size(); i++) {

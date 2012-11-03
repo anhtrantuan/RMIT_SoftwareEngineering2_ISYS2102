@@ -21,7 +21,7 @@ public class DifficultLevel implements GameLevel {
     public Map<Skills, Integer> generateSkillList() {
         Map<Skills, Integer> map = new HashMap<>();
         Random random = new Random();
-        int numOfField = random.nextInt(28) + 7;
+        int numOfField = random.nextInt(4) + 10;
         for (int i = 0; i < numOfField; i++) {
             map.put(Skills.randonSkill(), random.nextInt(5) + 6);
         }
@@ -37,13 +37,13 @@ public class DifficultLevel implements GameLevel {
     @Override
     public int generateProjectPayment() {
         Random random = new Random();
-        return random.nextInt(2000001)+3000000;
+        return (random.nextInt(201) + 300) * 10000;
     }
 
     @Override
     public int generateProjectTime() {
         Random random = new Random();
-        return random.nextInt(13)+12;
+        return random.nextInt(13) + 12;
     }
 
     @Override
@@ -54,11 +54,11 @@ public class DifficultLevel implements GameLevel {
         int projectTime = this.generateProjectTime();
         int maxFuntionPoint = projectTime * Constant.MAX_FUNCTION_POINT_DIFFICULT;
 
-        int numOfField = random.nextInt(28) + 7;
+        int numOfField = random.nextInt(6) + 10;
 
 
         for (int i = 0; i < numOfField; i++) {
-            int requireFuntionPoint = (random.nextInt(maxFuntionPoint/2) + 1);
+            int requireFuntionPoint = (random.nextInt(maxFuntionPoint / 2) + 1);
             map.put(Skills.randonSkill(), requireFuntionPoint);
             maxFuntionPoint -= requireFuntionPoint;
             if (maxFuntionPoint <= 10) {

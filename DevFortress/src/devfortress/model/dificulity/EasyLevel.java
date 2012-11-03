@@ -21,7 +21,7 @@ public class EasyLevel implements GameLevel {
     public Map<Skills, Integer> generateSkillList() {
         Map<Skills, Integer> map = new HashMap<>();
         Random random = new Random();
-        int numOfField = random.nextInt(11) + 4;
+        int numOfField = random.nextInt(3) + 4;
         for (int i = 0; i < numOfField; i++) {
             map.put(Skills.randonSkill(), random.nextInt(3) + 1);
         }
@@ -35,7 +35,7 @@ public class EasyLevel implements GameLevel {
 
     @Override
     public int generateProjectPayment() {
-        return new Random().nextInt(500001) + 300000;
+        return (new Random().nextInt(51) + 30)*10000;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class EasyLevel implements GameLevel {
         int projectTime = this.generateProjectTime();
         int maxFuntionPoint = projectTime * Constant.MAX_FUCNTION_POINT_EASY;
 
-        int numOfField = random.nextInt(11) + 4;
+        int numOfField = random.nextInt(6) + 2;
 
 
         for (int i = 0; i < numOfField; i++) {
