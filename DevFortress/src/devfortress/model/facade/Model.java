@@ -7,11 +7,7 @@ package devfortress.model.facade;
 import devfortress.model.Employee;
 import devfortress.model.Item;
 import devfortress.model.Project;
-
-import devfortress.model.dificulity.GameLevel;
-
 import devfortress.model.exception.OvercrowdedException;
-
 import java.util.List;
 
 /**

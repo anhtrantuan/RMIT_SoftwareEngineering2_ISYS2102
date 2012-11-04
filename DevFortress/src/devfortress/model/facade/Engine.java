@@ -5,14 +5,10 @@
 package devfortress.model.facade;
 
 import devfortress.model.*;
-
 import devfortress.model.dificulity.GameLevel;
-import devfortress.model.exception.*;
-
 import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.OvercrowdedException;
 import devfortress.model.exception.UnaffordableException;
-
 import devfortress.utilities.Utilities;
 import java.util.List;
 import java.util.Observable;
