@@ -4,6 +4,7 @@
  */
 package devfortress.utilities;
 
+import devfortress.model.dificulity.EasyLevel;
 import devfortress.model.dificulity.GameLevel;
 import devfortress.model.dificulity.MediumLevel;
 import java.util.List;
