@@ -22,6 +22,7 @@ public class Employee {
         this.name = name;
         this.salary = salary;
         this.skillList = skillList;
+        getMainSkill();
     }
 
     public Employee(String name, Map skillList) {
