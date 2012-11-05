@@ -61,6 +61,7 @@ public class Employee {
         } else {
             skillList.put(sk, 1);
         }
+        getMainSkill();
     }
 
     public Skills getMainSkill() {

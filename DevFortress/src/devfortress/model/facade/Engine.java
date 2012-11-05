@@ -44,22 +44,30 @@ public class Engine extends Observable implements Model, Runnable {
             throw new OvercrowdedException("Not enough computer");
         }
         company.addEmployee(employee);
+        setChanged();
+        notifyObservers();
     }
 
     @Override
     public void fireEmployee(Employee employee) {
         company.removeEmployee(employee);
-        // TODO implement Engine.fireEmployee
+        setChanged();
+        notifyObservers();
+        
     }
 
     @Override
     public void takeProject(Project project) {
         company.addProject(project);
+        setChanged();
+        notifyObservers();
     }
 
     @Override
     public void cancelProject(Project project) {
         company.cancelProject(project);
+        setChanged();
+        notifyObservers();
     }
 
     @Override
@@ -70,6 +78,8 @@ public class Engine extends Observable implements Model, Runnable {
     @Override
     public void levelUp(Project project) {
         project.levelUp();
+        setChanged();
+        notifyObservers();
     }
 
     @Override
