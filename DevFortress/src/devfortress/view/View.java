@@ -4,11 +4,14 @@
  */
 package devfortress.view;
 
+import java.util.Observable;
+import java.util.Observer;
+
 /**
  *
  * @author tommy
  */
-public class View extends javax.swing.JFrame {
+public class View extends javax.swing.JFrame implements Observer, Runnable {
 
     /**
      * Creates new form View
@@ -88,7 +91,7 @@ public class View extends javax.swing.JFrame {
         );
         pnlStatusLayout.setVerticalGroup(
             pnlStatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 99, Short.MAX_VALUE)
+            .addGap(0, 102, Short.MAX_VALUE)
         );
 
         pnlProjects.setBackground(new java.awt.Color(255, 255, 255));
@@ -102,7 +105,7 @@ public class View extends javax.swing.JFrame {
         );
         pnlProjectsLayout.setVerticalGroup(
             pnlProjectsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 139, Short.MAX_VALUE)
+            .addGap(0, 142, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout pnlManagementLayout = new javax.swing.GroupLayout(pnlManagement);
@@ -126,7 +129,7 @@ public class View extends javax.swing.JFrame {
                 .addComponent(pnlStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlProjects, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(192, Short.MAX_VALUE))
+                .addContainerGap(190, Short.MAX_VALUE))
         );
 
         scpManagement.setViewportView(pnlManagement);
@@ -152,7 +155,7 @@ public class View extends javax.swing.JFrame {
         );
         pnlDevelopersLayout.setVerticalGroup(
             pnlDevelopersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
+            .addGap(0, 434, Short.MAX_VALUE)
         );
 
         scpDevelopers.setViewportView(pnlDevelopers);
@@ -197,7 +200,7 @@ public class View extends javax.swing.JFrame {
                         .addComponent(scpDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(0, 0, 0)
                         .addComponent(scpLog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(scpManagement, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE))
+                    .addComponent(scpManagement, javax.swing.GroupLayout.DEFAULT_SIZE, 560, Short.MAX_VALUE))
                 .addGap(0, 0, 0)
                 .addComponent(pnlStatusBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -258,4 +261,14 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JScrollPane scpManagement;
     private javax.swing.JTextPane txpLog;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    @Override
+    public void run() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
 }
