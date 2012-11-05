@@ -72,7 +72,7 @@ public class Utilities {
         return projects;
     }
 
-    public static List<Employee> genterateEmployeeList(GameLevel level, int numberofEmployee) {
+    public static List<Employee> generateEmployeeList(GameLevel level, int numberofEmployee) {
         List<Employee> employee = new ArrayList<>();
         for (int i = 0; i < numberofEmployee; i++) {
             Employee newEmployee = generateEmployee(level);
