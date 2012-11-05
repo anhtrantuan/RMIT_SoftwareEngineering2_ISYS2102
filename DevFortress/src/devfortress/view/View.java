@@ -26,13 +26,15 @@ public class View extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnlStatus = new javax.swing.JPanel();
+        pnlStatusBar = new javax.swing.JPanel();
         lblStatus = new javax.swing.JLabel();
         scpManagement = new javax.swing.JScrollPane();
         pnlManagement = new javax.swing.JPanel();
         btnManage = new javax.swing.JButton();
+        pnlStatus = new javax.swing.JPanel();
+        pnlProjects = new javax.swing.JPanel();
         scpLog = new javax.swing.JScrollPane();
-        pnlLog = new javax.swing.JPanel();
+        txpLog = new javax.swing.JTextPane();
         scpDevelopers = new javax.swing.JScrollPane();
         pnlDevelopers = new javax.swing.JPanel();
         menu = new javax.swing.JMenuBar();
@@ -47,32 +49,61 @@ public class View extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1024, 600));
         setResizable(false);
 
-        pnlStatus.setBackground(new java.awt.Color(255, 255, 255));
-        pnlStatus.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        pnlStatus.setPreferredSize(new java.awt.Dimension(1024, 23));
+        pnlStatusBar.setBackground(new java.awt.Color(255, 255, 255));
+        pnlStatusBar.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        pnlStatusBar.setPreferredSize(new java.awt.Dimension(1024, 23));
 
         lblStatus.setText("Status");
 
-        javax.swing.GroupLayout pnlStatusLayout = new javax.swing.GroupLayout(pnlStatus);
-        pnlStatus.setLayout(pnlStatusLayout);
-        pnlStatusLayout.setHorizontalGroup(
-            pnlStatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlStatusLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlStatusBarLayout = new javax.swing.GroupLayout(pnlStatusBar);
+        pnlStatusBar.setLayout(pnlStatusBarLayout);
+        pnlStatusBarLayout.setHorizontalGroup(
+            pnlStatusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlStatusBarLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 996, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        pnlStatusLayout.setVerticalGroup(
-            pnlStatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        pnlStatusBarLayout.setVerticalGroup(
+            pnlStatusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(lblStatus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE)
         );
 
         scpManagement.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
         pnlManagement.setBackground(new java.awt.Color(255, 255, 255));
+        pnlManagement.setPreferredSize(new java.awt.Dimension(364, 548));
 
         btnManage.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
         btnManage.setText("Manage");
+
+        pnlStatus.setBackground(new java.awt.Color(255, 255, 255));
+        pnlStatus.setBorder(javax.swing.BorderFactory.createTitledBorder("Status"));
+
+        javax.swing.GroupLayout pnlStatusLayout = new javax.swing.GroupLayout(pnlStatus);
+        pnlStatus.setLayout(pnlStatusLayout);
+        pnlStatusLayout.setHorizontalGroup(
+            pnlStatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pnlStatusLayout.setVerticalGroup(
+            pnlStatusLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 99, Short.MAX_VALUE)
+        );
+
+        pnlProjects.setBackground(new java.awt.Color(255, 255, 255));
+        pnlProjects.setBorder(javax.swing.BorderFactory.createTitledBorder("Projects"));
+
+        javax.swing.GroupLayout pnlProjectsLayout = new javax.swing.GroupLayout(pnlProjects);
+        pnlProjects.setLayout(pnlProjectsLayout);
+        pnlProjectsLayout.setHorizontalGroup(
+            pnlProjectsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pnlProjectsLayout.setVerticalGroup(
+            pnlProjectsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 139, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout pnlManagementLayout = new javax.swing.GroupLayout(pnlManagement);
         pnlManagement.setLayout(pnlManagementLayout);
@@ -80,7 +111,10 @@ public class View extends javax.swing.JFrame {
             pnlManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlManagementLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnManage, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                .addGroup(pnlManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnManage, javax.swing.GroupLayout.DEFAULT_SIZE, 340, Short.MAX_VALUE)
+                    .addComponent(pnlStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(pnlProjects, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlManagementLayout.setVerticalGroup(
@@ -88,7 +122,11 @@ public class View extends javax.swing.JFrame {
             .addGroup(pnlManagementLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnManage, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(641, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlStatus, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(pnlProjects, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(192, Short.MAX_VALUE))
         );
 
         scpManagement.setViewportView(pnlManagement);
@@ -96,20 +134,10 @@ public class View extends javax.swing.JFrame {
         scpLog.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         scpLog.setPreferredSize(new java.awt.Dimension(0, 120));
 
-        pnlLog.setBackground(new java.awt.Color(255, 255, 255));
-
-        javax.swing.GroupLayout pnlLogLayout = new javax.swing.GroupLayout(pnlLog);
-        pnlLog.setLayout(pnlLogLayout);
-        pnlLogLayout.setHorizontalGroup(
-            pnlLogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 648, Short.MAX_VALUE)
-        );
-        pnlLogLayout.setVerticalGroup(
-            pnlLogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 114, Short.MAX_VALUE)
-        );
-
-        scpLog.setViewportView(pnlLog);
+        txpLog.setEditable(false);
+        txpLog.setBackground(new java.awt.Color(255, 255, 255));
+        txpLog.setText("Log messages");
+        scpLog.setViewportView(txpLog);
 
         scpDevelopers.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         scpDevelopers.setPreferredSize(new java.awt.Dimension(0, 0));
@@ -124,7 +152,7 @@ public class View extends javax.swing.JFrame {
         );
         pnlDevelopersLayout.setVerticalGroup(
             pnlDevelopersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 426, Short.MAX_VALUE)
+            .addGap(0, 430, Short.MAX_VALUE)
         );
 
         scpDevelopers.setViewportView(pnlDevelopers);
@@ -158,7 +186,7 @@ public class View extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(scpLog, javax.swing.GroupLayout.DEFAULT_SIZE, 654, Short.MAX_VALUE)
                     .addComponent(scpDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-            .addComponent(pnlStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(pnlStatusBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,9 +197,9 @@ public class View extends javax.swing.JFrame {
                         .addComponent(scpDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(0, 0, 0)
                         .addComponent(scpLog, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(scpManagement, javax.swing.GroupLayout.DEFAULT_SIZE, 552, Short.MAX_VALUE))
+                    .addComponent(scpManagement, javax.swing.GroupLayout.DEFAULT_SIZE, 556, Short.MAX_VALUE))
                 .addGap(0, 0, 0)
-                .addComponent(pnlStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(pnlStatusBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -221,11 +249,13 @@ public class View extends javax.swing.JFrame {
     private javax.swing.JMenu menuHelp;
     private javax.swing.JMenuItem menuHelp_About;
     private javax.swing.JPanel pnlDevelopers;
-    private javax.swing.JPanel pnlLog;
     private javax.swing.JPanel pnlManagement;
+    private javax.swing.JPanel pnlProjects;
     private javax.swing.JPanel pnlStatus;
+    private javax.swing.JPanel pnlStatusBar;
     private javax.swing.JScrollPane scpDevelopers;
     private javax.swing.JScrollPane scpLog;
     private javax.swing.JScrollPane scpManagement;
+    private javax.swing.JTextPane txpLog;
     // End of variables declaration//GEN-END:variables
 }
