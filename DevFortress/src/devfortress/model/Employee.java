@@ -57,7 +57,7 @@ public class Employee {
     public void skillLevelUp(Skills sk) {
         if (skillList.containsKey(sk)) {
             int val = ((Integer) skillList.get(sk)).intValue();
-            skillList.put(sk, val++);
+            skillList.put(sk, ++val);
         } else {
             skillList.put(sk, 1);
         }
@@ -76,5 +76,51 @@ public class Employee {
         mainSkill = main;
         return main;
     }
-    
+
+    public int getSkillLevel(Skills field) {
+        if (skillList.containsKey(field)) {
+            return skillList.get(field);
+        } else {
+            return getLowestLevel();
+        }
+    }
+
+    private int getLowestLevel() {
+        int lowest = 10;
+        for (Skills object : skillList.keySet()) {
+            if (skillList.get(object) <= lowest) {
+                lowest = skillList.get(object);
+            }
+        }
+        return lowest / 2;
+    }
+
+    public int getDesignSkill() {
+        if (skillList.containsKey(Skills.DESIGN)) {
+            return skillList.get(Skills.DESIGN);
+        } else {
+            return 0;
+        }
+    }
+
+    public int getAlgorithmSkill() {
+        if (skillList.containsKey(Skills.ALGORITHMS)) {
+            return skillList.get(Skills.ALGORITHMS);
+        }
+        return 0;
+    }
+
+    public int getTeamPlayerSkill() {
+        if (skillList.containsKey(Skills.TEAM_PLAYER)) {
+            return skillList.get(Skills.TEAM_PLAYER);
+        }
+        return 0;
+    }
+
+    public int getConfigurationSkill() {
+        if (skillList.containsKey(Skills.CONFIG_MANAGEMENT)) {
+            return skillList.get(Skills.CONFIG_MANAGEMENT);
+        }
+        return 0;
+    }
 }

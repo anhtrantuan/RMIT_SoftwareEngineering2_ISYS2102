@@ -71,8 +71,6 @@ public class Project {
     public void setSkill_employeeMap(Map<Skills, Employee> skill_employeeMap) {
         this.skill_employeeMap = skill_employeeMap;
     }
-    
-    
 
     @Override
     public String toString() {
@@ -86,12 +84,12 @@ public class Project {
 
     public void levelUp() {
         Random random = new Random();
-        int lvlUpPercent  = (projectLevel * 5)-1;
+        int lvlUpPercent = (projectLevel * 5) - 1;
         Employee selectedEmployee;
-        for(Skills sk:skill_employeeMap.keySet()){
+        for (Skills sk : skill_employeeMap.keySet()) {
             selectedEmployee = skill_employeeMap.get(sk);
             for (int i = 0; i < projectTime; i++) {
-                if(random.nextInt(99) < lvlUpPercent){
+                if (random.nextInt(99) < lvlUpPercent) {
                     selectedEmployee.skillLevelUp(mainSkill);
                 }
             }
@@ -109,5 +107,9 @@ public class Project {
         }
         mainSkill = main;
         return main;
+    }
+
+    private int caculate(int level, int designLevel, int algorithmsLevel, int teamPlayer, int configurationLevel) {
+        return (level + (2 * designLevel) + (level * algorithmsLevel) + (teamPlayer * skill_employeeMap.size())) / ((10 - configurationLevel) + 2);
     }
 }
