@@ -33,16 +33,42 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         lblStatus = new javax.swing.JLabel();
         scpManagement = new javax.swing.JScrollPane();
         pnlManagement = new javax.swing.JPanel();
+        pnlSystemButtonHolder = new javax.swing.JPanel();
         btnSystem = new javax.swing.JButton();
+        rigidArea1 = new javax.swing.Box.Filler(new java.awt.Dimension(100, 10), new java.awt.Dimension(100, 10), new java.awt.Dimension(100, 10));
+        pnlStatusAndProjects = new javax.swing.JPanel();
+        pnlStatus = new javax.swing.JPanel();
+        pnlDuration = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        pnlBudget = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        scpExpenses = new javax.swing.JScrollPane();
+        treExpenses = new javax.swing.JTree();
+        pnlEmployees = new javax.swing.JPanel();
+        jLabel3 = new javax.swing.JLabel();
+        rigidArea2 = new javax.swing.Box.Filler(new java.awt.Dimension(100, 10), new java.awt.Dimension(100, 10), new java.awt.Dimension(100, 10));
+        pnlProjects = new javax.swing.JPanel();
+        scpProjects = new javax.swing.JScrollPane();
+        treProjects = new javax.swing.JTree();
+        jPanel1 = new javax.swing.JPanel();
         scpDevelopers = new javax.swing.JScrollPane();
         pnlDevelopers = new javax.swing.JPanel();
         pnlLogAndControl = new javax.swing.JPanel();
         scpLogPane = new javax.swing.JScrollPane();
         txaLog = new javax.swing.JTextArea();
-        pnlControl = new javax.swing.JPanel();
+        sppControl = new javax.swing.JSplitPane();
+        pnlSystemControl = new javax.swing.JPanel();
+        btnInformation = new javax.swing.JButton();
+        btnCurrentProjects = new javax.swing.JButton();
+        pnlTurnControl = new javax.swing.JPanel();
+        btnNextTurn = new javax.swing.JButton();
         menu = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         menuFile_Exit = new javax.swing.JMenuItem();
+        menuEdit = new javax.swing.JMenu();
+        menuEdit_Preferences = new javax.swing.JMenuItem();
+        menuView = new javax.swing.JMenu();
+        menuView_Summary = new javax.swing.JMenuItem();
         menuHelp = new javax.swing.JMenu();
         menuHelp_About = new javax.swing.JMenuItem();
 
@@ -75,27 +101,194 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         scpManagement.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
         pnlManagement.setBackground(new java.awt.Color(255, 255, 255));
+        pnlManagement.setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         pnlManagement.setPreferredSize(new java.awt.Dimension(0, 0));
+        pnlManagement.setLayout(new javax.swing.BoxLayout(pnlManagement, javax.swing.BoxLayout.Y_AXIS));
 
         btnSystem.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         btnSystem.setText("System");
 
-        javax.swing.GroupLayout pnlManagementLayout = new javax.swing.GroupLayout(pnlManagement);
-        pnlManagement.setLayout(pnlManagementLayout);
-        pnlManagementLayout.setHorizontalGroup(
-            pnlManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlManagementLayout.createSequentialGroup()
+        javax.swing.GroupLayout pnlSystemButtonHolderLayout = new javax.swing.GroupLayout(pnlSystemButtonHolder);
+        pnlSystemButtonHolder.setLayout(pnlSystemButtonHolderLayout);
+        pnlSystemButtonHolderLayout.setHorizontalGroup(
+            pnlSystemButtonHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnSystem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
+        );
+        pnlSystemButtonHolderLayout.setVerticalGroup(
+            pnlSystemButtonHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSystemButtonHolderLayout.createSequentialGroup()
+                .addComponent(btnSystem, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        pnlManagement.add(pnlSystemButtonHolder);
+        pnlManagement.add(rigidArea1);
+
+        pnlStatusAndProjects.setBackground(new java.awt.Color(255, 255, 255));
+        pnlStatusAndProjects.setBorder(null);
+        pnlStatusAndProjects.setLayout(new javax.swing.BoxLayout(pnlStatusAndProjects, javax.swing.BoxLayout.Y_AXIS));
+
+        pnlStatus.setBackground(new java.awt.Color(255, 255, 255));
+        pnlStatus.setBorder(javax.swing.BorderFactory.createTitledBorder("Status"));
+        pnlStatus.setLayout(new javax.swing.BoxLayout(pnlStatus, javax.swing.BoxLayout.Y_AXIS));
+
+        pnlDuration.setBackground(new java.awt.Color(255, 255, 255));
+        pnlDuration.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnlDuration.setPreferredSize(new java.awt.Dimension(0, 50));
+
+        jLabel1.setText("Duration");
+
+        javax.swing.GroupLayout pnlDurationLayout = new javax.swing.GroupLayout(pnlDuration);
+        pnlDuration.setLayout(pnlDurationLayout);
+        pnlDurationLayout.setHorizontalGroup(
+            pnlDurationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlDurationLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnSystem, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addContainerGap(253, Short.MAX_VALUE))
+        );
+        pnlDurationLayout.setVerticalGroup(
+            pnlDurationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDurationLayout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addComponent(jLabel1)
                 .addContainerGap())
         );
-        pnlManagementLayout.setVerticalGroup(
-            pnlManagementLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlManagementLayout.createSequentialGroup()
+
+        pnlStatus.add(pnlDuration);
+
+        pnlBudget.setBackground(new java.awt.Color(255, 255, 255));
+        pnlBudget.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnlBudget.setPreferredSize(new java.awt.Dimension(0, 50));
+
+        jLabel2.setText("Budget");
+
+        javax.swing.GroupLayout pnlBudgetLayout = new javax.swing.GroupLayout(pnlBudget);
+        pnlBudget.setLayout(pnlBudgetLayout);
+        pnlBudgetLayout.setHorizontalGroup(
+            pnlBudgetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBudgetLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnSystem, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(500, Short.MAX_VALUE))
+                .addComponent(jLabel2)
+                .addContainerGap(263, Short.MAX_VALUE))
         );
+        pnlBudgetLayout.setVerticalGroup(
+            pnlBudgetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBudgetLayout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addComponent(jLabel2)
+                .addContainerGap())
+        );
+
+        pnlStatus.add(pnlBudget);
+
+        scpExpenses.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scpExpenses.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        treExpenses.setBorder(null);
+        treExpenses.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Expenses");
+        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Salaries");
+        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Developer 1");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Developer 2");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Foods and Drinks");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Coffee");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Red Bull");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Pizza");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Beer");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treExpenses.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        scpExpenses.setViewportView(treExpenses);
+
+        pnlStatus.add(scpExpenses);
+
+        pnlEmployees.setBackground(new java.awt.Color(255, 255, 255));
+        pnlEmployees.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnlEmployees.setPreferredSize(new java.awt.Dimension(0, 50));
+
+        jLabel3.setText("Employees");
+
+        javax.swing.GroupLayout pnlEmployeesLayout = new javax.swing.GroupLayout(pnlEmployees);
+        pnlEmployees.setLayout(pnlEmployeesLayout);
+        pnlEmployeesLayout.setHorizontalGroup(
+            pnlEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEmployeesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel3)
+                .addContainerGap(241, Short.MAX_VALUE))
+        );
+        pnlEmployeesLayout.setVerticalGroup(
+            pnlEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlEmployeesLayout.createSequentialGroup()
+                .addContainerGap(13, Short.MAX_VALUE)
+                .addComponent(jLabel3)
+                .addContainerGap())
+        );
+
+        pnlStatus.add(pnlEmployees);
+
+        pnlStatusAndProjects.add(pnlStatus);
+        pnlStatusAndProjects.add(rigidArea2);
+
+        pnlProjects.setBackground(new java.awt.Color(255, 255, 255));
+        pnlProjects.setBorder(javax.swing.BorderFactory.createTitledBorder("Projects"));
+        pnlProjects.setLayout(new javax.swing.BoxLayout(pnlProjects, javax.swing.BoxLayout.Y_AXIS));
+
+        scpProjects.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scpProjects.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+
+        treProjects.setBorder(null);
+        treProjects.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Projects");
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Project 1");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Points");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Remaining");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Pay");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Due");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Project 2");
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Points");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Remaining");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Pay");
+        treeNode2.add(treeNode3);
+        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Due");
+        treeNode2.add(treeNode3);
+        treeNode1.add(treeNode2);
+        treProjects.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        treProjects.setRootVisible(false);
+        scpProjects.setViewportView(treProjects);
+
+        pnlProjects.add(scpProjects);
+
+        pnlStatusAndProjects.add(pnlProjects);
+
+        pnlManagement.add(pnlStatusAndProjects);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 342, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        pnlManagement.add(jPanel1);
 
         scpManagement.setViewportView(pnlManagement);
 
@@ -113,7 +306,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         );
         pnlDevelopersLayout.setVerticalGroup(
             pnlDevelopersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 452, Short.MAX_VALUE)
+            .addGap(0, 426, Short.MAX_VALUE)
         );
 
         scpDevelopers.setViewportView(pnlDevelopers);
@@ -130,19 +323,67 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         txaLog.setToolTipText("");
         scpLogPane.setViewportView(txaLog);
 
-        pnlControl.setBackground(new java.awt.Color(255, 255, 255));
-        pnlControl.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        sppControl.setBackground(new java.awt.Color(255, 255, 255));
+        sppControl.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        sppControl.setDividerLocation(162);
+        sppControl.setDividerSize(5);
+        sppControl.setEnabled(false);
+        sppControl.setPreferredSize(new java.awt.Dimension(0, 0));
 
-        javax.swing.GroupLayout pnlControlLayout = new javax.swing.GroupLayout(pnlControl);
-        pnlControl.setLayout(pnlControlLayout);
-        pnlControlLayout.setHorizontalGroup(
-            pnlControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        pnlSystemControl.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnInformation.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        btnInformation.setText("Information");
+
+        btnCurrentProjects.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        btnCurrentProjects.setText("Current Projects");
+
+        javax.swing.GroupLayout pnlSystemControlLayout = new javax.swing.GroupLayout(pnlSystemControl);
+        pnlSystemControl.setLayout(pnlSystemControlLayout);
+        pnlSystemControlLayout.setHorizontalGroup(
+            pnlSystemControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSystemControlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlSystemControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnInformation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCurrentProjects, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE))
+                .addContainerGap())
         );
-        pnlControlLayout.setVerticalGroup(
-            pnlControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+        pnlSystemControlLayout.setVerticalGroup(
+            pnlSystemControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSystemControlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnInformation, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btnCurrentProjects, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
+
+        sppControl.setLeftComponent(pnlSystemControl);
+
+        pnlTurnControl.setBackground(new java.awt.Color(255, 255, 255));
+
+        btnNextTurn.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        btnNextTurn.setText("Next Turn");
+
+        javax.swing.GroupLayout pnlTurnControlLayout = new javax.swing.GroupLayout(pnlTurnControl);
+        pnlTurnControl.setLayout(pnlTurnControlLayout);
+        pnlTurnControlLayout.setHorizontalGroup(
+            pnlTurnControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTurnControlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnNextTurn, javax.swing.GroupLayout.DEFAULT_SIZE, 136, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlTurnControlLayout.setVerticalGroup(
+            pnlTurnControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTurnControlLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnNextTurn, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        sppControl.setRightComponent(pnlTurnControl);
 
         javax.swing.GroupLayout pnlLogAndControlLayout = new javax.swing.GroupLayout(pnlLogAndControl);
         pnlLogAndControl.setLayout(pnlLogAndControlLayout);
@@ -151,12 +392,12 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
             .addGroup(pnlLogAndControlLayout.createSequentialGroup()
                 .addComponent(scpLogPane, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(pnlControl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(sppControl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnlLogAndControlLayout.setVerticalGroup(
             pnlLogAndControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scpLogPane, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-            .addComponent(pnlControl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(scpLogPane)
+            .addComponent(sppControl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         menu.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
@@ -168,6 +409,20 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         menuFile.add(menuFile_Exit);
 
         menu.add(menuFile);
+
+        menuEdit.setText("Edit");
+
+        menuEdit_Preferences.setText("Preferences");
+        menuEdit.add(menuEdit_Preferences);
+
+        menu.add(menuEdit);
+
+        menuView.setText("View");
+
+        menuView_Summary.setText("Summary");
+        menuView.add(menuView_Summary);
+
+        menu.add(menuView);
 
         menuHelp.setText("Help");
 
@@ -186,9 +441,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
                 .addComponent(scpManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(scpDevelopers, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
-                        .addComponent(pnlLogAndControl, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE))))
+                    .addComponent(pnlLogAndControl, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)))
             .addComponent(pnlStatusBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
@@ -197,7 +450,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(scpDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, 458, Short.MAX_VALUE)
+                        .addComponent(scpDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
                         .addGap(0, 0, 0)
                         .addComponent(pnlLogAndControl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(scpManagement))
@@ -244,21 +497,47 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnCurrentProjects;
+    private javax.swing.JButton btnInformation;
+    private javax.swing.JButton btnNextTurn;
     private javax.swing.JButton btnSystem;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JMenuBar menu;
+    private javax.swing.JMenu menuEdit;
+    private javax.swing.JMenuItem menuEdit_Preferences;
     private javax.swing.JMenu menuFile;
     private javax.swing.JMenuItem menuFile_Exit;
     private javax.swing.JMenu menuHelp;
     private javax.swing.JMenuItem menuHelp_About;
-    private javax.swing.JPanel pnlControl;
+    private javax.swing.JMenu menuView;
+    private javax.swing.JMenuItem menuView_Summary;
+    private javax.swing.JPanel pnlBudget;
     private javax.swing.JPanel pnlDevelopers;
+    private javax.swing.JPanel pnlDuration;
+    private javax.swing.JPanel pnlEmployees;
     private javax.swing.JPanel pnlLogAndControl;
     private javax.swing.JPanel pnlManagement;
+    private javax.swing.JPanel pnlProjects;
+    private javax.swing.JPanel pnlStatus;
+    private javax.swing.JPanel pnlStatusAndProjects;
     private javax.swing.JPanel pnlStatusBar;
+    private javax.swing.JPanel pnlSystemButtonHolder;
+    private javax.swing.JPanel pnlSystemControl;
+    private javax.swing.JPanel pnlTurnControl;
+    private javax.swing.Box.Filler rigidArea1;
+    private javax.swing.Box.Filler rigidArea2;
     private javax.swing.JScrollPane scpDevelopers;
+    private javax.swing.JScrollPane scpExpenses;
     private javax.swing.JScrollPane scpLogPane;
     private javax.swing.JScrollPane scpManagement;
+    private javax.swing.JScrollPane scpProjects;
+    private javax.swing.JSplitPane sppControl;
+    private javax.swing.JTree treExpenses;
+    private javax.swing.JTree treProjects;
     private javax.swing.JTextArea txaLog;
     // End of variables declaration//GEN-END:variables
 
