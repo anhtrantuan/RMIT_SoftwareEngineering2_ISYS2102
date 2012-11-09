@@ -4,9 +4,14 @@
  */
 package devfortress.view;
 
+import java.awt.Container;
 import java.awt.Dimension;
+import java.awt.Rectangle;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.JComponent;
+import javax.swing.JLabel;
+import javax.swing.JScrollPane;
 
 /**
  *
@@ -51,7 +56,6 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         pnlProjects = new javax.swing.JPanel();
         scpProjects = new javax.swing.JScrollPane();
         treProjects = new javax.swing.JTree();
-        jPanel1 = new javax.swing.JPanel();
         scpDevelopers = new javax.swing.JScrollPane();
         pnlDevelopers = new javax.swing.JPanel();
         pnlLogAndControl = new javax.swing.JPanel();
@@ -106,8 +110,15 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         pnlManagement.setPreferredSize(new java.awt.Dimension(0, 0));
         pnlManagement.setLayout(new javax.swing.BoxLayout(pnlManagement, javax.swing.BoxLayout.Y_AXIS));
 
+        pnlSystemButtonHolder.setBackground(new java.awt.Color(255, 255, 255));
+
         btnSystem.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         btnSystem.setText("System");
+        btnSystem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSystemActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlSystemButtonHolderLayout = new javax.swing.GroupLayout(pnlSystemButtonHolder);
         pnlSystemButtonHolder.setLayout(pnlSystemButtonHolderLayout);
@@ -131,6 +142,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
 
         pnlStatus.setBackground(new java.awt.Color(255, 255, 255));
         pnlStatus.setBorder(javax.swing.BorderFactory.createTitledBorder("Status"));
+        pnlStatus.setPreferredSize(new java.awt.Dimension(180, 300));
         pnlStatus.setLayout(new javax.swing.BoxLayout(pnlStatus, javax.swing.BoxLayout.Y_AXIS));
 
         pnlDuration.setBackground(new java.awt.Color(255, 255, 255));
@@ -151,7 +163,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         pnlDurationLayout.setVerticalGroup(
             pnlDurationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDurationLayout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap())
         );
@@ -176,14 +188,13 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         pnlBudgetLayout.setVerticalGroup(
             pnlBudgetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBudgetLayout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
                 .addContainerGap())
         );
 
         pnlStatus.add(pnlBudget);
 
-        scpExpenses.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scpExpenses.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         treExpenses.setBorder(null);
@@ -206,6 +217,8 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         treExpenses.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        treExpenses.setPreferredSize(new java.awt.Dimension(166, 10));
+        treExpenses.setRowHeight(20);
         scpExpenses.setViewportView(treExpenses);
 
         pnlStatus.add(scpExpenses);
@@ -228,7 +241,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         pnlEmployeesLayout.setVerticalGroup(
             pnlEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlEmployeesLayout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel3)
                 .addContainerGap())
         );
@@ -242,7 +255,6 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         pnlProjects.setBorder(javax.swing.BorderFactory.createTitledBorder("Projects"));
         pnlProjects.setLayout(new javax.swing.BoxLayout(pnlProjects, javax.swing.BoxLayout.Y_AXIS));
 
-        scpProjects.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scpProjects.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         treProjects.setBorder(null);
@@ -270,6 +282,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         treeNode1.add(treeNode2);
         treProjects.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         treProjects.setRootVisible(false);
+        treProjects.setRowHeight(20);
         scpProjects.setViewportView(treProjects);
 
         pnlProjects.add(scpProjects);
@@ -277,19 +290,6 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         pnlStatusAndProjects.add(pnlProjects);
 
         pnlManagement.add(pnlStatusAndProjects);
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 342, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        pnlManagement.add(jPanel1);
 
         scpManagement.setViewportView(pnlManagement);
 
@@ -307,7 +307,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         );
         pnlDevelopersLayout.setVerticalGroup(
             pnlDevelopersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 434, Short.MAX_VALUE)
+            .addGap(0, 426, Short.MAX_VALUE)
         );
 
         scpDevelopers.setViewportView(pnlDevelopers);
@@ -439,7 +439,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(scpManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                .addComponent(scpManagement)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(scpDevelopers, javax.swing.GroupLayout.PREFERRED_SIZE, 656, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(pnlLogAndControl, javax.swing.GroupLayout.DEFAULT_SIZE, 656, Short.MAX_VALUE)))
@@ -451,7 +451,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(scpDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                        .addComponent(scpDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
                         .addGap(0, 0, 0)
                         .addComponent(pnlLogAndControl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(scpManagement))
@@ -461,6 +461,29 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnSystemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSystemActionPerformed
+        // TODO add your handling code here:
+        Dimension size = pnlManagement.getSize(null);
+        Dimension size1 = pnlStatus.getSize(null);
+        Dimension size2 = pnlProjects.getSize(null);
+        int inc = (treExpenses.getRowCount() + 1) * treExpenses.getRowHeight();
+        int inc1 = (treProjects.getRowCount() + 1) * treProjects.getRowHeight();
+        inc -= treExpenses.getHeight();
+        inc1 -= treProjects.getHeight();
+        System.out.println(inc);
+        System.out.println(inc1);
+        size.height += inc + inc1;
+        if (inc < inc1) {
+//            treExpenses.setVisibleRowCount(treExpenses.getRowCount() + 1);
+        } else {
+            treProjects.setVisibleRowCount(treProjects.getRowCount() + 1);
+        }
+//        if (size.height > scpManagement.getHeight()) {
+        pnlManagement.setPreferredSize(size);
+//        }
+        revalidate();
+    }//GEN-LAST:event_btnSystemActionPerformed
 
     /**
      * @param args the command line arguments
@@ -505,7 +528,6 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JMenuBar menu;
     private javax.swing.JMenu menuEdit;
