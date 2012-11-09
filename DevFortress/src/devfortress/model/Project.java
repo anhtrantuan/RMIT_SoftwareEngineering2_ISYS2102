@@ -100,8 +100,12 @@ public class Project {
         Skills main = null;
         int highest = 0;
         for (Skills sk : skillRequirementMap.keySet()) {
-            if (skillRequirementMap.get(sk) > highest) {
-                main = sk;
+            if (skillRequirementMap.get(sk) >= highest) {
+                if (skillRequirementMap.get(sk) == highest) {
+                    main = (sk.toString().compareToIgnoreCase(main.toString()) < 0) ? sk : main;
+                } else {
+                    main = sk;
+                }
                 highest = skillRequirementMap.get(sk);
             }
         }
@@ -109,7 +113,7 @@ public class Project {
         return main;
     }
 
-    private int caculate(int level, int designLevel, int algorithmsLevel, int teamPlayer, int configurationLevel) {
+    private int calculateBasicFunctionPoint(int level, int designLevel, int algorithmsLevel, int teamPlayer, int configurationLevel) {
         return (level + (2 * designLevel) + (level * algorithmsLevel) + (teamPlayer * skill_employeeMap.size())) / ((10 - configurationLevel) + 2);
     }
 }

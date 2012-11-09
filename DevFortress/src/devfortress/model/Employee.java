@@ -17,11 +17,16 @@ public class Employee {
     private float salary;
     private Map<Skills, Integer> skillList;
     private Skills mainSkill;
+    private boolean status[];
 
     public Employee(String name, float salary, Map skillList) {
         this.name = name;
         this.salary = salary;
         this.skillList = skillList;
+        //0 is having beer, 1 is full, 2 is happy;
+        status[0] = false;
+        status[1] = false;
+        status[2] = true;
         getMainSkill();
     }
 
@@ -67,10 +72,14 @@ public class Employee {
     public Skills getMainSkill() {
         Skills main = null;
         int highest = 0;
-        for (Skills object : skillList.keySet()) {
-            if (skillList.get(object) > highest) {
-                main = object;
-                highest = skillList.get(object);
+        for (Skills sk : skillList.keySet()) {
+            if (skillList.get(sk) >= highest) {
+                if (skillList.get(sk) == highest) {
+                    main = (sk.toString().compareToIgnoreCase(main.toString()) < 0) ? sk : main;
+                } else {
+                    main = sk;
+                }
+                highest = skillList.get(sk);
             }
         }
         mainSkill = main;
@@ -122,5 +131,30 @@ public class Employee {
             return skillList.get(Skills.CONFIG_MANAGEMENT);
         }
         return 0;
+    }
+
+    public boolean[] getStatus() {
+        return status;
+    }
+
+    public void haveBeer() {
+        status[0] = true;
+        status[2] = true;
+    }
+
+    public void soberUp() {
+        status[0] = false;
+    }
+
+    public void eat() {
+        status[1] = true;
+    }
+
+    public void getHungry() {
+        status[1] = false;
+    }
+
+    public void getSad() {
+        status[2] = false;
     }
 }
