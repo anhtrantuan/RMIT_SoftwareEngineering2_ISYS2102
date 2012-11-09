@@ -4,14 +4,9 @@
  */
 package devfortress.view;
 
-import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.Rectangle;
 import java.util.Observable;
 import java.util.Observer;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JScrollPane;
 
 /**
  *
@@ -56,6 +51,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         pnlProjects = new javax.swing.JPanel();
         scpProjects = new javax.swing.JScrollPane();
         treProjects = new javax.swing.JTree();
+        pnlBlank = new javax.swing.JPanel();
         scpDevelopers = new javax.swing.JScrollPane();
         pnlDevelopers = new javax.swing.JPanel();
         pnlLogAndControl = new javax.swing.JPanel();
@@ -217,7 +213,8 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         treExpenses.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        treExpenses.setPreferredSize(new java.awt.Dimension(166, 10));
+        treExpenses.setMaximumSize(new java.awt.Dimension(166, 80));
+        treExpenses.setPreferredSize(new java.awt.Dimension(166, 80));
         treExpenses.setRowHeight(20);
         scpExpenses.setViewportView(treExpenses);
 
@@ -281,6 +278,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         treeNode2.add(treeNode3);
         treeNode1.add(treeNode2);
         treProjects.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        treProjects.setPreferredSize(new java.awt.Dimension(90, 60));
         treProjects.setRootVisible(false);
         treProjects.setRowHeight(20);
         scpProjects.setViewportView(treProjects);
@@ -290,6 +288,22 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         pnlStatusAndProjects.add(pnlProjects);
 
         pnlManagement.add(pnlStatusAndProjects);
+
+        pnlBlank.setBackground(new java.awt.Color(0, 0, 0));
+        pnlBlank.setMinimumSize(new java.awt.Dimension(0, 0));
+
+        javax.swing.GroupLayout pnlBlankLayout = new javax.swing.GroupLayout(pnlBlank);
+        pnlBlank.setLayout(pnlBlankLayout);
+        pnlBlankLayout.setHorizontalGroup(
+            pnlBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 342, Short.MAX_VALUE)
+        );
+        pnlBlankLayout.setVerticalGroup(
+            pnlBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 3, Short.MAX_VALUE)
+        );
+
+        pnlManagement.add(pnlBlank);
 
         scpManagement.setViewportView(pnlManagement);
 
@@ -307,7 +321,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         );
         pnlDevelopersLayout.setVerticalGroup(
             pnlDevelopersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 426, Short.MAX_VALUE)
+            .addGap(0, 430, Short.MAX_VALUE)
         );
 
         scpDevelopers.setViewportView(pnlDevelopers);
@@ -451,7 +465,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(scpDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+                        .addComponent(scpDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
                         .addGap(0, 0, 0)
                         .addComponent(pnlLogAndControl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(scpManagement))
@@ -464,24 +478,81 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
 
     private void btnSystemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSystemActionPerformed
         // TODO add your handling code here:
-        Dimension size = pnlManagement.getSize(null);
-        Dimension size1 = pnlStatus.getSize(null);
-        Dimension size2 = pnlProjects.getSize(null);
-        int inc = (treExpenses.getRowCount() + 1) * treExpenses.getRowHeight();
-        int inc1 = (treProjects.getRowCount() + 1) * treProjects.getRowHeight();
-        inc -= treExpenses.getHeight();
-        inc1 -= treProjects.getHeight();
-        System.out.println(inc);
-        System.out.println(inc1);
-        size.height += inc + inc1;
-        if (inc < inc1) {
-//            treExpenses.setVisibleRowCount(treExpenses.getRowCount() + 1);
+        Dimension size = pnlManagement.getSize(),
+                size1 = pnlStatus.getSize(),
+                size2 = pnlProjects.getSize(),
+                size3 = treExpenses.getSize(),
+                size4 = treProjects.getSize(),
+                size5 = scpExpenses.getViewport().getSize(),
+                size6 = scpProjects.getViewport().getSize(),
+                size7 = scpManagement.getViewport().getSize(),
+                size8 = pnlBlank.getSize();
+        int inc1 = (treExpenses.getRowCount() + 1) * treExpenses.getRowHeight(),
+                inc2 = (treProjects.getRowCount() + 1) * treProjects.getRowHeight();
+        inc1 -= size5.height;
+        inc2 -= size6.height;
+        int inc3 = inc1 + inc2;
+        System.out.println("inc1=" + inc1 + ",inc2=" + inc2 + ",inc3=" + inc3);
+        if (inc3 > 0) {
+            if (size8.height > inc3) {
+                size8.height -= inc3;
+                inc3 = 0;
+            } else {
+                inc3 -= size8.height;
+                size8.height = 0;
+            }
         } else {
-            treProjects.setVisibleRowCount(treProjects.getRowCount() + 1);
+            if (size.height > size7.height) {
+                if (size.height + inc3 < size7.height) {
+                    size8.height = size7.height - size.height - inc3;
+                }
+            } else {
+                size8.height -= inc3;
+            }
         }
-//        if (size.height > scpManagement.getHeight()) {
+        size.height += inc3;
+        size1.height += inc1;
+        size2.height += inc2;
+        if (size.height > size7.height) {
+            System.out.println("A");
+            size8.height = 0;
+            if (inc1 != 0) {
+                System.out.println("Aa");
+                pnlStatus.setSize(size2);
+                pnlStatus.setPreferredSize(size1);
+            }
+            if (inc2 != 0) {
+                System.out.println("Ab");
+                pnlProjects.setSize(size2);
+                pnlProjects.setPreferredSize(size2);
+            }
+        } else {
+            System.out.println("B");
+            if (inc1 < inc2) {
+                System.out.println("Ba");
+                pnlStatus.setSize(size2);
+                pnlStatus.setPreferredSize(size1);
+                if (inc2 != 0) {
+                    System.out.println("Ba1");
+                    pnlProjects.setSize(size2);
+                    pnlProjects.setPreferredSize(size2);
+                }
+            } else {
+                System.out.println("Bb");
+                pnlProjects.setSize(size2);
+                pnlProjects.setPreferredSize(size2);
+                if (inc1 != 0) {
+                    System.out.println("Bb1");
+                    pnlStatus.setSize(size2);
+                    pnlStatus.setPreferredSize(size1);
+                }
+            }
+        }
+        System.out.println("size8.height=" + size8.height + ",inc3=" + inc3);
+        pnlBlank.setSize(size8);
+        pnlBlank.setPreferredSize(size8);
+        pnlManagement.setSize(size);
         pnlManagement.setPreferredSize(size);
-//        }
         revalidate();
     }//GEN-LAST:event_btnSystemActionPerformed
 
@@ -538,6 +609,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
     private javax.swing.JMenuItem menuHelp_About;
     private javax.swing.JMenu menuView;
     private javax.swing.JMenuItem menuView_Summary;
+    private javax.swing.JPanel pnlBlank;
     private javax.swing.JPanel pnlBudget;
     private javax.swing.JPanel pnlDevelopers;
     private javax.swing.JPanel pnlDuration;
