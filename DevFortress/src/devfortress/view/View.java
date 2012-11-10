@@ -110,11 +110,6 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
 
         btnSystem.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         btnSystem.setText("System");
-        btnSystem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSystemActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout pnlSystemButtonHolderLayout = new javax.swing.GroupLayout(pnlSystemButtonHolder);
         pnlSystemButtonHolder.setLayout(pnlSystemButtonHolderLayout);
@@ -216,6 +211,14 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         treExpenses.setMaximumSize(new java.awt.Dimension(166, 80));
         treExpenses.setPreferredSize(new java.awt.Dimension(166, 80));
         treExpenses.setRowHeight(20);
+        treExpenses.addTreeExpansionListener(new javax.swing.event.TreeExpansionListener() {
+            public void treeExpanded(javax.swing.event.TreeExpansionEvent evt) {
+                treeExpansion(evt);
+            }
+            public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
+                treeExpansion(evt);
+            }
+        });
         scpExpenses.setViewportView(treExpenses);
 
         pnlStatus.add(scpExpenses);
@@ -281,6 +284,14 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         treProjects.setPreferredSize(new java.awt.Dimension(90, 60));
         treProjects.setRootVisible(false);
         treProjects.setRowHeight(20);
+        treProjects.addTreeExpansionListener(new javax.swing.event.TreeExpansionListener() {
+            public void treeExpanded(javax.swing.event.TreeExpansionEvent evt) {
+                treeExpansion(evt);
+            }
+            public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
+                treeExpansion(evt);
+            }
+        });
         scpProjects.setViewportView(treProjects);
 
         pnlProjects.add(scpProjects);
@@ -289,7 +300,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
 
         pnlManagement.add(pnlStatusAndProjects);
 
-        pnlBlank.setBackground(new java.awt.Color(0, 0, 0));
+        pnlBlank.setBackground(new java.awt.Color(255, 255, 255));
         pnlBlank.setMinimumSize(new java.awt.Dimension(0, 0));
 
         javax.swing.GroupLayout pnlBlankLayout = new javax.swing.GroupLayout(pnlBlank);
@@ -300,7 +311,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         );
         pnlBlankLayout.setVerticalGroup(
             pnlBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 3, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         pnlManagement.add(pnlBlank);
@@ -321,7 +332,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         );
         pnlDevelopersLayout.setVerticalGroup(
             pnlDevelopersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
+            .addGap(0, 434, Short.MAX_VALUE)
         );
 
         scpDevelopers.setViewportView(pnlDevelopers);
@@ -465,7 +476,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(scpDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, 436, Short.MAX_VALUE)
+                        .addComponent(scpDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
                         .addGap(0, 0, 0)
                         .addComponent(pnlLogAndControl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(scpManagement))
@@ -476,85 +487,98 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnSystemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSystemActionPerformed
-        // TODO add your handling code here:
-        Dimension size = pnlManagement.getSize(),
-                size1 = pnlStatus.getSize(),
-                size2 = pnlProjects.getSize(),
-                size3 = treExpenses.getSize(),
-                size4 = treProjects.getSize(),
-                size5 = scpExpenses.getViewport().getSize(),
-                size6 = scpProjects.getViewport().getSize(),
-                size7 = scpManagement.getViewport().getSize(),
-                size8 = pnlBlank.getSize();
-        int inc1 = (treExpenses.getRowCount() + 1) * treExpenses.getRowHeight(),
-                inc2 = (treProjects.getRowCount() + 1) * treProjects.getRowHeight();
-        inc1 -= size5.height;
-        inc2 -= size6.height;
-        int inc3 = inc1 + inc2;
-        System.out.println("inc1=" + inc1 + ",inc2=" + inc2 + ",inc3=" + inc3);
-        if (inc3 > 0) {
-            if (size8.height > inc3) {
-                size8.height -= inc3;
-                inc3 = 0;
+    /**
+     * Resize container panels of the trees to fit their contents.
+     */
+    private void treeExpansion(javax.swing.event.TreeExpansionEvent evt) {//GEN-FIRST:event_treeExpansion
+        /* Get required components' sizes. */
+        Dimension pnlManagementSize = pnlManagement.getSize(),
+                pnlStatusSize = pnlStatus.getSize(),
+                pnlProjectsSize = pnlProjects.getSize(),
+                scpExpensesViewportSize = scpExpenses.getViewport().getSize(),
+                scpProjectsViewportSize = scpProjects.getViewport().getSize(),
+                scpManagementViewportSize = scpManagement.getViewport().getSize(),
+                pnlBlankSize = pnlBlank.getSize();
+
+        /* Declare and define size increment for each panel including a tree. */
+        int pnlStatusSizeIncrement, pnlProjectsSizeIncrement, pnlManagementSizeIncrement;
+        pnlStatusSizeIncrement = (treExpenses.getRowCount() + 1)
+                * treExpenses.getRowHeight() - scpExpensesViewportSize.height;
+        pnlProjectsSizeIncrement = (treProjects.getRowCount() + 1)
+                * treProjects.getRowHeight() - scpProjectsViewportSize.height;
+        pnlManagementSizeIncrement = pnlStatusSizeIncrement + pnlProjectsSizeIncrement;
+
+        /* Adjust size increments based on total size increment. */
+        if (pnlManagementSizeIncrement > 0) {
+            /* If size is to be accumulated, recalculate pnlBlank's size and
+             * total size increment.
+             */
+            if (pnlBlankSize.height > pnlManagementSizeIncrement) {
+                pnlBlankSize.height -= pnlManagementSizeIncrement;
+                pnlManagementSizeIncrement = 0;
             } else {
-                inc3 -= size8.height;
-                size8.height = 0;
+                pnlManagementSizeIncrement -= pnlBlankSize.height;
+                pnlBlankSize.height = 0;
             }
         } else {
-            if (size.height > size7.height) {
-                if (size.height + inc3 < size7.height) {
-                    size8.height = size7.height - size.height - inc3;
+            /* Else, check current size of scrollable content. */
+            if (pnlManagementSize.height > scpManagementViewportSize.height) {
+                /* If content is oversized, recalculate pnlBlank's size. */
+                if (pnlManagementSize.height + pnlManagementSizeIncrement
+                        < scpManagementViewportSize.height) {
+                    pnlBlankSize.height = scpManagementViewportSize.height
+                            - pnlManagementSize.height - pnlManagementSizeIncrement;
                 }
             } else {
-                size8.height -= inc3;
+                pnlBlankSize.height -= pnlManagementSizeIncrement;
             }
         }
-        size.height += inc3;
-        size1.height += inc1;
-        size2.height += inc2;
-        if (size.height > size7.height) {
-            System.out.println("A");
-            size8.height = 0;
-            if (inc1 != 0) {
-                System.out.println("Aa");
-                pnlStatus.setSize(size2);
-                pnlStatus.setPreferredSize(size1);
+
+        /* Update panel's sizes. */
+        pnlManagementSize.height += pnlManagementSizeIncrement;
+        pnlStatusSize.height += pnlStatusSizeIncrement;
+        pnlProjectsSize.height += pnlProjectsSizeIncrement;
+
+        /* Adjust panels' sizes according to scrolling condition. */
+        if (pnlManagementSize.height > scpManagementViewportSize.height) {
+            /* If scroll is enabled, update any panel that has change. */
+            pnlBlankSize.height = 0;
+            if (pnlStatusSizeIncrement != 0) {
+                pnlStatus.setSize(pnlProjectsSize);
+                pnlStatus.setPreferredSize(pnlStatusSize);
             }
-            if (inc2 != 0) {
-                System.out.println("Ab");
-                pnlProjects.setSize(size2);
-                pnlProjects.setPreferredSize(size2);
+            if (pnlProjectsSizeIncrement != 0) {
+                pnlProjects.setSize(pnlProjectsSize);
+                pnlProjects.setPreferredSize(pnlProjectsSize);
             }
         } else {
-            System.out.println("B");
-            if (inc1 < inc2) {
-                System.out.println("Ba");
-                pnlStatus.setSize(size2);
-                pnlStatus.setPreferredSize(size1);
-                if (inc2 != 0) {
-                    System.out.println("Ba1");
-                    pnlProjects.setSize(size2);
-                    pnlProjects.setPreferredSize(size2);
+            /* If scroll is disabled, decide which panel to update first. */
+            if (pnlStatusSizeIncrement < pnlProjectsSizeIncrement) {
+                pnlStatus.setSize(pnlProjectsSize);
+                pnlStatus.setPreferredSize(pnlStatusSize);
+                if (pnlProjectsSizeIncrement != 0) {
+                    pnlProjects.setSize(pnlProjectsSize);
+                    pnlProjects.setPreferredSize(pnlProjectsSize);
                 }
             } else {
-                System.out.println("Bb");
-                pnlProjects.setSize(size2);
-                pnlProjects.setPreferredSize(size2);
-                if (inc1 != 0) {
-                    System.out.println("Bb1");
-                    pnlStatus.setSize(size2);
-                    pnlStatus.setPreferredSize(size1);
+                pnlProjects.setSize(pnlProjectsSize);
+                pnlProjects.setPreferredSize(pnlProjectsSize);
+                if (pnlStatusSizeIncrement != 0) {
+                    pnlStatus.setSize(pnlProjectsSize);
+                    pnlStatus.setPreferredSize(pnlStatusSize);
                 }
             }
         }
-        System.out.println("size8.height=" + size8.height + ",inc3=" + inc3);
-        pnlBlank.setSize(size8);
-        pnlBlank.setPreferredSize(size8);
-        pnlManagement.setSize(size);
-        pnlManagement.setPreferredSize(size);
-        revalidate();
-    }//GEN-LAST:event_btnSystemActionPerformed
+
+        /* Update root panel and its filler panel. */
+        pnlBlank.setSize(pnlBlankSize);
+        pnlBlank.setPreferredSize(pnlBlankSize);
+        pnlManagement.setSize(pnlManagementSize);
+        pnlManagement.setPreferredSize(pnlManagementSize);
+
+        /* Revalidate the frame layout. */
+        this.revalidate();
+    }//GEN-LAST:event_treeExpansion
 
     /**
      * @param args the command line arguments
