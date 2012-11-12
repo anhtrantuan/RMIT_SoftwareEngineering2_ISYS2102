@@ -7,6 +7,7 @@ package devfortress.model.facade;
 import devfortress.model.Employee;
 import devfortress.model.Item;
 import devfortress.model.Project;
+import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.OvercrowdedException;
 import java.util.List;
 
@@ -26,7 +27,7 @@ public interface Model {
 
     void cancelProject(Project project);
 
-    void eventOccure();
+    void eventOccur();
 
     void levelUp(Project project);
 
@@ -35,4 +36,6 @@ public interface Model {
     List<Employee> generateEmployeeList();
 
     List<Project> generateProjectList();
+    
+    void nextTurn() throws MoneyRunOutException;
 }

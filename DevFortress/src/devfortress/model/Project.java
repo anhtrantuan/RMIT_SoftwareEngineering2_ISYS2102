@@ -4,6 +4,7 @@
  */
 package devfortress.model;
 
+import devfortress.model.exception.ProjectFailsException;
 import devfortress.utilities.Skills;
 import java.util.Map;
 import java.util.Random;
@@ -23,6 +24,7 @@ public class Project {
     private Map<Skills, Integer> skillRequirementMap;
     private Map<Skills, Employee> skill_employeeMap;
     private Skills mainSkill;
+    int totalFunctionPointDelivered;
 
     public Project(int payment, int projectLevel, int projectTime, Map<Skills, Integer> skillRequirementMap) {
         this.payment = payment;
@@ -72,6 +74,12 @@ public class Project {
         this.skill_employeeMap = skill_employeeMap;
     }
 
+    public int getTotalFunctionPointDelivered() {
+        return totalFunctionPointDelivered;
+    }
+    
+    
+
     @Override
     public String toString() {
         for (Skills object : skillRequirementMap.keySet()) {
@@ -115,26 +123,51 @@ public class Project {
 
     private int calculateBasicFunctionPoint(Employee employee) {
         int level;
-        if(employee.getMainSkill() == mainSkill){
+        if (employee.getMainSkill() == mainSkill) {
             level = employee.getSkillLevel(employee.getMainSkill());
-        }
-        else{
+        } else {
             level = employee.getLowestSkillLvl();
         }
         return (level + (2 * employee.getDesignSkill()) + (level * employee.getAlgorithmSkill()) + (employee.getTeamPlayerSkill() * skill_employeeMap.size())) / ((10 - employee.getConfigurationSkill()) + 2);
 
-        
+
     }
-    
-    private int calculateFinalFunctionPoint(int basicPoint,Employee employee){
+
+    private int calculateFinalFunctionPoint(int basicPoint, Employee employee) {
         boolean status[] = employee.getStatus();
         int finalPoint = basicPoint;
-        if(status[0] == true ){
-            finalPoint = finalPoint/2;
+        if (status[0] == true) {
+            finalPoint = finalPoint / 2;
         }
-        if(status[1] == false){
+        if (status[1] == false) {
             finalPoint = 1;
         }
         return finalPoint;
+    }
+
+    public boolean checkProjectProcess() throws ProjectFailsException {
+        int finish = 0;
+        totalFunctionPointDelivered = 0;
+        for (Skills sk : skill_employeeMap.keySet()) {
+            Employee emp = skill_employeeMap.get(sk);
+            int functionPointProduced = calculateFinalFunctionPoint(calculateBasicFunctionPoint(emp), emp);
+            totalFunctionPointDelivered += functionPointProduced;
+            int functionPointRequire = skillRequirementMap.get(emp);
+            if (functionPointRequire <= functionPointProduced) {
+                skillRequirementMap.put(sk, 0);
+                finish++;
+            } else {
+                skillRequirementMap.put(sk, functionPointRequire - functionPointProduced);
+            }
+        }
+        if (skillRequirementMap.size() == finish && projectTime != 0) {
+            return true;
+        } else {
+            projectTime--;
+            if (projectTime == 0) {
+                throw new ProjectFailsException("Project Fails");
+            }     
+        }
+        return false;
     }
 }
