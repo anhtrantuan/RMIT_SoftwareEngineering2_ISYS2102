@@ -36,6 +36,9 @@ public class Engine extends Observable implements Model, Runnable {
     public void buyItem(Item item) {
         try {
             company.buyItem(item);
+            setChanged();
+            notifyObservers();
+            
             // TODO implement Engine.buyItem
         } catch (UnaffordableException ex) {
             System.out.println(ex.getMessage());
@@ -90,6 +93,8 @@ public class Engine extends Observable implements Model, Runnable {
     public void paySalary() {
         try {
             company.paySalary();
+            setChanged();
+            notifyObservers();
         } catch (MoneyRunOutException ex) {
             System.out.println(ex.getMessage());
         }
@@ -129,6 +134,8 @@ public class Engine extends Observable implements Model, Runnable {
         if(company.getMoney()<=0){
             throw new MoneyRunOutException();
         }
+        setChanged();
+        notifyObservers();
     }
     
     @Override
@@ -147,6 +154,8 @@ public class Engine extends Observable implements Model, Runnable {
         for(Project project:company.getCurrentProjectList()){
             result+= project.getTotalFunctionPointDelivered();
         }
+        setChanged();
+        notifyObservers();
         return result;
     }
 }
