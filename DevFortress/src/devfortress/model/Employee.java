@@ -157,4 +157,9 @@ public class Employee {
     public void getSad() {
         status[2] = false;
     }
+    
+    public int getLowestSkillLvl(){
+        //TODO do this shit
+        return 0;
+    }
 }

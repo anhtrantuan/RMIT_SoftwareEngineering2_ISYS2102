@@ -113,7 +113,28 @@ public class Project {
         return main;
     }
 
-    private int calculateBasicFunctionPoint(int level, int designLevel, int algorithmsLevel, int teamPlayer, int configurationLevel) {
-        return (level + (2 * designLevel) + (level * algorithmsLevel) + (teamPlayer * skill_employeeMap.size())) / ((10 - configurationLevel) + 2);
+    private int calculateBasicFunctionPoint(Employee employee) {
+        int level;
+        if(employee.getMainSkill() == mainSkill){
+            level = employee.getSkillLevel(employee.getMainSkill());
+        }
+        else{
+            level = employee.getLowestSkillLvl();
+        }
+        return (level + (2 * employee.getDesignSkill()) + (level * employee.getAlgorithmSkill()) + (employee.getTeamPlayerSkill() * skill_employeeMap.size())) / ((10 - employee.getConfigurationSkill()) + 2);
+
+        
+    }
+    
+    private int calculateFinalFunctionPoint(int basicPoint,Employee employee){
+        boolean status[] = employee.getStatus();
+        int finalPoint = basicPoint;
+        if(status[0] == true ){
+            finalPoint = finalPoint/2;
+        }
+        if(status[1] == false){
+            finalPoint = 1;
+        }
+        return finalPoint;
     }
 }
