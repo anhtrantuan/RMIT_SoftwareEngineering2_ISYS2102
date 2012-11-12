@@ -27,7 +27,7 @@ public class Engine extends Observable implements Model, Runnable {
     private Company company;
     private GameLevel level;
     DateTime dateTime;
-
+    
     public Engine(Company company) {
         this.company = company;
     }
