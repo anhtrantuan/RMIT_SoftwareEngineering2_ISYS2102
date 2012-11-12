@@ -5,6 +5,7 @@
 package devfortress.model;
 
 import devfortress.utilities.Skills;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -101,6 +102,9 @@ public class Employee {
                 lowest = skillList.get(object);
             }
         }
+        if (lowest == 1) {
+            return lowest;
+        }
         return lowest / 2;
     }
 
@@ -156,5 +160,29 @@ public class Employee {
 
     public void getSad() {
         status[2] = false;
+    }
+
+    public int getLowestSkillLvl() {
+        Map<Skills, Integer> specialSkill = new HashMap<>();
+        if (skillList.containsKey(Skills.HASKELL)) {
+            specialSkill.put(Skills.HASKELL, skillList.get(Skills.HASKELL));
+        }
+        if (skillList.containsKey(Skills.FORTH)) {
+            specialSkill.put(Skills.FORTH, skillList.get(Skills.FORTH));
+        }
+        if (skillList.containsKey(Skills.LISP)) {
+            specialSkill.put(Skills.LISP, skillList.get(Skills.LISP));
+        }
+        if (specialSkill.isEmpty()) {
+            return getLowestLevel();
+        } else {
+            int level = 0;
+            for (Skills skill : specialSkill.keySet()) {
+                if (specialSkill.get(skill) >= level) {
+                    level = specialSkill.get(skill);
+                }
+            }
+            return level;
+        }
     }
 }

@@ -8,11 +8,14 @@ import devfortress.model.*;
 import devfortress.model.dificulity.GameLevel;
 import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.OvercrowdedException;
+import devfortress.model.exception.ProjectFailsException;
 import devfortress.model.exception.UnaffordableException;
 import devfortress.utilities.Utilities;
 import java.util.List;
 import java.util.Observable;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 // TODO implement statergy partern
 
 /**
@@ -23,7 +26,8 @@ public class Engine extends Observable implements Model, Runnable {
 
     private Company company;
     private GameLevel level;
-
+    DateTime dateTime;
+    
     public Engine(Company company) {
         this.company = company;
     }
@@ -32,6 +36,9 @@ public class Engine extends Observable implements Model, Runnable {
     public void buyItem(Item item) {
         try {
             company.buyItem(item);
+            setChanged();
+            notifyObservers();
+            
             // TODO implement Engine.buyItem
         } catch (UnaffordableException ex) {
             System.out.println(ex.getMessage());
@@ -71,8 +78,8 @@ public class Engine extends Observable implements Model, Runnable {
     }
 
     @Override
-    public void eventOccure() {
-        throw new UnsupportedOperationException("Not supported yet.");
+    public void eventOccur() {
+        //TODO do this shit
     }
 
     @Override
@@ -86,6 +93,8 @@ public class Engine extends Observable implements Model, Runnable {
     public void paySalary() {
         try {
             company.paySalary();
+            setChanged();
+            notifyObservers();
         } catch (MoneyRunOutException ex) {
             System.out.println(ex.getMessage());
         }
@@ -106,7 +115,47 @@ public class Engine extends Observable implements Model, Runnable {
     }
 
     @Override
+    public void nextTurn() throws MoneyRunOutException{
+        for(int i = 0; i<4;i++){
+            nextWeek();
+        }
+        for(Project project:company.getCurrentProjectList()){
+            try {
+                if(project.checkProjectProcess()){
+                    company.increaseMoney(project.getPayment());
+                }
+            } catch (ProjectFailsException ex) {
+                company.decreaseMoney(project.getPayment()*0.8f);
+                System.out.println(ex.getMessage());
+            }
+        }
+        generateProjectList();
+        generateEmployeeList();
+        if(company.getMoney()<=0){
+            throw new MoneyRunOutException();
+        }
+        setChanged();
+        notifyObservers();
+    }
+    
+    @Override
     public void run() {
         
+    }
+
+    private void nextWeek() {
+        eventOccur();
+        dateTime.nextWeek();
+        
+    }
+    
+    private int calculateTotalFuntionPointDeliveredThisMonth(){
+        int result = 0;
+        for(Project project:company.getCurrentProjectList()){
+            result+= project.getTotalFunctionPointDelivered();
+        }
+        setChanged();
+        notifyObservers();
+        return result;
     }
 }
