@@ -4,6 +4,9 @@
  */
 package devfortress.view;
 
+import devfortress.view.renderers.ExpensesTreeCellRenderer;
+import devfortress.view.renderers.ProjectsTreeCellRenderer;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.util.Observable;
 import java.util.Observer;
@@ -19,6 +22,12 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
      */
     public View() {
         initComponents();
+
+        /* Fix background problem of developers scroll pane. */
+        scpDevelopers.getViewport().setBackground(Color.white);
+
+        /* Setup icons for components. */
+        setUpIcons();
     }
 
     /**
@@ -40,20 +49,20 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         pnlStatusAndProjects = new javax.swing.JPanel();
         pnlStatus = new javax.swing.JPanel();
         pnlDuration = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lblDuration = new javax.swing.JLabel();
         pnlBudget = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        lblBudget = new javax.swing.JLabel();
         scpExpenses = new javax.swing.JScrollPane();
         treExpenses = new javax.swing.JTree();
         pnlEmployees = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
+        lblEmployees = new javax.swing.JLabel();
         rigidArea2 = new javax.swing.Box.Filler(new java.awt.Dimension(100, 10), new java.awt.Dimension(100, 10), new java.awt.Dimension(100, 10));
         pnlProjects = new javax.swing.JPanel();
         scpProjects = new javax.swing.JScrollPane();
         treProjects = new javax.swing.JTree();
         pnlBlank = new javax.swing.JPanel();
         scpDevelopers = new javax.swing.JScrollPane();
-        pnlDevelopers = new javax.swing.JPanel();
+        tblDevelopers = new javax.swing.JTable();
         pnlLogAndControl = new javax.swing.JPanel();
         scpLogPane = new javax.swing.JScrollPane();
         txaLog = new javax.swing.JTextArea();
@@ -108,6 +117,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         pnlSystemButtonHolder.setBackground(new java.awt.Color(255, 255, 255));
 
         btnSystem.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        btnSystem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icSystem.png"))); // NOI18N
         btnSystem.setText("System");
 
         javax.swing.GroupLayout pnlSystemButtonHolderLayout = new javax.swing.GroupLayout(pnlSystemButtonHolder);
@@ -131,59 +141,64 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
 
         pnlStatus.setBackground(new java.awt.Color(255, 255, 255));
         pnlStatus.setBorder(javax.swing.BorderFactory.createTitledBorder("Status"));
-        pnlStatus.setPreferredSize(new java.awt.Dimension(180, 300));
+        pnlStatus.setPreferredSize(new java.awt.Dimension(180, 340));
         pnlStatus.setLayout(new javax.swing.BoxLayout(pnlStatus, javax.swing.BoxLayout.Y_AXIS));
 
         pnlDuration.setBackground(new java.awt.Color(255, 255, 255));
-        pnlDuration.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnlDuration.setBorder(null);
         pnlDuration.setPreferredSize(new java.awt.Dimension(0, 50));
 
-        jLabel1.setText("Duration");
+        lblDuration.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        lblDuration.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icDuration.png"))); // NOI18N
+        lblDuration.setText("Duration");
 
         javax.swing.GroupLayout pnlDurationLayout = new javax.swing.GroupLayout(pnlDuration);
         pnlDuration.setLayout(pnlDurationLayout);
         pnlDurationLayout.setHorizontalGroup(
             pnlDurationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDurationLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addContainerGap(279, Short.MAX_VALUE))
+                .addGap(6, 6, 6)
+                .addComponent(lblDuration, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                .addGap(6, 6, 6))
         );
         pnlDurationLayout.setVerticalGroup(
             pnlDurationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlDurationLayout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addContainerGap())
+                .addGap(6, 6, 6)
+                .addComponent(lblDuration, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                .addGap(6, 6, 6))
         );
 
         pnlStatus.add(pnlDuration);
 
         pnlBudget.setBackground(new java.awt.Color(255, 255, 255));
-        pnlBudget.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnlBudget.setBorder(null);
         pnlBudget.setPreferredSize(new java.awt.Dimension(0, 50));
 
-        jLabel2.setText("Budget");
+        lblBudget.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        lblBudget.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icBudget.png"))); // NOI18N
+        lblBudget.setText("Budget");
 
         javax.swing.GroupLayout pnlBudgetLayout = new javax.swing.GroupLayout(pnlBudget);
         pnlBudget.setLayout(pnlBudgetLayout);
         pnlBudgetLayout.setHorizontalGroup(
             pnlBudgetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBudgetLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel2)
-                .addContainerGap(286, Short.MAX_VALUE))
+                .addGap(6, 6, 6)
+                .addComponent(lblBudget, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                .addGap(6, 6, 6))
         );
         pnlBudgetLayout.setVerticalGroup(
             pnlBudgetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBudgetLayout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addContainerGap())
+                .addGap(6, 6, 6)
+                .addComponent(lblBudget)
+                .addGap(6, 6, 6))
         );
 
         pnlStatus.add(pnlBudget);
 
+        scpExpenses.setBorder(javax.swing.BorderFactory.createEmptyBorder(6, 6, 6, 6));
         scpExpenses.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         treExpenses.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
@@ -206,8 +221,8 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         treeNode1.add(treeNode2);
         treExpenses.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         treExpenses.setMaximumSize(new java.awt.Dimension(166, 80));
-        treExpenses.setPreferredSize(new java.awt.Dimension(166, 80));
-        treExpenses.setRowHeight(20);
+        treExpenses.setPreferredSize(new java.awt.Dimension(166, 0));
+        treExpenses.setRowHeight(30);
         treExpenses.addTreeExpansionListener(new javax.swing.event.TreeExpansionListener() {
             public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
                 treeExpansion(evt);
@@ -221,26 +236,28 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         pnlStatus.add(scpExpenses);
 
         pnlEmployees.setBackground(new java.awt.Color(255, 255, 255));
-        pnlEmployees.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        pnlEmployees.setBorder(null);
         pnlEmployees.setPreferredSize(new java.awt.Dimension(0, 50));
 
-        jLabel3.setText("Employees");
+        lblEmployees.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        lblEmployees.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icEmployees.png"))); // NOI18N
+        lblEmployees.setText("Employees");
 
         javax.swing.GroupLayout pnlEmployeesLayout = new javax.swing.GroupLayout(pnlEmployees);
         pnlEmployees.setLayout(pnlEmployeesLayout);
         pnlEmployeesLayout.setHorizontalGroup(
             pnlEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlEmployeesLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel3)
-                .addContainerGap(269, Short.MAX_VALUE))
+                .addGap(6, 6, 6)
+                .addComponent(lblEmployees, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                .addGap(6, 6, 6))
         );
         pnlEmployeesLayout.setVerticalGroup(
             pnlEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlEmployeesLayout.createSequentialGroup()
-                .addContainerGap(13, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addContainerGap())
+                .addGap(6, 6, 6)
+                .addComponent(lblEmployees)
+                .addGap(6, 6, 6))
         );
 
         pnlStatus.add(pnlEmployees);
@@ -250,8 +267,10 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
 
         pnlProjects.setBackground(new java.awt.Color(255, 255, 255));
         pnlProjects.setBorder(javax.swing.BorderFactory.createTitledBorder("Projects"));
+        pnlProjects.setPreferredSize(new java.awt.Dimension(104, 378));
         pnlProjects.setLayout(new javax.swing.BoxLayout(pnlProjects, javax.swing.BoxLayout.Y_AXIS));
 
+        scpProjects.setBorder(javax.swing.BorderFactory.createEmptyBorder(6, 6, 6, 6));
         scpProjects.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         treProjects.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
@@ -279,7 +298,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         treProjects.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
         treProjects.setPreferredSize(new java.awt.Dimension(90, 60));
         treProjects.setRootVisible(false);
-        treProjects.setRowHeight(20);
+        treProjects.setRowHeight(30);
         treProjects.addTreeExpansionListener(new javax.swing.event.TreeExpansionListener() {
             public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
                 treeExpansion(evt);
@@ -314,24 +333,22 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
 
         scpManagement.setViewportView(pnlManagement);
 
+        scpDevelopers.setBackground(new java.awt.Color(255, 255, 255));
         scpDevelopers.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         scpDevelopers.setPreferredSize(new java.awt.Dimension(0, 0));
 
-        pnlDevelopers.setBackground(new java.awt.Color(255, 255, 255));
-        pnlDevelopers.setPreferredSize(new java.awt.Dimension(0, 0));
-
-        javax.swing.GroupLayout pnlDevelopersLayout = new javax.swing.GroupLayout(pnlDevelopers);
-        pnlDevelopers.setLayout(pnlDevelopersLayout);
-        pnlDevelopersLayout.setHorizontalGroup(
-            pnlDevelopersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 652, Short.MAX_VALUE)
-        );
-        pnlDevelopersLayout.setVerticalGroup(
-            pnlDevelopersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 436, Short.MAX_VALUE)
-        );
-
-        scpDevelopers.setViewportView(pnlDevelopers);
+        tblDevelopers.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"a", "a", "a", "a"},
+                {"b", "b", "b", "b"},
+                {"c", "c", "c", "c"},
+                {"d", "d", "d", "d"}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        scpDevelopers.setViewportView(tblDevelopers);
 
         pnlLogAndControl.setPreferredSize(new java.awt.Dimension(0, 120));
 
@@ -341,21 +358,24 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         txaLog.setColumns(20);
         txaLog.setRows(5);
         txaLog.setText("Log message");
-        txaLog.setToolTipText("");
+        txaLog.setToolTipText("Log messages");
         scpLogPane.setViewportView(txaLog);
 
         sppControl.setBackground(new java.awt.Color(255, 255, 255));
         sppControl.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        sppControl.setDividerLocation(162);
+        sppControl.setDividerLocation(180);
+        sppControl.setDividerSize(5);
         sppControl.setEnabled(false);
         sppControl.setPreferredSize(new java.awt.Dimension(0, 0));
 
         pnlSystemControl.setBackground(new java.awt.Color(255, 255, 255));
 
         btnInformation.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        btnInformation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icInformation.png"))); // NOI18N
         btnInformation.setText("Information");
 
         btnCurrentProjects.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        btnCurrentProjects.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icProjects.png"))); // NOI18N
         btnCurrentProjects.setText("Current Projects");
 
         javax.swing.GroupLayout pnlSystemControlLayout = new javax.swing.GroupLayout(pnlSystemControl);
@@ -366,7 +386,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
                 .addContainerGap()
                 .addGroup(pnlSystemControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnInformation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCurrentProjects, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
+                    .addComponent(btnCurrentProjects, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlSystemControlLayout.setVerticalGroup(
@@ -383,16 +403,17 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
 
         pnlTurnControl.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnNextTurn.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        btnNextTurn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        btnNextTurn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icNextTurn.png"))); // NOI18N
         btnNextTurn.setText("Next Turn");
 
         javax.swing.GroupLayout pnlTurnControlLayout = new javax.swing.GroupLayout(pnlTurnControl);
         pnlTurnControl.setLayout(pnlTurnControlLayout);
         pnlTurnControlLayout.setHorizontalGroup(
             pnlTurnControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlTurnControlLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTurnControlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnNextTurn, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                .addComponent(btnNextTurn, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlTurnControlLayout.setVerticalGroup(
@@ -470,7 +491,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(scpDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                        .addComponent(scpDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
                         .addGap(0, 0, 0)
                         .addComponent(pnlLogAndControl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(scpManagement))
@@ -480,6 +501,14 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    /**
+     * Setup icons for components.
+     */
+    private void setUpIcons() {
+        treExpenses.setCellRenderer(new ExpensesTreeCellRenderer());
+        treProjects.setCellRenderer(new ProjectsTreeCellRenderer());
+    }
 
     /**
      * Resize container panels of the trees to fit their contents.
@@ -496,9 +525,9 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
 
         /* Declare and define size increment for each panel including a tree. */
         int pnlStatusSizeIncrement, pnlProjectsSizeIncrement, pnlManagementSizeIncrement;
-        pnlStatusSizeIncrement = (treExpenses.getRowCount() + 1)
-                * treExpenses.getRowHeight() - scpExpensesViewportSize.height;
-        pnlProjectsSizeIncrement = (treProjects.getRowCount() + 1)
+        pnlStatusSizeIncrement = (int) ((treExpenses.getRowCount() + 0.5)
+                * treExpenses.getRowHeight()) - scpExpensesViewportSize.height;
+        pnlProjectsSizeIncrement = treProjects.getRowCount()
                 * treProjects.getRowHeight() - scpProjectsViewportSize.height;
         pnlManagementSizeIncrement = pnlStatusSizeIncrement + pnlProjectsSizeIncrement;
 
@@ -538,7 +567,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
             /* If scroll is enabled, update any panel that has change. */
             pnlBlankSize.height = 0;
             if (pnlStatusSizeIncrement != 0) {
-                pnlStatus.setSize(pnlProjectsSize);
+                pnlStatus.setSize(pnlStatusSize);
                 pnlStatus.setPreferredSize(pnlStatusSize);
             }
             if (pnlProjectsSizeIncrement != 0) {
@@ -548,7 +577,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         } else {
             /* If scroll is disabled, decide which panel to update first. */
             if (pnlStatusSizeIncrement < pnlProjectsSizeIncrement) {
-                pnlStatus.setSize(pnlProjectsSize);
+                pnlStatus.setSize(pnlStatusSize);
                 pnlStatus.setPreferredSize(pnlStatusSize);
                 if (pnlProjectsSizeIncrement != 0) {
                     pnlProjects.setSize(pnlProjectsSize);
@@ -558,7 +587,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
                 pnlProjects.setSize(pnlProjectsSize);
                 pnlProjects.setPreferredSize(pnlProjectsSize);
                 if (pnlStatusSizeIncrement != 0) {
-                    pnlStatus.setSize(pnlProjectsSize);
+                    pnlStatus.setSize(pnlStatusSize);
                     pnlStatus.setPreferredSize(pnlStatusSize);
                 }
             }
@@ -614,9 +643,9 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
     private javax.swing.JButton btnInformation;
     private javax.swing.JButton btnNextTurn;
     private javax.swing.JButton btnSystem;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel lblBudget;
+    private javax.swing.JLabel lblDuration;
+    private javax.swing.JLabel lblEmployees;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JMenuBar menu;
     private javax.swing.JMenu menuEdit;
@@ -629,7 +658,6 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
     private javax.swing.JMenuItem menuView_Summary;
     private javax.swing.JPanel pnlBlank;
     private javax.swing.JPanel pnlBudget;
-    private javax.swing.JPanel pnlDevelopers;
     private javax.swing.JPanel pnlDuration;
     private javax.swing.JPanel pnlEmployees;
     private javax.swing.JPanel pnlLogAndControl;
@@ -649,6 +677,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
     private javax.swing.JScrollPane scpManagement;
     private javax.swing.JScrollPane scpProjects;
     private javax.swing.JSplitPane sppControl;
+    private javax.swing.JTable tblDevelopers;
     private javax.swing.JTree treExpenses;
     private javax.swing.JTree treProjects;
     private javax.swing.JTextArea txaLog;
@@ -658,7 +687,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
     public void update(Observable o, Object arg) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-
+    
     @Override
     public void run() {
         throw new UnsupportedOperationException("Not supported yet.");
