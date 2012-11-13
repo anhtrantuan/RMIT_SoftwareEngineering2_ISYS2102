@@ -18,7 +18,7 @@ import java.util.List;
  */
 public interface Model {
 
-    void buyItem(Item item);
+    void buyItem(Item item, int quantity);
 
     void hireEmployee(Employee employee) throws OvercrowdedException;
 

@@ -58,15 +58,22 @@ public class Company {
         employeeList.remove(emp);
     }
 
-    public void buyItem(Item item) throws UnaffordableException {
-
-        if (money > item.getPrice()) {
+    public void buyItem(Item item, int quantity) throws UnaffordableException {
+        float value = item.getPrice() * quantity;
+        if (money > (item.getPrice() * quantity)) {
             throw new UnaffordableException("You do not have enough money to buy");
         } else {
-            decreaseMoney(item.getPrice());
-            expenses += item.getPrice();
+            decreaseMoney(item.getPrice() * quantity);
+            expenses += value;
             if (item instanceof Computer) {
                 computerList.put((Computer) item, null);
+
+                items.put(Constant.COMPUTER_EXPENSE, value);
+
+            } else if (item instanceof Beer || item instanceof Food) {
+
+                items.put(Constant.FOOD_N_DRINK_EXPENSE, value);
+
             }
         }
     }
@@ -145,5 +152,9 @@ public class Company {
             return items.get(Constant.COMPUTER_EXPENSE);
         }
         return 0f;
+    }
+
+    public void clearItemList() {
+        items.clear();
     }
 }

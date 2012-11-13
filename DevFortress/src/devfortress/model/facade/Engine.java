@@ -33,9 +33,9 @@ public class Engine extends Observable implements Model {
     }
 
     @Override
-    public void buyItem(Item item) {
+    public void buyItem(Item item, int quantity) {
         try {
-            company.buyItem(item);
+            company.buyItem(item, quantity);
             setChanged();
             notifyObservers("Buy Item");
 
@@ -135,6 +135,7 @@ public class Engine extends Observable implements Model {
         if (company.getMoney() <= 0) {
             throw new MoneyRunOutException();
         }
+        company.clearItemList();
         setChanged();
         notifyObservers("Next turn");
     }
@@ -177,5 +178,13 @@ public class Engine extends Observable implements Model {
 
     public float getExpenses() {
         return company.getExpenses();
+    }
+
+    public float getFoodandDrinkExpense() {
+        return company.getFoodandDrinkExpense();
+    }
+
+    public float getComputerExpense() {
+        return company.getComputerExpense();
     }
 }
