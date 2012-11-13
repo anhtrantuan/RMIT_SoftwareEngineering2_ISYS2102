@@ -4,12 +4,19 @@
  */
 package devfortress.view;
 
+import devfortress.view.editors.DevelopersTableButtonCellEditor;
+import devfortress.view.models.DevelopersTableModel;
+import devfortress.view.models.ExpensesTreeModel;
+import devfortress.view.models.ProjectsTreeModel;
+import devfortress.view.renderers.DevelopersTableButtonCellRenderer;
 import devfortress.view.renderers.ExpensesTreeCellRenderer;
 import devfortress.view.renderers.ProjectsTreeCellRenderer;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.util.Observable;
 import java.util.Observer;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
 
 /**
  *
@@ -23,11 +30,8 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
     public View() {
         initComponents();
 
-        /* Fix background problem of developers scroll pane. */
-        scpDevelopers.getViewport().setBackground(Color.white);
-
-        /* Setup icons for components. */
-        setUpIcons();
+        /* Setup component display. */
+        setUpDisplay();
     }
 
     /**
@@ -99,7 +103,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
             pnlStatusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlStatusBarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
+                .addComponent(lblStatus, javax.swing.GroupLayout.DEFAULT_SIZE, 996, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlStatusBarLayout.setVerticalGroup(
@@ -124,13 +128,13 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         pnlSystemButtonHolder.setLayout(pnlSystemButtonHolderLayout);
         pnlSystemButtonHolderLayout.setHorizontalGroup(
             pnlSystemButtonHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnSystem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+            .addComponent(btnSystem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 342, Short.MAX_VALUE)
         );
         pnlSystemButtonHolderLayout.setVerticalGroup(
             pnlSystemButtonHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSystemButtonHolderLayout.createSequentialGroup()
                 .addComponent(btnSystem, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 2, Short.MAX_VALUE))
         );
 
         pnlManagement.add(pnlSystemButtonHolder);
@@ -141,7 +145,8 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
 
         pnlStatus.setBackground(new java.awt.Color(255, 255, 255));
         pnlStatus.setBorder(javax.swing.BorderFactory.createTitledBorder("Status"));
-        pnlStatus.setPreferredSize(new java.awt.Dimension(180, 340));
+        pnlStatus.setMinimumSize(new java.awt.Dimension(0, 0));
+        pnlStatus.setPreferredSize(new java.awt.Dimension(180, 200));
         pnlStatus.setLayout(new javax.swing.BoxLayout(pnlStatus, javax.swing.BoxLayout.Y_AXIS));
 
         pnlDuration.setBackground(new java.awt.Color(255, 255, 255));
@@ -200,34 +205,20 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
 
         scpExpenses.setBorder(javax.swing.BorderFactory.createEmptyBorder(6, 6, 6, 6));
         scpExpenses.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
+        scpExpenses.setMinimumSize(new java.awt.Dimension(0, 0));
 
         treExpenses.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
-        javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Expenses");
-        javax.swing.tree.DefaultMutableTreeNode treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Salaries");
-        javax.swing.tree.DefaultMutableTreeNode treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Developer 1");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Developer 2");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Foods and Drinks");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Coffee");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Red Bull");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Pizza");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Beer");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treExpenses.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
-        treExpenses.setMaximumSize(new java.awt.Dimension(166, 80));
+        treExpenses.setModel(new ExpensesTreeModel(null));
+        treExpenses.setCellRenderer(new ExpensesTreeCellRenderer());
+        treExpenses.setMaximumSize(new java.awt.Dimension(166, 32779));
         treExpenses.setPreferredSize(new java.awt.Dimension(166, 0));
         treExpenses.setRowHeight(30);
+        treExpenses.setSelectionModel(null);
         treExpenses.addTreeExpansionListener(new javax.swing.event.TreeExpansionListener() {
-            public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
+            public void treeExpanded(javax.swing.event.TreeExpansionEvent evt) {
                 treeExpansion(evt);
             }
-            public void treeExpanded(javax.swing.event.TreeExpansionEvent evt) {
+            public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
                 treeExpansion(evt);
             }
         });
@@ -267,43 +258,25 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
 
         pnlProjects.setBackground(new java.awt.Color(255, 255, 255));
         pnlProjects.setBorder(javax.swing.BorderFactory.createTitledBorder("Projects"));
-        pnlProjects.setPreferredSize(new java.awt.Dimension(104, 378));
+        pnlProjects.setMinimumSize(new java.awt.Dimension(0, 0));
+        pnlProjects.setPreferredSize(new java.awt.Dimension(104, 80));
         pnlProjects.setLayout(new javax.swing.BoxLayout(pnlProjects, javax.swing.BoxLayout.Y_AXIS));
 
         scpProjects.setBorder(javax.swing.BorderFactory.createEmptyBorder(6, 6, 6, 6));
         scpProjects.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
         treProjects.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
-        treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("Projects");
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Project 1");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Points");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Remaining");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Pay");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Due");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treeNode2 = new javax.swing.tree.DefaultMutableTreeNode("Project 2");
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Points");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Remaining");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Pay");
-        treeNode2.add(treeNode3);
-        treeNode3 = new javax.swing.tree.DefaultMutableTreeNode("Due");
-        treeNode2.add(treeNode3);
-        treeNode1.add(treeNode2);
-        treProjects.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        treProjects.setModel(new ProjectsTreeModel(null));
+        treProjects.setCellRenderer(new ProjectsTreeCellRenderer());
+        treProjects.setMaximumSize(new java.awt.Dimension(90, 32779));
         treProjects.setPreferredSize(new java.awt.Dimension(90, 60));
         treProjects.setRootVisible(false);
         treProjects.setRowHeight(30);
         treProjects.addTreeExpansionListener(new javax.swing.event.TreeExpansionListener() {
-            public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
+            public void treeExpanded(javax.swing.event.TreeExpansionEvent evt) {
                 treeExpansion(evt);
             }
-            public void treeExpanded(javax.swing.event.TreeExpansionEvent evt) {
+            public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
                 treeExpansion(evt);
             }
         });
@@ -317,16 +290,18 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
 
         pnlBlank.setBackground(new java.awt.Color(255, 255, 255));
         pnlBlank.setMinimumSize(new java.awt.Dimension(0, 0));
+        pnlBlank.setOpaque(false);
+        pnlBlank.setPreferredSize(new java.awt.Dimension(342, 200));
 
         javax.swing.GroupLayout pnlBlankLayout = new javax.swing.GroupLayout(pnlBlank);
         pnlBlank.setLayout(pnlBlankLayout);
         pnlBlankLayout.setHorizontalGroup(
             pnlBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 344, Short.MAX_VALUE)
+            .addGap(0, 342, Short.MAX_VALUE)
         );
         pnlBlankLayout.setVerticalGroup(
             pnlBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGap(0, 192, Short.MAX_VALUE)
         );
 
         pnlManagement.add(pnlBlank);
@@ -337,17 +312,10 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         scpDevelopers.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         scpDevelopers.setPreferredSize(new java.awt.Dimension(0, 0));
 
-        tblDevelopers.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"a", "a", "a", "a"},
-                {"b", "b", "b", "b"},
-                {"c", "c", "c", "c"},
-                {"d", "d", "d", "d"}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
+        tblDevelopers.setAutoCreateRowSorter(true);
+        tblDevelopers.setModel(new DevelopersTableModel());
+        tblDevelopers.setRowHeight(30);
+        tblDevelopers.setRowSelectionAllowed(false);
         scpDevelopers.setViewportView(tblDevelopers);
 
         pnlLogAndControl.setPreferredSize(new java.awt.Dimension(0, 120));
@@ -420,7 +388,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
             pnlTurnControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlTurnControlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnNextTurn, javax.swing.GroupLayout.DEFAULT_SIZE, 95, Short.MAX_VALUE)
+                .addComponent(btnNextTurn, javax.swing.GroupLayout.DEFAULT_SIZE, 96, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -491,7 +459,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(scpDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, 432, Short.MAX_VALUE)
+                        .addComponent(scpDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
                         .addGap(0, 0, 0)
                         .addComponent(pnlLogAndControl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(scpManagement))
@@ -503,11 +471,17 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Setup icons for components.
+     * Setup component display.
      */
-    private void setUpIcons() {
-        treExpenses.setCellRenderer(new ExpensesTreeCellRenderer());
-        treProjects.setCellRenderer(new ProjectsTreeCellRenderer());
+    private void setUpDisplay() {
+        /* Fix background problem of developers scroll pane. */
+        scpDevelopers.getViewport().setBackground(Color.white);
+
+        /* Setup developers table. */
+        tblDevelopers.setDefaultRenderer(JButton.class,
+                new DevelopersTableButtonCellRenderer());
+        tblDevelopers.setDefaultEditor(JButton.class,
+                new DevelopersTableButtonCellEditor(new JCheckBox()));
     }
 
     /**
@@ -687,7 +661,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
     public void update(Observable o, Object arg) {
         throw new UnsupportedOperationException("Not supported yet.");
     }
-    
+
     @Override
     public void run() {
         throw new UnsupportedOperationException("Not supported yet.");

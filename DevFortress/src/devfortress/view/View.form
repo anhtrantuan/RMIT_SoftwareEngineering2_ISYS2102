@@ -108,7 +108,7 @@
               <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Component id="scpDevelopers" pref="432" max="32767" attributes="0"/>
+                      <Component id="scpDevelopers" pref="440" max="32767" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                       <Component id="pnlLogAndControl" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -141,7 +141,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="lblStatus" pref="1000" max="32767" attributes="0"/>
+                  <Component id="lblStatus" pref="996" max="32767" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
@@ -200,14 +200,14 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnSystem" alignment="1" pref="344" max="32767" attributes="0"/>
+                      <Component id="btnSystem" alignment="1" pref="342" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="btnSystem" min="-2" pref="50" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="2" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -217,9 +217,6 @@
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Ubuntu" size="24" style="1"/>
-                    </Property>
-                    <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/devfortress/view/resources/icSystem.png"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/devfortress/view/resources/icSystem.png"/>
@@ -266,8 +263,11 @@
                         <TitledBorder title="Status"/>
                       </Border>
                     </Property>
+                    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[0, 0]"/>
+                    </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[180, 340]"/>
+                      <Dimension value="[180, 200]"/>
                     </Property>
                   </Properties>
 
@@ -377,6 +377,9 @@
                           </Border>
                         </Property>
                         <Property name="verticalScrollBarPolicy" type="int" value="21"/>
+                        <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                          <Dimension value="[0, 0]"/>
+                        </Property>
                       </Properties>
                       <AuxValues>
                         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
@@ -389,16 +392,22 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Ubuntu" size="16" style="1"/>
                             </Property>
-                            <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.editors2.TreeModelEditor">
-                              <TreeModel code="Expenses&#xa; Salaries&#xa;  Developer 1&#xa;  Developer 2&#xa; Foods and Drinks&#xa;  Coffee&#xa;  Red Bull&#xa;  Pizza&#xa;  Beer"/>
+                            <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="new ExpensesTreeModel(null)" type="code"/>
+                            </Property>
+                            <Property name="cellRenderer" type="javax.swing.tree.TreeCellRenderer" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="new ExpensesTreeCellRenderer()" type="code"/>
                             </Property>
                             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                              <Dimension value="[166, 80]"/>
+                              <Dimension value="[166, 32779]"/>
                             </Property>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[166, 0]"/>
                             </Property>
                             <Property name="rowHeight" type="int" value="30"/>
+                            <Property name="selectionModel" type="javax.swing.tree.TreeSelectionModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="null" type="code"/>
+                            </Property>
                           </Properties>
                           <Events>
                             <EventHandler event="treeExpanded" listener="javax.swing.event.TreeExpansionListener" parameters="javax.swing.event.TreeExpansionEvent" handler="treeExpansion"/>
@@ -482,8 +491,11 @@
                         <TitledBorder title="Projects"/>
                       </Border>
                     </Property>
+                    <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                      <Dimension value="[0, 0]"/>
+                    </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[104, 378]"/>
+                      <Dimension value="[104, 80]"/>
                     </Property>
                   </Properties>
 
@@ -511,8 +523,14 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Ubuntu" size="16" style="1"/>
                             </Property>
-                            <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.editors2.TreeModelEditor">
-                              <TreeModel code="Projects&#xa; Project 1&#xa;  Points&#xa;  Remaining&#xa;  Pay&#xa;  Due&#xa; Project 2&#xa;  Points&#xa;  Remaining&#xa;  Pay&#xa;  Due"/>
+                            <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="new ProjectsTreeModel(null)" type="code"/>
+                            </Property>
+                            <Property name="cellRenderer" type="javax.swing.tree.TreeCellRenderer" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+                              <Connection code="new ProjectsTreeCellRenderer()" type="code"/>
+                            </Property>
+                            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                              <Dimension value="[90, 32779]"/>
                             </Property>
                             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                               <Dimension value="[90, 60]"/>
@@ -539,17 +557,21 @@
                 <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                   <Dimension value="[0, 0]"/>
                 </Property>
+                <Property name="opaque" type="boolean" value="false"/>
+                <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+                  <Dimension value="[342, 200]"/>
+                </Property>
               </Properties>
 
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="344" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="342" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="192" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
               </Layout>
@@ -577,34 +599,12 @@
       <SubComponents>
         <Component class="javax.swing.JTable" name="tblDevelopers">
           <Properties>
-            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="4" rowCount="4">
-                <Column editable="true" title="Title 1" type="java.lang.Object">
-                  <Data value="a"/>
-                  <Data value="b"/>
-                  <Data value="c"/>
-                  <Data value="d"/>
-                </Column>
-                <Column editable="true" title="Title 2" type="java.lang.Object">
-                  <Data value="a"/>
-                  <Data value="b"/>
-                  <Data value="c"/>
-                  <Data value="d"/>
-                </Column>
-                <Column editable="true" title="Title 3" type="java.lang.Object">
-                  <Data value="a"/>
-                  <Data value="b"/>
-                  <Data value="c"/>
-                  <Data value="d"/>
-                </Column>
-                <Column editable="true" title="Title 4" type="java.lang.Object">
-                  <Data value="a"/>
-                  <Data value="b"/>
-                  <Data value="c"/>
-                  <Data value="d"/>
-                </Column>
-              </Table>
+            <Property name="autoCreateRowSorter" type="boolean" value="true"/>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
+              <Connection code="new DevelopersTableModel()" type="code"/>
             </Property>
+            <Property name="rowHeight" type="int" value="30"/>
+            <Property name="rowSelectionAllowed" type="boolean" value="false"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -767,7 +767,7 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="btnNextTurn" pref="95" max="32767" attributes="0"/>
+                          <Component id="btnNextTurn" pref="96" max="32767" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
