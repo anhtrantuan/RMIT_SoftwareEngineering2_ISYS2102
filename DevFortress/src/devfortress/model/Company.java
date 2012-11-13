@@ -49,10 +49,12 @@ public class Company {
     }
 
     public void addEmployee(Employee newEmp) {
+        calculateTotalSalary();
         employeeList.add(newEmp);
     }
 
     public void removeEmployee(Employee emp) {
+        calculateTotalSalary();
         employeeList.remove(emp);
     }
 
@@ -70,7 +72,7 @@ public class Company {
     }    
 
     public boolean paySalary() throws MoneyRunOutException {
-        calculateTotalSalary();
+        
         money -= totalSalary;
         if (money <= 0) {
             throw new MoneyRunOutException("You are out of money");
@@ -131,4 +133,9 @@ public class Company {
     public float getExpenses(){
         return expenses;
     }
+    
+    public void resetExpense(){
+        expenses = 0;
+    }
+    
 }
