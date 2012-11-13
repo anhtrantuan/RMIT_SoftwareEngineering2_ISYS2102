@@ -145,7 +145,6 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         pnlStatus.setLayout(new javax.swing.BoxLayout(pnlStatus, javax.swing.BoxLayout.Y_AXIS));
 
         pnlDuration.setBackground(new java.awt.Color(255, 255, 255));
-        pnlDuration.setBorder(null);
         pnlDuration.setPreferredSize(new java.awt.Dimension(0, 50));
 
         lblDuration.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
@@ -158,7 +157,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
             pnlDurationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDurationLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(lblDuration, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                .addComponent(lblDuration, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
                 .addGap(6, 6, 6))
         );
         pnlDurationLayout.setVerticalGroup(
@@ -172,7 +171,6 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         pnlStatus.add(pnlDuration);
 
         pnlBudget.setBackground(new java.awt.Color(255, 255, 255));
-        pnlBudget.setBorder(null);
         pnlBudget.setPreferredSize(new java.awt.Dimension(0, 50));
 
         lblBudget.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
@@ -185,7 +183,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
             pnlBudgetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBudgetLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(lblBudget, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                .addComponent(lblBudget, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
                 .addGap(6, 6, 6))
         );
         pnlBudgetLayout.setVerticalGroup(
@@ -236,7 +234,6 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         pnlStatus.add(scpExpenses);
 
         pnlEmployees.setBackground(new java.awt.Color(255, 255, 255));
-        pnlEmployees.setBorder(null);
         pnlEmployees.setPreferredSize(new java.awt.Dimension(0, 50));
 
         lblEmployees.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
@@ -249,7 +246,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
             pnlEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlEmployeesLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(lblEmployees, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
+                .addComponent(lblEmployees, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
                 .addGap(6, 6, 6))
         );
         pnlEmployeesLayout.setVerticalGroup(
@@ -364,7 +361,6 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         sppControl.setBackground(new java.awt.Color(255, 255, 255));
         sppControl.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         sppControl.setDividerLocation(180);
-        sppControl.setDividerSize(5);
         sppControl.setEnabled(false);
         sppControl.setPreferredSize(new java.awt.Dimension(0, 0));
 
@@ -385,8 +381,8 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
             .addGroup(pnlSystemControlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlSystemControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnInformation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnCurrentProjects, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
+                    .addComponent(btnInformation, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                    .addComponent(btnCurrentProjects, javax.swing.GroupLayout.PREFERRED_SIZE, 154, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlSystemControlLayout.setVerticalGroup(
@@ -413,7 +409,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
             pnlTurnControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTurnControlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnNextTurn, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                .addComponent(btnNextTurn, javax.swing.GroupLayout.PREFERRED_SIZE, 122, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlTurnControlLayout.setVerticalGroup(

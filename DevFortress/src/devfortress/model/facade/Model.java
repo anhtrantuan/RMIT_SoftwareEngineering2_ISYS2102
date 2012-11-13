@@ -4,6 +4,7 @@
  */
 package devfortress.model.facade;
 
+import devfortress.model.DateTime;
 import devfortress.model.Employee;
 import devfortress.model.Item;
 import devfortress.model.Project;
@@ -38,4 +39,16 @@ public interface Model {
     List<Project> generateProjectList();
     
     void nextTurn() throws MoneyRunOutException;
+    
+    List getEmployeeList();
+    
+    List getProjectList();
+            
+    DateTime getCurrentTimePlayed();
+    
+    float getBudget();
+    
+    float getTotalSalary();
+    
+    float getExpenses();
 }
