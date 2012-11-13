@@ -4,6 +4,7 @@
  */
 package devfortress.view;
 
+import devfortress.model.facade.Model;
 import devfortress.view.editors.DevelopersTableButtonCellEditor;
 import devfortress.view.models.DevelopersTableModel;
 import devfortress.view.models.ExpensesTreeModel;
@@ -22,12 +23,20 @@ import javax.swing.JCheckBox;
  *
  * @author tommy
  */
-public class View extends javax.swing.JFrame implements Observer, Runnable {
+public class View extends javax.swing.JFrame implements Observer {
+
+    /* Declare Model module. */
+    private Model model;
 
     /**
-     * Creates new form View
+     * Creates new form View.
+     *
+     * @param model
      */
-    public View() {
+    public View(Model model) {
+        this.model = model;
+
+        /* Initialize components. */
         initComponents();
 
         /* Setup component display. */
@@ -134,7 +143,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
             pnlSystemButtonHolderLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlSystemButtonHolderLayout.createSequentialGroup()
                 .addComponent(btnSystem, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 2, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pnlManagement.add(pnlSystemButtonHolder);
@@ -203,6 +212,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
 
         pnlStatus.add(pnlBudget);
 
+        scpExpenses.setBackground(new java.awt.Color(255, 255, 255));
         scpExpenses.setBorder(javax.swing.BorderFactory.createEmptyBorder(6, 6, 6, 6));
         scpExpenses.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
         scpExpenses.setMinimumSize(new java.awt.Dimension(0, 0));
@@ -259,9 +269,10 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         pnlProjects.setBackground(new java.awt.Color(255, 255, 255));
         pnlProjects.setBorder(javax.swing.BorderFactory.createTitledBorder("Projects"));
         pnlProjects.setMinimumSize(new java.awt.Dimension(0, 0));
-        pnlProjects.setPreferredSize(new java.awt.Dimension(104, 80));
+        pnlProjects.setPreferredSize(new java.awt.Dimension(104, 90));
         pnlProjects.setLayout(new javax.swing.BoxLayout(pnlProjects, javax.swing.BoxLayout.Y_AXIS));
 
+        scpProjects.setBackground(new java.awt.Color(255, 255, 255));
         scpProjects.setBorder(javax.swing.BorderFactory.createEmptyBorder(6, 6, 6, 6));
         scpProjects.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_NEVER);
 
@@ -272,6 +283,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         treProjects.setPreferredSize(new java.awt.Dimension(90, 60));
         treProjects.setRootVisible(false);
         treProjects.setRowHeight(30);
+        treProjects.setSelectionModel(null);
         treProjects.addTreeExpansionListener(new javax.swing.event.TreeExpansionListener() {
             public void treeExpanded(javax.swing.event.TreeExpansionEvent evt) {
                 treeExpansion(evt);
@@ -291,7 +303,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         pnlBlank.setBackground(new java.awt.Color(255, 255, 255));
         pnlBlank.setMinimumSize(new java.awt.Dimension(0, 0));
         pnlBlank.setOpaque(false);
-        pnlBlank.setPreferredSize(new java.awt.Dimension(342, 200));
+        pnlBlank.setPreferredSize(new java.awt.Dimension(342, 190));
 
         javax.swing.GroupLayout pnlBlankLayout = new javax.swing.GroupLayout(pnlBlank);
         pnlBlank.setLayout(pnlBlankLayout);
@@ -301,7 +313,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         );
         pnlBlankLayout.setVerticalGroup(
             pnlBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 192, Short.MAX_VALUE)
+            .addGap(0, 188, Short.MAX_VALUE)
         );
 
         pnlManagement.add(pnlBlank);
@@ -459,7 +471,7 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(scpDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
+                        .addComponent(scpDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
                         .addGap(0, 0, 0)
                         .addComponent(pnlLogAndControl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(scpManagement))
@@ -576,42 +588,6 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
         /* Revalidate the frame layout. */
         this.revalidate();
     }//GEN-LAST:event_treeExpansion
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new View().setVisible(true);
-            }
-        });
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCurrentProjects;
     private javax.swing.JButton btnInformation;
@@ -659,11 +635,6 @@ public class View extends javax.swing.JFrame implements Observer, Runnable {
 
     @Override
     public void update(Observable o, Object arg) {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    @Override
-    public void run() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }

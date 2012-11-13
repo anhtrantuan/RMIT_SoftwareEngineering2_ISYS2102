@@ -21,6 +21,8 @@ public class ProjectsTreeModel extends DefaultTreeModel {
      */
     public ProjectsTreeModel(TreeNode root) {
         super(root);
-        this.root = new DefaultMutableTreeNode("Projects");
+        DefaultMutableTreeNode node = new DefaultMutableTreeNode("Projects");
+        this.root = node;
+        this.insertNodeInto(new DefaultMutableTreeNode("Project 1"), node, node.getChildCount());
     }
 }
