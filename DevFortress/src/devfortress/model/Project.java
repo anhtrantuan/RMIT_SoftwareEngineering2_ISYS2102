@@ -24,7 +24,8 @@ public class Project {
     private Map<Skills, Integer> skillRequirementMap;
     private Map<Skills, Employee> skill_employeeMap;
     private Skills mainSkill;
-    int totalFunctionPointDelivered;
+    private String name;
+    private int totalFunctionPointDelivered;
 
     public Project(int payment, int projectLevel, int projectTime, Map<Skills, Integer> skillRequirementMap) {
         this.payment = payment;
@@ -77,17 +78,13 @@ public class Project {
     public int getTotalFunctionPointDelivered() {
         return totalFunctionPointDelivered;
     }
-    
-    
 
-    @Override
-    public String toString() {
-        for (Skills object : skillRequirementMap.keySet()) {
-            System.out.println(object.name() + ":" + skillRequirementMap.get(object));
-        }
-        return this.payment + "\n"
-                + this.projectLevel + "\n"
-                + this.projectTime + "\n";
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void levelUp() {
@@ -166,7 +163,7 @@ public class Project {
             projectTime--;
             if (projectTime == 0) {
                 throw new ProjectFailsException("Project Fails");
-            }     
+            }
         }
         return false;
     }
