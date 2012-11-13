@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  *
  * @author cathoanghuy
  */
-public class Engine extends Observable implements Model, Runnable {
+public class Engine extends Observable implements Model {
 
     private Company company;
     private GameLevel level;
@@ -37,7 +37,7 @@ public class Engine extends Observable implements Model, Runnable {
         try {
             company.buyItem(item);
             setChanged();
-            notifyObservers();
+            notifyObservers("Buy Item");
             
             // TODO implement Engine.buyItem
         } catch (UnaffordableException ex) {
@@ -52,14 +52,14 @@ public class Engine extends Observable implements Model, Runnable {
         }
         company.addEmployee(employee);
         setChanged();
-        notifyObservers();
+        notifyObservers("Hire Employee");
     }
 
     @Override
     public void fireEmployee(Employee employee) {
         company.removeEmployee(employee);
         setChanged();
-        notifyObservers();
+        notifyObservers("Fire Employee");
         
     }
 
@@ -67,14 +67,14 @@ public class Engine extends Observable implements Model, Runnable {
     public void takeProject(Project project) {
         company.addProject(project);
         setChanged();
-        notifyObservers();
+        notifyObservers("Take Project");
     }
 
     @Override
     public void cancelProject(Project project) {
         company.cancelProject(project);
         setChanged();
-        notifyObservers();
+        notifyObservers("Cancel Project");
     }
 
     @Override
@@ -86,7 +86,7 @@ public class Engine extends Observable implements Model, Runnable {
     public void levelUp(Project project) {
         project.levelUp();
         setChanged();
-        notifyObservers();
+        notifyObservers("Employee's skill has leveled up");
     }
 
     @Override
@@ -94,7 +94,7 @@ public class Engine extends Observable implements Model, Runnable {
         try {
             company.paySalary();
             setChanged();
-            notifyObservers();
+            notifyObservers("Pay salary");
         } catch (MoneyRunOutException ex) {
             System.out.println(ex.getMessage());
         }
@@ -131,17 +131,13 @@ public class Engine extends Observable implements Model, Runnable {
         }
         generateProjectList();
         generateEmployeeList();
+        paySalary();
         if(company.getMoney()<=0){
             throw new MoneyRunOutException();
         }
         setChanged();
-        notifyObservers();
-    }
-    
-    @Override
-    public void run() {
-        
-    }
+        notifyObservers("Next turn");
+    }    
 
     private void nextWeek() {
         eventOccur();
@@ -157,5 +153,29 @@ public class Engine extends Observable implements Model, Runnable {
         setChanged();
         notifyObservers();
         return result;
+    }
+    
+    public List getEmployeeList(){
+        return company.getEmployeeList();
+    }
+    
+    public List getProjectList(){
+        return company.getCurrentProjectList();
+    }
+    
+    public DateTime getCurrentTimePlayed(){
+        return dateTime;
+    }
+    
+    public float getBudget(){
+        return company.getMoney();
+    }
+    
+    public float getTotalSalary(){
+        return company.calculateTotalSalary();
+    }
+    
+    public float getExpenses(){
+        return company.getExpenses();
     }
 }
