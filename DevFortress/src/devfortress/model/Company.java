@@ -17,14 +17,14 @@ public class Company {
     
     private float money;
     private List<Employee> employeeList;
-    private Map<Computer,Employee> computerList;
+    private Map<Computer, Employee> computerList;
     private List<Project> currentProjectList;
-
+    
     public Company() {
         money = 1000;
     }
     
-    public Company(int money,List empList,Map computerList,List projectList) {
+    public Company(int money, List empList, Map computerList, List projectList) {
         this.money = money;
         employeeList = empList;
         this.computerList = computerList;
@@ -57,10 +57,10 @@ public class Company {
             throw new UnaffordableException("You do not have enough money to buy");
         } else {
             decreaseMoney(item.getPrice());
-            if(item instanceof Computer){
-                computerList.put((Computer)item, null);
+            if (item instanceof Computer) {
+                computerList.put((Computer) item, null);
             }
-        } 
+        }
     }
     
     public boolean paySalary() throws MoneyRunOutException {
@@ -72,36 +72,42 @@ public class Company {
         }
         return true;
     }
-
+    
     public Map<Computer, Employee> getComputerList() {
         return computerList;
     }
-
+    
     public void setComputerList(Map<Computer, Employee> computerList) {
         this.computerList = computerList;
     }
-
+    
     public List<Employee> getEmployeeList() {
         return employeeList;
     }
-
+    
     public void setEmployeeList(List<Employee> employeeList) {
         this.employeeList = employeeList;
     }
-
+    
     public List<Project> getCurrentProjectList() {
         return currentProjectList;
     }
-
+    
     public void setCurrentProjectList(List<Project> currentProjectList) {
         this.currentProjectList = currentProjectList;
     }
     
-    public void addProject(Project project){
+    public void addProject(Project project) {
         currentProjectList.add(project);
+        increaseMoney(project.getPayment() / 2);
     }
     
-    public void cancelProject(Project project){
+    public void cancelProject(Project project) {
+        currentProjectList.remove(project);
+        decreaseMoney(project.getPayment() * 0.8f);
+    }
+    
+    public void removeProject(Project project) {
         currentProjectList.remove(project);
     }
     
