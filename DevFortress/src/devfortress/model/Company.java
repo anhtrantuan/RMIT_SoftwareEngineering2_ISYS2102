@@ -165,5 +165,9 @@ public class Company {
     public void clearItemList() {
         items.clear();
     }
+    
+    public Map getItemsBoughtInMonth(){
+        return items;
+    }
 
 }

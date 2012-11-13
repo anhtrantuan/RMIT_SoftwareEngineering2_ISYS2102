@@ -11,6 +11,7 @@ import devfortress.model.Project;
 import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.OvercrowdedException;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -51,4 +52,6 @@ public interface Model {
     float getTotalSalary();
     
     float getExpenses();
+    
+    Map getItemsBoughtInMonth();
 }

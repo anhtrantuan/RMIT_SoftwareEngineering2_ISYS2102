@@ -12,6 +12,7 @@ import devfortress.model.exception.ProjectFailsException;
 import devfortress.model.exception.UnaffordableException;
 import devfortress.utilities.Utilities;
 import java.util.List;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Random;
 import java.util.logging.Level;
@@ -186,5 +187,9 @@ public class Engine extends Observable implements Model {
 
     public float getComputerExpense() {
         return company.getComputerExpense();
+    }
+    
+    public Map getItemsBoughtInMonth(){
+        return company.getItemsBoughtInMonth();
     }
 }
