@@ -6,6 +6,7 @@ package devfortress.model;
 
 import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.UnaffordableException;
+import devfortress.utilities.Constant;
 import java.util.List;
 import java.util.Map;
 
@@ -21,19 +22,20 @@ public class Company {
     private List<Project> currentProjectList;
     private float totalSalary;
     private float expenses;
-
+    private Map<String, Float> items;
 
     public Company() {
-        money = 1000;
+        money = 1000f;
     }
 
-    public Company(int money, List empList, Map computerList, List projectList) {
+    public Company(int money, List empList, Map computerList, List projectList, Map itemsList) {
         this.money = money;
         employeeList = empList;
         this.computerList = computerList;
         currentProjectList = projectList;
-        totalSalary =0;
-        expenses=0;
+        items = itemsList;
+        totalSalary = 0;
+        expenses = 0;
     }
 
     public float getMoney() {
@@ -58,18 +60,25 @@ public class Company {
         employeeList.remove(emp);
     }
 
-    public void buyItem(Item item) throws UnaffordableException {
-
-        if (money > item.getPrice()) {
+    public void buyItem(Item item, int quantity) throws UnaffordableException {
+        float value = item.getPrice() * quantity;
+        if (money > (item.getPrice() * quantity)) {
             throw new UnaffordableException("You do not have enough money to buy");
-        } else {  
-            decreaseMoney(item.getPrice());
-            expenses+=item.getPrice();
+        } else {
+            decreaseMoney(item.getPrice() * quantity);
+            expenses += value;
             if (item instanceof Computer) {
                 computerList.put((Computer) item, null);
+
+                items.put(Constant.COMPUTER_EXPENSE, value);
+
+            } else if (item instanceof Beer || item instanceof Food) {
+
+                items.put(Constant.FOOD_N_DRINK_EXPENSE, value);
+
             }
         }
-    }    
+    }
 
     public boolean paySalary() throws MoneyRunOutException {
         
@@ -80,42 +89,41 @@ public class Company {
 
         return true;
     }
-    
+
     public Map<Computer, Employee> getComputerList() {
         return computerList;
     }
-    
+
     public void setComputerList(Map<Computer, Employee> computerList) {
         this.computerList = computerList;
     }
-    
+
     public List<Employee> getEmployeeList() {
         return employeeList;
     }
-    
+
     public void setEmployeeList(List<Employee> employeeList) {
         this.employeeList = employeeList;
     }
-    
+
     public List<Project> getCurrentProjectList() {
         return currentProjectList;
     }
-    
+
     public void setCurrentProjectList(List<Project> currentProjectList) {
         this.currentProjectList = currentProjectList;
     }
-    
+
     public void addProject(Project project) {
         currentProjectList.add(project);
         increaseMoney(project.getPayment() / 2);
     }
 
-    
     public void cancelProject(Project project) {
         currentProjectList.remove(project);
         decreaseMoney(project.getPayment() * 0.8f);
     }
-    
+
     public void removeProject(Project project) {
         currentProjectList.remove(project);
     }
@@ -129,13 +137,33 @@ public class Company {
         }
         return totalSalary;
     }
-    
-    public float getExpenses(){
+
+    public float getExpenses() {
         return expenses;
     }
+
     
     public void resetExpense(){
         expenses = 0;
     }
-    
+
+
+    public float getFoodandDrinkExpense() {
+        if (items.containsKey(Constant.FOOD_N_DRINK_EXPENSE)) {
+            return items.get(Constant.FOOD_N_DRINK_EXPENSE);
+        }
+        return 0f;
+    }
+
+    public float getComputerExpense() {
+        if (items.containsKey(Constant.COMPUTER_EXPENSE)) {
+            return items.get(Constant.COMPUTER_EXPENSE);
+        }
+        return 0f;
+    }
+
+    public void clearItemList() {
+        items.clear();
+    }
+
 }

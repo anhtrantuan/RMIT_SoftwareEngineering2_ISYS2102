@@ -27,18 +27,18 @@ public class Engine extends Observable implements Model {
     private Company company;
     private GameLevel level;
     DateTime dateTime;
-    
+
     public Engine(Company company) {
         this.company = company;
     }
 
     @Override
-    public void buyItem(Item item) {
+    public void buyItem(Item item, int quantity) {
         try {
-            company.buyItem(item);
+            company.buyItem(item, quantity);
             setChanged();
             notifyObservers("Buy Item");
-            
+
             // TODO implement Engine.buyItem
         } catch (UnaffordableException ex) {
             System.out.println(ex.getMessage());
@@ -60,7 +60,7 @@ public class Engine extends Observable implements Model {
         company.removeEmployee(employee);
         setChanged();
         notifyObservers("Fire Employee");
-        
+
     }
 
     @Override
@@ -115,67 +115,76 @@ public class Engine extends Observable implements Model {
     }
 
     @Override
-    public void nextTurn() throws MoneyRunOutException{
-        for(int i = 0; i<4;i++){
+    public void nextTurn() throws MoneyRunOutException {
+        for (int i = 0; i < 4; i++) {
             nextWeek();
         }
-        for(Project project:company.getCurrentProjectList()){
+        for (Project project : company.getCurrentProjectList()) {
             try {
-                if(project.checkProjectProcess()){
-                    company.increaseMoney(project.getPayment());
+                if (project.checkProjectProcess()) {
+                    company.removeProject(project);
                 }
             } catch (ProjectFailsException ex) {
-                company.decreaseMoney(project.getPayment()*0.8f);
+                company.cancelProject(project);
                 System.out.println(ex.getMessage());
             }
         }
         generateProjectList();
         generateEmployeeList();
         paySalary();
-        if(company.getMoney()<=0){
+        if (company.getMoney() <= 0) {
             throw new MoneyRunOutException();
         }
+        company.clearItemList();
         setChanged();
         notifyObservers("Next turn");
-    }    
+    }
 
     private void nextWeek() {
         eventOccur();
         dateTime.nextWeek();
-        
+
     }
-    
-    private int calculateTotalFuntionPointDeliveredThisMonth(){
+
+    private int calculateTotalFuntionPointDeliveredThisMonth() {
         int result = 0;
-        for(Project project:company.getCurrentProjectList()){
-            result+= project.getTotalFunctionPointDelivered();
+        for (Project project : company.getCurrentProjectList()) {
+            result += project.getTotalFunctionPointDelivered();
         }
         setChanged();
         notifyObservers();
         return result;
     }
-    
-    public List getEmployeeList(){
+
+    public List getEmployeeList() {
         return company.getEmployeeList();
     }
-    
-    public List getProjectList(){
+
+    public List getProjectList() {
         return company.getCurrentProjectList();
     }
-    
-    public DateTime getCurrentTimePlayed(){
+
+    public DateTime getCurrentTimePlayed() {
         return dateTime;
     }
-    
-    public float getBudget(){
+
+    public float getBudget() {
         return company.getMoney();
     }
-    
-    public float getTotalSalary(){
+
+    public float getTotalSalary() {
         return company.calculateTotalSalary();
     }
-    
-    public float getExpenses(){
+
+    public float getExpenses() {
         return company.getExpenses();
+    }
+
+    public float getFoodandDrinkExpense() {
+        return company.getFoodandDrinkExpense();
+    }
+
+    public float getComputerExpense() {
+        return company.getComputerExpense();
     }
 }
