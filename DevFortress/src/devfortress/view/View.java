@@ -5,6 +5,7 @@
 package devfortress.view;
 
 import devfortress.model.DateTime;
+import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.facade.Model;
 import devfortress.utilities.Constant;
 import devfortress.view.editors.DevelopersTableButtonCellEditor;
@@ -20,8 +21,7 @@ import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreePath;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -220,10 +220,10 @@ public class View extends javax.swing.JFrame implements Observer {
         treExpenses.setRowHeight(30);
         treExpenses.setSelectionModel(null);
         treExpenses.addTreeExpansionListener(new javax.swing.event.TreeExpansionListener() {
-            public void treeExpanded(javax.swing.event.TreeExpansionEvent evt) {
+            public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
                 treeExpansion(evt);
             }
-            public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
+            public void treeExpanded(javax.swing.event.TreeExpansionEvent evt) {
                 treeExpansion(evt);
             }
         });
@@ -275,10 +275,10 @@ public class View extends javax.swing.JFrame implements Observer {
         treProjects.setRowHeight(30);
         treProjects.setSelectionModel(null);
         treProjects.addTreeExpansionListener(new javax.swing.event.TreeExpansionListener() {
-            public void treeExpanded(javax.swing.event.TreeExpansionEvent evt) {
+            public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
                 treeExpansion(evt);
             }
-            public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
+            public void treeExpanded(javax.swing.event.TreeExpansionEvent evt) {
                 treeExpansion(evt);
             }
         });
@@ -376,6 +376,11 @@ public class View extends javax.swing.JFrame implements Observer {
         btnNextTurn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         btnNextTurn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icNextTurn.png"))); // NOI18N
         btnNextTurn.setText("Next Turn");
+        btnNextTurn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextTurnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlTurnControlLayout = new javax.swing.GroupLayout(pnlTurnControl);
         pnlTurnControl.setLayout(pnlTurnControlLayout);
@@ -417,6 +422,11 @@ public class View extends javax.swing.JFrame implements Observer {
 
         menuFile_Exit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         menuFile_Exit.setText("Exit");
+        menuFile_Exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuFile_ExitActionPerformed(evt);
+            }
+        });
         menuFile.add(menuFile_Exit);
 
         menu.add(menuFile);
@@ -618,6 +628,20 @@ public class View extends javax.swing.JFrame implements Observer {
         /* Revalidate the frame layout. */
         revalidate();
     }//GEN-LAST:event_treeExpansion
+
+    private void btnNextTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextTurnActionPerformed
+        try {
+            // TODO add your handling code here:
+            model.nextTurn();
+        } catch (MoneyRunOutException ex) {
+            JOptionPane jOptionPane = new JOptionPane();
+        }
+    }//GEN-LAST:event_btnNextTurnActionPerformed
+
+    private void menuFile_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFile_ExitActionPerformed
+        // TODO add your handling code here:
+        System.exit(DO_NOTHING_ON_CLOSE);
+    }//GEN-LAST:event_menuFile_ExitActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCurrentProjects;
     private javax.swing.JButton btnInformation;
