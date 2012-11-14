@@ -16,6 +16,8 @@ public class Constant {
     public static int MAX_FUNCTION_POINT_DIFFICULT = 400;
     public static int PROJECT_MAX = 5;
     public static int EMPLOYEE_MAX = 10;
+    public static String BEER = "Beer";
+    public static String COMPUTER = "Computer";
     public static String EXPENSE_FOODS = "Foods";
     public static String EXPENSE_BEERS = "Beers";
     public static String EXPENSE_COMPUTERS = "Computers";
@@ -30,4 +32,9 @@ public class Constant {
     public static String PROJECT_REMAINING_POINTS = "Remaining";
     public static String PROJECT_PAY = "Pay";
     public static String PROJECT_DUE = "Due";
+    public static String EMPLOYEE_NAME = "Name";
+    public static String EMPLOYEE_STATUS = "Status";
+    public static String EMPLOYEE_CURRENT_PROJECT = "Project";
+    public static String EMPLOYEE_DETAILS = "Details";
+    public static String EMPLOYEE_MANAGE = "Manage";
 }

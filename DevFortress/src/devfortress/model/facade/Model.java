@@ -55,7 +55,5 @@ public interface Model {
 
     float getExpenses();
 
-    float getFoodandDrinkExpense();
-
-    float getComputerExpense();
+    float getItemExpenses();
 }

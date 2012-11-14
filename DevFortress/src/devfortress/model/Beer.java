@@ -4,13 +4,16 @@
  */
 package devfortress.model;
 
+import devfortress.utilities.Constant;
+
 /**
  *
  * @author cathoanghuy
  */
-public class Beer implements Item{
+public class Beer implements Item {
+
     private float price;
-    
+
     public Beer(float price) {
         this.price = price;
     }
@@ -22,6 +25,6 @@ public class Beer implements Item{
 
     @Override
     public String getName() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return Constant.BEER;
     }
 }

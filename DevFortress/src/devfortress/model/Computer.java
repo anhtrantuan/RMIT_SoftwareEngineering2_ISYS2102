@@ -4,6 +4,8 @@
  */
 package devfortress.model;
 
+import devfortress.utilities.Constant;
+
 /**
  *
  * @author cathoanghuy
@@ -27,6 +29,6 @@ public class Computer implements Item {
 
     @Override
     public String getName() {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return Constant.COMPUTER;
     }
 }

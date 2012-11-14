@@ -5,6 +5,7 @@
 package devfortress.utilities;
 
 import devfortress.model.Company;
+import devfortress.model.Computer;
 import devfortress.model.Employee;
 import devfortress.model.Project;
 import devfortress.model.dificulity.GameLevel;
@@ -89,8 +90,8 @@ public class Utilities {
     //check if there is any empty computer in company then assign employee into that computer, return true if having empty computer
 
     public static boolean assignComputerToEmployee(Company company, Employee employee) {
-        Map computerMap = company.getComputerList();
-        for (Object com : computerMap.keySet()) {
+        Map<Computer, Employee> computerMap = company.getComputerList();
+        for (Computer com : computerMap.keySet()) {
             if (computerMap.get(com) == null) {
                 computerMap.put(com, employee);
                 return true;

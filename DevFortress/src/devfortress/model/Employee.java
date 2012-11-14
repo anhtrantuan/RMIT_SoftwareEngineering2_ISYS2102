@@ -24,11 +24,12 @@ public class Employee {
         this.name = name;
         this.salary = salary;
         this.skillList = skillList;
+        status = new boolean[3];
         //0 is having beer, 1 is full, 2 is happy;
         status[0] = false;
         status[1] = false;
         status[2] = true;
-        getMainSkill();
+        mainSkill = getMainSkill();
     }
 
     public Employee(String name, Map skillList) {
