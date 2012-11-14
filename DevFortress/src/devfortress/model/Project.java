@@ -28,7 +28,9 @@ public class Project {
     private String name;
     private int totalPoints, remainingPoints, totalFunctionPointsDelivered;
 
-    public Project(int totalPoints, float payment, int projectLevel, DateTime projectTime, Map<Skills, Integer> skillRequirementMap) {
+    public Project(String name, int totalPoints, float payment, int projectLevel,
+            DateTime projectTime, Map<Skills, Integer> skillRequirementMap) {
+        this.name = name;
         this.totalPoints = totalPoints;
         remainingPoints = totalPoints;
         this.payment = payment;

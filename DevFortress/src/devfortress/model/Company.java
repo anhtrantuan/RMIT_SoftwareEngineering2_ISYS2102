@@ -55,23 +55,29 @@ public class Company {
     public void addEmployee(Employee newEmp) {
         calculateTotalSalary();
         employeeList.add(newEmp);
+        decreaseMoney(newEmp.getSalary());
+        expenses += newEmp.getSalary();
     }
 
     public void removeEmployee(Employee emp) {
         calculateTotalSalary();
         employeeList.remove(emp);
+        increaseMoney(emp.getSalary());
+        expenses -= emp.getSalary();
     }
 
     public void buyItem(Item item, int quantity) throws UnaffordableException {
         float value = item.getPrice() * quantity;
-        if (money > (item.getPrice() * quantity)) {
+        if (money < (item.getPrice() * quantity)) {
             throw new UnaffordableException("You do not have enough money to buy");
         } else {
             decreaseMoney(item.getPrice() * quantity);
             expenses += value;
             String name = "";
             if (item instanceof Computer) {
-                computerList.put((Computer) item, null);
+                for (int i = 0; i < quantity; i++) {
+                    computerList.put(new Computer(item.getPrice()), null);
+                }
                 name = Constant.EXPENSE_COMPUTERS;
             } else if (item instanceof Food) {
                 name = Constant.EXPENSE_FOODS;
@@ -148,6 +154,7 @@ public class Company {
     }
 
     public float calculateTotalSalary() {
+        totalSalary = 0;
         for (Employee employee : employeeList) {
             totalSalary += employee.getSalary();
         }
@@ -158,24 +165,20 @@ public class Company {
         return expenses;
     }
 
-    
-    public void resetExpense(){
-        expenses = 0;
-    }
+    public float getItemExpenses() {
+        float total = 0;
 
-
-    public float getFoodandDrinkExpense() {
         if (items.containsKey(Constant.EXPENSE_FOODS)) {
-            return items.get(Constant.EXPENSE_FOODS);
+            total += items.get(Constant.EXPENSE_FOODS);
         }
-        return 0f;
-    }
-
-    public float getComputerExpense() {
+        if (items.containsKey(Constant.EXPENSE_BEERS)) {
+            total += items.get(Constant.EXPENSE_BEERS);
+        }
         if (items.containsKey(Constant.EXPENSE_COMPUTERS)) {
-            return items.get(Constant.EXPENSE_COMPUTERS);
+            total += items.get(Constant.EXPENSE_COMPUTERS);
         }
-        return 0f;
+
+        return total;
     }
 
     public void clearItemList() {

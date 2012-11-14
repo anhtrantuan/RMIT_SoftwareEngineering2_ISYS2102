@@ -5,9 +5,20 @@
 package devfortress;
 
 import devfortress.controller.Controller;
-import devfortress.model.Company;
+import devfortress.model.Beer;
+import devfortress.model.Computer;
+import devfortress.model.DateTime;
+import devfortress.model.Employee;
+import devfortress.model.Food;
+import devfortress.model.Project;
+import devfortress.model.exception.OvercrowdedException;
 import devfortress.model.facade.Engine;
+import devfortress.utilities.Skills;
 import devfortress.view.View;
+import java.util.HashMap;
+import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -48,10 +59,30 @@ public class DevFortress {
                 /* Create MVC modules. */
                 Engine model = new Engine();
                 View view = new View(model);
+                model.addObserver(view);
                 Controller controller = new Controller(model, view);
 
                 /* Display View. */
                 view.setVisible(true);
+
+                model.buyItem(new Beer(100), 1);
+                model.buyItem(new Computer(100), 2);
+                model.buyItem(new Food(300, "Pizza"), 1);
+
+                HashMap<Skills, Integer> skillList = new HashMap<>();
+                skillList.put(Skills.C, 5);
+                skillList.put(Skills.LISP, 4);
+                skillList.put(Skills.DESIGN, 8);
+                skillList.put(Skills.ALGORITHMS, 6);
+                skillList.put(Skills.CONFIG_MANAGEMENT, 5);
+                model.takeProject(new Project("P" + new Random().nextLong(), 100, 100, 1, new DateTime(0, 6, 0), skillList));
+
+                try {
+                    model.hireEmployee(new Employee("Joe", 100, skillList));
+                    model.hireEmployee(new Employee("Doe", 200, skillList));
+                } catch (OvercrowdedException ex) {
+                    Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

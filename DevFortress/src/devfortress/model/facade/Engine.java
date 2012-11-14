@@ -10,9 +10,7 @@ import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.OvercrowdedException;
 import devfortress.model.exception.ProjectFailsException;
 import devfortress.model.exception.UnaffordableException;
-import devfortress.utilities.Skills;
 import devfortress.utilities.Utilities;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
@@ -36,13 +34,6 @@ public class Engine extends Observable implements Model {
     public Engine(Company company) {
         this.company = company;
         dateTime = new DateTime();
-        Map<Skills, Integer> skillList = new HashMap<Skills, Integer>();
-        skillList.put(Skills.C, 5);
-        skillList.put(Skills.LISP, 4);
-        skillList.put(Skills.DESIGN, 8);
-        skillList.put(Skills.ALGORITHMS, 6);
-        skillList.put(Skills.CONFIG_MANAGEMENT, 5);
-        takeProject(new Project(200, 500, 1, new DateTime(0, 6, 0), skillList));
     }
 
     @Override
@@ -50,7 +41,10 @@ public class Engine extends Observable implements Model {
         try {
             company.buyItem(item, quantity);
             setChanged();
-            notifyObservers("Buy Item");
+            String message = String.format("Bought %d new %s: -$%.2f",
+                    quantity, item.getName() + (quantity > 1 ? "s" : ""),
+                    (item.getPrice() * quantity));
+            notifyObservers(message);
 
             // TODO implement Engine.buyItem
         } catch (UnaffordableException ex) {
@@ -65,29 +59,36 @@ public class Engine extends Observable implements Model {
         }
         company.addEmployee(employee);
         setChanged();
-        notifyObservers("Hire Employee");
+        String message = String.format("Hired new employee %s: -$%.2f",
+                employee.getName(), employee.getSalary());
+        notifyObservers(message);
     }
 
     @Override
     public void fireEmployee(Employee employee) {
         company.removeEmployee(employee);
         setChanged();
-        notifyObservers("Fire Employee");
-
+        String message = String.format("Fired employee %s: +$%.2f",
+                employee.getName(), employee.getSalary());
+        notifyObservers(message);
     }
 
     @Override
     public void takeProject(Project project) {
         company.addProject(project);
         setChanged();
-        notifyObservers("Take Project");
+        String message = String.format("Contracted new project %s: +$%.2f",
+                project.getName(), project.getPayment() / 2);
+        notifyObservers(message);
     }
 
     @Override
     public void cancelProject(Project project) {
         company.cancelProject(project);
         setChanged();
-        notifyObservers("Cancel Project");
+        String message = String.format("Cancel project %s: -$%.2f",
+                project.getName(), project.getPayment() * 0.8);
+        notifyObservers(message);
     }
 
     @Override
@@ -99,7 +100,9 @@ public class Engine extends Observable implements Model {
     public void levelUp(Project project) {
         project.levelUp();
         setChanged();
-        notifyObservers("Employee's skill has leveled up");
+        String message = String.format("Leveled up employees in project %s.",
+                project.getName());
+        notifyObservers(message);
     }
 
     @Override
@@ -107,7 +110,9 @@ public class Engine extends Observable implements Model {
         try {
             company.paySalary();
             setChanged();
-            notifyObservers("Pay salary");
+            String message = String.format("Paid salary: -$%.2f",
+                    company.calculateTotalSalary());
+            notifyObservers(message);
         } catch (MoneyRunOutException ex) {
             System.out.println(ex.getMessage());
         }
@@ -150,7 +155,10 @@ public class Engine extends Observable implements Model {
         }
         company.clearItemList();
         setChanged();
-        notifyObservers("Next turn");
+        String message = String.format("New turn began: Year %d Month %d Week %d",
+                dateTime.getYear(), dateTime.getMonthOfYear(),
+                dateTime.getWeekOfMonth());
+        notifyObservers(message);
     }
 
     private void nextWeek() {
@@ -195,8 +203,8 @@ public class Engine extends Observable implements Model {
     }
 
     @Override
-    public float getFoodandDrinkExpense() {
-        return company.getFoodandDrinkExpense();
+    public float getItemExpenses() {
+        return company.getItemExpenses();
     }
 
     @Override

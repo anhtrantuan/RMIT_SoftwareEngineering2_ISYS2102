@@ -73,7 +73,8 @@ public class MediumLevel implements GameLevel {
             }
         }
 
-        return new Project(totalPoints, this.generateProjectPayment(),
+        return new Project("P" + random.nextLong(), totalPoints,
+                this.generateProjectPayment(),
                 this.generateProjectLevel(), projectTime, map);
     }
 }

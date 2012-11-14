@@ -4,7 +4,6 @@
  */
 package devfortress.view.models;
 
-import devfortress.model.DateTime;
 import devfortress.model.Project;
 import devfortress.utilities.Constant;
 import java.util.Enumeration;
