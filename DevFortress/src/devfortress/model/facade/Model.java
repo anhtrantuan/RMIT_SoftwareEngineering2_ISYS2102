@@ -11,6 +11,7 @@ import devfortress.model.Project;
 import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.OvercrowdedException;
 import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -37,18 +38,24 @@ public interface Model {
     List<Employee> generateEmployeeList();
 
     List<Project> generateProjectList();
-    
+
     void nextTurn() throws MoneyRunOutException;
-    
-    List getEmployeeList();
-    
-    List getProjectList();
-            
+
+    Map<String, Float> getItems();
+
+    List<Employee> getEmployeeList();
+
+    List<Project> getProjectList();
+
     DateTime getCurrentTimePlayed();
-    
+
     float getBudget();
-    
+
     float getTotalSalary();
-    
+
     float getExpenses();
+
+    float getFoodandDrinkExpense();
+
+    float getComputerExpense();
 }

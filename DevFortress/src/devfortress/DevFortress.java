@@ -46,7 +46,7 @@ public class DevFortress {
             @Override
             public void run() {
                 /* Create MVC modules. */
-                Engine model = new Engine(new Company());
+                Engine model = new Engine();
                 View view = new View(model);
                 Controller controller = new Controller(model, view);
 

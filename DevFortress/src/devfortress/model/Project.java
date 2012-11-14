@@ -8,38 +8,42 @@ import devfortress.model.exception.ProjectFailsException;
 import devfortress.utilities.Skills;
 import java.util.Map;
 import java.util.Random;
-import java.util.SortedMap;
 
 /**
  *
  * @author cathoanghuy
  */
 public class Project {
-    //how much monmey can earn from this project
 
-    private int payment;
+    //how much monmey can earn from this project
+    private float payment;
     private int projectLevel;
     //how long a project lasts
-    private int projectTime;
+    private DateTime projectTime;
+    //remaining time for project
+    private DateTime remainingTime;
     private Map<Skills, Integer> skillRequirementMap;
     private Map<Skills, Employee> skill_employeeMap;
     private Skills mainSkill;
     private String name;
-    private int totalFunctionPointDelivered;
+    private int totalPoints, remainingPoints, totalFunctionPointsDelivered;
 
-    public Project(int payment, int projectLevel, int projectTime, Map<Skills, Integer> skillRequirementMap) {
+    public Project(int totalPoints, float payment, int projectLevel, DateTime projectTime, Map<Skills, Integer> skillRequirementMap) {
+        this.totalPoints = totalPoints;
+        remainingPoints = totalPoints;
         this.payment = payment;
         this.projectLevel = projectLevel;
         this.projectTime = projectTime;
+        remainingTime = projectTime;
         this.skillRequirementMap = skillRequirementMap;
         getMainSkill();
     }
 
-    public int getPayment() {
+    public float getPayment() {
         return payment;
     }
 
-    public void setPayment(int payment) {
+    public void setPayment(float payment) {
         this.payment = payment;
     }
 
@@ -51,12 +55,20 @@ public class Project {
         this.projectLevel = projectLevel;
     }
 
-    public int getProjectTime() {
+    public DateTime getProjectTime() {
         return projectTime;
     }
 
-    public void setProjectTime(int projectTime) {
+    public void setProjectTime(DateTime projectTime) {
         this.projectTime = projectTime;
+    }
+
+    public DateTime getRemainingTime() {
+        return remainingTime;
+    }
+
+    public void setRemainingtime(DateTime remainingtime) {
+        this.remainingTime = remainingtime;
     }
 
     public Map<Skills, Integer> getSkillRequirementMap() {
@@ -75,8 +87,16 @@ public class Project {
         this.skill_employeeMap = skill_employeeMap;
     }
 
-    public int getTotalFunctionPointDelivered() {
-        return totalFunctionPointDelivered;
+    public int getTotalPoints() {
+        return totalPoints;
+    }
+
+    public int getRemainingPoints() {
+        return remainingPoints;
+    }
+
+    public int getTotalFunctionPointsDelivered() {
+        return totalFunctionPointsDelivered;
     }
 
     public String getName() {
@@ -93,7 +113,7 @@ public class Project {
         Employee selectedEmployee;
         for (Skills sk : skill_employeeMap.keySet()) {
             selectedEmployee = skill_employeeMap.get(sk);
-            for (int i = 0; i < projectTime; i++) {
+            for (int i = 0; i < projectTime.getMonths(); i++) {
                 if (random.nextInt(99) < lvlUpPercent) {
                     selectedEmployee.skillLevelUp(mainSkill);
                 }
@@ -144,11 +164,12 @@ public class Project {
 
     public boolean checkProjectProcess() throws ProjectFailsException {
         int finish = 0;
-        totalFunctionPointDelivered = 0;
+        totalFunctionPointsDelivered = 0;
         for (Skills sk : skill_employeeMap.keySet()) {
             Employee emp = skill_employeeMap.get(sk);
             int functionPointProduced = calculateFinalFunctionPoint(calculateBasicFunctionPoint(emp), emp);
-            totalFunctionPointDelivered += functionPointProduced;
+            remainingPoints -= functionPointProduced;
+            totalFunctionPointsDelivered += functionPointProduced;
             int functionPointRequire = skillRequirementMap.get(emp);
             if (functionPointRequire <= functionPointProduced) {
                 skillRequirementMap.put(sk, 0);
@@ -157,11 +178,11 @@ public class Project {
                 skillRequirementMap.put(sk, functionPointRequire - functionPointProduced);
             }
         }
-        if (skillRequirementMap.size() == finish && projectTime != 0) {
+        if (skillRequirementMap.size() == finish && remainingTime.getMonths() != 0) {
             return true;
         } else {
-            projectTime--;
-            if (projectTime == 0) {
+            remainingTime.nextTurn();
+            if (remainingTime.getMonths() == 0) {
                 throw new ProjectFailsException("Project Fails");
             }
         }

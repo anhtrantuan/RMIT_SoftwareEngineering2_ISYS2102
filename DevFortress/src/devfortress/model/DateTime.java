@@ -9,15 +9,22 @@ package devfortress.model;
  * @author Sherlock
  */
 public class DateTime {
+
     private int weekOfMonth;
     private int monthOfYear;
     private int year;
-    private String[] month ={"January","February","March","April","May","June","July","August","September","October","November","December"};
+    private String[] month = {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
 
     public DateTime() {
         weekOfMonth = 1;
         monthOfYear = 1;
         year = 1;
+    }
+
+    public DateTime(int weekOfMonth, int monthOfYear, int year) {
+        this.weekOfMonth = weekOfMonth;
+        this.monthOfYear = monthOfYear;
+        this.year = year;
     }
 
     public int getMonthOfYear() {
@@ -43,22 +50,40 @@ public class DateTime {
     public void setYear(int year) {
         this.year = year;
     }
-    
-    public void nextWeek(){
-        if(weekOfMonth == 4){
+
+    public int getMonths() {
+        return monthOfYear + year * 12;
+    }
+
+    public void nextWeek() {
+        if (weekOfMonth == 4) {
             weekOfMonth = 1;
+            nextMonth();
+        } else {
+            weekOfMonth++;
         }
-        else weekOfMonth++;
     }
-    
-    public void nextMonth(){
-        if(monthOfYear == 12){
+
+    public void nextMonth() {
+        if (monthOfYear == 12) {
             monthOfYear = 1;
+            year++;
+        } else {
+            monthOfYear++;
         }
-        else monthOfYear++;
     }
-    
-    public String toString(){
-        return "Week ("+weekOfMonth+" of 4) "+ month[monthOfYear-1];
+
+    public void nextTurn() {
+        if (year == 0 || monthOfYear > 1) {
+            monthOfYear--;
+        } else {
+            monthOfYear = 12;
+            year--;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Week (" + weekOfMonth + " of 4) " + month[monthOfYear - 1];
     }
 }
