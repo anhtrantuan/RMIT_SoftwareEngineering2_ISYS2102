@@ -7,6 +7,8 @@ package devfortress.model;
 import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.UnaffordableException;
 import devfortress.utilities.Constant;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -25,10 +27,10 @@ public class Company {
     private Map<String, Float> items;
 
     public Company() {
-        money = 1000f;
+        this(1000f, new ArrayList<>(), new HashMap<>(), new ArrayList<>(), new HashMap<>());
     }
 
-    public Company(int money, List empList, Map computerList, List projectList, Map itemsList) {
+    public Company(float money, List empList, Map computerList, List projectList, Map itemsList) {
         this.money = money;
         employeeList = empList;
         this.computerList = computerList;
@@ -67,16 +69,22 @@ public class Company {
         } else {
             decreaseMoney(item.getPrice() * quantity);
             expenses += value;
+            String name = "";
             if (item instanceof Computer) {
                 computerList.put((Computer) item, null);
-
-                items.put(Constant.COMPUTER_EXPENSE, value);
-
-            } else if (item instanceof Beer || item instanceof Food) {
-
-                items.put(Constant.FOOD_N_DRINK_EXPENSE, value);
-
+                name = Constant.EXPENSE_COMPUTERS;
+            } else if (item instanceof Food) {
+                name = Constant.EXPENSE_FOODS;
+            } else if (item instanceof Beer) {
+                name = Constant.EXPENSE_BEERS;
             }
+            float newValue;
+            if (items.containsKey(name)) {
+                newValue = items.get(name) + value;
+            } else {
+                newValue = value;
+            }
+            items.put(name, newValue);
         }
     }
 
@@ -96,6 +104,14 @@ public class Company {
 
     public void setComputerList(Map<Computer, Employee> computerList) {
         this.computerList = computerList;
+    }
+
+    public Map<String, Float> getItems() {
+        return items;
+    }
+
+    public void setItems(Map<String, Float> items) {
+        this.items = items;
     }
 
     public List<Employee> getEmployeeList() {
@@ -149,15 +165,15 @@ public class Company {
 
 
     public float getFoodandDrinkExpense() {
-        if (items.containsKey(Constant.FOOD_N_DRINK_EXPENSE)) {
-            return items.get(Constant.FOOD_N_DRINK_EXPENSE);
+        if (items.containsKey(Constant.EXPENSE_FOODS)) {
+            return items.get(Constant.EXPENSE_FOODS);
         }
         return 0f;
     }
 
     public float getComputerExpense() {
-        if (items.containsKey(Constant.COMPUTER_EXPENSE)) {
-            return items.get(Constant.COMPUTER_EXPENSE);
+        if (items.containsKey(Constant.EXPENSE_COMPUTERS)) {
+            return items.get(Constant.EXPENSE_COMPUTERS);
         }
         return 0f;
     }

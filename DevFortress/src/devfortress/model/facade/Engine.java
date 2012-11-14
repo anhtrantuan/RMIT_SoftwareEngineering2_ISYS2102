@@ -10,13 +10,13 @@ import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.OvercrowdedException;
 import devfortress.model.exception.ProjectFailsException;
 import devfortress.model.exception.UnaffordableException;
+import devfortress.utilities.Skills;
 import devfortress.utilities.Utilities;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Random;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 // TODO implement statergy partern
 
 /**
@@ -29,8 +29,20 @@ public class Engine extends Observable implements Model {
     private GameLevel level;
     DateTime dateTime;
 
+    public Engine() {
+        this(new Company());
+    }
+
     public Engine(Company company) {
         this.company = company;
+        dateTime = new DateTime();
+        Map<Skills, Integer> skillList = new HashMap<Skills, Integer>();
+        skillList.put(Skills.C, 5);
+        skillList.put(Skills.LISP, 4);
+        skillList.put(Skills.DESIGN, 8);
+        skillList.put(Skills.ALGORITHMS, 6);
+        skillList.put(Skills.CONFIG_MANAGEMENT, 5);
+        takeProject(new Project(200, 500, 1, new DateTime(0, 6, 0), skillList));
     }
 
     @Override
@@ -147,44 +159,47 @@ public class Engine extends Observable implements Model {
 
     }
 
-    private int calculateTotalFuntionPointDeliveredThisMonth() {
-        int result = 0;
-        for (Project project : company.getCurrentProjectList()) {
-            result += project.getTotalFunctionPointDelivered();
-        }
-        setChanged();
-        notifyObservers();
-        return result;
+    @Override
+    public Map<String, Float> getItems() {
+        return company.getItems();
     }
 
-    public List getEmployeeList() {
+    @Override
+    public List<Employee> getEmployeeList() {
         return company.getEmployeeList();
     }
 
-    public List getProjectList() {
+    @Override
+    public List<Project> getProjectList() {
         return company.getCurrentProjectList();
     }
 
+    @Override
     public DateTime getCurrentTimePlayed() {
         return dateTime;
     }
 
+    @Override
     public float getBudget() {
         return company.getMoney();
     }
 
+    @Override
     public float getTotalSalary() {
         return company.calculateTotalSalary();
     }
 
+    @Override
     public float getExpenses() {
         return company.getExpenses();
     }
 
+    @Override
     public float getFoodandDrinkExpense() {
         return company.getFoodandDrinkExpense();
     }
 
+    @Override
     public float getComputerExpense() {
         return company.getComputerExpense();
     }

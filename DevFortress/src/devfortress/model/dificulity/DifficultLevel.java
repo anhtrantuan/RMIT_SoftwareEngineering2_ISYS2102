@@ -4,6 +4,7 @@
  */
 package devfortress.model.dificulity;
 
+import devfortress.model.DateTime;
 import devfortress.model.Project;
 import devfortress.utilities.Constant;
 import devfortress.utilities.Skills;
@@ -23,7 +24,7 @@ public class DifficultLevel implements GameLevel {
         Random random = new Random();
         int numOfField = random.nextInt(4) + 10;
         for (int i = 0; i < numOfField; i++) {
-            map.put(Skills.randonSkill(), random.nextInt(5) + 6);
+            map.put(Skills.randomSkill(), random.nextInt(5) + 6);
         }
         return map;
     }
@@ -41,9 +42,10 @@ public class DifficultLevel implements GameLevel {
     }
 
     @Override
-    public int generateProjectTime() {
+    public DateTime generateProjectTime() {
         Random random = new Random();
-        return random.nextInt(13) + 12;
+        int months = random.nextInt(13) + 12;
+        return new DateTime(0, months % 12, months % 12);
     }
 
     @Override
@@ -51,21 +53,24 @@ public class DifficultLevel implements GameLevel {
         Random random = new Random();
         Map<Skills, Integer> map = new HashMap<>();
 
-        int projectTime = this.generateProjectTime();
-        int maxFuntionPoint = projectTime * Constant.MAX_FUNCTION_POINT_DIFFICULT;
+        DateTime projectTime = this.generateProjectTime();
+        int maxFuntionPoints = projectTime.getMonths()
+                * Constant.MAX_FUNCTION_POINT_DIFFICULT;
+        int totalPoints = maxFuntionPoints;
 
         int numOfField = random.nextInt(6) + 10;
 
 
         for (int i = 0; i < numOfField; i++) {
-            int requireFuntionPoint = (random.nextInt(maxFuntionPoint / 2) + 1);
-            map.put(Skills.randonSkill(), requireFuntionPoint);
-            maxFuntionPoint -= requireFuntionPoint;
-            if (maxFuntionPoint <= 10) {
+            int requireFuntionPoint = (random.nextInt(maxFuntionPoints / 2) + 1);
+            map.put(Skills.randomSkill(), requireFuntionPoint);
+            maxFuntionPoints -= requireFuntionPoint;
+            if (maxFuntionPoints <= 10) {
                 continue;
             }
         }
 
-        return new Project(this.generateProjectPayment(), this.generateProjectLevel(), projectTime, map);
+        return new Project(totalPoints, this.generateProjectPayment(),
+                this.generateProjectLevel(), projectTime, map);
     }
 }

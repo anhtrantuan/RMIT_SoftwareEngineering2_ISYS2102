@@ -38,20 +38,26 @@ public interface Model {
     List<Employee> generateEmployeeList();
 
     List<Project> generateProjectList();
-    
+
     void nextTurn() throws MoneyRunOutException;
-    
-    List getEmployeeList();
-    
-    List getProjectList();
-            
+
+    Map<String, Float> getItems();
+
+    List<Employee> getEmployeeList();
+
+    List<Project> getProjectList();
+
     DateTime getCurrentTimePlayed();
-    
+
     float getBudget();
-    
+
     float getTotalSalary();
-    
+
     float getExpenses();
+
+    float getFoodandDrinkExpense();
+
+    float getComputerExpense();
     
     Map getItemsBoughtInMonth();
 }
