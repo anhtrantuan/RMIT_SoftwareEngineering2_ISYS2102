@@ -4,6 +4,7 @@
  */
 package devfortress.view;
 
+import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.facade.Model;
 import devfortress.view.editors.DevelopersTableButtonCellEditor;
 import devfortress.view.models.DevelopersTableModel;
@@ -16,8 +17,11 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -171,7 +175,7 @@ public class View extends javax.swing.JFrame implements Observer {
             pnlDurationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlDurationLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(lblDuration, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                .addComponent(lblDuration, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
                 .addGap(6, 6, 6))
         );
         pnlDurationLayout.setVerticalGroup(
@@ -197,7 +201,7 @@ public class View extends javax.swing.JFrame implements Observer {
             pnlBudgetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBudgetLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(lblBudget, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                .addComponent(lblBudget, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
                 .addGap(6, 6, 6))
         );
         pnlBudgetLayout.setVerticalGroup(
@@ -223,10 +227,10 @@ public class View extends javax.swing.JFrame implements Observer {
         treExpenses.setRowHeight(30);
         treExpenses.setSelectionModel(null);
         treExpenses.addTreeExpansionListener(new javax.swing.event.TreeExpansionListener() {
-            public void treeExpanded(javax.swing.event.TreeExpansionEvent evt) {
+            public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
                 treeExpansion(evt);
             }
-            public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
+            public void treeExpanded(javax.swing.event.TreeExpansionEvent evt) {
                 treeExpansion(evt);
             }
         });
@@ -247,7 +251,7 @@ public class View extends javax.swing.JFrame implements Observer {
             pnlEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlEmployeesLayout.createSequentialGroup()
                 .addGap(6, 6, 6)
-                .addComponent(lblEmployees, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                .addComponent(lblEmployees, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
                 .addGap(6, 6, 6))
         );
         pnlEmployeesLayout.setVerticalGroup(
@@ -282,10 +286,10 @@ public class View extends javax.swing.JFrame implements Observer {
         treProjects.setRowHeight(30);
         treProjects.setSelectionModel(null);
         treProjects.addTreeExpansionListener(new javax.swing.event.TreeExpansionListener() {
-            public void treeExpanded(javax.swing.event.TreeExpansionEvent evt) {
+            public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
                 treeExpansion(evt);
             }
-            public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
+            public void treeExpanded(javax.swing.event.TreeExpansionEvent evt) {
                 treeExpansion(evt);
             }
         });
@@ -310,7 +314,7 @@ public class View extends javax.swing.JFrame implements Observer {
         );
         pnlBlankLayout.setVerticalGroup(
             pnlBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 188, Short.MAX_VALUE)
+            .addGap(0, 190, Short.MAX_VALUE)
         );
 
         pnlManagement.add(pnlBlank);
@@ -362,7 +366,7 @@ public class View extends javax.swing.JFrame implements Observer {
                 .addContainerGap()
                 .addGroup(pnlSystemControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnInformation, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                    .addComponent(btnCurrentProjects, javax.swing.GroupLayout.PREFERRED_SIZE, 154, Short.MAX_VALUE))
+                    .addComponent(btnCurrentProjects, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
                 .addContainerGap())
         );
         pnlSystemControlLayout.setVerticalGroup(
@@ -382,6 +386,11 @@ public class View extends javax.swing.JFrame implements Observer {
         btnNextTurn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         btnNextTurn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icNextTurn.png"))); // NOI18N
         btnNextTurn.setText("Next Turn");
+        btnNextTurn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextTurnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlTurnControlLayout = new javax.swing.GroupLayout(pnlTurnControl);
         pnlTurnControl.setLayout(pnlTurnControlLayout);
@@ -389,7 +398,7 @@ public class View extends javax.swing.JFrame implements Observer {
             pnlTurnControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlTurnControlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnNextTurn, javax.swing.GroupLayout.PREFERRED_SIZE, 122, Short.MAX_VALUE)
+                .addComponent(btnNextTurn, javax.swing.GroupLayout.DEFAULT_SIZE, 117, Short.MAX_VALUE)
                 .addContainerGap())
         );
         pnlTurnControlLayout.setVerticalGroup(
@@ -423,6 +432,11 @@ public class View extends javax.swing.JFrame implements Observer {
 
         menuFile_Exit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         menuFile_Exit.setText("Exit");
+        menuFile_Exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuFile_ExitActionPerformed(evt);
+            }
+        });
         menuFile.add(menuFile_Exit);
 
         menu.add(menuFile);
@@ -467,7 +481,7 @@ public class View extends javax.swing.JFrame implements Observer {
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(scpDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, 452, Short.MAX_VALUE)
+                        .addComponent(scpDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, 460, Short.MAX_VALUE)
                         .addGap(0, 0, 0)
                         .addComponent(pnlLogAndControl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(scpManagement))
@@ -584,6 +598,21 @@ public class View extends javax.swing.JFrame implements Observer {
         /* Revalidate the frame layout. */
         this.revalidate();
     }//GEN-LAST:event_treeExpansion
+
+    private void btnNextTurnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextTurnActionPerformed
+        try {
+            // TODO add your handling code here:
+            model.nextTurn();
+        } catch (MoneyRunOutException ex) {
+            new JOptionPane();
+        }
+    }//GEN-LAST:event_btnNextTurnActionPerformed
+
+    private void menuFile_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFile_ExitActionPerformed
+        // TODO add your handling code here:
+        System.exit(DO_NOTHING_ON_CLOSE);
+    }//GEN-LAST:event_menuFile_ExitActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCurrentProjects;
     private javax.swing.JButton btnInformation;
