@@ -55,9 +55,7 @@ public interface Model {
 
     float getExpenses();
 
-    float getFoodandDrinkExpense();
+    float getItemExpenses();
 
-    float getComputerExpense();
-    
-    Map getItemsBoughtInMonth();
+    Map<String, Float> getExpenseItems();
 }

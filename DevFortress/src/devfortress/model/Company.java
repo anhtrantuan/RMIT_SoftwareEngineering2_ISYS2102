@@ -22,7 +22,6 @@ public class Company {
     private List<Employee> employeeList;
     private Map<Computer, Employee> computerList;
     private List<Project> currentProjectList;
-    private float totalSalary;
     private float expenses;
     private Map<String, Float> items;
 
@@ -36,7 +35,6 @@ public class Company {
         this.computerList = computerList;
         currentProjectList = projectList;
         items = itemsList;
-        totalSalary = 0;
         expenses = 0;
     }
 
@@ -95,8 +93,8 @@ public class Company {
     }
 
     public boolean paySalary() throws MoneyRunOutException {
-        
-        money -= totalSalary;
+
+        money -= calculateTotalSalary();
         if (money <= 0) {
             throw new MoneyRunOutException("You are out of money");
         }
@@ -154,7 +152,7 @@ public class Company {
     }
 
     public float calculateTotalSalary() {
-        totalSalary = 0;
+        float totalSalary = 0;
         for (Employee employee : employeeList) {
             totalSalary += employee.getSalary();
         }
@@ -163,6 +161,11 @@ public class Company {
 
     public float getExpenses() {
         return expenses;
+    }
+
+    public void nextTurn() {
+        expenses = calculateTotalSalary();
+        items.clear();
     }
 
     public float getItemExpenses() {
@@ -184,9 +187,4 @@ public class Company {
     public void clearItemList() {
         items.clear();
     }
-    
-    public Map getItemsBoughtInMonth(){
-        return items;
-    }
-
 }

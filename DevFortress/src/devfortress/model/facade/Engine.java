@@ -208,11 +208,7 @@ public class Engine extends Observable implements Model {
     }
 
     @Override
-    public float getComputerExpense() {
-        return company.getComputerExpense();
-    }
-    
-    public Map getItemsBoughtInMonth(){
-        return company.getItemsBoughtInMonth();
+    public Map<String, Float> getExpenseItems() {
+        return company.getItems();
     }
 }
