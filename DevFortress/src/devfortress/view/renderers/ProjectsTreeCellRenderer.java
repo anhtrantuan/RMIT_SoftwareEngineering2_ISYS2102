@@ -59,8 +59,8 @@ public class ProjectsTreeCellRenderer extends DefaultTreeCellRenderer {
         super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf, row, hasFocus);
 
         /* Set icons for nodes. */
-        if (leaf) {
-            DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
+        DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
+        if (node.getLevel() > 1) {
             int index = node.getParent().getIndex(node);
             switch (index) {
                 case 0:

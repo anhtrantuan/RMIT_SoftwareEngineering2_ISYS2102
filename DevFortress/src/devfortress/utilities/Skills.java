@@ -54,7 +54,7 @@ public enum Skills {
     private static final int SIZE = VALUES.size();
     private static final Random RANDOM = new Random();
 
-    public static Skills randonSkill() {
+    public static Skills randomSkill() {
         return VALUES.get(RANDOM.nextInt(SIZE));
     }
 }
