@@ -15,7 +15,7 @@ import javax.swing.tree.DefaultTreeCellRenderer;
  */
 public class ExpensesTreeCellRenderer extends DefaultTreeCellRenderer {
 
-    /* Define image icons for nodes. */
+    /* Declare image icons for nodes. */
     ImageIcon icon;
 
     /**

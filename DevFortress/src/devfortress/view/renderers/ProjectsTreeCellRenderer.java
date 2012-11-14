@@ -16,7 +16,7 @@ import javax.swing.tree.DefaultTreeCellRenderer;
  */
 public class ProjectsTreeCellRenderer extends DefaultTreeCellRenderer {
 
-    /* Define image icons for nodes. */
+    /* Declare image icons for nodes. */
     ImageIcon projectIcon, pointsIcon, remainingPointsIcon, payIcon, dueIcon;
 
     /**
