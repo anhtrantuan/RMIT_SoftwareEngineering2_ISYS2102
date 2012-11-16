@@ -38,8 +38,9 @@ public class Engine extends Observable implements Model {
 
     /**
      * Buy an item with quantity
+     *
      * @param item
-     * @param quantity 
+     * @param quantity
      */
     @Override
     public void buyItem(Item item, int quantity) {
@@ -56,11 +57,13 @@ public class Engine extends Observable implements Model {
             System.out.println(ex.getMessage());
         }
     }
-    
+
     /**
      * Hire more employee
+     *
      * @param employee
-     * @throws OvercrowdedException when the number of employee more than number of computer
+     * @throws OvercrowdedException when the number of employee more than number
+     * of computer
      */
     @Override
     public void hireEmployee(Employee employee) throws OvercrowdedException {
@@ -91,10 +94,11 @@ public class Engine extends Observable implements Model {
                 project.getName(), project.getPayment() / 2);
         notifyObservers(message);
     }
-    
+
     /**
      * Invoke method when project is fail or canceled
-     * @param project 
+     *
+     * @param project
      */
     @Override
     public void cancelProject(Project project) {
@@ -104,20 +108,21 @@ public class Engine extends Observable implements Model {
                 project.getName(), project.getPayment() * 0.8);
         notifyObservers(message);
     }
-    
-    
+
     /**
-     * Invoke method each week to calculate chance which event will happen in that week
+     * Invoke method each week to calculate chance which event will happen in
+     * that week
      */
     @Override
     public void eventOccur() {
         //TODO do this next sprint
     }
-    
+
     /**
-     * After finish project, invoke method to calculate the chance of leveling up of
-     * each employee.
-     * @param project 
+     * After finish project, invoke method to calculate the chance of leveling
+     * up of each employee.
+     *
+     * @param project
      */
     @Override
     public void levelUp(Project project) {
@@ -146,6 +151,7 @@ public class Engine extends Observable implements Model {
 
     /**
      * Generate new Employee list
+     *
      * @return List of Employee
      */
     @Override
@@ -157,6 +163,7 @@ public class Engine extends Observable implements Model {
 
     /**
      * Generate new Project list
+     *
      * @return List of Project
      */
     @Override
@@ -166,13 +173,13 @@ public class Engine extends Observable implements Model {
         return Utilities.generateProjectList(level, number);
     }
 
-    
-    /** 
+    /**
      * The next turn button in GUI will invoke this method and do the following
-     * - check any project success or fail
-     * - generate Project list and Employee list incase user want to take
-     * new projects or hire new employees.
-     * @throws MoneyRunOutException when user's capital is less than or equal zero
+     * - check any project success or fail - generate Project list and Employee
+     * list incase user want to take new projects or hire new employees.
+     *
+     * @throws MoneyRunOutException when user's capital is less than or equal
+     * zero
      */
     @Override
     public void nextTurn() throws MoneyRunOutException {
@@ -202,7 +209,7 @@ public class Engine extends Observable implements Model {
                 dateTime.getWeekOfMonth());
         notifyObservers(message);
     }
-    
+
     /**
      * Increase the week number by one
      */
@@ -255,5 +262,16 @@ public class Engine extends Observable implements Model {
     @Override
     public Map<String, Float> getExpenseItems() {
         return company.getItems();
+    }
+
+    /**
+     * Get employee by name.
+     *
+     * @param name
+     * @return
+     */
+    @Override
+    public Employee getEmployeeByName(String name) {
+        return company.getEmployeeByName(name);
     }
 }
