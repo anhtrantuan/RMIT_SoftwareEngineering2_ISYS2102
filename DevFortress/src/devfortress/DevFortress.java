@@ -14,7 +14,7 @@ import devfortress.model.Project;
 import devfortress.model.exception.OvercrowdedException;
 import devfortress.model.facade.Engine;
 import devfortress.utilities.Skills;
-import devfortress.view.View;
+import devfortress.view.DevFortressView;
 import java.util.HashMap;
 import java.util.Random;
 import java.util.logging.Level;
@@ -48,7 +48,7 @@ public class DevFortress {
         } catch (ClassNotFoundException | InstantiationException |
                 IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(
-                    View.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                    DevFortressView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
@@ -58,11 +58,11 @@ public class DevFortress {
             public void run() {
                 /* Create MVC modules. */
                 Engine model = new Engine();
-                View view = new View(model);
+                DevFortressView view = new DevFortressView(model);
                 model.addObserver(view);
                 Controller controller = new Controller(model, view);
 
-                /* Display View. */
+                /* Display DevFortressView. */
                 view.setVisible(true);
 
                 model.buyItem(new Beer(100), 1);

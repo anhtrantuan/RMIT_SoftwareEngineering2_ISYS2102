@@ -22,6 +22,10 @@ public class Constant {
     public static String EXPENSE_BEERS = "Beers";
     public static String EXPENSE_COMPUTERS = "Computers";
     /* Constants for View. */
+    public static String BUTTON_SYSTEM = "System";
+    public static String BUTTON_INFORMATION = "Information";
+    public static String BUTTTON_CURRENT_PROJECTS = "Current Projects";
+    public static String BUTTON_NEXT_TURN = "Next Turn";
     public static String DURATION = "Duration";
     public static String BUDGET = "Budget";
     public static String EXPENSE = "Expenses";
