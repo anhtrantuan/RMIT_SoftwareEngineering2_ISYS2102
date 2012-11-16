@@ -13,9 +13,10 @@ import devfortress.view.View;
  */
 public class Controller {
 
-    /* Declare Model and View modules. */
+    /* Declare Model and DevFortressView modules. */
     private Model model;
     private View view;
+    private ButtonListener buttonListener;
 
     /**
      * Constructor for Controller.
@@ -26,5 +27,8 @@ public class Controller {
     public Controller(Model model, View view) {
         this.model = model;
         this.view = view;
+        
+        buttonListener = new ButtonListener();
+        view.addButtonListener(buttonListener);
     }
 }
