@@ -172,7 +172,7 @@ public class Project {
             int functionPointProduced = calculateFinalFunctionPoint(calculateBasicFunctionPoint(emp), emp);
             remainingPoints -= functionPointProduced;
             totalFunctionPointsDelivered += functionPointProduced;
-            int functionPointRequire = skillRequirementMap.get(emp);
+            int functionPointRequire = skillRequirementMap.get(sk);
             if (functionPointRequire <= functionPointProduced) {
                 skillRequirementMap.put(sk, 0);
                 finish++;
