@@ -58,4 +58,6 @@ public interface Model {
     float getItemExpenses();
 
     Map<String, Float> getExpenseItems();
+
+    Employee getEmployeeByName(String name);
 }

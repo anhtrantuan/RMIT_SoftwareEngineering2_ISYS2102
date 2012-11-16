@@ -59,4 +59,6 @@ public class Constant {
     public static String DEVELOPER_LABEL = "Developer";
     public static String PRODUCED_FUNCTION_POINT = "Produced function point";
     public static String VIEW_CONTRACT_BUTTON = "View available contracts";
+    public static String NEXT_BTN = "Next";
+    public static String PREVIOUS_BTN = "Previous";
 }
