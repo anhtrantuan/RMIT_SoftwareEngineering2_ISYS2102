@@ -41,4 +41,22 @@ public class Constant {
     public static String EMPLOYEE_CURRENT_PROJECT = "Project";
     public static String EMPLOYEE_DETAILS = "Details";
     public static String EMPLOYEE_MANAGE = "Manage";
+    public static String AVAILABLE_LABEL = "Avalable Projects";
+    public static String AVAILABLE_EMPLOYEE = "Available Employees";
+    public static String MAINSKILL_LABEL = "Main skill";
+    public static String SKILL_LABEL = "Skill";
+    public static String SKILL_LVL_LABEL = "Skill Lvl";
+    public static String FIELD_LABEL = "Field";
+    public static String REQUIRED_FUNCTIONPOINT_LABEL = "Required function point";
+    public static String MAIN_FIELD_LABEL = "Main field label";
+    public static String ALL_CURRENT_PROJECT_LABEL = "All current projects";
+    public static String CANCEL = "Cancel";
+    public static String HIRE = "Hire";
+    public static String FIRE = "Fire";
+    public static String ACCEPT = "Accept";
+    public static String OK = "Ok";
+    public static String TOTAL = "Total";
+    public static String DEVELOPER_LABEL = "Developer";
+    public static String PRODUCED_FUNCTION_POINT = "Produced function point";
+    public static String VIEW_CONTRACT_BUTTON = "View available contracts";
 }
