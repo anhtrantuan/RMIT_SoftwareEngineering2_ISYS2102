@@ -5,7 +5,6 @@
 package devfortress.view.editors;
 
 import java.awt.Component;
-import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultCellEditor;
 import javax.swing.JButton;
@@ -18,7 +17,7 @@ import javax.swing.JTable;
  */
 public class DevelopersTableButtonCellEditor extends DefaultCellEditor {
 
-    /* Declare button text. */
+    private ActionListener buttonListener;
     private String buttonText;
 
     /**
@@ -26,8 +25,10 @@ public class DevelopersTableButtonCellEditor extends DefaultCellEditor {
      *
      * @param checkBox
      */
-    public DevelopersTableButtonCellEditor(JCheckBox checkBox) {
+    public DevelopersTableButtonCellEditor(JCheckBox checkBox,
+            ActionListener buttonListener) {
         super(checkBox);
+        this.buttonListener = buttonListener;
     }
 
     /**
@@ -46,13 +47,11 @@ public class DevelopersTableButtonCellEditor extends DefaultCellEditor {
             int row, int column) {
         /* Get button component and set action listener. */
         JButton button = (JButton) value;
-        button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                throw new UnsupportedOperationException("Not supported yet.");
-            }
-        });
+        button.addActionListener(buttonListener);
         buttonText = button.getText();
+
+        /* Set employee's name as button's action command. */
+        button.setActionCommand((String) table.getValueAt(row, 0));
 
         /* Return button component. */
         return button;
