@@ -7,6 +7,7 @@ package devfortress.view.dialogs;
 import devfortress.model.Project;
 import java.util.List;
 import java.util.Map;
+import devfortress.utilities.Constant;
 
 /**
  *
@@ -44,16 +45,16 @@ public class AvailableProjectPanel extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(84, 84, 84)
                 .addComponent(jLabel1)
-                .addGap(45, 45, 45))
+                .addContainerGap(91, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(0, 298, Short.MAX_VALUE))
+                .addGap(0, 384, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -41,7 +41,7 @@ public class Constant {
     public static String EMPLOYEE_CURRENT_PROJECT = "Project";
     public static String EMPLOYEE_DETAILS = "Details";
     public static String EMPLOYEE_MANAGE = "Manage";
-    public static String AVAILABLE_LABEL = "Avalable Projects";
+    public static String AVAILABLE_PROJECTS_LABEL = "Avalable Projects";
     public static String AVAILABLE_EMPLOYEE = "Available Employees";
     public static String MAINSKILL_LABEL = "Main skill";
     public static String SKILL_LABEL = "Skill";
