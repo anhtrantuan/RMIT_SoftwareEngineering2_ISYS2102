@@ -42,14 +42,26 @@ public class Company {
         return money;
     }
     
+    /**
+     * 
+     * @param amount 
+     */
     public void increaseMoney(float amount) {
         money += amount;
     }
     
+    /**
+     * 
+     * @param amount 
+     */
     public void decreaseMoney(float amount) {
         money -= amount;
     }
     
+    /**
+     * 
+     * @param newEmp 
+     */
     public void addEmployee(Employee newEmp) {
         calculateTotalSalary();
         employeeList.add(newEmp);
@@ -57,6 +69,10 @@ public class Company {
         expenses += newEmp.getSalary();
     }
     
+    /**
+     * 
+     * @param emp Employee that user want to fire
+     */
     public void removeEmployee(Employee emp) {
         calculateTotalSalary();
         employeeList.remove(emp);
@@ -64,6 +80,12 @@ public class Company {
         expenses -= emp.getSalary();
     }
     
+    /**
+     * 
+     * @param item
+     * @param quantity
+     * @throws UnaffordableException 
+     */
     public void buyItem(Item item, int quantity) throws UnaffordableException {
         float value = item.getPrice() * quantity;
         if (money < (item.getPrice() * quantity)) {
@@ -92,6 +114,11 @@ public class Company {
         }
     }
     
+    /**
+     * 
+     * @return
+     * @throws MoneyRunOutException when the capital is less or equal than zero
+     */
     public boolean paySalary() throws MoneyRunOutException {
         
         money -= calculateTotalSalary();
@@ -101,6 +128,7 @@ public class Company {
         
         return true;
     }
+    
     
     public Map<Computer, Employee> getComputerList() {
         return computerList;
@@ -182,6 +210,10 @@ public class Company {
         items.clear();
     }
     
+    /**
+     * 
+     * @return 
+     */
     public float getItemExpenses() {
         float total = 0;
         
