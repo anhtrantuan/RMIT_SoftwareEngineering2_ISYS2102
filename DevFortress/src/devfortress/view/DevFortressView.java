@@ -27,9 +27,9 @@ import javax.swing.JCheckBox;
  * @author tommy
  */
 public class DevFortressView extends javax.swing.JFrame implements View, Observer {
-
-    /* Declare Model module. */
+    
     private Model model;
+    private ActionListener developersTableButtonListener = null;
 
     /**
      * Creates new form DevFortressView.
@@ -41,9 +41,6 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
 
         /* Initialize components. */
         initComponents();
-
-        /* Setup component display. */
-        setUpDisplay();
 
         /* Populate data for trees and tables. */
         populateData();
@@ -488,7 +485,8 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
     /**
      * Setup component display.
      */
-    private void setUpDisplay() {
+    @Override
+    public void setUpDisplay() {
         /* Fix background problem of developers scroll pane. */
         scpDevelopers.getViewport().setBackground(Color.white);
 
@@ -496,7 +494,8 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         tblDevelopers.setDefaultRenderer(JButton.class,
                 new DevelopersTableButtonCellRenderer());
         tblDevelopers.setDefaultEditor(JButton.class,
-                new DevelopersTableButtonCellEditor(new JCheckBox()));
+                new DevelopersTableButtonCellEditor(new JCheckBox(),
+                developersTableButtonListener));
     }
 
     /**
@@ -693,5 +692,13 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
     @Override
     public void addButtonListener(ActionListener buttonListener) {
         btnSystem.addActionListener(buttonListener);
+        btnInformation.addActionListener(buttonListener);
+        btnCurrentProjects.addActionListener(buttonListener);
+        btnNextTurn.addActionListener(buttonListener);
+    }
+    
+    @Override
+    public void addDevelopersTableButtonListener(ActionListener developersTableButtonListener) {
+        this.developersTableButtonListener = developersTableButtonListener;
     }
 }

@@ -4,6 +4,7 @@
  */
 package devfortress.controller;
 
+import devfortress.model.facade.Model;
 import devfortress.utilities.Constant;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,7 +13,18 @@ import java.awt.event.ActionListener;
  *
  * @author tommy
  */
-public class ButtonListener implements ActionListener {
+public class MainScreenButtonListener implements ActionListener {
+
+    private Model model;
+
+    /**
+     * Constructor for MainScreenButtonListener.
+     *
+     * @param model
+     */
+    public MainScreenButtonListener(Model model) {
+        this.model = model;
+    }
 
     @Override
     public void actionPerformed(ActionEvent e) {
