@@ -21,7 +21,7 @@ public class AvailableEmployee extends javax.swing.JPanel {
     private Employee[] employeeList;
     private MyTableModel tableModel;
     private Map<Skills, Integer> currentSelectedEmployeeInfo;
-    private Employee currentSelectedEmployee;
+    private String[] columnName = {Constant.SKILL_LABEL, Constant.SKILL_LVL_LABEL};
 
     /**
      * Creates new form AvaiableEmployee
@@ -116,7 +116,7 @@ public class AvailableEmployee extends javax.swing.JPanel {
                 .addComponent(jButton3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton4)
-                .addGap(84, 84, 84))
+                .addGap(61, 61, 61))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -170,11 +170,17 @@ public class AvailableEmployee extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+       if(index!=0){
+            index--;
+            tableInit();
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
+        if(index!=employeeList.length-1){
+            index++;
+            tableInit();
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -190,21 +196,20 @@ public class AvailableEmployee extends javax.swing.JPanel {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
-    private void initInformation() {
-        currentSelectedEmployeeInfo = employeeList[index].getSkillList();
-        String[] columnName = {Constant.SKILL_LABEL, Constant.SKILL_LVL_LABEL};
-        tableInit(columnName);
+    private void initInformation() {        
+        jLabel3.setText(Constant.EMPLOYEE_NAME+": "+employeeList[index].getName());
+        jLabel4.setText(Constant.MAINSKILL_LABEL+": "+employeeList[index].getMainSkill());
+        jLabel5.setText(Constant.SALARY_LABEL+": "+employeeList[index].getSalary());
+        tableInit();
     }
 
     private void initController() {
         throw new UnsupportedOperationException("Not yet implemented");
     }
 
-    private void tableInit( String[] columnName) {
+    private void tableInit() {
+        currentSelectedEmployeeInfo = employeeList[index].getSkillList();
         this.tableModel = new MyTableModel(currentSelectedEmployeeInfo, 2, columnName);
-        jLabel3.setText(Constant.EMPLOYEE_NAME+": "+employeeList[index].getName());
-        jLabel4.setText(Constant.MAINSKILL_LABEL+": "+employeeList[index].getMainSkill());
-        jLabel5.setText(Constant.SALARY_LABEL+": "+employeeList[index].getSalary());
         jTable1.setModel(tableModel);
     }
 }

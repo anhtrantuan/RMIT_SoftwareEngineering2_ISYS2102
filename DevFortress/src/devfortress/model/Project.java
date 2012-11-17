@@ -24,6 +24,7 @@ public class Project {
     private DateTime remainingTime;
     private Map<Skills, Integer> skillRequirementMap;
     private Map<Skills, Employee> skill_employeeMap;
+    private Map<Skills, Integer> originalSkillRequirementMap;
     private Skills mainSkill;
     private String name;
     private int totalPoints, remainingPoints, totalFunctionPointsDelivered;
@@ -38,6 +39,7 @@ public class Project {
         this.projectTime = projectTime;
         remainingTime = projectTime;
         this.skillRequirementMap = skillRequirementMap;
+        originalSkillRequirementMap = skillRequirementMap;
         calculateMainSkill();
     }
 
@@ -193,6 +195,10 @@ public class Project {
 
     public Skills getMainSkill() {
         return mainSkill;
+    }
+
+    public Map<Skills, Integer> getOriginalSkillRequirementMap() {
+        return originalSkillRequirementMap;
     }
     
     

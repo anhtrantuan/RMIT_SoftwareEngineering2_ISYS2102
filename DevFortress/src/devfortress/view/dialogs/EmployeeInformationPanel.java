@@ -4,7 +4,9 @@
  */
 package devfortress.view.dialogs;
 
-import devfortress.controller.Controller;
+import devfortress.model.Employee;
+import devfortress.utilities.Constant;
+import devfortress.utilities.MyTableModel;
 
 /**
  *
@@ -12,13 +14,15 @@ import devfortress.controller.Controller;
  */
 public class EmployeeInformationPanel extends javax.swing.JPanel {
 
-    private Controller controller;
+    private Employee employee;
+    MyTableModel myTableModel;
 
     /**
      * Creates new form EmployeeInformation
      */
-    public EmployeeInformationPanel(Controller controller) {
-        this.controller = controller;
+    public EmployeeInformationPanel(Employee employee) {
+        this.employee = employee;
+        initInformation();
         initComponents();
     }
 
@@ -122,9 +126,7 @@ public class EmployeeInformationPanel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-    private void tableInit(){
-        
-    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -135,4 +137,16 @@ public class EmployeeInformationPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void initInformation() {
+        String[] columnName = {Constant.SKILL_LABEL, Constant.SKILL_LVL_LABEL};
+        jLabel2.setText(Constant.EMPLOYEE_NAME+": "+employee.getName());
+        jLabel3.setText(Constant.MAINSKILL_LABEL+": "+employee.getMainSkill());
+        jLabel4.setText(Constant.SALARY_LABEL+": "+employee.getSalary());
+        tableInit(columnName);
+    }
+    private void tableInit(String[] columnName){
+        myTableModel = new MyTableModel(employee.getSkillList(),2,columnName);
+        jTable1.setModel(myTableModel);
+    }
 }

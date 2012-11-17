@@ -25,6 +25,7 @@ public class AvailableProjectPanel extends javax.swing.JPanel {
     private Project[] projectList;
     private Map<Skills, Integer> currentSelectedProjectInfo;
     private MyTableModel tableModel;
+    private String[] columnName = {Constant.FIELD_LABEL, Constant.REQUIRED_FUNCTIONPOINT_LABEL};
     
     public AvailableProjectPanel(List availableProjectList) {
         initComponents();
@@ -188,14 +189,14 @@ public class AvailableProjectPanel extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if(index!=0){
             index--;
-            initInformation();
+            tableInit();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if(index!=projectList.length-1){
             index++;
-            initInformation();
+            tableInit();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -219,18 +220,19 @@ public class AvailableProjectPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void initInformation() {
-        currentSelectedProjectInfo = projectList[index].getSkillRequirementMap();
-        String[] columnName = {Constant.FIELD_LABEL, Constant.REQUIRED_FUNCTIONPOINT_LABEL};
-        tableInit(columnName);
-    }
-
-    private void tableInit(String[] columnName) {
-        tableModel = new MyTableModel(currentSelectedProjectInfo, 2, columnName);
+        
         jLabel2.setText("Project name: "+projectList[index].getName());
         jLabel3.setText("Project level: "+projectList[index].getProjectLevel());
         jLabel4.setText(Constant.MAIN_FIELD_LABEL + ": "+projectList[index].getMainSkill());
         jLabel5.setText(Constant.PROJECT_DUE + ": "+projectList[index].getProjectTime());
         jLabel6.setText(Constant.PROJECT_PAY + ": "+projectList[index].getPayment());
+        
+        tableInit();
+    }
+
+    private void tableInit() {
+        currentSelectedProjectInfo = projectList[index].getSkillRequirementMap();
+        tableModel = new MyTableModel(currentSelectedProjectInfo, 2, columnName);
         jTable1.setModel(tableModel);
     }
 
