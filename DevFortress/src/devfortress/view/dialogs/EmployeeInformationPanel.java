@@ -4,16 +4,21 @@
  */
 package devfortress.view.dialogs;
 
+import devfortress.controller.Controller;
+
 /**
  *
  * @author cathoanghuy
  */
 public class EmployeeInformationPanel extends javax.swing.JPanel {
 
+    private Controller controller;
+
     /**
      * Creates new form EmployeeInformation
      */
-    public EmployeeInformationPanel() {
+    public EmployeeInformationPanel(Controller controller) {
+        this.controller = controller;
         initComponents();
     }
 
@@ -117,7 +122,9 @@ public class EmployeeInformationPanel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    private void tableInit(){
+        
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;

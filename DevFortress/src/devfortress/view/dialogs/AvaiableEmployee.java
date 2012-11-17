@@ -4,17 +4,30 @@
  */
 package devfortress.view.dialogs;
 
+import devfortress.controller.Controller;
+import devfortress.utilities.Constant;
+import devfortress.utilities.MyTableModel;
+import java.util.Enumeration;
+import javax.swing.table.AbstractTableModel;
+import javax.swing.table.TableModel;
+
 /**
  *
  * @author cathoanghuy
  */
 public class AvaiableEmployee extends javax.swing.JPanel {
 
+    private Controller controller;
+    private MyTableModel tableModel;
     /**
      * Creates new form AvaiableEmployee
      */
-    public AvaiableEmployee() {
+    public AvaiableEmployee(Controller controller) {
+        this.controller = controller;
         initComponents();
+        tableInit();
+
+
     }
 
     /**
@@ -150,6 +163,12 @@ public class AvaiableEmployee extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void tableInit() {
+        String[] columnName = {Constant.SKILL_LABEL,Constant.SKILL_LVL_LABEL};
+        //TODO 
+        //this.tableModel = new MyTableModel(controller.,2,columnName);
+        jTable1.setModel(tableModel);
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
