@@ -13,7 +13,7 @@ import java.util.Map;
  *
  * @author cathoanghuy
  */
-public class AvaiableEmployee extends javax.swing.JPanel {
+public class AvailableEmployee extends javax.swing.JPanel {
 
     private Map map;
     private MyTableModel tableModel;
@@ -21,7 +21,7 @@ public class AvaiableEmployee extends javax.swing.JPanel {
     /**
      * Creates new form AvaiableEmployee
      */
-    public AvaiableEmployee(Map controller) {
+    public AvailableEmployee(Map controller) {
         this.map = controller;
         initComponents();
         tableInit();

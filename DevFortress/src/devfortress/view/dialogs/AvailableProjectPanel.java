@@ -235,5 +235,6 @@ public class AvailableProjectPanel extends javax.swing.JPanel {
 
     private void initController() {
         jButton3.addActionListener(new AcceptProjectBtnListener());
+        //TODO
     }
 }

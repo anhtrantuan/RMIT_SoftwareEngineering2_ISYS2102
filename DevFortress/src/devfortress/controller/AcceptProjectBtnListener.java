@@ -4,6 +4,7 @@
  */
 package devfortress.controller;
 
+import devfortress.model.Employee;
 import devfortress.model.facade.Model;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,7 +17,7 @@ public class AcceptProjectBtnListener implements ActionListener{
 private Model model;
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        //TODO
     }
     
 }
