@@ -38,7 +38,7 @@ public class Project {
         this.projectTime = projectTime;
         remainingTime = projectTime;
         this.skillRequirementMap = skillRequirementMap;
-        getMainSkill();
+        calculateMainSkill();
     }
 
     public float getPayment() {
@@ -123,7 +123,7 @@ public class Project {
         }
     }
 
-    private Skills getMainSkill() {
+    private Skills calculateMainSkill() {
         Skills main = null;
         int highest = 0;
         for (Skills sk : skillRequirementMap.keySet()) {
@@ -190,4 +190,10 @@ public class Project {
         }
         return false;
     }
+
+    public Skills getMainSkill() {
+        return mainSkill;
+    }
+    
+    
 }
