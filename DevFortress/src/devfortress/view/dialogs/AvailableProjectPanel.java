@@ -4,6 +4,7 @@
  */
 package devfortress.view.dialogs;
 
+import devfortress.controller.AcceptProjectBtnListener;
 import devfortress.model.Project;
 import devfortress.utilities.Constant;
 import devfortress.utilities.MyTableModel;
@@ -233,6 +234,6 @@ public class AvailableProjectPanel extends javax.swing.JPanel {
     }
 
     private void initController() {
-        
+        jButton3.addActionListener(new AcceptProjectBtnListener());
     }
 }
