@@ -4,9 +4,11 @@
  */
 package devfortress.view.dialogs;
 
-import devfortress.controller.Controller;
+import devfortress.model.Employee;
 import devfortress.utilities.Constant;
 import devfortress.utilities.MyTableModel;
+import devfortress.utilities.Skills;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -15,17 +17,21 @@ import java.util.Map;
  */
 public class AvailableEmployee extends javax.swing.JPanel {
 
-    private Map map;
+    int index;
+    private Employee[] employeeList;
     private MyTableModel tableModel;
+    private Map<Skills, Integer> currentSelectedEmployeeInfo;
+    private Employee currentSelectedEmployee;
 
     /**
      * Creates new form AvaiableEmployee
      */
-    public AvailableEmployee(Map controller) {
-        this.map = controller;
+    public AvailableEmployee(List employees) {
         initComponents();
-        tableInit();
-
+        index = 0;
+        employeeList = (Employee[]) employees.toArray();
+        initController();
+        initInformation();
 
     }
 
@@ -48,6 +54,7 @@ public class AvailableEmployee extends javax.swing.JPanel {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
 
         jLabel2.setText("jLabel2");
 
@@ -73,34 +80,43 @@ public class AvailableEmployee extends javax.swing.JPanel {
 
         jLabel4.setText("Main Skill:");
 
-        jButton1.setText("Previus");
+        jButton1.setText(Constant.PREVIOUS_BTN);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Next");
+        jButton2.setText(Constant.NEXT_BTN);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
 
-        jButton3.setText("Accept");
+        jButton3.setText(Constant.ACCEPT);
 
-        jButton4.setText("Cancle");
+        jButton4.setText(Constant.CANCEL);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
 
+        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel5.setText(Constant.SALARY_LABEL);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(71, 71, 71)
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton4)
+                .addGap(84, 84, 84))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -116,14 +132,11 @@ public class AvailableEmployee extends javax.swing.JPanel {
                         .addGap(140, 140, 140)
                         .addComponent(jButton1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton2)))
-                .addContainerGap(81, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(jButton3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton4)
-                .addGap(84, 84, 84))
+                        .addComponent(jButton2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel5)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,8 +148,10 @@ public class AvailableEmployee extends javax.swing.JPanel {
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel5)
+                .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
@@ -144,7 +159,7 @@ public class AvailableEmployee extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         jLabel1.getAccessibleContext().setAccessibleName("availableEmployee");
@@ -161,13 +176,6 @@ public class AvailableEmployee extends javax.swing.JPanel {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
-
-    private void tableInit() {
-        String[] columnName = {Constant.SKILL_LABEL, Constant.SKILL_LVL_LABEL};
-
-        this.tableModel = new MyTableModel(map, 2, columnName);
-        jTable1.setModel(tableModel);
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -177,7 +185,26 @@ public class AvailableEmployee extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void initInformation() {
+        currentSelectedEmployeeInfo = employeeList[index].getSkillList();
+        String[] columnName = {Constant.SKILL_LABEL, Constant.SKILL_LVL_LABEL};
+        tableInit(columnName);
+    }
+
+    private void initController() {
+        throw new UnsupportedOperationException("Not yet implemented");
+    }
+
+    private void tableInit( String[] columnName) {
+        this.tableModel = new MyTableModel(currentSelectedEmployeeInfo, 2, columnName);
+        jLabel3.setText(Constant.EMPLOYEE_NAME+": "+employeeList[index].getName());
+        jLabel4.setText(Constant.MAINSKILL_LABEL+": "+employeeList[index].getMainSkill());
+        jLabel5.setText(Constant.SALARY_LABEL+": "+employeeList[index].getSalary());
+        jTable1.setModel(tableModel);
+    }
 }

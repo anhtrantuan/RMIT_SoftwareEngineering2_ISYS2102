@@ -22,8 +22,8 @@ public class AvailableProjectPanel extends javax.swing.JPanel {
      * Creates new form AvailableProjectPanel
      */
     int index;
-    Project[] projectList;
-    Map<Skills, Integer> currentSelectedProjectInfo;
+    private Project[] projectList;
+    private Map<Skills, Integer> currentSelectedProjectInfo;
     private MyTableModel tableModel;
     
     public AvailableProjectPanel(List availableProjectList) {
@@ -231,6 +231,7 @@ public class AvailableProjectPanel extends javax.swing.JPanel {
         jLabel4.setText(Constant.MAIN_FIELD_LABEL + ": "+projectList[index].getMainSkill());
         jLabel5.setText(Constant.PROJECT_DUE + ": "+projectList[index].getProjectTime());
         jLabel6.setText(Constant.PROJECT_PAY + ": "+projectList[index].getPayment());
+        jTable1.setModel(tableModel);
     }
 
     private void initController() {

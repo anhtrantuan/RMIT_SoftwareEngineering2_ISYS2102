@@ -62,4 +62,5 @@ public class Constant {
     public static String NEXT_BTN = "Next";
     public static String PREVIOUS_BTN = "Previous";
     public static String CLOSE_BTN = "Close";
+    public static String SALARY_LABEL = "Salary";
 }
