@@ -5,9 +5,8 @@
 package devfortress.view.dialogs;
 
 import devfortress.model.Project;
-import java.util.List;
-import java.util.Map;
 import devfortress.utilities.Constant;
+import java.util.List;
 
 /**
  *
