@@ -7,9 +7,7 @@ package devfortress.view.dialogs;
 import devfortress.controller.Controller;
 import devfortress.utilities.Constant;
 import devfortress.utilities.MyTableModel;
-import java.util.Enumeration;
-import javax.swing.table.AbstractTableModel;
-import javax.swing.table.TableModel;
+import java.util.Map;
 
 /**
  *
@@ -17,13 +15,14 @@ import javax.swing.table.TableModel;
  */
 public class AvaiableEmployee extends javax.swing.JPanel {
 
-    private Controller controller;
+    private Map map;
     private MyTableModel tableModel;
+
     /**
      * Creates new form AvaiableEmployee
      */
-    public AvaiableEmployee(Controller controller) {
-        this.controller = controller;
+    public AvaiableEmployee(Map controller) {
+        this.map = controller;
         initComponents();
         tableInit();
 
@@ -164,9 +163,9 @@ public class AvaiableEmployee extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void tableInit() {
-        String[] columnName = {Constant.SKILL_LABEL,Constant.SKILL_LVL_LABEL};
-        //TODO 
-        //this.tableModel = new MyTableModel(controller.,2,columnName);
+        String[] columnName = {Constant.SKILL_LABEL, Constant.SKILL_LVL_LABEL};
+
+        this.tableModel = new MyTableModel(map, 2, columnName);
         jTable1.setModel(tableModel);
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
