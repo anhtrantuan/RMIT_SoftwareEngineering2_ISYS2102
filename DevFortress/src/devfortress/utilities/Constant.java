@@ -61,4 +61,5 @@ public class Constant {
     public static String VIEW_CONTRACT_BUTTON = "View available contracts";
     public static String NEXT_BTN = "Next";
     public static String PREVIOUS_BTN = "Previous";
+    public static String CLOSE_BTN = "Close";
 }
