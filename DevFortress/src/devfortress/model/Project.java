@@ -172,11 +172,16 @@ public class Project {
         int finish = 0;
         totalFunctionPointsDelivered = 0;
         if(skill_employeeMap.size()==0){
+            remainingTime.nextTurn();
+            if (remainingTime.getMonths() == 0) {
+                throw new ProjectFailsException("Project Fails");
+            }
             return false;
         }
         for (Skills sk : skill_employeeMap.keySet()) {
             Employee emp = skill_employeeMap.get(sk);
             int functionPointProduced = calculateFinalFunctionPoint(calculateBasicFunctionPoint(emp), emp);
+            System.out.println("FP produced: "+functionPointProduced);
             remainingPoints -= functionPointProduced;
             totalFunctionPointsDelivered += functionPointProduced;
             int functionPointRequire = skillRequirementMap.get(sk);

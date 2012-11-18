@@ -218,7 +218,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="btnSystem" alignment="0" pref="342" max="32767" attributes="0"/>
+                      <Component id="btnSystem" alignment="0" pref="344" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -328,7 +328,7 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblDuration" alignment="0" pref="318" max="32767" attributes="0"/>
+                              <Component id="lblDuration" alignment="0" pref="320" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
@@ -375,7 +375,7 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblBudget" alignment="1" pref="318" max="32767" attributes="0"/>
+                              <Component id="lblBudget" alignment="1" pref="320" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
@@ -475,7 +475,7 @@
                       <Layout>
                         <DimensionLayout dim="0">
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="lblEmployees" alignment="1" pref="318" max="32767" attributes="0"/>
+                              <Component id="lblEmployees" alignment="1" pref="320" max="32767" attributes="0"/>
                           </Group>
                         </DimensionLayout>
                         <DimensionLayout dim="1">
@@ -619,7 +619,7 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <EmptySpace min="0" pref="342" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="344" max="32767" attributes="0"/>
                   </Group>
                 </DimensionLayout>
                 <DimensionLayout dim="1">
@@ -749,7 +749,7 @@
                       <Group type="102" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="btnInformation" pref="154" max="32767" attributes="0"/>
+                              <Component id="btnInformation" pref="158" max="32767" attributes="0"/>
                               <Component id="btnCurrentProjects" alignment="0" pref="154" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -842,6 +842,9 @@
                       <Connection code="Constant.BUTTON_NEXT_TURN" type="code"/>
                     </Property>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnNextTurnActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

@@ -208,6 +208,7 @@ public class Engine extends Observable implements Model {
             } catch (ProjectFailsException ex) {
                 company.cancelProject(project);
                 System.out.println(ex.getMessage());
+                System.out.println("PROJECT FAIL");
             }
         }
         generateProjectList(level);
