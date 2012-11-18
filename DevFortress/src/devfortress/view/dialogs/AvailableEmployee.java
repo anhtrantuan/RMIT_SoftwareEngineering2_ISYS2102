@@ -18,6 +18,7 @@ import java.util.logging.Logger;
 
 
 
+
 /**
  *
  * @author cathoanghuy
@@ -36,6 +37,8 @@ public class AvailableEmployee extends javax.swing.JPanel {
      */
 
     public AvailableEmployee(List employees,Controller hireController) {
+
+
         initComponents();
         index = 0;
         employeeList = (Employee[]) employees.toArray();
@@ -211,7 +214,7 @@ public class AvailableEmployee extends javax.swing.JPanel {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        try {
+       try {
             controller.hireEmployee(employeeList[index]);
         } catch (OvercrowdedException ex) {
             Logger.getLogger(AvailableEmployee.class.getName()).log(Level.SEVERE, null, ex);
