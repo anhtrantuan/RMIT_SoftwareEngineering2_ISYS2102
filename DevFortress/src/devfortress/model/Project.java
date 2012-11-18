@@ -7,6 +7,7 @@ package devfortress.model;
 import devfortress.model.exception.ProjectFailsException;
 import devfortress.utilities.Skill;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -200,6 +201,25 @@ public class Project {
     public Map<Skill, Integer> getOriginalSkillRequirementMap() {
         return originalSkillRequirementMap;
     }
-    
-    
+
+    /**
+     * Check if 2 projects have the same.
+     *
+     * @param obj
+     * @return
+     */
+    @Override
+    public boolean equals(Object obj) {
+        if ((obj instanceof Project) && ((Project) obj).getName().equals(name)) {
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 37 * hash + Objects.hashCode(this.name);
+        return hash;
+    }
 }

@@ -7,16 +7,15 @@ package devfortress;
 import devfortress.controller.Controller;
 import devfortress.model.Beer;
 import devfortress.model.Computer;
-import devfortress.model.DateTime;
 import devfortress.model.Employee;
 import devfortress.model.Food;
 import devfortress.model.Project;
+import devfortress.model.dificulity.EasyLevel;
 import devfortress.model.exception.OvercrowdedException;
 import devfortress.model.facade.Engine;
-import devfortress.utilities.Skill;
+import devfortress.utilities.Utilities;
 import devfortress.view.DevFortressView;
-import java.util.HashMap;
-import java.util.Random;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -74,23 +73,20 @@ public class DevFortress {
                  * Display DevFortressView.
                  */
                 view.setVisible(true);
-                model.buyItem(new Beer(5), 1);
-                model.buyItem(new Computer(), 20);
+                model.buyItem(new Beer(50), 1);
+                model.buyItem(new Computer(), 3);
                 model.buyItem(new Food(300, "Pizza"), 1);
 
-                HashMap<Skill, Integer> skillList = new HashMap<>();
-                skillList.put(Skill.C, 5);
-                skillList.put(Skill.LISP, 4);
-                skillList.put(Skill.DESIGN, 8);
-                skillList.put(Skill.ALGORITHMS, 6);
-                skillList.put(Skill.CONFIG_MANAGEMENT, 5);
-                Project project = new Project("P" + new Random().nextLong(), 100, 100, 1, new DateTime(0, 6, 0), skillList);
-                model.takeProject(project);
+                EasyLevel level = new EasyLevel();
+                List<Project> projects = Utilities.generateProjectList(level, 2, model);
+                model.takeProject(projects.get(0));
+                model.takeProject(projects.get(1));
+                List<Employee> employees = Utilities.generateEmployeeList(level, 3, model);
 
                 try {
-                    model.hireEmployee(new Employee("Joe", skillList));
-                    model.hireEmployee(new Employee("Doe", skillList));
-                    model.hireEmployee(new Employee("Foo", skillList));
+                    model.hireEmployee(employees.get(0));
+                    model.hireEmployee(employees.get(1));
+                    model.hireEmployee(employees.get(2));
                 } catch (OvercrowdedException ex) {
                     Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
                 }

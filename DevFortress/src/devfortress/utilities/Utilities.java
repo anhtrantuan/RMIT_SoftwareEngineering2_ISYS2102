@@ -9,6 +9,7 @@ import devfortress.model.Computer;
 import devfortress.model.Employee;
 import devfortress.model.Project;
 import devfortress.model.dificulity.GameLevel;
+import devfortress.model.facade.Model;
 import java.util.*;
 
 /**
@@ -62,21 +63,34 @@ public class Utilities {
         return salary;
     }
 
-    public static List<Project> generateProjectList(GameLevel level, int numberOfProject) {
+    public static List<Project> generateProjectList(GameLevel level,
+            int numberOfProject, Model model) {
         List<Project> projects = new ArrayList<>();
         for (int i = 0; i < numberOfProject; i++) {
-            projects.add(level.generateProject(Name.getProjectName()));
+            Project project;
+            do {
+                project = level.generateProject(Name.getProjectName());
+            } while (projects.contains(project)
+                    || !(model == null
+                    || model.getProjectByName(project.getName()) == null));
+            projects.add(project);
         }
         return projects;
     }
 
-    public static List<Employee> generateEmployeeList(GameLevel level, int numberofEmployee) {
-        List<Employee> employee = new ArrayList<>();
-        for (int i = 0; i < numberofEmployee; i++) {
-            Employee newEmployee = generateEmployee(level);
-            employee.add(newEmployee);
+    public static List<Employee> generateEmployeeList(GameLevel level,
+            int numberOfEmployee, Model model) {
+        List<Employee> employees = new ArrayList<>();
+        for (int i = 0; i < numberOfEmployee; i++) {
+            Employee employee;
+            do {
+                employee = generateEmployee(level);
+            } while (employees.contains(employee)
+                    || !(model == null
+                    || model.getEmployeeByName(employee.getName()) == null));
+            employees.add(employee);
         }
-        return employee;
+        return employees;
     }
 
     private static String generateEmployeeName() {
