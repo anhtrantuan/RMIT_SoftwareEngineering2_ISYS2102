@@ -5,7 +5,6 @@
 package devfortress.view.dialogs;
 
 import devfortress.controller.Controller;
-import devfortress.controller.HireEmployeeBtnListener;
 import devfortress.model.Employee;
 import devfortress.model.exception.OvercrowdedException;
 import devfortress.utilities.Constant;

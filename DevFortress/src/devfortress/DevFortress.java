@@ -13,6 +13,7 @@ import devfortress.model.Food;
 import devfortress.model.Project;
 import devfortress.model.dificulity.DifficultLevel;
 import devfortress.model.dificulity.EasyLevel;
+import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.OvercrowdedException;
 import devfortress.model.facade.Engine;
 import devfortress.utilities.Constant;
@@ -22,6 +23,7 @@ import devfortress.view.DevFortressView;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -37,10 +39,14 @@ public class DevFortress {
      * @param args
      */
     public static void main(String[] args) {
-        /* Set the Nimbus look and feel */
+        /*
+         * Set the Nimbus look and feel
+         */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+        /*
+         * If Nimbus (introduced in Java SE 6) is not available, stay with the
+         * default look and feel. For details see
+         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info :
@@ -57,17 +63,24 @@ public class DevFortress {
         }
         //</editor-fold>
 
-        /* Create and display the form */
+        /*
+         * Create and display the form
+         */
         java.awt.EventQueue.invokeLater(new Runnable() {
+
             @Override
             public void run() {
-                /* Create MVC modules. */
+                /*
+                 * Create MVC modules.
+                 */
                 Engine model = new Engine();
                 DevFortressView view = new DevFortressView(model);
                 model.addObserver(view);
                 Controller controller = new Controller(model, view);
 
-                /* Display DevFortressView. */
+                /*
+                 * Display DevFortressView.
+                 */
                 view.setVisible(true);
                 model.buyItem(new Beer(5), 1);
                 model.buyItem(new Computer(), 20);

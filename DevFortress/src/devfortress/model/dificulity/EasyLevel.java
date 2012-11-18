@@ -41,7 +41,7 @@ public class EasyLevel implements GameLevel {
 
     @Override
     public DateTime generateProjectTime() {
-        return new DateTime(0, new Random().nextInt(7) + 2, 0);
+            return new DateTime(0, new Random().nextInt(7) + 2, 0);
     }
 
     @Override
