@@ -90,8 +90,12 @@ public class Utilities {
     private static Employee generateEmployee(GameLevel level) {
         return new Employee(generateEmployeeName(), level.generateSkillList());
     }
-    //check if there is any empty computer in company then assign employee into that computer, return true if having empty computer
 
+    /**
+     * check if there is any empty computer in company then assign employee into
+     * that computer, return true if having empty computer
+     *
+     */
     public static boolean assignComputerToEmployee(Company company, Employee employee) {
         Map<Computer, Employee> computerMap = company.getComputerList();
         for (Computer com : computerMap.keySet()) {

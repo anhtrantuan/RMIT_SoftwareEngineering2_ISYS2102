@@ -20,9 +20,8 @@ public class Employee {
     private Skills mainSkill;
     private boolean status[];
 
-    public Employee(String name, float salary, Map skillList) {
+    public Employee(String name, Map skillList) {
         this.name = name;
-        this.salary = salary;
         this.skillList = skillList;
         status = new boolean[3];
         //0 is having beer, 1 is full, 2 is happy;
@@ -30,11 +29,6 @@ public class Employee {
         status[1] = false;
         status[2] = true;
         mainSkill = getMainSkill();
-    }
-
-    public Employee(String name, Map skillList) {
-        this.name = name;
-        this.skillList = skillList;
     }
 
     public String getName() {
@@ -47,10 +41,6 @@ public class Employee {
 
     public float getSalary() {
         return salary;
-    }
-
-    public void setSalary(float salary) {
-        this.salary = salary;
     }
 
     public Map getSkillList() {
@@ -185,5 +175,10 @@ public class Employee {
             }
             return level;
         }
+    }
+
+    private float calculateSalary() {
+        //TODO calculate salary for employee
+        return 1;
     }
 }

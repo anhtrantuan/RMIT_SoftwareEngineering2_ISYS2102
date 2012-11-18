@@ -68,10 +68,11 @@ public class DevFortress {
 
                 /* Display DevFortressView. */
                 view.setVisible(true);
-
-                model.buyItem(new Beer(100), 1);
-                model.buyItem(new Computer(100), 3);
+                model.buyItem(new Beer(5), 1);
+                model.buyItem(new Computer(), 20);
                 model.buyItem(new Food(300, "Pizza"), 1);
+
+
 
                 HashMap<Skills, Integer> skillList = new HashMap<>();
                 skillList.put(Skills.C, 5);
