@@ -37,7 +37,7 @@ public class AvailableEmployeeTableModel extends DefaultTableModel {
         for (Iterator<Skill> iterator = skillList.keySet().iterator();
                 iterator.hasNext();) {
             Skill skill = iterator.next();
-            addRow(new Object[]{skill, skillList.get(skill)});
+            addRow(new Object[]{skill.toString(), skillList.get(skill)});
         }
     }
 }

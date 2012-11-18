@@ -11,14 +11,14 @@ import devfortress.view.models.DetailedProjectInfoTableModel;
  *
  * @author Sherlock
  */
-public class ProjectInfoPanel extends javax.swing.JPanel {
+public class ProjectPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form ProjectInfoPanel
+     * Creates new form ProjectPanel
      */
     private DetailedProjectInfoTableModel tableModel;
     private Project project;
-    public ProjectInfoPanel(Project project) {
+    public ProjectPanel(Project project) {
         initComponents();
         this.project = project;
         initInformation();
@@ -99,7 +99,7 @@ public class ProjectInfoPanel extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel4)
-                        .addContainerGap())
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

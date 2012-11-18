@@ -11,14 +11,14 @@ import java.util.List;
  *
  * @author Sherlock
  */
-public class CurrentProjectsInfo extends javax.swing.JPanel {
+public class CurrentProjectsPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form CurrentProjectsInfo
+     * Creates new form CurrentProjectsPanel
      */
     private List<Project> projectList;
     private CurrentProjectsTableModel tableModel;
-    public CurrentProjectsInfo(List<Project> projectList) {
+    public CurrentProjectsPanel(List<Project> projectList) {
         initComponents();
         initTable();
         this.projectList = projectList;

@@ -6,6 +6,7 @@ package devfortress.model;
 
 import devfortress.utilities.Skill;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -17,22 +18,19 @@ public class Employee {
     private String name;
     private float salary;
     private Map<Skill, Integer> skillList;
-    private Skill mainSkill;
     private boolean status[];
 
-    public Employee(String name, float salary, Map skillList) {
-        this.name = name;
+    public Employee(String name, float salary, Map<Skill, Integer> skillList) {
+        this(name, skillList);
         this.salary = salary;
-        this.skillList = skillList;
         status = new boolean[3];
         //0 is having beer, 1 is full, 2 is happy;
         status[0] = false;
         status[1] = false;
         status[2] = true;
-        mainSkill = getMainSkill();
     }
 
-    public Employee(String name, Map skillList) {
+    public Employee(String name, Map<Skill, Integer> skillList) {
         this.name = name;
         this.skillList = skillList;
     }
@@ -53,11 +51,11 @@ public class Employee {
         this.salary = salary;
     }
 
-    public Map getSkillList() {
+    public Map<Skill, Integer> getSkillList() {
         return skillList;
     }
 
-    public void setSkillList(Map skillList) {
+    public void setSkillList(Map<Skill, Integer> skillList) {
         this.skillList = skillList;
     }
 
@@ -74,17 +72,18 @@ public class Employee {
     public Skill getMainSkill() {
         Skill main = null;
         int highest = 0;
-        for (Skill sk : skillList.keySet()) {
-            if (skillList.get(sk) >= highest) {
-                if (skillList.get(sk) == highest) {
-                    main = (sk.toString().compareToIgnoreCase(main.toString()) < 0) ? sk : main;
-                } else {
-                    main = sk;
+        for (Iterator<Skill> iterator = skillList.keySet().iterator();
+                iterator.hasNext();) {
+            Skill skill = iterator.next();
+            if (skillList.get(skill) >= highest) {
+                if (skillList.get(skill) != highest
+                        || (skill.toString().compareToIgnoreCase(main.toString()) < 0)) {
+                    main = skill;
                 }
-                highest = skillList.get(sk);
+                highest = skillList.get(skill);
             }
         }
-        mainSkill = main;
+
         return main;
     }
 
@@ -163,7 +162,7 @@ public class Employee {
         status[2] = false;
     }
 
-    public int getLowestSkillLvl() {
+    public int getLowestSkillLevel() {
         Map<Skill, Integer> specialSkill = new HashMap<>();
         if (skillList.containsKey(Skill.HASKELL)) {
             specialSkill.put(Skill.HASKELL, skillList.get(Skill.HASKELL));

@@ -12,7 +12,7 @@ import devfortress.utilities.MyTableModel;
  *
  * @author cathoanghuy
  */
-public class EmployeeInformationPanel extends javax.swing.JPanel {
+public class EmployeePanel extends javax.swing.JPanel {
 
     private Employee employee;
     MyTableModel myTableModel;
@@ -20,7 +20,7 @@ public class EmployeeInformationPanel extends javax.swing.JPanel {
     /**
      * Creates new form EmployeeInformation
      */
-    public EmployeeInformationPanel(Employee employee) {
+    public EmployeePanel(Employee employee) {
         this.employee = employee;
         initInformation();
         initComponents();

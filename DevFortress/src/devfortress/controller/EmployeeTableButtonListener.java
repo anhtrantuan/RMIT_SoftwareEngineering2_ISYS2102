@@ -12,16 +12,16 @@ import java.awt.event.ActionListener;
  *
  * @author tommy
  */
-public class DevelopersTableButtonListener implements ActionListener {
+public class EmployeeTableButtonListener implements ActionListener {
     
     private Model model;
 
     /**
-     * Constructor for DevelopersTableButtonListener.
+     * Constructor for EmployeeTableButtonListener.
      *
      * @param model
      */
-    public DevelopersTableButtonListener(Model model) {
+    public EmployeeTableButtonListener(Model model) {
         this.model = model;
     }
     

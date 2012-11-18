@@ -10,10 +10,10 @@ import devfortress.utilities.Skill;
 import devfortress.view.DevFortressView;
 import devfortress.view.models.AvailableEmployeeTableModel;
 import java.awt.Color;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import javax.swing.JFrame;
 
 /**
@@ -24,8 +24,8 @@ public class AvailableEmployeePanel extends javax.swing.JPanel {
 
     private int index;
     private List<Employee> employeeList;
+    private Employee currentEmployee;
     private AvailableEmployeeTableModel tableModel;
-    private Map<Skill, Integer> currentSelectedEmployeeInfo;
 
     /**
      * Creates new form AvaiableEmployee
@@ -48,25 +48,78 @@ public class AvailableEmployeePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        pnlTitle = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
+        pnlNameAndMainSkill = new javax.swing.JPanel();
         lblName = new javax.swing.JLabel();
+        lblMainSkill = new javax.swing.JLabel();
         scpEmployees = new javax.swing.JScrollPane();
         tblEmployees = new javax.swing.JTable();
-        lblMainSkill = new javax.swing.JLabel();
+        pnlSalary = new javax.swing.JPanel();
+        lblSalary = new javax.swing.JLabel();
+        pnlPreviousNext = new javax.swing.JPanel();
         btnPrevious = new javax.swing.JButton();
         btnNext = new javax.swing.JButton();
-        btnAccept = new javax.swing.JButton();
+        pnlAcceptCancel = new javax.swing.JPanel();
         btnCancel = new javax.swing.JButton();
-        lblSalary = new javax.swing.JLabel();
+        btnAccept = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
         setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
+        setPreferredSize(new java.awt.Dimension(300, 500));
+        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
         lblTitle.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
         lblTitle.setText("Available Employee");
 
+        javax.swing.GroupLayout pnlTitleLayout = new javax.swing.GroupLayout(pnlTitle);
+        pnlTitle.setLayout(pnlTitleLayout);
+        pnlTitleLayout.setHorizontalGroup(
+            pnlTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTitleLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTitle)
+                .addContainerGap())
+        );
+        pnlTitleLayout.setVerticalGroup(
+            pnlTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTitleLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        lblTitle.getAccessibleContext().setAccessibleName("availableEmployee");
+
+        add(pnlTitle);
+
         lblName.setText("Name:");
+
+        lblMainSkill.setText("Main Skill:");
+
+        javax.swing.GroupLayout pnlNameAndMainSkillLayout = new javax.swing.GroupLayout(pnlNameAndMainSkill);
+        pnlNameAndMainSkill.setLayout(pnlNameAndMainSkillLayout);
+        pnlNameAndMainSkillLayout.setHorizontalGroup(
+            pnlNameAndMainSkillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlNameAndMainSkillLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 240, Short.MAX_VALUE)
+                .addComponent(lblMainSkill)
+                .addGap(45, 45, 45))
+        );
+        pnlNameAndMainSkillLayout.setVerticalGroup(
+            pnlNameAndMainSkillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlNameAndMainSkillLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlNameAndMainSkillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblName)
+                    .addComponent(lblMainSkill))
+                .addGap(38, 38, 38))
+        );
+
+        add(pnlNameAndMainSkill);
 
         scpEmployees.setBackground(new java.awt.Color(255, 255, 255));
         scpEmployees.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
@@ -75,7 +128,29 @@ public class AvailableEmployeePanel extends javax.swing.JPanel {
         tblEmployees.setModel(new AvailableEmployeeTableModel());
         scpEmployees.setViewportView(tblEmployees);
 
-        lblMainSkill.setText("Main Skill:");
+        add(scpEmployees);
+
+        lblSalary.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        lblSalary.setText(Constant.SALARY_LABEL);
+
+        javax.swing.GroupLayout pnlSalaryLayout = new javax.swing.GroupLayout(pnlSalary);
+        pnlSalary.setLayout(pnlSalaryLayout);
+        pnlSalaryLayout.setHorizontalGroup(
+            pnlSalaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSalaryLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblSalary)
+                .addContainerGap(306, Short.MAX_VALUE))
+        );
+        pnlSalaryLayout.setVerticalGroup(
+            pnlSalaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlSalaryLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblSalary)
+                .addContainerGap())
+        );
+
+        add(pnlSalary);
 
         btnPrevious.setText(Constant.PREVIOUS_BTN);
         btnPrevious.addActionListener(new java.awt.event.ActionListener() {
@@ -91,83 +166,68 @@ public class AvailableEmployeePanel extends javax.swing.JPanel {
             }
         });
 
-        btnAccept.setText(Constant.ACCEPT);
+        javax.swing.GroupLayout pnlPreviousNextLayout = new javax.swing.GroupLayout(pnlPreviousNext);
+        pnlPreviousNext.setLayout(pnlPreviousNextLayout);
+        pnlPreviousNextLayout.setHorizontalGroup(
+            pnlPreviousNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPreviousNextLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnPrevious)
+                .addGap(71, 71, 71)
+                .addComponent(btnNext)
+                .addContainerGap())
+        );
+        pnlPreviousNextLayout.setVerticalGroup(
+            pnlPreviousNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlPreviousNextLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlPreviousNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnPrevious)
+                    .addComponent(btnNext))
+                .addContainerGap())
+        );
+
+        add(pnlPreviousNext);
 
         btnCancel.setText(Constant.CANCEL);
 
-        lblSalary.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        lblSalary.setText(Constant.SALARY_LABEL);
+        btnAccept.setText(Constant.ACCEPT);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scpEmployees, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(71, 71, 71)
-                .addComponent(btnAccept)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnCancel)
-                .addGap(61, 61, 61))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblName)
-                                .addGap(161, 161, 161)
-                                .addComponent(lblMainSkill)
-                                .addGap(52, 52, 52))
-                            .addComponent(lblTitle)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(140, 140, 140)
-                        .addComponent(btnPrevious)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnNext))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(lblSalary)))
-                .addContainerGap(72, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        javax.swing.GroupLayout pnlAcceptCancelLayout = new javax.swing.GroupLayout(pnlAcceptCancel);
+        pnlAcceptCancel.setLayout(pnlAcceptCancelLayout);
+        pnlAcceptCancelLayout.setHorizontalGroup(
+            pnlAcceptCancelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAcceptCancelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(lblTitle, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblName)
-                    .addComponent(lblMainSkill))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scpEmployees, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblSalary)
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPrevious)
-                    .addComponent(btnNext))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(btnAccept)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 183, Short.MAX_VALUE)
+                .addComponent(btnCancel)
+                .addContainerGap())
+        );
+        pnlAcceptCancelLayout.setVerticalGroup(
+            pnlAcceptCancelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAcceptCancelLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(pnlAcceptCancelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAccept)
                     .addComponent(btnCancel))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
-        lblTitle.getAccessibleContext().setAccessibleName("availableEmployee");
+        add(pnlAcceptCancel);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousActionPerformed
-        if (index != 0) {
+        if (index > 0) {
             index--;
-            updateTable();
+            populateData();
         }
     }//GEN-LAST:event_btnPreviousActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
-        if (index != employeeList.size() - 1) {
+        if (index < employeeList.size() - 1) {
             index++;
-            updateTable();
+            populateData();
         }
     }//GEN-LAST:event_btnNextActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -179,6 +239,11 @@ public class AvailableEmployeePanel extends javax.swing.JPanel {
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblSalary;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JPanel pnlAcceptCancel;
+    private javax.swing.JPanel pnlNameAndMainSkill;
+    private javax.swing.JPanel pnlPreviousNext;
+    private javax.swing.JPanel pnlSalary;
+    private javax.swing.JPanel pnlTitle;
     private javax.swing.JScrollPane scpEmployees;
     private javax.swing.JTable tblEmployees;
     // End of variables declaration//GEN-END:variables
@@ -187,28 +252,19 @@ public class AvailableEmployeePanel extends javax.swing.JPanel {
      * Populate data to view.
      */
     private void populateData() {
-        lblName.setText(Constant.EMPLOYEE_NAME + ": "
-                + employeeList.get(index).getName());
+        currentEmployee = employeeList.get(index);
+        lblName.setText(Constant.EMPLOYEE_NAME + ": " + currentEmployee.getName());
         lblMainSkill.setText(Constant.MAINSKILL_LABEL + ": "
-                + employeeList.get(index).getMainSkill());
-        lblSalary.setText(Constant.SALARY_LABEL + ": "
-                + employeeList.get(index).getSalary());
-        updateTable();
+                + currentEmployee.getMainSkill().toString());
+        lblSalary.setText(Constant.SALARY_LABEL + ": " + currentEmployee.getSalary());
+        tableModel.setSkillList(currentEmployee.getSkillList());
     }
 
     /**
      * Set listener for Accept and Cancel buttons.
      */
-    public void setButtonListener() {
+    public void setButtonListener(ActionListener buttonListener) {
         throw new UnsupportedOperationException("Not yet implemented");
-    }
-
-    /**
-     * Update table data.
-     */
-    private void updateTable() {
-        currentSelectedEmployeeInfo = employeeList.get(index).getSkillList();
-        tableModel.setSkillList(currentSelectedEmployeeInfo);
     }
 
     public static void main(String[] args) {
@@ -243,9 +299,21 @@ public class AvailableEmployeePanel extends javax.swing.JPanel {
                 skillList.put(Skill.DESIGN, 8);
                 skillList.put(Skill.ALGORITHMS, 6);
                 skillList.put(Skill.CONFIG_MANAGEMENT, 5);
+                HashMap<Skill, Integer> skillList1 = new HashMap<>();
+                skillList1.put(Skill.C, 9);
+                skillList1.put(Skill.LISP, 3);
+                skillList1.put(Skill.DESIGN, 5);
+                skillList1.put(Skill.ALGORITHMS, 1);
+                skillList1.put(Skill.CONFIG_MANAGEMENT, 7);
+                HashMap<Skill, Integer> skillList2 = new HashMap<>();
+                skillList2.put(Skill.C, 11);
+                skillList2.put(Skill.LISP, 55);
+                skillList2.put(Skill.DESIGN, 61);
+                skillList2.put(Skill.ALGORITHMS, 61);
+                skillList2.put(Skill.CONFIG_MANAGEMENT, 2);
                 Employee e1 = new Employee("Joe", 100, skillList),
-                        e2 = new Employee("Doe", 200, skillList),
-                        e3 = new Employee("Foo", 500, skillList);
+                        e2 = new Employee("Doe", 200, skillList1),
+                        e3 = new Employee("Foo", 500, skillList2);
                 List<Employee> el = new ArrayList<>();
                 el.add(e1);
                 el.add(e2);

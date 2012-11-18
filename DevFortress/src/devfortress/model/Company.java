@@ -191,12 +191,32 @@ public class Company {
     }
 
     /**
+     * Get project by name.
+     *
+     * @param name
+     * @return
+     */
+    public Project getProjectByName(String name) {
+        for (ListIterator<Project> iterator = currentProjectList.listIterator();
+                iterator.hasNext();) {
+            Project project = iterator.next();
+            if (project.getName().equals(name)) {
+                return project;
+            }
+        }
+
+        return null;
+    }
+
+    /**
      * remove project when project fail or be canceled.
      *
      * @param project
      */
     public void cancelProject(Project project) {
+        System.out.println(currentProjectList.size());
         currentProjectList.remove(project);
+        System.out.println(currentProjectList.size());
         decreaseMoney(project.getPayment() * 0.8f);
     }
 

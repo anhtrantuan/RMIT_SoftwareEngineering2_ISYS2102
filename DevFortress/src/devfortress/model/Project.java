@@ -147,7 +147,7 @@ public class Project {
         if (employee.getMainSkill() == mainSkill) {
             level = employee.getSkillLevel(employee.getMainSkill());
         } else {
-            level = employee.getLowestSkillLvl();
+            level = employee.getLowestSkillLevel();
         }
         return (level + (2 * employee.getDesignSkill()) + (level * employee.getAlgorithmSkill()) + (employee.getTeamPlayerSkill() * skill_employeeMap.size())) / ((10 - employee.getConfigurationSkill()) + 2);
 

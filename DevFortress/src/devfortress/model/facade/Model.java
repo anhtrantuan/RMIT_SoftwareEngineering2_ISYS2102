@@ -60,4 +60,6 @@ public interface Model {
     Map<String, Float> getExpenseItems();
 
     Employee getEmployeeByName(String name);
+
+    Project getProjectByName(String name);
 }

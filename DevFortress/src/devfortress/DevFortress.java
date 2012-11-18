@@ -75,7 +75,8 @@ public class DevFortress {
                 skillList.put(Skill.DESIGN, 8);
                 skillList.put(Skill.ALGORITHMS, 6);
                 skillList.put(Skill.CONFIG_MANAGEMENT, 5);
-                model.takeProject(new Project("P" + new Random().nextLong(), 100, 100, 1, new DateTime(0, 6, 0), skillList));
+                Project project = new Project("P" + new Random().nextLong(), 100, 100, 1, new DateTime(0, 6, 0), skillList);
+                model.takeProject(project);
 
                 try {
                     model.hireEmployee(new Employee("Joe", 100, skillList));

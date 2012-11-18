@@ -22,15 +22,15 @@ import java.util.Random;
  * @author cathoanghuy
  */
 public class Engine extends Observable implements Model {
-
+    
     private Company company;
     private GameLevel level;
     DateTime dateTime;
-
+    
     public Engine() {
         this(new Company());
     }
-
+    
     public Engine(Company company) {
         this.company = company;
         dateTime = new DateTime();
@@ -76,7 +76,7 @@ public class Engine extends Observable implements Model {
                 employee.getName(), employee.getSalary());
         notifyObservers(message);
     }
-
+    
     @Override
     public void fireEmployee(Employee employee) {
         company.removeEmployee(employee);
@@ -85,7 +85,7 @@ public class Engine extends Observable implements Model {
                 employee.getName(), employee.getSalary());
         notifyObservers(message);
     }
-
+    
     @Override
     public void takeProject(Project project) {
         company.addProject(project);
@@ -216,49 +216,49 @@ public class Engine extends Observable implements Model {
     private void nextWeek() {
         eventOccur();
         dateTime.nextWeek();
-
+        
     }
-
+    
     @Override
     public Map<String, Float> getItems() {
         return company.getItems();
     }
-
+    
     @Override
     public List<Employee> getEmployeeList() {
         return company.getEmployeeList();
     }
-
+    
     @Override
     public List<Project> getProjectList() {
         return company.getCurrentProjectList();
     }
-
+    
     @Override
     public DateTime getCurrentTimePlayed() {
         return dateTime;
     }
-
+    
     @Override
     public float getBudget() {
         return company.getMoney();
     }
-
+    
     @Override
     public float getTotalSalary() {
         return company.calculateTotalSalary();
     }
-
+    
     @Override
     public float getExpenses() {
         return company.getExpenses();
     }
-
+    
     @Override
     public float getItemExpenses() {
         return company.getItemExpenses();
     }
-
+    
     @Override
     public Map<String, Float> getExpenseItems() {
         return company.getItems();
@@ -273,5 +273,16 @@ public class Engine extends Observable implements Model {
     @Override
     public Employee getEmployeeByName(String name) {
         return company.getEmployeeByName(name);
+    }
+
+    /**
+     * Get project by name.
+     *
+     * @param name
+     * @return
+     */
+    @Override
+    public Project getProjectByName(String name) {
+        return company.getProjectByName(name);
     }
 }
