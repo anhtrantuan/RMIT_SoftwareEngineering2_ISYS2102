@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 
+
 /**
  *
  * @author cathoanghuy
@@ -33,11 +34,8 @@ public class AvailableEmployee extends javax.swing.JPanel {
     /**
      * Creates new form AvailableEmployee
      */
-<<<<<<< HEAD
+
     public AvailableEmployee(List employees,Controller hireController) {
-=======
-    public AvailableEmployee(List<Employee> employees) {
->>>>>>> master
         initComponents();
         index = 0;
         employeeList = (Employee[]) employees.toArray();
@@ -211,7 +209,6 @@ public class AvailableEmployee extends javax.swing.JPanel {
             jTable1.revalidate();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
-<<<<<<< HEAD
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
@@ -219,10 +216,7 @@ public class AvailableEmployee extends javax.swing.JPanel {
         } catch (OvercrowdedException ex) {
             Logger.getLogger(AvailableEmployee.class.getName()).log(Level.SEVERE, null, ex);
         }
-=======
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
->>>>>>> master
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
