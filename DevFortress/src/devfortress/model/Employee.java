@@ -40,7 +40,7 @@ public class Employee {
     }
 
     public float getSalary() {
-        return salary;
+        return calculateSalary();
     }
 
     public Map getSkillList() {
