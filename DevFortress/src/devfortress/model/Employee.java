@@ -177,8 +177,48 @@ public class Employee {
         }
     }
 
-    private float calculateSalary() {
-        //TODO calculate salary for employee
-        return 1;
+    public float calculateSalary() {
+        int salary = 0;
+        for (Skills sk : skillList.keySet()) {
+            if (sk.ordinal() <= 24) {
+                salary += calculateSalaryPoint(sk, skillList.get(sk)) * 2;
+            } else if (sk.ordinal() >= 25 && sk.ordinal() <= 27) {
+                salary += calculateSalaryPoint(sk, skillList.get(sk)) * 4;
+            } else {
+                salary += calculateSalaryPoint(sk, skillList.get(sk)) * 5;
+            }
+        }
+        return salary;
+    }
+
+    public int calculateSalaryPoint(Skills skill, int skillLevel) {
+
+        if (skill.ordinal() <= 24) {
+            if (skillLevel == 1) {
+                if (skill.ordinal() == 24) {
+                    return 5;
+                } else {
+                    return 1;
+                }
+            } else {
+                return (calculateSalaryPoint(skill, skillLevel - 1) + 2);
+            }
+        } else if (skill.ordinal() >= 25 && skill.ordinal() <= 27) {
+            if (skillLevel == 1) {
+                return 2;
+            } else {
+                return (calculateSalaryPoint(skill, skillLevel - 1) + 4);
+            }
+        } else {
+            if (skillLevel == 1) {
+                if (skill.ordinal() == 29) {
+                    return 3;
+                } else {
+                    return 2;
+                }
+            } else {
+                return (calculateSalaryPoint(skill, skillLevel - 1) * 2);
+            }
+        }
     }
 }
