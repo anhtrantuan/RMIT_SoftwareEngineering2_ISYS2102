@@ -43,13 +43,12 @@ public class Constant {
     public static String EMPLOYEE_MANAGE = "Manage";
     public static String AVAILABLE_PROJECTS_LABEL = "Avalable Projects";
     public static String AVAILABLE_EMPLOYEE = "Available Employees";
-    public static String MAINSKILL_LABEL = "Main skill";
     public static String SKILL_LABEL = "Skill";
     public static String SKILL_LVL_LABEL = "Skill Level";
     public static String FIELD_LABEL = "Field";
     public static String REQUIRED_FUNCTIONPOINT_LABEL = "Required function point";
-    public static String MAIN_FIELD_LABEL = "Main field label";
-    public static String ALL_CURRENT_PROJECT_LABEL = "Current projects";
+    public static String MAIN_SKILL_LABEL = "Main Skill";
+    public static String CURRENT_PROJECT_LABEL = "Current Projects";
     public static String CANCEL = "Cancel";
     public static String HIRE = "Hire";
     public static String FIRE = "Fire";
@@ -64,9 +63,10 @@ public class Constant {
     public static String CLOSE_BTN = "Close";
     public static String SALARY_LABEL = "Salary";
     public static String ASSIGN = "Assign";
-    public static String PROJECT_TYPE="Project type";
+    public static String PROJECT_TYPE = "Project Type";
     public static String PROJECT_INFORMATION = "Project Information";
     public static String PROJECT_LEVEL = "Project Level";
+    public static String PROJECT_NAME = "Project Name";
     public static String TOTAL_REQUIRED_FUNCTIONPOINT_LABEL = "Required function point";
     public static String TOTAL_PRODUCED_FUNCTION_POINT = "Produced function point";
 }

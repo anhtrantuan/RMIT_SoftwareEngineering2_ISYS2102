@@ -14,12 +14,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author tommy
  */
-public class AvailableEmployeeTableModel extends DefaultTableModel {
+public class AvailableEmployeesTableModel extends DefaultTableModel {
 
     /**
-     * Constructor for AvailableEmployeeTableModel.
+     * Constructor for AvailableEmployeesTableModel.
      */
-    public AvailableEmployeeTableModel() {
+    public AvailableEmployeesTableModel() {
         addColumn(Constant.SKILL_LABEL);
         addColumn(Constant.SKILL_LVL_LABEL);
     }

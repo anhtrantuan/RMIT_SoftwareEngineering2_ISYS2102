@@ -15,10 +15,10 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Sherlock
  */
-public class CurrentProjectsTableModel extends DefaultTableModel {
+public class CurrentProjectTableModel extends DefaultTableModel {
 
-    public CurrentProjectsTableModel() {
-        addColumn(Constant.ALL_CURRENT_PROJECT_LABEL);
+    public CurrentProjectTableModel() {
+        addColumn(Constant.CURRENT_PROJECT_LABEL);
         addColumn(Constant.BUTTON_INFORMATION);
         addColumn(Constant.CANCEL);
     }
@@ -74,7 +74,8 @@ public class CurrentProjectsTableModel extends DefaultTableModel {
         for (ListIterator<Project> iterator = projectList.listIterator();
                 iterator.hasNext();) {
             Project project = iterator.next();
-            addRow(new Object[]{project.getName(), new JButton(Constant.ASSIGN),
+            addRow(new Object[]{project.getName(),
+                        new JButton(Constant.BUTTON_INFORMATION),
                         new JButton(Constant.CANCEL)});
         }
 

@@ -4,9 +4,23 @@
  */
 package devfortress.view.dialogs;
 
+import devfortress.DevFortress;
+import devfortress.controller.Controller;
+import devfortress.model.Beer;
+import devfortress.model.Computer;
 import devfortress.model.Employee;
+import devfortress.model.Food;
+import devfortress.model.Project;
+import devfortress.model.dificulity.EasyLevel;
+import devfortress.model.exception.OvercrowdedException;
+import devfortress.model.facade.Engine;
 import devfortress.utilities.Constant;
 import devfortress.utilities.MyTableModel;
+import devfortress.utilities.Utilities;
+import devfortress.view.DevFortressView;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -126,7 +140,6 @@ public class EmployeePanel extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
-    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -140,13 +153,78 @@ public class EmployeePanel extends javax.swing.JPanel {
 
     private void initInformation() {
         String[] columnName = {Constant.SKILL_LABEL, Constant.SKILL_LVL_LABEL};
-        jLabel2.setText(Constant.EMPLOYEE_NAME+": "+employee.getName());
-        jLabel3.setText(Constant.MAINSKILL_LABEL+": "+employee.getMainSkill());
-        jLabel4.setText(Constant.SALARY_LABEL+": "+employee.getSalary());
+        jLabel2.setText(Constant.EMPLOYEE_NAME + ": " + employee.getName());
+        jLabel3.setText(Constant.MAIN_SKILL_LABEL + ": " + employee.getMainSkill());
+        jLabel4.setText(Constant.SALARY_LABEL + ": " + employee.getSalary());
         tableInit(columnName);
     }
-    private void tableInit(String[] columnName){
-        myTableModel = new MyTableModel(employee.getSkillList(),2,columnName);
+
+    private void tableInit(String[] columnName) {
+        myTableModel = new MyTableModel(employee.getSkillList(), 2, columnName);
         jTable1.setModel(myTableModel);
+    }
+
+    public static void main(String[] args) {
+        /*
+         * Set the Nimbus look and feel
+         */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /*
+         * If Nimbus (introduced in Java SE 6) is not available, stay with the
+         * default look and feel. For details see
+         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info :
+                    javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException | InstantiationException |
+                IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(
+                    DevFortressView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        /*
+         * Create and display the form
+         */
+        java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                /*
+                 * Create MVC modules.
+                 */
+                Engine model = new Engine();
+                DevFortressView view = new DevFortressView(model);
+                model.addObserver(view);
+                Controller controller = new Controller(model, view);
+
+                /*
+                 * Display DevFortressView.
+                 */
+                view.setVisible(true);
+                model.buyItem(new Beer(50), 1);
+                model.buyItem(new Computer(), 3);
+                model.buyItem(new Food(300, "Pizza"), 1);
+
+                EasyLevel level = new EasyLevel();
+                List<Project> projects = Utilities.generateProjectList(level, 2, model);
+                model.takeProject(projects.get(0));
+                model.takeProject(projects.get(1));
+                List<Employee> employees = Utilities.generateEmployeeList(level, 3, model);
+
+                try {
+                    model.hireEmployee(employees.get(0));
+                    model.hireEmployee(employees.get(1));
+                    model.hireEmployee(employees.get(2));
+                } catch (OvercrowdedException ex) {
+                    Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        });
     }
 }

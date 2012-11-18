@@ -5,37 +5,39 @@
 package devfortress.view.dialogs;
 
 import devfortress.model.Employee;
-import devfortress.model.dificulity.EasyLevel;
 import devfortress.utilities.Constant;
-import devfortress.utilities.Utilities;
-import devfortress.view.DevFortressView;
-import devfortress.view.models.AvailableEmployeeTableModel;
+import devfortress.view.models.AvailableEmployeesTableModel;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.util.List;
-import javax.swing.JFrame;
 
 /**
  *
  * @author cathoanghuy
  */
-public class AvailableEmployeePanel extends javax.swing.JPanel {
+public class AvailableEmployeesPanel extends javax.swing.JPanel {
 
     private int index;
     private List<Employee> employeeList;
     private Employee currentEmployee;
-    private AvailableEmployeeTableModel tableModel;
+    private AvailableEmployeesTableModel tableModel;
 
     /**
-     * Creates new form AvaiableEmployee
+     * Creates new form AvaiableEmployee,
+     *
+     * @param employees
+     * @param buttonListener
      */
-    public AvailableEmployeePanel(List employees) {
+    public AvailableEmployeesPanel(List<Employee> employees,
+            ActionListener buttonListener) {
         initComponents();
         scpEmployees.getViewport().setBackground(Color.white);
-        tableModel = (AvailableEmployeeTableModel) tblEmployees.getModel();
+        tableModel = (AvailableEmployeesTableModel) tblEmployees.getModel();
         index = 0;
         employeeList = employees;
         populateData();
+        btnHire.addActionListener(buttonListener);
+        btnCancel.addActionListener(buttonListener);
     }
 
     /**
@@ -61,7 +63,7 @@ public class AvailableEmployeePanel extends javax.swing.JPanel {
         btnNext = new javax.swing.JButton();
         pnlAcceptCancel = new javax.swing.JPanel();
         btnCancel = new javax.swing.JButton();
-        btnAccept = new javax.swing.JButton();
+        btnHire = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -99,10 +101,10 @@ public class AvailableEmployeePanel extends javax.swing.JPanel {
         pnlNameAndMainSkill.setBackground(new java.awt.Color(255, 255, 255));
 
         lblName.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        lblName.setText("Name:");
+        lblName.setText(Constant.EMPLOYEE_NAME);
 
         lblMainSkill.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        lblMainSkill.setText("Main Skill:");
+        lblMainSkill.setText(Constant.MAIN_SKILL_LABEL);
 
         javax.swing.GroupLayout pnlNameAndMainSkillLayout = new javax.swing.GroupLayout(pnlNameAndMainSkill);
         pnlNameAndMainSkill.setLayout(pnlNameAndMainSkillLayout);
@@ -130,7 +132,8 @@ public class AvailableEmployeePanel extends javax.swing.JPanel {
 
         tblEmployees.setAutoCreateRowSorter(true);
         tblEmployees.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        tblEmployees.setModel(new AvailableEmployeeTableModel());
+        tblEmployees.setModel(new devfortress.view.models.AvailableEmployeesTableModel());
+        tblEmployees.setRowSelectionAllowed(false);
         scpEmployees.setViewportView(tblEmployees);
 
         add(scpEmployees);
@@ -144,7 +147,7 @@ public class AvailableEmployeePanel extends javax.swing.JPanel {
         pnlSalary.setLayout(pnlSalaryLayout);
         pnlSalaryLayout.setHorizontalGroup(
             pnlSalaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblSalary, javax.swing.GroupLayout.DEFAULT_SIZE, 478, Short.MAX_VALUE)
+            .addComponent(lblSalary, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
         );
         pnlSalaryLayout.setVerticalGroup(
             pnlSalaryLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,7 +164,7 @@ public class AvailableEmployeePanel extends javax.swing.JPanel {
         pnlPreviousNext.setMinimumSize(new java.awt.Dimension(225, 50));
         pnlPreviousNext.setPreferredSize(new java.awt.Dimension(225, 50));
 
-        btnPrevious.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        btnPrevious.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         btnPrevious.setText(Constant.PREVIOUS_BTN);
         btnPrevious.setMaximumSize(new java.awt.Dimension(100, 30));
         btnPrevious.setMinimumSize(new java.awt.Dimension(100, 30));
@@ -172,7 +175,7 @@ public class AvailableEmployeePanel extends javax.swing.JPanel {
             }
         });
 
-        btnNext.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        btnNext.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         btnNext.setText(Constant.NEXT_BTN);
         btnNext.setMaximumSize(new java.awt.Dimension(100, 30));
         btnNext.setMinimumSize(new java.awt.Dimension(100, 30));
@@ -212,11 +215,11 @@ public class AvailableEmployeePanel extends javax.swing.JPanel {
         btnCancel.setMinimumSize(new java.awt.Dimension(120, 40));
         btnCancel.setPreferredSize(new java.awt.Dimension(120, 40));
 
-        btnAccept.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
-        btnAccept.setText(Constant.ACCEPT);
-        btnAccept.setMaximumSize(new java.awt.Dimension(120, 40));
-        btnAccept.setMinimumSize(new java.awt.Dimension(120, 40));
-        btnAccept.setPreferredSize(new java.awt.Dimension(120, 40));
+        btnHire.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        btnHire.setText(Constant.HIRE);
+        btnHire.setMaximumSize(new java.awt.Dimension(120, 40));
+        btnHire.setMinimumSize(new java.awt.Dimension(120, 40));
+        btnHire.setPreferredSize(new java.awt.Dimension(120, 40));
 
         javax.swing.GroupLayout pnlAcceptCancelLayout = new javax.swing.GroupLayout(pnlAcceptCancel);
         pnlAcceptCancel.setLayout(pnlAcceptCancelLayout);
@@ -224,7 +227,7 @@ public class AvailableEmployeePanel extends javax.swing.JPanel {
             pnlAcceptCancelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAcceptCancelLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnAccept, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnHire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
                 .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -234,7 +237,7 @@ public class AvailableEmployeePanel extends javax.swing.JPanel {
             .addGroup(pnlAcceptCancelLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlAcceptCancelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAccept, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnHire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10))
         );
@@ -256,8 +259,8 @@ public class AvailableEmployeePanel extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnNextActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAccept;
     private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnHire;
     private javax.swing.JButton btnNext;
     private javax.swing.JButton btnPrevious;
     private javax.swing.JLabel lblMainSkill;
@@ -280,52 +283,11 @@ public class AvailableEmployeePanel extends javax.swing.JPanel {
         currentEmployee = employeeList.get(index);
         lblName.setText(String.format("%s: %s", Constant.EMPLOYEE_NAME,
                 currentEmployee.getName()));
-        lblMainSkill.setText(String.format("%s: %s", Constant.MAINSKILL_LABEL,
+        lblMainSkill.setText(String.format("%s: %s", Constant.MAIN_SKILL_LABEL,
                 currentEmployee.getMainSkill().toString()));
         lblSalary.setText(String.format("%s: $%.2f", Constant.SALARY_LABEL,
                 currentEmployee.getSalary()));
         tableModel.setSkillList(currentEmployee.getSkillList());
-    }
-
-    /**
-     * Set listener for Accept and Cancel buttons.
-     */
-    public void setButtonListener(ActionListener buttonListener) {
-    }
-
-    public static void main(String[] args) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info :
-                    javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException |
-                IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(
-                    DevFortressView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                JFrame f = new JFrame();
-                List<Employee> el = Utilities.generateEmployeeList(new EasyLevel(), 10, null);
-                AvailableEmployeePanel p = new AvailableEmployeePanel(el);
-                f.add(p);
-                f.pack();
-                f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                f.setVisible(true);
-            }
-        });
+        btnHire.setActionCommand(String.valueOf(index));
     }
 }

@@ -16,12 +16,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author tommy
  */
-public class EmployeeTableModel extends DefaultTableModel {
+public class EmployeesTableModel extends DefaultTableModel {
 
     /**
-     * Constructor for EmployeeTableModel.
+     * Constructor for EmployeesTableModel.
      */
-    public EmployeeTableModel() {
+    public EmployeesTableModel() {
         addColumn(Constant.EMPLOYEE_NAME);
         addColumn(Constant.EMPLOYEE_STATUS);
         addColumn(Constant.EMPLOYEE_CURRENT_PROJECT);

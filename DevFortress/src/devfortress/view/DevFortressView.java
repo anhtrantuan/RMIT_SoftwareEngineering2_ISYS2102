@@ -8,7 +8,7 @@ import devfortress.model.DateTime;
 import devfortress.model.facade.Model;
 import devfortress.utilities.Constant;
 import devfortress.view.editors.TableButtonCellEditor;
-import devfortress.view.models.EmployeeTableModel;
+import devfortress.view.models.EmployeesTableModel;
 import devfortress.view.models.ExpensesTreeModel;
 import devfortress.view.models.ProjectsTreeModel;
 import devfortress.view.renderers.ExpensesTreeCellRenderer;
@@ -41,6 +41,13 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
 
         /* Initialize components. */
         initComponents();
+
+        /* Fix background problem of developers scroll pane. */
+        scpDevelopers.getViewport().setBackground(Color.white);
+
+        /* Set cell renderer for Employee table. */
+        tblEmployee.setDefaultRenderer(JButton.class,
+                new TableButtonCellRenderer());
 
         /* Populate data for trees and tables. */
         populateData();
@@ -326,7 +333,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         scpDevelopers.setPreferredSize(new java.awt.Dimension(0, 0));
 
         tblEmployee.setAutoCreateRowSorter(true);
-        tblEmployee.setModel(new devfortress.view.models.EmployeeTableModel());
+        tblEmployee.setModel(new devfortress.view.models.EmployeesTableModel());
         tblEmployee.setRowHeight(30);
         tblEmployee.setRowSelectionAllowed(false);
         scpDevelopers.setViewportView(tblEmployee);
@@ -483,19 +490,16 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
     }// </editor-fold>//GEN-END:initComponents
 
     /**
-     * Setup component display.
+     * Set button listener for Employee table.
+     *
+     * @param tableButtonListener
      */
     @Override
-    public void setUpDisplay() {
-        /* Fix background problem of developers scroll pane. */
-        scpDevelopers.getViewport().setBackground(Color.white);
-
-        /* Setup developers table. */
-        tblEmployee.setDefaultRenderer(JButton.class,
-                new TableButtonCellRenderer());
+    public void setTableButtonListener(ActionListener tableButtonListener) {
+        /* Set cell renderer for Employee table. */
         tblEmployee.setDefaultEditor(JButton.class,
                 new TableButtonCellEditor(new JCheckBox(),
-                employeeTableButtonListener));
+                tableButtonListener));
     }
 
     /**
@@ -526,8 +530,8 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         treProjectsModel.reload();
 
         /* Update Developers table. */
-        EmployeeTableModel tblDevelopersModel =
-                (EmployeeTableModel) tblEmployee.getModel();
+        EmployeesTableModel tblDevelopersModel =
+                (EmployeesTableModel) tblEmployee.getModel();
         tblDevelopersModel.setEmployeeList(model.getEmployeeList());
 
         /* Fix overstretch problem of Management panel. */
@@ -706,15 +710,5 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         btnInformation.addActionListener(buttonListener);
         btnCurrentProjects.addActionListener(buttonListener);
         btnNextTurn.addActionListener(buttonListener);
-    }
-
-    /**
-     * Add button listener for Employee table.
-     *
-     * @param employeeTableButtonListener
-     */
-    @Override
-    public void addEmployeeTableButtonListener(ActionListener employeeTableButtonListener) {
-        this.employeeTableButtonListener = employeeTableButtonListener;
     }
 }

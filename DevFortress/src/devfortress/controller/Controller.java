@@ -31,13 +31,10 @@ public class Controller {
 
         /* Set up button listeners. */
         view.addButtonListener(new MainScreenButtonListener(model));
-        view.addEmployeeTableButtonListener(new EmployeeTableButtonListener(model));
-
-        /* Set up View display. */
-        view.setUpDisplay();
+        view.setTableButtonListener(new EmployeeTableButtonListener(model));
     }
-    
-    public void hireEmployee(Employee emp) throws OvercrowdedException{
+
+    public void hireEmployee(Employee emp) throws OvercrowdedException {
         model.hireEmployee(emp);
     }
 }

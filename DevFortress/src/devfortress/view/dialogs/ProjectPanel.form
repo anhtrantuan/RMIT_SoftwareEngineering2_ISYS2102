@@ -106,7 +106,7 @@
           <Font name="Tahoma" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-          <Connection code="Constant.MAIN_FIELD_LABEL" type="code"/>
+          <Connection code="Constant.MAIN_SKILL_LABEL" type="code"/>
         </Property>
       </Properties>
     </Component>
