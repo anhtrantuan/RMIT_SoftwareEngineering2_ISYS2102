@@ -17,6 +17,10 @@ import java.util.*;
  */
 public class Utilities {
 
+    private static String generateProjectName() {
+        return Name.getProjectName();
+    }
+
     public static int calculateSalaryPoint(Skills skill, int skillLevel) {
 
         if (skill.ordinal() <= 24) {
@@ -80,8 +84,7 @@ public class Utilities {
     }
 
     private static String generateEmployeeName() {
-        Random randomGenerator = new Random();
-        return Name.name[randomGenerator.nextInt(Name.name.length)];
+        return Name.getEmployeeName();
     }
 
     private static Employee generateEmployee(GameLevel level) {
