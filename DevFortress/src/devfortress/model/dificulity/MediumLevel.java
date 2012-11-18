@@ -8,7 +8,7 @@ package devfortress.model.dificulity;
 import devfortress.model.DateTime;
 import devfortress.model.Project;
 import devfortress.utilities.Constant;
-import devfortress.utilities.Skills;
+import devfortress.utilities.Skill;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -20,12 +20,12 @@ import java.util.Random;
 public class MediumLevel implements GameLevel {
 
     @Override
-    public Map<Skills, Integer> generateSkillList() {
-        Map<Skills, Integer> map = new HashMap<>();
+    public Map<Skill, Integer> generateSkillList() {
+        Map<Skill, Integer> map = new HashMap<>();
         Random random = new Random();
         int numOfField = random.nextInt(4) + 6;
         for (int i = 0; i < numOfField; i++) {
-            map.put(Skills.randomSkill(), random.nextInt(5) + 3);
+            map.put(Skill.randomSkill(), random.nextInt(5) + 3);
         }
         return map;
     }
@@ -51,7 +51,7 @@ public class MediumLevel implements GameLevel {
     @Override
     public Project generateProject() {
         Random random = new Random();
-        Map<Skills, Integer> map = new HashMap<>();
+        Map<Skill, Integer> map = new HashMap<>();
 
         DateTime projectTime = this.generateProjectTime();
         int maxFuntionPoints = projectTime.getMonths()
@@ -64,7 +64,7 @@ public class MediumLevel implements GameLevel {
 
         for (int i = 0; i < numOfField; i++) {
             int requireFuntionPoint = (random.nextInt(maxFuntionPoints / 2) + 1);
-            map.put(Skills.randomSkill(), requireFuntionPoint);
+            map.put(Skill.randomSkill(), requireFuntionPoint);
             maxFuntionPoints -= requireFuntionPoint;
 
             if (maxFuntionPoints <= 5) {

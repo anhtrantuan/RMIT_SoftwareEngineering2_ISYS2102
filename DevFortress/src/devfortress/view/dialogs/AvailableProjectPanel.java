@@ -8,7 +8,7 @@ import devfortress.controller.AcceptProjectBtnListener;
 import devfortress.model.Project;
 import devfortress.utilities.Constant;
 import devfortress.utilities.MyTableModel;
-import devfortress.utilities.Skills;
+import devfortress.utilities.Skill;
 import java.util.List;
 import java.util.Map;
 
@@ -23,7 +23,7 @@ public class AvailableProjectPanel extends javax.swing.JPanel {
      */
     int index;
     private Project[] projectList;
-    private Map<Skills, Integer> currentSelectedProjectInfo;
+    private Map<Skill, Integer> currentSelectedProjectInfo;
     private MyTableModel tableModel;
     private String[] columnName = {Constant.FIELD_LABEL, Constant.REQUIRED_FUNCTIONPOINT_LABEL};
     

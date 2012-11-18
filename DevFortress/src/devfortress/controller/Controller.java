@@ -29,7 +29,7 @@ public class Controller {
 
         /* Set up button listeners. */
         view.addButtonListener(new MainScreenButtonListener(model));
-        view.addDevelopersTableButtonListener(new DevelopersTableButtonListener(model));
+        view.addEmployeeTableButtonListener(new DevelopersTableButtonListener(model));
 
         /* Set up View display. */
         view.setUpDisplay();

@@ -7,13 +7,13 @@ package devfortress.view;
 import devfortress.model.DateTime;
 import devfortress.model.facade.Model;
 import devfortress.utilities.Constant;
-import devfortress.view.editors.DevelopersTableButtonCellEditor;
-import devfortress.view.models.DevelopersTableModel;
+import devfortress.view.editors.TableButtonCellEditor;
+import devfortress.view.models.EmployeeTableModel;
 import devfortress.view.models.ExpensesTreeModel;
 import devfortress.view.models.ProjectsTreeModel;
-import devfortress.view.renderers.DevelopersTableButtonCellRenderer;
 import devfortress.view.renderers.ExpensesTreeCellRenderer;
 import devfortress.view.renderers.ProjectsTreeCellRenderer;
+import devfortress.view.renderers.TableButtonCellRenderer;
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
@@ -27,9 +27,9 @@ import javax.swing.JCheckBox;
  * @author tommy
  */
 public class DevFortressView extends javax.swing.JFrame implements View, Observer {
-    
+
     private Model model;
-    private ActionListener developersTableButtonListener = null;
+    private ActionListener employeeTableButtonListener = null;
 
     /**
      * Creates new form DevFortressView.
@@ -78,7 +78,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         treProjects = new javax.swing.JTree();
         pnlBlank = new javax.swing.JPanel();
         scpDevelopers = new javax.swing.JScrollPane();
-        tblDevelopers = new javax.swing.JTable();
+        tblEmployee = new javax.swing.JTable();
         pnlLogAndControl = new javax.swing.JPanel();
         scpLogPane = new javax.swing.JScrollPane();
         txaLog = new javax.swing.JTextArea();
@@ -314,7 +314,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         );
         pnlBlankLayout.setVerticalGroup(
             pnlBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 82, Short.MAX_VALUE)
+            .addGap(0, 86, Short.MAX_VALUE)
         );
 
         pnlManagement.add(pnlBlank);
@@ -325,11 +325,11 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         scpDevelopers.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
         scpDevelopers.setPreferredSize(new java.awt.Dimension(0, 0));
 
-        tblDevelopers.setAutoCreateRowSorter(true);
-        tblDevelopers.setModel(new DevelopersTableModel());
-        tblDevelopers.setRowHeight(30);
-        tblDevelopers.setRowSelectionAllowed(false);
-        scpDevelopers.setViewportView(tblDevelopers);
+        tblEmployee.setAutoCreateRowSorter(true);
+        tblEmployee.setModel(new devfortress.view.models.EmployeeTableModel());
+        tblEmployee.setRowHeight(30);
+        tblEmployee.setRowSelectionAllowed(false);
+        scpDevelopers.setViewportView(tblEmployee);
 
         pnlLogAndControl.setPreferredSize(new java.awt.Dimension(0, 120));
 
@@ -471,7 +471,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(scpDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+                        .addComponent(scpDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
                         .addGap(0, 0, 0)
                         .addComponent(pnlLogAndControl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(scpManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -491,11 +491,11 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         scpDevelopers.getViewport().setBackground(Color.white);
 
         /* Setup developers table. */
-        tblDevelopers.setDefaultRenderer(JButton.class,
-                new DevelopersTableButtonCellRenderer());
-        tblDevelopers.setDefaultEditor(JButton.class,
-                new DevelopersTableButtonCellEditor(new JCheckBox(),
-                developersTableButtonListener));
+        tblEmployee.setDefaultRenderer(JButton.class,
+                new TableButtonCellRenderer());
+        tblEmployee.setDefaultEditor(JButton.class,
+                new TableButtonCellEditor(new JCheckBox(),
+                employeeTableButtonListener));
     }
 
     /**
@@ -526,8 +526,8 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         treProjectsModel.reload();
 
         /* Update Developers table. */
-        DevelopersTableModel tblDevelopersModel =
-                (DevelopersTableModel) tblDevelopers.getModel();
+        EmployeeTableModel tblDevelopersModel =
+                (EmployeeTableModel) tblEmployee.getModel();
         tblDevelopersModel.setEmployeeList(model.getEmployeeList());
 
         /* Fix overstretch problem of Management panel. */
@@ -674,12 +674,18 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
     private javax.swing.JScrollPane scpManagement;
     private javax.swing.JScrollPane scpProjects;
     private javax.swing.JSplitPane sppControl;
-    private javax.swing.JTable tblDevelopers;
+    private javax.swing.JTable tblEmployee;
     private javax.swing.JTree treExpenses;
     private javax.swing.JTree treProjects;
     private javax.swing.JTextArea txaLog;
     // End of variables declaration//GEN-END:variables
 
+    /**
+     * Update data and logs.
+     *
+     * @param o
+     * @param arg
+     */
     @Override
     public void update(Observable o, Object arg) {
         /* Populate data. */
@@ -688,7 +694,12 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         /* Update Log text area. */
         txaLog.append(arg.toString() + "\n");
     }
-    
+
+    /**
+     * Add button listener for main screen.
+     *
+     * @param buttonListener
+     */
     @Override
     public void addButtonListener(ActionListener buttonListener) {
         btnSystem.addActionListener(buttonListener);
@@ -696,9 +707,14 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         btnCurrentProjects.addActionListener(buttonListener);
         btnNextTurn.addActionListener(buttonListener);
     }
-    
+
+    /**
+     * Add button listener for Employee table.
+     *
+     * @param employeeTableButtonListener
+     */
     @Override
-    public void addDevelopersTableButtonListener(ActionListener developersTableButtonListener) {
-        this.developersTableButtonListener = developersTableButtonListener;
+    public void addEmployeeTableButtonListener(ActionListener employeeTableButtonListener) {
+        this.employeeTableButtonListener = employeeTableButtonListener;
     }
 }

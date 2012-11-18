@@ -47,7 +47,7 @@ public class UtilitiesTest {
     @Test
     public void testCalculateSalaryPoint() {
         System.out.println("calculateSalaryPoint with C");
-        Skills skill = Skills.C;
+        Skill skill = Skill.C;
         int skillLevel = 5;
         int expResult = 9;
         int result = Utilities.calculateSalaryPoint(skill, skillLevel);
@@ -62,7 +62,7 @@ public class UtilitiesTest {
     @Test
     public void testCalculateSalaryPoint1() {
         System.out.println("calculateSalaryPoint with Lisp");
-        Skills skill = Skills.LISP;
+        Skill skill = Skill.LISP;
         int skillLevel = 4;
         int expResult = 14;
         int result = Utilities.calculateSalaryPoint(skill, skillLevel);
@@ -77,7 +77,7 @@ public class UtilitiesTest {
     @Test
     public void testCalculateSalaryPoint2() {
         System.out.println("calculateSalaryPoint with Design");
-        Skills skill = Skills.DESIGN;
+        Skill skill = Skill.DESIGN;
         int skillLevel = 8;
         int expResult = 256;
         int result = Utilities.calculateSalaryPoint(skill, skillLevel);
@@ -92,7 +92,7 @@ public class UtilitiesTest {
     @Test
     public void testCalculateSalaryPoint3() {
         System.out.println("calculateSalaryPoint with Algorithm");
-        Skills skill = Skills.ALGORITHMS;
+        Skill skill = Skill.ALGORITHMS;
         int skillLevel = 6;
         int expResult = 96;
         int result = Utilities.calculateSalaryPoint(skill, skillLevel);
@@ -107,7 +107,7 @@ public class UtilitiesTest {
     @Test
     public void testCalculateSalaryPoint4() {
         System.out.println("calculateSalaryPoint with ConfigManagement");
-        Skills skill = Skills.CONFIG_MANAGEMENT;
+        Skill skill = Skill.CONFIG_MANAGEMENT;
         int skillLevel = 5;
         int expResult = 13;
         int result = Utilities.calculateSalaryPoint(skill, skillLevel);
@@ -153,12 +153,12 @@ public class UtilitiesTest {
     @Test
     public void testCalculateSalary() {
         System.out.println("calculateSalary");
-        Map<Skills, Integer> skillList = new HashMap<Skills,Integer>();
-        skillList.put(Skills.C, 5);
-        skillList.put(Skills.LISP, 4);
-        skillList.put(Skills.DESIGN, 8);
-        skillList.put(Skills.ALGORITHMS, 6);
-        skillList.put(Skills.CONFIG_MANAGEMENT, 5);
+        Map<Skill, Integer> skillList = new HashMap<Skill,Integer>();
+        skillList.put(Skill.C, 5);
+        skillList.put(Skill.LISP, 4);
+        skillList.put(Skill.DESIGN, 8);
+        skillList.put(Skill.ALGORITHMS, 6);
+        skillList.put(Skill.CONFIG_MANAGEMENT, 5);
         int expResult = 1860;
         int result = Utilities.calculateSalary(skillList);
         assertEquals(expResult, result);

@@ -17,7 +17,7 @@ import java.util.*;
  */
 public class Utilities {
 
-    public static int calculateSalaryPoint(Skills skill, int skillLevel) {
+    public static int calculateSalaryPoint(Skill skill, int skillLevel) {
 
         if (skill.ordinal() <= 24) {
             if (skillLevel == 1) {
@@ -48,9 +48,9 @@ public class Utilities {
         }
     }
 
-    public static int calculateSalary(Map<Skills, Integer> skillList) {
+    public static int calculateSalary(Map<Skill, Integer> skillList) {
         int salary = 0;
-        for (Skills sk : skillList.keySet()) {
+        for (Skill sk : skillList.keySet()) {
             if (sk.ordinal() <= 24) {
                 salary += calculateSalaryPoint(sk, skillList.get(sk)) * 2;
             } else if (sk.ordinal() >= 25 && sk.ordinal() <= 27) {

@@ -7,7 +7,7 @@ package devfortress.view.models;
 import devfortress.model.Employee;
 import devfortress.model.Project;
 import devfortress.utilities.Constant;
-import devfortress.utilities.Skills;
+import devfortress.utilities.Skill;
 import java.util.Iterator;
 import java.util.Map;
 import javax.swing.JButton;
@@ -17,7 +17,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Sherlock
  */
-public class DetailedProjectInfoTableModel extends DefaultTableModel{
+public class DetailedProjectInfoTableModel extends DefaultTableModel {
 
     public DetailedProjectInfoTableModel() {
         addColumn(Constant.EMPLOYEE_NAME);
@@ -66,9 +66,10 @@ public class DetailedProjectInfoTableModel extends DefaultTableModel{
      * @param employeeList
      */
     public void setProject(Project project) {
-        Map <Skills,Employee> skill_dev_map = project.getSkill_employeeMap();
-        Map <Skills, Integer> skill_point_map = project.getSkillRequirementMap();
-        Map <Skills, Integer> original_skill_point_map = project.getOriginalSkillRequirementMap();
+        Map<Skill, Employee> skill_dev_map = project.getSkill_employeeMap();
+        Map<Skill, Integer> skill_point_map = project.getSkillRequirementMap();
+        Map<Skill, Integer> original_skill_point_map =
+                project.getOriginalSkillRequirementMap();
         /*
          * Reset table.
          */
@@ -77,13 +78,15 @@ public class DetailedProjectInfoTableModel extends DefaultTableModel{
         /*
          * Add new records.
          */
-        for(Iterator<Skills> fieldSetIterator = skill_dev_map.keySet().iterator();fieldSetIterator.hasNext();){
-            Skills skill =  fieldSetIterator.next();
+        for (Iterator<Skill> fieldSetIterator = skill_dev_map.keySet().iterator();
+                fieldSetIterator.hasNext();) {
+            Skill skill = fieldSetIterator.next();
             String devName = skill_dev_map.get(skill).getName();
             int producedPoint = skill_point_map.get(skill);
             int requiredPoint = original_skill_point_map.get(skill);
-            addRow(new Object[]{devName,skill,producedPoint,requiredPoint,new JButton(Constant.ASSIGN)});
+            addRow(new Object[]{devName, skill, producedPoint, requiredPoint,
+                        new JButton(Constant.ASSIGN)});
         }
-        
+
     }
 }

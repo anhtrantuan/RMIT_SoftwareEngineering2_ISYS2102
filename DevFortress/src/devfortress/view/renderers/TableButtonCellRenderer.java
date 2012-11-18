@@ -13,7 +13,7 @@ import javax.swing.table.TableCellRenderer;
  *
  * @author tommy
  */
-public class DevelopersTableButtonCellRenderer implements TableCellRenderer {
+public class TableButtonCellRenderer implements TableCellRenderer {
 
     /**
      * Get table cell renderer component and render to its specific type.

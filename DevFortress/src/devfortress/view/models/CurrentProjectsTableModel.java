@@ -4,14 +4,10 @@
  */
 package devfortress.view.models;
 
-import devfortress.model.Employee;
 import devfortress.model.Project;
 import devfortress.utilities.Constant;
-import devfortress.utilities.Skills;
-import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
-import java.util.Map;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
@@ -19,7 +15,8 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Sherlock
  */
-public class CurrentProjectsTableModel extends DefaultTableModel{
+public class CurrentProjectsTableModel extends DefaultTableModel {
+
     public CurrentProjectsTableModel() {
         addColumn(Constant.ALL_CURRENT_PROJECT_LABEL);
         addColumn(Constant.BUTTON_INFORMATION);
@@ -65,7 +62,7 @@ public class CurrentProjectsTableModel extends DefaultTableModel{
      * @param employeeList
      */
     public void setProjectList(List<Project> projectList) {
-        
+
         /*
          * Reset table.
          */
@@ -77,8 +74,9 @@ public class CurrentProjectsTableModel extends DefaultTableModel{
         for (ListIterator<Project> iterator = projectList.listIterator();
                 iterator.hasNext();) {
             Project project = iterator.next();
-            addRow(new Object[]{project.getName(),new JButton(Constant.ASSIGN),new JButton(Constant.CANCEL)});
+            addRow(new Object[]{project.getName(), new JButton(Constant.ASSIGN),
+                        new JButton(Constant.CANCEL)});
         }
-        
+
     }
 }

@@ -13,7 +13,7 @@ import devfortress.model.Food;
 import devfortress.model.Project;
 import devfortress.model.exception.OvercrowdedException;
 import devfortress.model.facade.Engine;
-import devfortress.utilities.Skills;
+import devfortress.utilities.Skill;
 import devfortress.view.DevFortressView;
 import java.util.HashMap;
 import java.util.Random;
@@ -69,18 +69,18 @@ public class DevFortress {
                 model.buyItem(new Computer(100), 3);
                 model.buyItem(new Food(300, "Pizza"), 1);
 
-                HashMap<Skills, Integer> skillList = new HashMap<>();
-                skillList.put(Skills.C, 5);
-                skillList.put(Skills.LISP, 4);
-                skillList.put(Skills.DESIGN, 8);
-                skillList.put(Skills.ALGORITHMS, 6);
-                skillList.put(Skills.CONFIG_MANAGEMENT, 5);
+                HashMap<Skill, Integer> skillList = new HashMap<>();
+                skillList.put(Skill.C, 5);
+                skillList.put(Skill.LISP, 4);
+                skillList.put(Skill.DESIGN, 8);
+                skillList.put(Skill.ALGORITHMS, 6);
+                skillList.put(Skill.CONFIG_MANAGEMENT, 5);
                 model.takeProject(new Project("P" + new Random().nextLong(), 100, 100, 1, new DateTime(0, 6, 0), skillList));
 
                 try {
                     model.hireEmployee(new Employee("Joe", 100, skillList));
                     model.hireEmployee(new Employee("Doe", 200, skillList));
-                    model.hireEmployee(new Employee("Foo",500,skillList));
+                    model.hireEmployee(new Employee("Foo", 500, skillList));
                 } catch (OvercrowdedException ex) {
                     Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
                 }

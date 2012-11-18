@@ -12,7 +12,7 @@ import java.awt.event.ActionListener;
  */
 public interface View {
 
-    void addDevelopersTableButtonListener(ActionListener developersTableButtonListener);
+    void addEmployeeTableButtonListener(ActionListener developersTableButtonListener);
 
     void setUpDisplay();
 

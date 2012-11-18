@@ -5,7 +5,7 @@
 package devfortress.model;
 
 import devfortress.model.exception.ProjectFailsException;
-import devfortress.utilities.Skills;
+import devfortress.utilities.Skill;
 import java.util.Map;
 import java.util.Random;
 
@@ -22,15 +22,15 @@ public class Project {
     private DateTime projectTime;
     //remaining time for project
     private DateTime remainingTime;
-    private Map<Skills, Integer> skillRequirementMap;
-    private Map<Skills, Employee> skill_employeeMap;
-    private Map<Skills, Integer> originalSkillRequirementMap;
-    private Skills mainSkill;
+    private Map<Skill, Integer> skillRequirementMap;
+    private Map<Skill, Employee> skill_employeeMap;
+    private Map<Skill, Integer> originalSkillRequirementMap;
+    private Skill mainSkill;
     private String name;
     private int totalPoints, remainingPoints, totalFunctionPointsDelivered;
 
     public Project(String name, int totalPoints, float payment, int projectLevel,
-            DateTime projectTime, Map<Skills, Integer> skillRequirementMap) {
+            DateTime projectTime, Map<Skill, Integer> skillRequirementMap) {
         this.name = name;
         this.totalPoints = totalPoints;
         remainingPoints = totalPoints;
@@ -75,19 +75,19 @@ public class Project {
         this.remainingTime = remainingtime;
     }
 
-    public Map<Skills, Integer> getSkillRequirementMap() {
+    public Map<Skill, Integer> getSkillRequirementMap() {
         return skillRequirementMap;
     }
 
-    public void setSkillRequirementMap(Map<Skills, Integer> skillRequirementMap) {
+    public void setSkillRequirementMap(Map<Skill, Integer> skillRequirementMap) {
         this.skillRequirementMap = skillRequirementMap;
     }
 
-    public Map<Skills, Employee> getSkill_employeeMap() {
+    public Map<Skill, Employee> getSkill_employeeMap() {
         return skill_employeeMap;
     }
 
-    public void setSkill_employeeMap(Map<Skills, Employee> skill_employeeMap) {
+    public void setSkill_employeeMap(Map<Skill, Employee> skill_employeeMap) {
         this.skill_employeeMap = skill_employeeMap;
     }
 
@@ -115,7 +115,7 @@ public class Project {
         Random random = new Random();
         int lvlUpPercent = (projectLevel * 5) - 1;
         Employee selectedEmployee;
-        for (Skills sk : skill_employeeMap.keySet()) {
+        for (Skill sk : skill_employeeMap.keySet()) {
             selectedEmployee = skill_employeeMap.get(sk);
             for (int i = 0; i < projectTime.getMonths(); i++) {
                 if (random.nextInt(99) < lvlUpPercent) {
@@ -125,10 +125,10 @@ public class Project {
         }
     }
 
-    private Skills calculateMainSkill() {
-        Skills main = null;
+    private Skill calculateMainSkill() {
+        Skill main = null;
         int highest = 0;
-        for (Skills sk : skillRequirementMap.keySet()) {
+        for (Skill sk : skillRequirementMap.keySet()) {
             if (skillRequirementMap.get(sk) >= highest) {
                 if (skillRequirementMap.get(sk) == highest) {
                     main = (sk.toString().compareToIgnoreCase(main.toString()) < 0) ? sk : main;
@@ -169,7 +169,7 @@ public class Project {
     public boolean checkProjectProcess() throws ProjectFailsException {
         int finish = 0;
         totalFunctionPointsDelivered = 0;
-        for (Skills sk : skill_employeeMap.keySet()) {
+        for (Skill sk : skill_employeeMap.keySet()) {
             Employee emp = skill_employeeMap.get(sk);
             int functionPointProduced = calculateFinalFunctionPoint(calculateBasicFunctionPoint(emp), emp);
             remainingPoints -= functionPointProduced;
@@ -193,11 +193,11 @@ public class Project {
         return false;
     }
 
-    public Skills getMainSkill() {
+    public Skill getMainSkill() {
         return mainSkill;
     }
 
-    public Map<Skills, Integer> getOriginalSkillRequirementMap() {
+    public Map<Skill, Integer> getOriginalSkillRequirementMap() {
         return originalSkillRequirementMap;
     }
     

@@ -15,17 +15,17 @@ import javax.swing.JTable;
  *
  * @author tommy
  */
-public class DevelopersTableButtonCellEditor extends DefaultCellEditor {
+public class TableButtonCellEditor extends DefaultCellEditor {
 
     private ActionListener buttonListener;
     private String buttonText;
 
     /**
-     * Constructor for DevelopersTableButtonCellEditor.
+     * Constructor for TableButtonCellEditor.
      *
      * @param checkBox
      */
-    public DevelopersTableButtonCellEditor(JCheckBox checkBox,
+    public TableButtonCellEditor(JCheckBox checkBox,
             ActionListener buttonListener) {
         super(checkBox);
         this.buttonListener = buttonListener;

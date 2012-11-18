@@ -13,7 +13,7 @@ import java.util.Random;
  *
  * @author cathoanghuy
  */
-public enum Skills {
+public enum Skill {
 
     C,
     C_PLUSS_PLUSS,
@@ -49,12 +49,12 @@ public enum Skills {
     TEAM_PLAYER,
     COMMUNICATION;
     //...
-    private static final List<Skills> VALUES =
+    private static final List<Skill> VALUES =
             Collections.unmodifiableList(Arrays.asList(values()));
     private static final int SIZE = VALUES.size();
     private static final Random RANDOM = new Random();
 
-    public static Skills randomSkill() {
+    public static Skill randomSkill() {
         return VALUES.get(RANDOM.nextInt(SIZE));
     }
 }
