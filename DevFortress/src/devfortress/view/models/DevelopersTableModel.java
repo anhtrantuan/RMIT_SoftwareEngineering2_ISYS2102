@@ -75,15 +75,7 @@ public class DevelopersTableModel extends DefaultTableModel {
                 iterator.hasNext();) {
             
             final Employee employee = iterator.next();
-            
-            JButton detailBtn = new JButton(Constant.EMPLOYEE_DETAILS);
-            detailBtn.addActionListener(new ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    new EmployeeInformationPanel(employee);
-                }
-            });
-            
+                        
             addRow(new Object[]{employee.getName(),
                         new ImageIcon(getClass().getResource("../resources/icHappy.png")),
                         "Project 1", new JButton(Constant.EMPLOYEE_DETAILS),

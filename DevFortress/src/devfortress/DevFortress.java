@@ -11,6 +11,7 @@ import devfortress.model.DateTime;
 import devfortress.model.Employee;
 import devfortress.model.Food;
 import devfortress.model.Project;
+import devfortress.model.dificulity.DifficultLevel;
 import devfortress.model.dificulity.EasyLevel;
 import devfortress.model.exception.OvercrowdedException;
 import devfortress.model.facade.Engine;

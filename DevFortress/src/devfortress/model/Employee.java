@@ -188,7 +188,7 @@ public class Employee {
                 salary += calculateSalaryPoint(sk, skillList.get(sk)) * 5;
             }
         }
-        return salary;
+        return salary*10;
     }
 
     public int calculateSalaryPoint(Skills skill, int skillLevel) {
