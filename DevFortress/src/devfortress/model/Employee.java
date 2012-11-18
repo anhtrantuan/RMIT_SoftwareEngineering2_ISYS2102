@@ -47,6 +47,10 @@ public class Employee {
         return calculateSalary();
     }
 
+    public void setSalary(float salary) {
+        this.salary = salary;
+    }
+
     public Map<Skill, Integer> getSkillList() {
         return skillList;
     }

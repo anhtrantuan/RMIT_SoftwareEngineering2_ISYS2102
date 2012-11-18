@@ -84,8 +84,6 @@ public class DevFortress {
                 model.buyItem(new Computer(), 20);
                 model.buyItem(new Food(300, "Pizza"), 1);
 
-
-
                 HashMap<Skill, Integer> skillList = new HashMap<>();
                 skillList.put(Skill.C, 5);
                 skillList.put(Skill.LISP, 4);
