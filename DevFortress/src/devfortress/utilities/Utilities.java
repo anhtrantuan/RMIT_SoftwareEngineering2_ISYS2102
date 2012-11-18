@@ -17,6 +17,10 @@ import java.util.*;
  */
 public class Utilities {
 
+    private static String generateProjectName() {
+        return Name.getProjectName();
+    }
+
     public static int calculateSalaryPoint(Skills skill, int skillLevel) {
 
         if (skill.ordinal() <= 24) {
@@ -65,7 +69,7 @@ public class Utilities {
     public static List<Project> generateProjectList(GameLevel level, int numberOfProject) {
         List<Project> projects = new ArrayList<>();
         for (int i = 0; i < numberOfProject; i++) {
-            projects.add(level.generateProject());
+            projects.add(level.generateProject(Name.getProjectName()));
         }
         return projects;
     }
@@ -80,15 +84,18 @@ public class Utilities {
     }
 
     private static String generateEmployeeName() {
-        Random randomGenerator = new Random();
-        return Name.name[randomGenerator.nextInt(Name.name.length)];
+        return Name.getEmployeeName();
     }
 
     private static Employee generateEmployee(GameLevel level) {
         return new Employee(generateEmployeeName(), level.generateSkillList());
     }
-    //check if there is any empty computer in company then assign employee into that computer, return true if having empty computer
 
+    /**
+     * check if there is any empty computer in company then assign employee into
+     * that computer, return true if having empty computer
+     *
+     */
     public static boolean assignComputerToEmployee(Company company, Employee employee) {
         Map<Computer, Employee> computerMap = company.getComputerList();
         for (Computer com : computerMap.keySet()) {

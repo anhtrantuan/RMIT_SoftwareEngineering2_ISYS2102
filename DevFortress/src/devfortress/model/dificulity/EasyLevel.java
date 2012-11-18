@@ -45,7 +45,7 @@ public class EasyLevel implements GameLevel {
     }
 
     @Override
-    public Project generateProject() {
+    public Project generateProject(String projectName) {
         Random random = new Random();
         Map<Skills, Integer> map = new HashMap<>();
 
@@ -68,7 +68,7 @@ public class EasyLevel implements GameLevel {
 
         }
 
-        return new Project("P" + random.nextLong(), totalPoints,
+        return new Project(projectName, totalPoints,
                 this.generateProjectPayment(),
                 this.generateProjectLevel(), projectTime, map);
     }

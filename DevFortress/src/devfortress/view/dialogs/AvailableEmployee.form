@@ -28,13 +28,21 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
+<<<<<<< HEAD:DevFortress/src/devfortress/view/dialogs/AvailableEmployee.form
+          <Component id="jScrollPane1" alignment="1" pref="0" max="32767" attributes="0"/>
+=======
           <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
+>>>>>>> 4e19d6551d1da98cd1df91df75c537af1b4d46d4:DevFortress/src/devfortress/view/dialogs/AvailableEmployee.form
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
               <Component id="jButton3" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
               <Component id="jButton4" min="-2" max="-2" attributes="0"/>
+<<<<<<< HEAD:DevFortress/src/devfortress/view/dialogs/AvailableEmployee.form
+              <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
+=======
               <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+>>>>>>> 4e19d6551d1da98cd1df91df75c537af1b4d46d4:DevFortress/src/devfortress/view/dialogs/AvailableEmployee.form
           </Group>
           <Group type="102" attributes="0">
               <Group type="103" groupAlignment="0" attributes="0">
@@ -57,11 +65,19 @@
                       <Component id="jButton2" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
+<<<<<<< HEAD:DevFortress/src/devfortress/view/dialogs/AvailableEmployee.form
+                      <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
+                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+              <EmptySpace pref="81" max="32767" attributes="0"/>
+=======
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
+>>>>>>> 4e19d6551d1da98cd1df91df75c537af1b4d46d4:DevFortress/src/devfortress/view/dialogs/AvailableEmployee.form
           </Group>
       </Group>
     </DimensionLayout>
@@ -75,6 +91,24 @@
                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+<<<<<<< HEAD:DevFortress/src/devfortress/view/dialogs/AvailableEmployee.form
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="309" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace pref="50" max="32767" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                  </Group>
+=======
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane1" min="-2" pref="273" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
@@ -83,13 +117,17 @@
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton2" alignment="3" min="-2" max="-2" attributes="0"/>
+>>>>>>> 4e19d6551d1da98cd1df91df75c537af1b4d46d4:DevFortress/src/devfortress/view/dialogs/AvailableEmployee.form
               </Group>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jButton3" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jButton4" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
+<<<<<<< HEAD:DevFortress/src/devfortress/view/dialogs/AvailableEmployee.form
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+=======
               <EmptySpace pref="38" max="32767" attributes="0"/>
+>>>>>>> 4e19d6551d1da98cd1df91df75c537af1b4d46d4:DevFortress/src/devfortress/view/dialogs/AvailableEmployee.form
           </Group>
       </Group>
     </DimensionLayout>
@@ -179,12 +217,16 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
+<<<<<<< HEAD:DevFortress/src/devfortress/view/dialogs/AvailableEmployee.form
+        <Property name="text" type="java.lang.String" value="Salary:"/>
+=======
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Tahoma" size="14" style="0"/>
         </Property>
         <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
           <Connection code="Constant.SALARY_LABEL" type="code"/>
         </Property>
+>>>>>>> 4e19d6551d1da98cd1df91df75c537af1b4d46d4:DevFortress/src/devfortress/view/dialogs/AvailableEmployee.form
       </Properties>
     </Component>
   </SubComponents>

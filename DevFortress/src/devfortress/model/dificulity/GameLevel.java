@@ -17,7 +17,7 @@ public interface GameLevel {
 
     Map<Skills, Integer> generateSkillList();
 
-    Project generateProject();
+    Project generateProject(String projectNames);
 
     int generateProjectLevel();
 
