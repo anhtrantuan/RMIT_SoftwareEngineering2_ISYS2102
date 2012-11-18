@@ -7,7 +7,6 @@ package devfortress.utilities;
 import devfortress.model.Employee;
 import devfortress.model.dificulity.EasyLevel;
 import devfortress.model.dificulity.GameLevel;
-import java.util.List;
 
 /**
  *
@@ -27,7 +26,7 @@ public class Test {
         for (Object skill : e.getSkillList().keySet()) {
             System.out.println(skill.toString()+":"+e.getSkillList().get(skill));
         }
-        System.out.println(e.getLowestSkillLvl());
+        System.out.println(e.getLowestSkillLevel());
         
 
     }

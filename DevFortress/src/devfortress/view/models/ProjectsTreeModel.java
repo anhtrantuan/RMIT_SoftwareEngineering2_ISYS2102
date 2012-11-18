@@ -35,6 +35,9 @@ public class ProjectsTreeModel extends DefaultTreeModel {
      * @param projects
      */
     public void setProjects(List<Project> projects) {
+        DefaultMutableTreeNode rootNode = (DefaultMutableTreeNode) root;
+        rootNode.removeAllChildren();
+        
         /* Loop through project list to update data. */
         for (ListIterator<Project> iterator = projects.listIterator();
                 iterator.hasNext();) {
@@ -45,7 +48,6 @@ public class ProjectsTreeModel extends DefaultTreeModel {
             String name = project.getName();
 
             /* Loop through project tree. */
-            DefaultMutableTreeNode rootNode = (DefaultMutableTreeNode) getRoot();
             for (Enumeration<DefaultMutableTreeNode> enumeration = rootNode.children();
                     isNew && enumeration.hasMoreElements();) {
                 /* Get current node and its value. */

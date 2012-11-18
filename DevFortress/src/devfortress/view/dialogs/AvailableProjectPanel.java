@@ -4,11 +4,10 @@
  */
 package devfortress.view.dialogs;
 
-
 import devfortress.model.Project;
 import devfortress.utilities.Constant;
 import devfortress.utilities.MyTableModel;
-import devfortress.utilities.Skills;
+import devfortress.utilities.Skill;
 import java.util.List;
 import java.util.Map;
 
@@ -23,14 +22,14 @@ public class AvailableProjectPanel extends javax.swing.JPanel {
      */
     int index;
     private Project[] projectList;
-    private Map<Skills, Integer> currentSelectedProjectInfo;
+    private Map<Skill, Integer> currentSelectedProjectInfo;
     private MyTableModel tableModel;
     private String[] columnName = {Constant.FIELD_LABEL, Constant.REQUIRED_FUNCTIONPOINT_LABEL};
-    
+
     public AvailableProjectPanel(List availableProjectList) {
         initComponents();
         index = 0;
-        projectList = (Project[])((availableProjectList).toArray());
+        projectList = (Project[]) ((availableProjectList).toArray());
         initController();
         initInformation();
     }
@@ -187,23 +186,21 @@ public class AvailableProjectPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if(index!=0){
+        if (index != 0) {
             index--;
             jTable1.revalidate();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if(index!=projectList.length-1){
+        if (index != projectList.length - 1) {
             index++;
             jTable1.revalidate();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        
     }//GEN-LAST:event_jButton3ActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -220,13 +217,13 @@ public class AvailableProjectPanel extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void initInformation() {
-        
-        jLabel2.setText("Project name: "+projectList[index].getName());
-        jLabel3.setText("Project level: "+projectList[index].getProjectLevel());
-        jLabel4.setText(Constant.MAIN_FIELD_LABEL + ": "+projectList[index].getMainSkill());
-        jLabel5.setText(Constant.PROJECT_DUE + ": "+projectList[index].getProjectTime());
-        jLabel6.setText(Constant.PROJECT_PAY + ": "+projectList[index].getPayment());
-        
+
+        jLabel2.setText("Project name: " + projectList[index].getName());
+        jLabel3.setText("Project level: " + projectList[index].getProjectLevel());
+        jLabel4.setText(Constant.MAIN_FIELD_LABEL + ": " + projectList[index].getMainSkill());
+        jLabel5.setText(Constant.PROJECT_DUE + ": " + projectList[index].getProjectTime());
+        jLabel6.setText(Constant.PROJECT_PAY + ": " + projectList[index].getPayment());
+
         tableInit();
     }
 
@@ -237,7 +234,6 @@ public class AvailableProjectPanel extends javax.swing.JPanel {
     }
 
     private void initController() {
-        
         //TODO
     }
 }

@@ -4,8 +4,9 @@
  */
 package devfortress.model;
 
-import devfortress.utilities.Skills;
+import devfortress.utilities.Skill;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Map;
 
 /**
@@ -16,19 +17,22 @@ public class Employee {
 
     private String name;
     private float salary;
-    private Map<Skills, Integer> skillList;
-    private Skills mainSkill;
+    private Map<Skill, Integer> skillList;
     private boolean status[];
 
-    public Employee(String name, Map skillList) {
-        this.name = name;
-        this.skillList = skillList;
+    public Employee(String name, float salary, Map<Skill, Integer> skillList) {
+        this(name, skillList);
+        this.salary = salary;
         status = new boolean[3];
         //0 is having beer, 1 is full, 2 is happy;
         status[0] = false;
         status[1] = false;
         status[2] = true;
-        mainSkill = getMainSkill();
+    }
+
+    public Employee(String name, Map<Skill, Integer> skillList) {
+        this.name = name;
+        this.skillList = skillList;
     }
 
     public String getName() {
@@ -43,15 +47,15 @@ public class Employee {
         return calculateSalary();
     }
 
-    public Map getSkillList() {
+    public Map<Skill, Integer> getSkillList() {
         return skillList;
     }
 
-    public void setSkillList(Map skillList) {
+    public void setSkillList(Map<Skill, Integer> skillList) {
         this.skillList = skillList;
     }
 
-    public void skillLevelUp(Skills sk) {
+    public void skillLevelUp(Skill sk) {
         if (skillList.containsKey(sk)) {
             int val = ((Integer) skillList.get(sk)).intValue();
             skillList.put(sk, ++val);
@@ -61,24 +65,25 @@ public class Employee {
         getMainSkill();
     }
 
-    public Skills getMainSkill() {
-        Skills main = null;
+    public Skill getMainSkill() {
+        Skill main = null;
         int highest = 0;
-        for (Skills sk : skillList.keySet()) {
-            if (skillList.get(sk) >= highest) {
-                if (skillList.get(sk) == highest) {
-                    main = (sk.toString().compareToIgnoreCase(main.toString()) < 0) ? sk : main;
-                } else {
-                    main = sk;
+        for (Iterator<Skill> iterator = skillList.keySet().iterator();
+                iterator.hasNext();) {
+            Skill skill = iterator.next();
+            if (skillList.get(skill) >= highest) {
+                if (skillList.get(skill) != highest
+                        || (skill.toString().compareToIgnoreCase(main.toString()) < 0)) {
+                    main = skill;
                 }
-                highest = skillList.get(sk);
+                highest = skillList.get(skill);
             }
         }
-        mainSkill = main;
+
         return main;
     }
 
-    public int getSkillLevel(Skills field) {
+    public int getSkillLevel(Skill field) {
         if (skillList.containsKey(field)) {
             return skillList.get(field);
         } else {
@@ -88,7 +93,7 @@ public class Employee {
 
     private int getLowestLevel() {
         int lowest = 10;
-        for (Skills object : skillList.keySet()) {
+        for (Skill object : skillList.keySet()) {
             if (skillList.get(object) <= lowest) {
                 lowest = skillList.get(object);
             }
@@ -100,30 +105,30 @@ public class Employee {
     }
 
     public int getDesignSkill() {
-        if (skillList.containsKey(Skills.DESIGN)) {
-            return skillList.get(Skills.DESIGN);
+        if (skillList.containsKey(Skill.DESIGN)) {
+            return skillList.get(Skill.DESIGN);
         } else {
             return 0;
         }
     }
 
     public int getAlgorithmSkill() {
-        if (skillList.containsKey(Skills.ALGORITHMS)) {
-            return skillList.get(Skills.ALGORITHMS);
+        if (skillList.containsKey(Skill.ALGORITHMS)) {
+            return skillList.get(Skill.ALGORITHMS);
         }
         return 0;
     }
 
     public int getTeamPlayerSkill() {
-        if (skillList.containsKey(Skills.TEAM_PLAYER)) {
-            return skillList.get(Skills.TEAM_PLAYER);
+        if (skillList.containsKey(Skill.TEAM_PLAYER)) {
+            return skillList.get(Skill.TEAM_PLAYER);
         }
         return 0;
     }
 
     public int getConfigurationSkill() {
-        if (skillList.containsKey(Skills.CONFIG_MANAGEMENT)) {
-            return skillList.get(Skills.CONFIG_MANAGEMENT);
+        if (skillList.containsKey(Skill.CONFIG_MANAGEMENT)) {
+            return skillList.get(Skill.CONFIG_MANAGEMENT);
         }
         return 0;
     }
@@ -153,22 +158,22 @@ public class Employee {
         status[2] = false;
     }
 
-    public int getLowestSkillLvl() {
-        Map<Skills, Integer> specialSkill = new HashMap<>();
-        if (skillList.containsKey(Skills.HASKELL)) {
-            specialSkill.put(Skills.HASKELL, skillList.get(Skills.HASKELL));
+    public int getLowestSkillLevel() {
+        Map<Skill, Integer> specialSkill = new HashMap<>();
+        if (skillList.containsKey(Skill.HASKELL)) {
+            specialSkill.put(Skill.HASKELL, skillList.get(Skill.HASKELL));
         }
-        if (skillList.containsKey(Skills.FORTH)) {
-            specialSkill.put(Skills.FORTH, skillList.get(Skills.FORTH));
+        if (skillList.containsKey(Skill.FORTH)) {
+            specialSkill.put(Skill.FORTH, skillList.get(Skill.FORTH));
         }
-        if (skillList.containsKey(Skills.LISP)) {
-            specialSkill.put(Skills.LISP, skillList.get(Skills.LISP));
+        if (skillList.containsKey(Skill.LISP)) {
+            specialSkill.put(Skill.LISP, skillList.get(Skill.LISP));
         }
         if (specialSkill.isEmpty()) {
             return getLowestLevel();
         } else {
             int level = 0;
-            for (Skills skill : specialSkill.keySet()) {
+            for (Skill skill : specialSkill.keySet()) {
                 if (specialSkill.get(skill) >= level) {
                     level = specialSkill.get(skill);
                 }
@@ -179,7 +184,7 @@ public class Employee {
 
     public float calculateSalary() {
         int salary = 0;
-        for (Skills sk : skillList.keySet()) {
+        for (Skill sk : skillList.keySet()) {
             if (sk.ordinal() <= 24) {
                 salary += calculateSalaryPoint(sk, skillList.get(sk)) * 2;
             } else if (sk.ordinal() >= 25 && sk.ordinal() <= 27) {
@@ -191,7 +196,7 @@ public class Employee {
         return salary*10;
     }
 
-    public int calculateSalaryPoint(Skills skill, int skillLevel) {
+    public int calculateSalaryPoint(Skill skill, int skillLevel) {
 
         if (skill.ordinal() <= 24) {
             if (skillLevel == 1) {

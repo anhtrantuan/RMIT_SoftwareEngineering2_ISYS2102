@@ -6,7 +6,7 @@ package devfortress.model.dificulity;
 
 import devfortress.model.DateTime;
 import devfortress.model.Project;
-import devfortress.utilities.Skills;
+import devfortress.utilities.Skill;
 import java.util.Map;
 
 /**
@@ -15,7 +15,7 @@ import java.util.Map;
  */
 public interface GameLevel {
 
-    Map<Skills, Integer> generateSkillList();
+    Map<Skill, Integer> generateSkillList();
 
     Project generateProject(String projectNames);
 

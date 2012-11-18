@@ -6,9 +6,6 @@ package devfortress.view.models;
 
 import devfortress.model.Employee;
 import devfortress.utilities.Constant;
-import devfortress.view.dialogs.EmployeeInformationPanel;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.ListIterator;
 import javax.swing.ImageIcon;
@@ -19,9 +16,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author tommy
  */
-public class DevelopersTableModel extends DefaultTableModel {
+public class EmployeeTableModel extends DefaultTableModel {
 
-    public DevelopersTableModel() {
+    /**
+     * Constructor for EmployeeTableModel.
+     */
+    public EmployeeTableModel() {
         addColumn(Constant.EMPLOYEE_NAME);
         addColumn(Constant.EMPLOYEE_STATUS);
         addColumn(Constant.EMPLOYEE_CURRENT_PROJECT);
@@ -67,15 +67,10 @@ public class DevelopersTableModel extends DefaultTableModel {
         /* Reset table. */
         setRowCount(0);
 
-
-        /*   */
-
         /* Add new records. */
         for (ListIterator<Employee> iterator = employeeList.listIterator();
                 iterator.hasNext();) {
-            
-            final Employee employee = iterator.next();
-                        
+            Employee employee = iterator.next();
             addRow(new Object[]{employee.getName(),
                         new ImageIcon(getClass().getResource("../resources/icHappy.png")),
                         "Project 1", new JButton(Constant.EMPLOYEE_DETAILS),
