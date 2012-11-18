@@ -8,6 +8,7 @@ import devfortress.model.DateTime;
 import devfortress.model.Employee;
 import devfortress.model.Item;
 import devfortress.model.Project;
+import devfortress.model.dificulity.GameLevel;
 import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.OvercrowdedException;
 import java.util.List;
@@ -35,9 +36,9 @@ public interface Model {
 
     void paySalary();
 
-    List<Employee> generateEmployeeList();
+    List<Employee> generateEmployeeList(GameLevel level);
 
-    List<Project> generateProjectList();
+    List<Project> generateProjectList(GameLevel level);
 
     void nextTurn() throws MoneyRunOutException;
 

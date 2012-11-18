@@ -5,7 +5,10 @@
 package devfortress.model.facade;
 
 import devfortress.model.*;
+import devfortress.model.dificulity.DifficultLevel;
+import devfortress.model.dificulity.EasyLevel;
 import devfortress.model.dificulity.GameLevel;
+import devfortress.model.dificulity.MediumLevel;
 import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.OvercrowdedException;
 import devfortress.model.exception.ProjectFailsException;
@@ -155,9 +158,10 @@ public class Engine extends Observable implements Model {
      * @return List of Employee
      */
     @Override
-    public List<Employee> generateEmployeeList() {
+    public List<Employee> generateEmployeeList(GameLevel level) {
         Random random = new Random();
         int number = random.nextInt(3) + 3;
+        
         return Utilities.generateEmployeeList(level, number);
     }
 
@@ -167,7 +171,7 @@ public class Engine extends Observable implements Model {
      * @return List of Project
      */
     @Override
-    public List<Project> generateProjectList() {
+    public List<Project> generateProjectList(GameLevel level) {
         Random random = new Random();
         int number = random.nextInt(3) + 8;
         return Utilities.generateProjectList(level, number);
@@ -183,6 +187,16 @@ public class Engine extends Observable implements Model {
      */
     @Override
     public void nextTurn() throws MoneyRunOutException {
+        
+        if(dateTime.getYear()<2){
+            level = new EasyLevel();
+        }
+        else if(dateTime.getYear()<4){
+            level = new MediumLevel();
+        }
+        else if(dateTime.getYear()<4){
+            level = new DifficultLevel();
+        }
         for (int i = 0; i < 4; i++) {
             nextWeek();
         }
@@ -196,9 +210,12 @@ public class Engine extends Observable implements Model {
                 System.out.println(ex.getMessage());
             }
         }
-        generateProjectList();
-        generateEmployeeList();
+        generateProjectList(level);
+        System.out.println("After generate Project");
+        generateEmployeeList(level);
+        System.out.println("After generate Emp");
         paySalary();
+        System.out.println("After pay salary ");
         if (company.getMoney() <= 0) {
             throw new MoneyRunOutException();
         }
@@ -208,6 +225,7 @@ public class Engine extends Observable implements Model {
                 dateTime.getYear(), dateTime.getMonthOfYear(),
                 dateTime.getWeekOfMonth());
         notifyObservers(message);
+        System.out.println("End of NT");
     }
 
     /**

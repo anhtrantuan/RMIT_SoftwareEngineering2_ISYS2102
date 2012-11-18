@@ -6,6 +6,7 @@ package devfortress.model;
 
 import devfortress.model.exception.ProjectFailsException;
 import devfortress.utilities.Skills;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
@@ -40,6 +41,7 @@ public class Project {
         remainingTime = projectTime;
         this.skillRequirementMap = skillRequirementMap;
         originalSkillRequirementMap = skillRequirementMap;
+        skill_employeeMap = new HashMap();
         calculateMainSkill();
     }
 
@@ -169,6 +171,9 @@ public class Project {
     public boolean checkProjectProcess() throws ProjectFailsException {
         int finish = 0;
         totalFunctionPointsDelivered = 0;
+        if(skill_employeeMap.size()==0){
+            return false;
+        }
         for (Skills sk : skill_employeeMap.keySet()) {
             Employee emp = skill_employeeMap.get(sk);
             int functionPointProduced = calculateFinalFunctionPoint(calculateBasicFunctionPoint(emp), emp);
@@ -201,5 +206,7 @@ public class Project {
         return originalSkillRequirementMap;
     }
     
-    
+    public void assignEmployeeToProject(Employee emp,Skills field){
+        skill_employeeMap.put(field, emp);
+    }
 }
