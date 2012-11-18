@@ -4,6 +4,8 @@
  */
 package devfortress.controller;
 
+import devfortress.model.Employee;
+import devfortress.model.exception.OvercrowdedException;
 import devfortress.model.facade.Model;
 import devfortress.view.View;
 
@@ -33,5 +35,9 @@ public class Controller {
 
         /* Set up View display. */
         view.setUpDisplay();
+    }
+    
+    public void hireEmployee(Employee emp) throws OvercrowdedException{
+        model.hireEmployee(emp);
     }
 }

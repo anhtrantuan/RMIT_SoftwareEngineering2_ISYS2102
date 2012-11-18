@@ -16,7 +16,7 @@ public class HireEmployeeBtnListener implements ActionListener{
 private Model model;
     @Override
     public void actionPerformed(ActionEvent e) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        e.getActionCommand();
     }
     
 }

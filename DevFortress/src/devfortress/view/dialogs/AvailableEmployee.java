@@ -4,12 +4,17 @@
  */
 package devfortress.view.dialogs;
 
+import devfortress.controller.Controller;
+import devfortress.controller.HireEmployeeBtnListener;
 import devfortress.model.Employee;
+import devfortress.model.exception.OvercrowdedException;
 import devfortress.utilities.Constant;
 import devfortress.utilities.MyTableModel;
 import devfortress.utilities.Skills;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -22,15 +27,17 @@ public class AvailableEmployee extends javax.swing.JPanel {
     private MyTableModel tableModel;
     private Map<Skills, Integer> currentSelectedEmployeeInfo;
     private String[] columnName = {Constant.SKILL_LABEL, Constant.SKILL_LVL_LABEL};
+    Controller controller;
 
     /**
      * Creates new form AvaiableEmployee
      */
-    public AvailableEmployee(List employees) {
+    public AvailableEmployee(List employees,Controller hireController) {
         initComponents();
         index = 0;
         employeeList = (Employee[]) employees.toArray();
-        initController();
+        controller = hireController;
+        
         initInformation();
 
     }
@@ -95,6 +102,11 @@ public class AvailableEmployee extends javax.swing.JPanel {
         });
 
         jButton3.setText(Constant.ACCEPT);
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText(Constant.CANCEL);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -172,16 +184,25 @@ public class AvailableEmployee extends javax.swing.JPanel {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
        if(index!=0){
             index--;
-            tableInit();
+            jTable1.revalidate();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if(index!=employeeList.length-1){
             index++;
-            tableInit();
+            jTable1.revalidate();
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+            controller.hireEmployee(employeeList[index]);
+        } catch (OvercrowdedException ex) {
+            Logger.getLogger(AvailableEmployee.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
@@ -203,9 +224,6 @@ public class AvailableEmployee extends javax.swing.JPanel {
         tableInit();
     }
 
-    private void initController() {
-        throw new UnsupportedOperationException("Not yet implemented");
-    }
 
     private void tableInit() {
         currentSelectedEmployeeInfo = employeeList[index].getSkillList();
