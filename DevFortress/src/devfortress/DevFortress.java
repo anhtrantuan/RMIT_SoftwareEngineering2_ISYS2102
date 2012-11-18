@@ -11,11 +11,15 @@ import devfortress.model.DateTime;
 import devfortress.model.Employee;
 import devfortress.model.Food;
 import devfortress.model.Project;
+import devfortress.model.dificulity.EasyLevel;
 import devfortress.model.exception.OvercrowdedException;
 import devfortress.model.facade.Engine;
+import devfortress.utilities.Constant;
 import devfortress.utilities.Skills;
+import devfortress.utilities.Utilities;
 import devfortress.view.DevFortressView;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -75,12 +79,20 @@ public class DevFortress {
                 skillList.put(Skills.DESIGN, 8);
                 skillList.put(Skills.ALGORITHMS, 6);
                 skillList.put(Skills.CONFIG_MANAGEMENT, 5);
-                model.takeProject(new Project("P" + new Random().nextLong(), 100, 100, 1, new DateTime(0, 6, 0), skillList));
+                List<Project> projectsList = Utilities.generateProjectList(new EasyLevel(), Constant.PROJECT_MAX);
+                for (Project project : projectsList) {
+                    model.takeProject(project);
+                }
+//                model.takeProject(new Project("P" + new Random().nextLong(), 100, 100, 1, new DateTime(0, 6, 0), skillList));
 
                 try {
-                    model.hireEmployee(new Employee("Joe", 100, skillList));
-                    model.hireEmployee(new Employee("Doe", 200, skillList));
-                    model.hireEmployee(new Employee("Foo",500,skillList));
+                    //model.hireEmployee(new Employee("Joe", 100, skillList));
+                    List<Employee> employeeList = Utilities.generateEmployeeList(new EasyLevel(), Constant.EMPLOYEE_MAX);
+                    for (Employee object : employeeList) {
+                        model.hireEmployee(object);
+                    }
+                    //                    model.hireEmployee(new Employee("Doe", 200, skillList));
+//                    model.hireEmployee(new Employee("Foo",500,skillList));
                 } catch (OvercrowdedException ex) {
                     Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
                 }

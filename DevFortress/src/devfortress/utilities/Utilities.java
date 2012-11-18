@@ -69,7 +69,7 @@ public class Utilities {
     public static List<Project> generateProjectList(GameLevel level, int numberOfProject) {
         List<Project> projects = new ArrayList<>();
         for (int i = 0; i < numberOfProject; i++) {
-            projects.add(level.generateProject());
+            projects.add(level.generateProject(Name.getProjectName()));
         }
         return projects;
     }
