@@ -151,10 +151,15 @@ public class AvailableEmployee extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton2))
                     .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD:DevFortress/src/devfortress/view/dialogs/AvailableEmployee.java
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel5)))
+                .addContainerGap(81, Short.MAX_VALUE))
+=======
                         .addContainerGap()
                         .addComponent(jLabel5)))
                 .addContainerGap())
-
+>>>>>>> 4e19d6551d1da98cd1df91df75c537af1b4d46d4:DevFortress/src/devfortress/view/dialogs/AvailableEmployee.java
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -165,6 +170,25 @@ public class AvailableEmployee extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jLabel4))
+<<<<<<< HEAD:DevFortress/src/devfortress/view/dialogs/AvailableEmployee.java
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 309, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2))
+                        .addGap(18, 18, 18)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addGap(21, 21, 21))
+=======
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -178,6 +202,7 @@ public class AvailableEmployee extends javax.swing.JPanel {
                     .addComponent(jButton3)
                     .addComponent(jButton4))
                 .addContainerGap(38, Short.MAX_VALUE))
+>>>>>>> 4e19d6551d1da98cd1df91df75c537af1b4d46d4:DevFortress/src/devfortress/view/dialogs/AvailableEmployee.java
         );
 
         jLabel1.getAccessibleContext().setAccessibleName("availableEmployee");

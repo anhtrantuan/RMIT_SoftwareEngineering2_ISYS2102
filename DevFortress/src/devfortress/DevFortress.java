@@ -66,7 +66,7 @@ public class DevFortress {
                 view.setVisible(true);
 
                 model.buyItem(new Beer(100), 1);
-                model.buyItem(new Computer(100), 2);
+                model.buyItem(new Computer(100), 3);
                 model.buyItem(new Food(300, "Pizza"), 1);
 
                 HashMap<Skills, Integer> skillList = new HashMap<>();
@@ -80,6 +80,7 @@ public class DevFortress {
                 try {
                     model.hireEmployee(new Employee("Joe", 100, skillList));
                     model.hireEmployee(new Employee("Doe", 200, skillList));
+                    model.hireEmployee(new Employee("Foo",500,skillList));
                 } catch (OvercrowdedException ex) {
                     Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
                 }

@@ -24,6 +24,7 @@ public class Project {
     private DateTime remainingTime;
     private Map<Skills, Integer> skillRequirementMap;
     private Map<Skills, Employee> skill_employeeMap;
+    private Map<Skills, Integer> originalSkillRequirementMap;
     private Skills mainSkill;
     private String name;
     private int totalPoints, remainingPoints, totalFunctionPointsDelivered;
@@ -38,7 +39,8 @@ public class Project {
         this.projectTime = projectTime;
         remainingTime = projectTime;
         this.skillRequirementMap = skillRequirementMap;
-        getMainSkill();
+        originalSkillRequirementMap = skillRequirementMap;
+        calculateMainSkill();
     }
 
     public float getPayment() {
@@ -123,7 +125,7 @@ public class Project {
         }
     }
 
-    private Skills getMainSkill() {
+    private Skills calculateMainSkill() {
         Skills main = null;
         int highest = 0;
         for (Skills sk : skillRequirementMap.keySet()) {
@@ -190,4 +192,14 @@ public class Project {
         }
         return false;
     }
+
+    public Skills getMainSkill() {
+        return mainSkill;
+    }
+
+    public Map<Skills, Integer> getOriginalSkillRequirementMap() {
+        return originalSkillRequirementMap;
+    }
+    
+    
 }
