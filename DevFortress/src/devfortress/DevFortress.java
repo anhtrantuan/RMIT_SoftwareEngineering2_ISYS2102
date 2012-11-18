@@ -11,17 +11,12 @@ import devfortress.model.DateTime;
 import devfortress.model.Employee;
 import devfortress.model.Food;
 import devfortress.model.Project;
-import devfortress.model.dificulity.DifficultLevel;
-import devfortress.model.dificulity.EasyLevel;
-import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.OvercrowdedException;
 import devfortress.model.facade.Engine;
 import devfortress.utilities.Skill;
 import devfortress.view.DevFortressView;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Random;
-import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -65,7 +60,6 @@ public class DevFortress {
          * Create and display the form
          */
         java.awt.EventQueue.invokeLater(new Runnable() {
-
             @Override
             public void run() {
                 /*
@@ -94,9 +88,9 @@ public class DevFortress {
                 model.takeProject(project);
 
                 try {
-                    model.hireEmployee(new Employee("Joe", 100, skillList));
-                    model.hireEmployee(new Employee("Doe", 200, skillList));
-                    model.hireEmployee(new Employee("Foo", 500, skillList));
+                    model.hireEmployee(new Employee("Joe", skillList));
+                    model.hireEmployee(new Employee("Doe", skillList));
+                    model.hireEmployee(new Employee("Foo", skillList));
                 } catch (OvercrowdedException ex) {
                     Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
                 }

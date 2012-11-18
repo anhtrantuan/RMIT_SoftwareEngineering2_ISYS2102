@@ -311,9 +311,9 @@ public class AvailableEmployeePanel extends javax.swing.JPanel {
                 skillList2.put(Skill.DESIGN, 61);
                 skillList2.put(Skill.ALGORITHMS, 61);
                 skillList2.put(Skill.CONFIG_MANAGEMENT, 2);
-                Employee e1 = new Employee("Joe", 100, skillList),
-                        e2 = new Employee("Doe", 200, skillList1),
-                        e3 = new Employee("Foo", 500, skillList2);
+                Employee e1 = new Employee("Joe", skillList),
+                        e2 = new Employee("Doe", skillList1),
+                        e3 = new Employee("Foo", skillList2);
                 List<Employee> el = new ArrayList<>();
                 el.add(e1);
                 el.add(e2);

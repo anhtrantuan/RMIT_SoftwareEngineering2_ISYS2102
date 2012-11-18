@@ -16,23 +16,17 @@ import java.util.Map;
 public class Employee {
 
     private String name;
-    private float salary;
     private Map<Skill, Integer> skillList;
     private boolean status[];
 
-    public Employee(String name, float salary, Map<Skill, Integer> skillList) {
-        this(name, skillList);
-        this.salary = salary;
+    public Employee(String name, Map<Skill, Integer> skillList) {
+        this.name = name;
+        this.skillList = skillList;
         status = new boolean[3];
         //0 is having beer, 1 is full, 2 is happy;
         status[0] = false;
         status[1] = false;
         status[2] = true;
-    }
-
-    public Employee(String name, Map<Skill, Integer> skillList) {
-        this.name = name;
-        this.skillList = skillList;
     }
 
     public String getName() {
@@ -45,10 +39,6 @@ public class Employee {
 
     public float getSalary() {
         return calculateSalary();
-    }
-
-    public void setSalary(float salary) {
-        this.salary = salary;
     }
 
     public Map<Skill, Integer> getSkillList() {
@@ -197,10 +187,10 @@ public class Employee {
                 salary += calculateSalaryPoint(sk, skillList.get(sk)) * 5;
             }
         }
-        return salary*10;
+        return salary * 10;
     }
 
-    public int calculateSalaryPoint(Skill skill, int skillLevel) {
+    private int calculateSalaryPoint(Skill skill, int skillLevel) {
 
         if (skill.ordinal() <= 24) {
             if (skillLevel == 1) {
