@@ -7,6 +7,7 @@ package devfortress.model;
 import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.UnaffordableException;
 import devfortress.utilities.Constant;
+import devfortress.utilities.Skill;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -25,6 +26,8 @@ public class Company {
     private List<Project> currentProjectList;
     private float expenses;
     private Map<String, Float> items;
+    private int foodStock, beerStock;
+    
 
     public Company() {
         this(1000f, new ArrayList<>(), new HashMap<>(), new ArrayList<>(), new HashMap<>());
@@ -120,8 +123,10 @@ public class Company {
                 name = Constant.EXPENSE_COMPUTERS;
             } else if (item instanceof Food) {
                 name = Constant.EXPENSE_FOODS;
+                foodStock+=quantity;
             } else if (item instanceof Beer) {
                 name = Constant.EXPENSE_BEERS;
+                beerStock+=quantity;
             }
             float newValue;
             if (items.containsKey(name)) {
@@ -272,5 +277,21 @@ public class Company {
 
     public void clearItemList() {
         items.clear();
+    }
+    
+    /**
+     * assign an employee to selected project with a specific field, employee will be happy 
+     * if he/she is assigned into a project which having the project type similar as his/her 
+     * main skill, get sad otherwise
+     * @param emp
+     * @param field 
+     */
+    public void assignEmployeeToProject(Employee emp, Project proj, Skill field) {
+        proj.assignEmployeeToProject(emp, field);
+        if (emp.getMainSkill() == proj.getMainSkill()) {
+            emp.getHappy();
+        } else {
+            emp.getSad();
+        }
     }
 }

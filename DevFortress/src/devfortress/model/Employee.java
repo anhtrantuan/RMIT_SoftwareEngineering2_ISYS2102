@@ -23,11 +23,12 @@ public class Employee {
     public Employee(String name, Map<Skill, Integer> skillList) {
         this.name = name;
         this.skillList = skillList;
-        status = new boolean[3];
-        //0 is having beer, 1 is full, 2 is happy;
+        status = new boolean[4];
+        //0 is having beer, 1 is full, 2 is happy, 3 is working;
         status[0] = false;
         status[1] = false;
         status[2] = true;
+        status[3] = false;
     }
     
     public String getName() {
@@ -151,6 +152,18 @@ public class Employee {
     
     public void getSad() {
         status[2] = false;
+    }
+    
+    public void getHappy(){
+        status[2] = true;
+    }
+    
+    public void assignToWork(){
+        status[3] = true;
+    }
+    
+    public void getOutOfWork(){
+        status[3] = false;
     }
     
     public int getLowestSkillLevel() {
