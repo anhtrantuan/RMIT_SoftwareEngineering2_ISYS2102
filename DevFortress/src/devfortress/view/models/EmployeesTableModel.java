@@ -5,6 +5,7 @@
 package devfortress.view.models;
 
 import devfortress.model.Employee;
+import devfortress.model.Project;
 import devfortress.utilities.Constant;
 import java.awt.Component;
 import java.util.List;
@@ -90,8 +91,15 @@ public class EmployeesTableModel extends DefaultTableModel {
                 icon = new ImageIcon(getClass().
                         getResource("/devfortress/view/resources/icUnhappy.png"));
             }
-            addRow(new Object[]{employee.getName(), icon, "Project 1",
-                        detailsButton, manageButton});
+            Project project = employee.getWorkingProject();
+            if (project == null) {
+                addRow(new Object[]{employee.getName(), icon, Constant.NA,
+                            detailsButton, manageButton});
+            } else {
+                addRow(new Object[]{employee.getName(), icon,
+                            employee.getWorkingProject().getName(), detailsButton,
+                            manageButton});
+            }
         }
     }
 }

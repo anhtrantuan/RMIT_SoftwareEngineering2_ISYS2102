@@ -262,4 +262,8 @@ public class Employee {
     public Project getWorkingProject() {
         return workingProject;
     }
+
+    public void assignToProject(Project project) {
+        workingProject = project;
+    }
 }

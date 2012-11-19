@@ -231,27 +231,33 @@ public class Project {
      * @param emp
      * @param field
      */
-    public boolean assignEmployeeToProject(Employee emp, Skill field){
-        if (emp.getWorkingProject() != null) {
+    public boolean assignEmployeeToProject(Employee emp, Skill field) {
+        if (emp.getWorkingProject() == null) {
             if (emp.getMainSkill() == mainSkill) {
                 emp.getHappy();
             } else {
                 emp.getSad();
             }
             skill_employeeMap.put(field, emp);
+            emp.assignToProject(this);
             return true;
-        } else {
-            return false;
         }
 
+        return false;
     }
-    
-        public void unassignEmployee(Employee emp){
-        for (Skill sk  : skill_employeeMap.keySet()) {
-            if(skill_employeeMap.get(sk)==emp){
+
+    public void unassignEmployee(Employee emp) {
+        for (Skill sk : skill_employeeMap.keySet()) {
+            if (skill_employeeMap.get(sk) == emp) {
                 skill_employeeMap.put(sk, null);
                 emp.getOutOfWork();
             }
+        }
+    }
+
+    public void unassignEmployees() {
+        for (Employee employee : skill_employeeMap.values()) {
+            employee.getOutOfWork();
         }
     }
 }

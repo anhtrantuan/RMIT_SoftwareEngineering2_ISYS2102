@@ -306,4 +306,14 @@ public class ProjectPanel extends javax.swing.JPanel {
     public Project getProject() {
         return project;
     }
+
+    /**
+     * Set project for table.
+     *
+     * @param project
+     */
+    public void setProject(Project project) {
+        this.project = project;
+        tableModel.setProject(project);
+    }
 }

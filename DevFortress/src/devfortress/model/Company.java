@@ -96,7 +96,9 @@ public class Company {
      */
     public void removeEmployee(Employee emp) {
         Project workingProj = emp.getWorkingProject();
-        unassignEmployee(workingProj, emp);
+        if (workingProj != null) {
+            unassignEmployee(workingProj, emp);
+        }
         calculateTotalSalary();
         employeeList.remove(emp);
         increaseMoney(emp.getSalary());
@@ -220,6 +222,7 @@ public class Company {
      * @param project
      */
     public void cancelProject(Project project) {
+        project.unassignEmployees();
         currentProjectList.remove(project);
         decreaseMoney(project.getPayment() * 0.8f);
     }

@@ -56,7 +56,7 @@ public class Engine extends Observable implements Model {
         try {
             company.buyItem(item, quantity);
             setChanged();
-            String message = String.format("Bought %d new %s: -$%.2f",
+            String message = String.format("Bought %d new %s: -$%.2f.",
                     quantity, item.getName() + (quantity > 1 ? "s" : ""),
                     (item.getPrice() * quantity));
             notifyObservers(message);
@@ -84,7 +84,7 @@ public class Engine extends Observable implements Model {
         }
         company.addEmployee(employee);
         setChanged();
-        String message = String.format("Hired new employee %s: -$%.2f",
+        String message = String.format("Hired new employee %s: -$%.2f.",
                 employee.getName(), employee.getSalary());
         notifyObservers(message);
     }
@@ -93,7 +93,7 @@ public class Engine extends Observable implements Model {
     public void fireEmployee(Employee employee) {
         company.removeEmployee(employee);
         setChanged();
-        String message = String.format("Fired employee %s: +$%.2f",
+        String message = String.format("Fired employee %s: +$%.2f.",
                 employee.getName(), employee.getSalary());
         notifyObservers(message);
     }
@@ -102,7 +102,7 @@ public class Engine extends Observable implements Model {
     public void takeProject(Project project) {
         company.addProject(project);
         setChanged();
-        String message = String.format("Contracted new project %s: +$%.2f",
+        String message = String.format("Contracted new project %s: +$%.2f.",
                 project.getName(), project.getPayment() / 2);
         notifyObservers(message);
     }
@@ -116,7 +116,7 @@ public class Engine extends Observable implements Model {
     public void cancelProject(Project project) {
         company.cancelProject(project);
         setChanged();
-        String message = String.format("Cancel project %s: -$%.2f",
+        String message = String.format("Cancel project %s: -$%.2f.",
                 project.getName(), project.getPayment() * 0.8);
         notifyObservers(message);
     }
@@ -153,7 +153,7 @@ public class Engine extends Observable implements Model {
         try {
             company.paySalary();
             setChanged();
-            String message = String.format("Paid salary: -$%.2f",
+            String message = String.format("Paid salary: -$%.2f.",
                     company.calculateTotalSalary());
             notifyObservers(message);
         } catch (MoneyRunOutException ex) {
@@ -193,16 +193,15 @@ public class Engine extends Observable implements Model {
      */
     @Override
     public void nextTurn() throws MoneyRunOutException {
-
         List<Project> succeededProject = new ArrayList();
         List<Project> failedProject = new ArrayList();
 
         if (dateTime.getYear() < 2) {
-            level = new EasyLevel();
+            level = easyLevel;
         } else if (dateTime.getYear() < 4) {
-            level = new MediumLevel();
+            level = mediumLevel;
         } else {
-            level = new DifficultLevel();
+            level = difficultLevel;
         }
 
         for (int i = 0; i < 4; i++) {
@@ -221,12 +220,15 @@ public class Engine extends Observable implements Model {
                 System.out.println(ex.getMessage());
             }
         }
+
         for (Project proj : failedProject) {
             company.removeProject(proj);
         }
+
         for (Project proj : succeededProject) {
             company.cancelProject(proj);
         }
+
         availableProjects = generateProjectList();
         availableEmployees = generateEmployeeList();
         paySalary();
@@ -234,8 +236,9 @@ public class Engine extends Observable implements Model {
             throw new MoneyRunOutException();
         }
         company.clearItemList();
+
         setChanged();
-        String message = String.format("New turn began: Year %d Month %d Week %d",
+        String message = String.format("New turn began: Year %d Month %d Week %d.",
                 dateTime.getYear(), dateTime.getMonthOfYear(),
                 dateTime.getWeekOfMonth());
         notifyObservers(message);
@@ -248,7 +251,6 @@ public class Engine extends Observable implements Model {
         eventOccur();
         consumeFood();
         dateTime.nextWeek();
-
     }
 
     @Override
@@ -323,6 +325,11 @@ public class Engine extends Observable implements Model {
         if (!company.assignEmployeeToProject(emp, proj, field)) {
             throw new EmployeeIsBusyException();
         }
+
+        setChanged();
+        String message = String.format("Assigned employee %s to skill %s in project %s.",
+                emp.getName(), field.toString(), proj.getName());
+        notifyObservers(message);
     }
 
     private void consumeFood() {
@@ -352,6 +359,10 @@ public class Engine extends Observable implements Model {
     @Override
     public void unassignEmployee(Project proj, Employee emp) {
         company.unassignEmployee(proj, emp);
+        setChanged();
+        String message = String.format("Unassigned employee %s from project %s.",
+                emp.getName(), proj.getName());
+        notifyObservers(message);
     }
 
     @Override

@@ -20,13 +20,14 @@ import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author tommy
  */
 public class DevFortressView extends javax.swing.JFrame implements View, Observer {
-
+    
     private Model model;
 
     /**
@@ -103,9 +104,14 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         menuHelp = new javax.swing.JMenu();
         menuHelp_About = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("DevFortress");
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         pnlStatusBar.setBackground(new java.awt.Color(255, 255, 255));
         pnlStatusBar.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED), javax.swing.BorderFactory.createEmptyBorder(0, 6, 0, 6)));
@@ -319,7 +325,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         );
         pnlBlankLayout.setVerticalGroup(
             pnlBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 94, Short.MAX_VALUE)
+            .addGap(0, 100, Short.MAX_VALUE)
         );
 
         pnlManagement.add(pnlBlank);
@@ -428,14 +434,21 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
 
         menu.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
+        menuFile.setMnemonic('F');
         menuFile.setText("File");
 
         menuFile_Exit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
         menuFile_Exit.setText("Exit");
+        menuFile_Exit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuFile_ExitActionPerformed(evt);
+            }
+        });
         menuFile.add(menuFile_Exit);
 
         menu.add(menuFile);
 
+        menuEdit.setMnemonic('E');
         menuEdit.setText("Edit");
 
         menuEdit_Preferences.setText("Preferences");
@@ -443,6 +456,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
 
         menu.add(menuEdit);
 
+        menuView.setMnemonic('V');
         menuView.setText("View");
 
         menuView_Summary.setText("Summary");
@@ -450,6 +464,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
 
         menu.add(menuView);
 
+        menuHelp.setMnemonic('H');
         menuHelp.setText("Help");
 
         menuHelp_About.setText("About");
@@ -476,7 +491,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(scpDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
+                        .addComponent(scpDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, 528, Short.MAX_VALUE)
                         .addGap(0, 0, 0)
                         .addComponent(pnlLogAndControl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(scpManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -636,6 +651,30 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         /* Revalidate the frame layout. */
         revalidate();
     }//GEN-LAST:event_treeExpansion
+
+    /**
+     * Handle window closing event.
+     *
+     * @param evt
+     */
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        int response = JOptionPane.showConfirmDialog(this, "Do you really want to exit?",
+                "Exit Confirmation", JOptionPane.YES_NO_OPTION,
+                JOptionPane.QUESTION_MESSAGE);
+        
+        if (response == JOptionPane.YES_OPTION) {
+            System.exit(0);
+        }
+    }//GEN-LAST:event_formWindowClosing
+
+    /**
+     * Handle window closing event.
+     *
+     * @param evt
+     */
+    private void menuFile_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFile_ExitActionPerformed
+        formWindowClosing(null);
+    }//GEN-LAST:event_menuFile_ExitActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCurrentProjects;
     private javax.swing.JButton btnInformation;

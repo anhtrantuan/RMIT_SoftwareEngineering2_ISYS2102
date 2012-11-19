@@ -11,6 +11,7 @@ import devfortress.model.Employee;
 import devfortress.model.Food;
 import devfortress.model.Project;
 import devfortress.model.dificulity.EasyLevel;
+import devfortress.model.exception.EmployeeIsBusyException;
 import devfortress.model.exception.OvercrowdedException;
 import devfortress.model.facade.Engine;
 import devfortress.utilities.Utilities;
@@ -74,20 +75,23 @@ public class DevFortress {
                  */
                 view.setVisible(true);
                 model.buyItem(new Beer(50), 1);
-                model.buyItem(new Computer(), 3);
+                model.buyItem(new Computer(), 1);
                 model.buyItem(new Food(300, "Pizza"), 1);
 
                 EasyLevel level = new EasyLevel();
-                List<Project> projects = Utilities.generateProjectList(level, 2, model);
+                List<Project> projects = Utilities.generateProjectList(level, 1, model);
                 model.takeProject(projects.get(0));
-                model.takeProject(projects.get(1));
-                List<Employee> employees = Utilities.generateEmployeeList(level, 3, model);
+                List<Employee> employees = Utilities.generateEmployeeList(level, 1, model);
 
                 try {
                     model.hireEmployee(employees.get(0));
-                    model.hireEmployee(employees.get(1));
-                    model.hireEmployee(employees.get(2));
                 } catch (OvercrowdedException ex) {
+                    Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+                try {
+                    model.assignEmployeeToProject(employees.get(0), projects.get(0), projects.get(0).getMainSkill());
+                } catch (EmployeeIsBusyException ex) {
                     Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
