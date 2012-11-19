@@ -95,6 +95,8 @@ public class Company {
      * @param emp Employee that user want to fire
      */
     public void removeEmployee(Employee emp) {
+        Project workingProj = emp.getWorkingProject();
+        unassignEmployee(workingProj, emp);
         calculateTotalSalary();
         employeeList.remove(emp);
         increaseMoney(emp.getSalary());
@@ -287,5 +289,9 @@ public class Company {
     public boolean assignEmployeeToProject(Employee emp, Project proj, Skill field) {
         return proj.assignEmployeeToProject(emp, field);
 
+    }
+
+    public void unassignEmployee(Project proj, Employee emp) {
+        proj.unassignEmployee(emp);
     }
 }

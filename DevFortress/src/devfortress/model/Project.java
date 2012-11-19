@@ -245,4 +245,13 @@ public class Project {
         }
 
     }
+    
+        public void unassignEmployee(Employee emp){
+        for (Skill sk  : skill_employeeMap.keySet()) {
+            if(skill_employeeMap.get(sk)==emp){
+                skill_employeeMap.put(sk, null);
+                emp.getOutOfWork();
+            }
+        }
+    }
 }

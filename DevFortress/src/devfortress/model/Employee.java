@@ -15,12 +15,12 @@ import java.util.Objects;
  * @author cathoanghuy
  */
 public class Employee {
-    
+
     private String name;
     private Map<Skill, Integer> skillList;
     private boolean status[];
     private Project workingProject;
-    
+
     public Employee(String name, Map<Skill, Integer> skillList) {
         this.name = name;
         this.skillList = skillList;
@@ -32,27 +32,27 @@ public class Employee {
         status[2] = true;
         status[3] = false;
     }
-    
+
     public String getName() {
         return name;
     }
-    
+
     public void setName(String name) {
         this.name = name;
     }
-    
+
     public float getSalary() {
         return calculateSalary();
     }
-    
+
     public Map<Skill, Integer> getSkillList() {
         return skillList;
     }
-    
+
     public void setSkillList(Map<Skill, Integer> skillList) {
         this.skillList = skillList;
     }
-    
+
     public void skillLevelUp(Skill sk) {
         if (skillList.containsKey(sk)) {
             int val = ((Integer) skillList.get(sk)).intValue();
@@ -62,7 +62,7 @@ public class Employee {
         }
         getMainSkill();
     }
-    
+
     public Skill getMainSkill() {
         Skill main = null;
         int highest = 0;
@@ -77,10 +77,10 @@ public class Employee {
                 highest = skillList.get(skill);
             }
         }
-        
+
         return main;
     }
-    
+
     public int getSkillLevel(Skill field) {
         if (skillList.containsKey(field)) {
             return skillList.get(field);
@@ -88,7 +88,7 @@ public class Employee {
             return getLowestLevel();
         }
     }
-    
+
     private int getLowestLevel() {
         int lowest = 10;
         for (Skill object : skillList.keySet()) {
@@ -101,7 +101,7 @@ public class Employee {
         }
         return lowest / 2;
     }
-    
+
     public int getDesignSkill() {
         if (skillList.containsKey(Skill.DESIGN)) {
             return skillList.get(Skill.DESIGN);
@@ -109,65 +109,66 @@ public class Employee {
             return 0;
         }
     }
-    
+
     public int getAlgorithmSkill() {
         if (skillList.containsKey(Skill.ALGORITHMS)) {
             return skillList.get(Skill.ALGORITHMS);
         }
         return 0;
     }
-    
+
     public int getTeamPlayerSkill() {
         if (skillList.containsKey(Skill.TEAM_PLAYER)) {
             return skillList.get(Skill.TEAM_PLAYER);
         }
         return 0;
     }
-    
+
     public int getConfigurationSkill() {
         if (skillList.containsKey(Skill.CONFIG_MANAGEMENT)) {
             return skillList.get(Skill.CONFIG_MANAGEMENT);
         }
         return 0;
     }
-    
+
     public boolean[] getStatus() {
         return status;
     }
-    
+
     public void haveBeer() {
         status[0] = true;
         status[2] = true;
     }
-    
+
     public void soberUp() {
         status[0] = false;
     }
-    
+
     public void eat() {
         status[1] = true;
     }
-    
+
     public void getHungry() {
         status[1] = false;
     }
-    
+
     public void getSad() {
         status[2] = false;
     }
-    
-    public void getHappy(){
+
+    public void getHappy() {
         status[2] = true;
     }
-    
-    public void assignToWork(){
+
+    public void assignToWork() {
         status[3] = true;
     }
-    
-    public void getOutOfWork(){
+
+    public void getOutOfWork() {
+        workingProject = null;
         status[3] = false;
     }
-    
+
     public int getLowestSkillLevel() {
         Map<Skill, Integer> specialSkill = new HashMap<>();
         if (skillList.containsKey(Skill.HASKELL)) {
@@ -191,7 +192,7 @@ public class Employee {
             return level;
         }
     }
-    
+
     public float calculateSalary() {
         int salary = 0;
         for (Skill sk : skillList.keySet()) {
@@ -205,9 +206,9 @@ public class Employee {
         }
         return salary * 10;
     }
-    
+
     private int calculateSalaryPoint(Skill skill, int skillLevel) {
-        
+
         if (skill.ordinal() <= 24) {
             if (skillLevel == 1) {
                 if (skill.ordinal() == 24) {
@@ -236,7 +237,7 @@ public class Employee {
             }
         }
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 5;
@@ -261,6 +262,4 @@ public class Employee {
     public Project getWorkingProject() {
         return workingProject;
     }
-    
-    
 }

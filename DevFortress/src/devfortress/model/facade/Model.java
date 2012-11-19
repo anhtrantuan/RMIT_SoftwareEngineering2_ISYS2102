@@ -64,6 +64,8 @@ public interface Model {
     Employee getEmployeeByName(String name);
 
     Project getProjectByName(String name);
-    
-    void assignEmployeeToProject(Employee emp,Project proj,Skill field) throws EmployeeIsBusyException;
+
+    void assignEmployeeToProject(Employee emp, Project proj, Skill field) throws EmployeeIsBusyException;
+
+    void unassignEmployee(Project proj, Employee emp);
 }
