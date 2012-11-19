@@ -113,7 +113,10 @@
         <Component class="javax.swing.JButton" name="btnContract">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="18" style="1"/>
+              <Font name="Ubuntu" size="16" style="1"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/devfortress/view/resources/icContract.png"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="Constant.BUTTON_CONTRACT" type="code"/>
@@ -170,7 +173,10 @@
         <Component class="javax.swing.JButton" name="btnHire">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Ubuntu" size="18" style="1"/>
+              <Font name="Ubuntu" size="16" style="1"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/devfortress/view/resources/icHire.png"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="Constant.BUTTON_HIRE" type="code"/>

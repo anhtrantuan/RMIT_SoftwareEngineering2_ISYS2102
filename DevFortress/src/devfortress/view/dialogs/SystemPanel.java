@@ -5,8 +5,6 @@
 package devfortress.view.dialogs;
 
 import devfortress.utilities.Constant;
-import devfortress.view.DevFortressView;
-import javax.swing.JFrame;
 
 /**
  *
@@ -71,7 +69,8 @@ public class SystemPanel extends javax.swing.JPanel {
         pnlContract.setMinimumSize(new java.awt.Dimension(240, 80));
         pnlContract.setPreferredSize(new java.awt.Dimension(240, 80));
 
-        btnContract.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        btnContract.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        btnContract.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icContract.png"))); // NOI18N
         btnContract.setText(Constant.BUTTON_CONTRACT);
         btnContract.setMaximumSize(new java.awt.Dimension(240, 60));
         btnContract.setMinimumSize(new java.awt.Dimension(240, 60));
@@ -100,7 +99,8 @@ public class SystemPanel extends javax.swing.JPanel {
         pnlHire.setMinimumSize(new java.awt.Dimension(240, 80));
         pnlHire.setPreferredSize(new java.awt.Dimension(240, 80));
 
-        btnHire.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        btnHire.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        btnHire.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icHire.png"))); // NOI18N
         btnHire.setText(Constant.BUTTON_HIRE);
         btnHire.setMaximumSize(new java.awt.Dimension(240, 60));
         btnHire.setMinimumSize(new java.awt.Dimension(240, 60));
@@ -132,45 +132,4 @@ public class SystemPanel extends javax.swing.JPanel {
     private javax.swing.JPanel pnlHire;
     private javax.swing.JPanel pnlTitle;
     // End of variables declaration//GEN-END:variables
-
-    public static void main(String[] args) {
-        /*
-         * Set the Nimbus look and feel
-         */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the
-         * default look and feel. For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info :
-                    javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException |
-                IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(
-                    DevFortressView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /*
-         * Create and display the form
-         */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                JFrame f = new JFrame();
-                SystemPanel p = new SystemPanel();
-                f.add(p);
-                f.pack();
-                f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                f.setVisible(true);
-            }
-        });
-    }
 }

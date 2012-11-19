@@ -148,7 +148,7 @@
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new EmployeeTableModel()" type="code"/>
             </Property>
-            <Property name="rowHeight" type="int" value="30"/>
+            <Property name="rowHeight" type="int" value="36"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -227,6 +227,9 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Ubuntu" size="16" style="1"/>
             </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/devfortress/view/resources/icCancel.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="Constant.CANCEL" type="code"/>
             </Property>
@@ -245,6 +248,9 @@
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Ubuntu" size="16" style="1"/>
+            </Property>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/devfortress/view/resources/icFire.png"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="Constant.FIRE" type="code"/>

@@ -10,6 +10,7 @@ import devfortress.utilities.Constant;
 import devfortress.utilities.Skill;
 import java.util.Iterator;
 import java.util.Map;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
@@ -85,17 +86,24 @@ public class ProjectInformationTableModel extends DefaultTableModel {
                 iterator.hasNext();) {
             Skill skill = iterator.next();
             Employee employee = skillEmployeeMap.get(skill);
+            JButton button = new JButton();
             if (employee == null) {
+                button.setText(Constant.ASSIGN);
+                button.setIcon(new ImageIcon(getClass().
+                        getResource("/devfortress/view/resources/icHire.png")));
                 addRow(new Object[]{"N/A", skill.toString(),
                             skillPointMap.get(skill).intValue(),
                             originalSkillPointMap.get(skill),
-                            new JButton(Constant.ASSIGN)});
+                            button});
             } else {
+                button.setText(Constant.UNASSIGN);
+                button.setIcon(new ImageIcon(getClass().
+                        getResource("/devfortress/view/resources/icFire.png")));
                 addRow(new Object[]{skillEmployeeMap.get(skill).getName(),
                             skill.toString(),
                             skillPointMap.get(skill).intValue(),
                             originalSkillPointMap.get(skill),
-                            new JButton(Constant.ASSIGN)});
+                            button});
             }
         }
 
