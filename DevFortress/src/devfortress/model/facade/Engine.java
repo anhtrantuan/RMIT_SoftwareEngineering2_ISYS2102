@@ -10,6 +10,7 @@ import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.OvercrowdedException;
 import devfortress.model.exception.ProjectFailsException;
 import devfortress.model.exception.UnaffordableException;
+import devfortress.utilities.Skill;
 import devfortress.utilities.Utilities;
 import java.util.List;
 import java.util.Map;
@@ -284,5 +285,9 @@ public class Engine extends Observable implements Model {
     @Override
     public Project getProjectByName(String name) {
         return company.getProjectByName(name);
+    }
+    
+    public void assignEmployeeToProject(Employee emp,Project proj,Skill field){
+        company.assignEmployeeToProject(emp, proj, field);
     }
 }

@@ -7,6 +7,7 @@ package devfortress.model;
 import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.UnaffordableException;
 import devfortress.utilities.Constant;
+import devfortress.utilities.Skill;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -272,5 +273,9 @@ public class Company {
 
     public void clearItemList() {
         items.clear();
+    }
+    
+    public void assignEmployeeToProject(Employee emp,Project proj,Skill field){
+        proj.assignEmployeeToProject( emp, field);
     }
 }

@@ -224,4 +224,8 @@ public class Project {
         hash = 37 * hash + Objects.hashCode(this.name);
         return hash;
     }
+    
+    public void assignEmployeeToProject(Employee emp,Skill field){
+        skill_employeeMap.put(field, emp);
+    }
 }
