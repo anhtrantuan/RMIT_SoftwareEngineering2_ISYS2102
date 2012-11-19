@@ -4,7 +4,6 @@
  */
 package devfortress.model;
 
-import devfortress.model.exception.EmployeeIsBusyException;
 import devfortress.model.exception.ProjectFailsException;
 import devfortress.utilities.Skill;
 import java.util.HashMap;
