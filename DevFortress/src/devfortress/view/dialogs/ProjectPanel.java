@@ -149,7 +149,7 @@ public class ProjectPanel extends javax.swing.JPanel {
         tblFields.setAutoCreateRowSorter(true);
         tblFields.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         tblFields.setModel(new ProjectInformationTableModel());
-        tblFields.setRowHeight(30);
+        tblFields.setRowHeight(36);
         tblFields.setRowSelectionAllowed(false);
         scpFields.setViewportView(tblFields);
 
@@ -224,6 +224,7 @@ public class ProjectPanel extends javax.swing.JPanel {
         pnlCloseButton.setPreferredSize(new java.awt.Dimension(120, 60));
 
         btnClose.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icCancel.png"))); // NOI18N
         btnClose.setText(Constant.CLOSE_BTN);
         btnClose.setMaximumSize(new java.awt.Dimension(120, 40));
         btnClose.setMinimumSize(new java.awt.Dimension(120, 40));

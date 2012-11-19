@@ -16,7 +16,9 @@ public class Name {
         "Daniel", "Alexander", "Anthony", "William", "Christopher", "Emma",
         "Isabella", "Emily", "Madison", "Ava", "Olivia", "Sophia"};
     private static String[] projectName = {"Fakebook Module", "Itube Video Sharing",
-        "Re OSX", "Uphone Application",};
+        "Re OSX", "Uphone Application", "Twotter UI", "Dogg Module",
+        "Gooooogl Share", "Macrosoft SkyHDD", "DropBucket Backend",
+        "MegaStorm Connector", "Yahee Messenger"};
 
     public static String getEmployeeName() {
         Random random = new Random();

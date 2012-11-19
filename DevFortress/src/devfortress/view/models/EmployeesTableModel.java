@@ -70,11 +70,23 @@ public class EmployeesTableModel extends DefaultTableModel {
         /* Add new records. */
         for (ListIterator<Employee> iterator = employeeList.listIterator();
                 iterator.hasNext();) {
+            JButton detailsButton = new JButton(Constant.EMPLOYEE_DETAILS,
+                    new ImageIcon(getClass().
+                    getResource("/devfortress/view/resources/icInformation.png"))),
+                    manageButton = new JButton(Constant.EMPLOYEE_MANAGE,
+                    new ImageIcon(getClass().
+                    getResource("/devfortress/view/resources/icManage.png")));
             Employee employee = iterator.next();
-            addRow(new Object[]{employee.getName(),
-                        new ImageIcon(getClass().getResource("../resources/icHappy.png")),
-                        "Project 1", new JButton(Constant.EMPLOYEE_DETAILS),
-                        new JButton(Constant.EMPLOYEE_MANAGE)});
+            ImageIcon icon;
+            if (employee.getStatus()[2]) {
+                icon = new ImageIcon(getClass().
+                        getResource("/devfortress/view/resources/icHappy.png"));
+            } else {
+                icon = new ImageIcon(getClass().
+                        getResource("/devfortress/view/resources/icUnhappy.png"));
+            }
+            addRow(new Object[]{employee.getName(), icon, "Project 1",
+                        detailsButton, manageButton});
         }
     }
 }

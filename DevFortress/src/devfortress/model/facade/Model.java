@@ -37,9 +37,9 @@ public interface Model {
 
     void paySalary();
 
-    List<Employee> generateEmployeeList();
+    List<Employee> getAvailableEmployeeList();
 
-    List<Project> generateProjectList();
+    List<Project> getAvailableProjectList();
 
     void nextTurn() throws MoneyRunOutException;
 
@@ -65,7 +65,5 @@ public interface Model {
 
     Project getProjectByName(String name);
     
-    void assignEmployeeToProject(Employee emp,Project proj,Skill field)throws EmployeeIsBusyException;
-    
-    String getWorkingProjectOfEmployee(Employee emp);
+    void assignEmployeeToProject(Employee emp,Project proj,Skill field) throws EmployeeIsBusyException;
 }

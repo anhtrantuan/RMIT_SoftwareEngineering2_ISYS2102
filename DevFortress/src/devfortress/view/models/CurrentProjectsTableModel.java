@@ -8,6 +8,7 @@ import devfortress.model.Project;
 import devfortress.utilities.Constant;
 import java.util.List;
 import java.util.ListIterator;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
@@ -71,12 +72,20 @@ public class CurrentProjectsTableModel extends DefaultTableModel {
         /*
          * Add new records.
          */
-        for (ListIterator<Project> iterator = projectList.listIterator();
-                iterator.hasNext();) {
-            Project project = iterator.next();
-            addRow(new Object[]{project.getName(),
-                        new JButton(Constant.BUTTON_INFORMATION),
-                        new JButton(Constant.CANCEL)});
+        if (projectList.size() > 0) {
+            for (ListIterator<Project> iterator = projectList.listIterator();
+                    iterator.hasNext();) {
+                Project project = iterator.next();
+                JButton informationButton = new JButton(Constant.BUTTON_INFORMATION,
+                        new ImageIcon(getClass().
+                        getResource("/devfortress/view/resources/icInformation.png"))),
+                        cancelButton = new JButton(Constant.CANCEL,
+                        new ImageIcon(getClass().
+                        getResource("/devfortress/view/resources/icCancelProject.png")));
+                addRow(new Object[]{project.getName(),
+                            informationButton,
+                            cancelButton});
+            }
         }
 
     }

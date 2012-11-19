@@ -5,8 +5,7 @@
 package devfortress.view.dialogs;
 
 import devfortress.utilities.Constant;
-import devfortress.view.DevFortressView;
-import javax.swing.JFrame;
+import java.awt.event.ActionListener;
 
 /**
  *
@@ -17,8 +16,11 @@ public class SystemPanel extends javax.swing.JPanel {
     /**
      * Creates new form SystemPanel
      */
-    public SystemPanel() {
+    public SystemPanel(ActionListener buttonListener) {
         initComponents();
+        btnContract.addActionListener(buttonListener);
+        btnHire.addActionListener(buttonListener);
+        btnClose.addActionListener(buttonListener);
     }
 
     /**
@@ -36,12 +38,14 @@ public class SystemPanel extends javax.swing.JPanel {
         btnContract = new javax.swing.JButton();
         pnlHire = new javax.swing.JPanel();
         btnHire = new javax.swing.JButton();
+        pnlCloseButton = new javax.swing.JPanel();
+        btnClose = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        setMaximumSize(new java.awt.Dimension(300, 250));
-        setMinimumSize(new java.awt.Dimension(300, 250));
-        setPreferredSize(new java.awt.Dimension(300, 250));
+        setMaximumSize(new java.awt.Dimension(300, 300));
+        setMinimumSize(new java.awt.Dimension(300, 300));
+        setPreferredSize(new java.awt.Dimension(300, 300));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
         pnlTitle.setBackground(new java.awt.Color(255, 255, 255));
@@ -71,7 +75,8 @@ public class SystemPanel extends javax.swing.JPanel {
         pnlContract.setMinimumSize(new java.awt.Dimension(240, 80));
         pnlContract.setPreferredSize(new java.awt.Dimension(240, 80));
 
-        btnContract.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        btnContract.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        btnContract.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icContract.png"))); // NOI18N
         btnContract.setText(Constant.BUTTON_CONTRACT);
         btnContract.setMaximumSize(new java.awt.Dimension(240, 60));
         btnContract.setMinimumSize(new java.awt.Dimension(240, 60));
@@ -100,7 +105,8 @@ public class SystemPanel extends javax.swing.JPanel {
         pnlHire.setMinimumSize(new java.awt.Dimension(240, 80));
         pnlHire.setPreferredSize(new java.awt.Dimension(240, 80));
 
-        btnHire.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        btnHire.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        btnHire.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icHire.png"))); // NOI18N
         btnHire.setText(Constant.BUTTON_HIRE);
         btnHire.setMaximumSize(new java.awt.Dimension(240, 60));
         btnHire.setMinimumSize(new java.awt.Dimension(240, 60));
@@ -123,54 +129,45 @@ public class SystemPanel extends javax.swing.JPanel {
         );
 
         add(pnlHire);
+
+        pnlCloseButton.setBackground(new java.awt.Color(255, 255, 255));
+        pnlCloseButton.setMaximumSize(new java.awt.Dimension(120, 60));
+        pnlCloseButton.setMinimumSize(new java.awt.Dimension(120, 60));
+        pnlCloseButton.setPreferredSize(new java.awt.Dimension(120, 60));
+
+        btnClose.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icCancel.png"))); // NOI18N
+        btnClose.setText(Constant.CLOSE_BTN);
+        btnClose.setMaximumSize(new java.awt.Dimension(120, 40));
+        btnClose.setMinimumSize(new java.awt.Dimension(120, 40));
+        btnClose.setPreferredSize(new java.awt.Dimension(120, 40));
+
+        javax.swing.GroupLayout pnlCloseButtonLayout = new javax.swing.GroupLayout(pnlCloseButton);
+        pnlCloseButton.setLayout(pnlCloseButtonLayout);
+        pnlCloseButtonLayout.setHorizontalGroup(
+            pnlCloseButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCloseButtonLayout.createSequentialGroup()
+                .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlCloseButtonLayout.setVerticalGroup(
+            pnlCloseButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCloseButtonLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(10, 10, 10))
+        );
+
+        add(pnlCloseButton);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnClose;
     private javax.swing.JButton btnContract;
     private javax.swing.JButton btnHire;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JPanel pnlCloseButton;
     private javax.swing.JPanel pnlContract;
     private javax.swing.JPanel pnlHire;
     private javax.swing.JPanel pnlTitle;
     // End of variables declaration//GEN-END:variables
-
-    public static void main(String[] args) {
-        /*
-         * Set the Nimbus look and feel
-         */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the
-         * default look and feel. For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info :
-                    javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException |
-                IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(
-                    DevFortressView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /*
-         * Create and display the form
-         */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                JFrame f = new JFrame();
-                SystemPanel p = new SystemPanel();
-                f.add(p);
-                f.pack();
-                f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                f.setVisible(true);
-            }
-        });
-    }
 }

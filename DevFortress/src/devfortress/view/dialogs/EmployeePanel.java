@@ -117,7 +117,7 @@ public class EmployeePanel extends javax.swing.JPanel {
         tblSkills.setAutoCreateRowSorter(true);
         tblSkills.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         tblSkills.setModel(new EmployeeTableModel());
-        tblSkills.setRowHeight(30);
+        tblSkills.setRowHeight(36);
         scpSkills.setViewportView(tblSkills);
 
         add(scpSkills);
@@ -146,13 +146,15 @@ public class EmployeePanel extends javax.swing.JPanel {
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
         btnCancel.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icCancel.png"))); // NOI18N
         btnCancel.setText(Constant.CANCEL);
         btnCancel.setMaximumSize(new java.awt.Dimension(120, 40));
         btnCancel.setMinimumSize(new java.awt.Dimension(120, 40));
         btnCancel.setPreferredSize(new java.awt.Dimension(120, 40));
 
         btnFire.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
-        btnFire.setText(Constant.FIRE);
+        btnFire.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icFire.png"))); // NOI18N
+        btnFire.setText(Constant.BUTTON_FIRE);
         btnFire.setMaximumSize(new java.awt.Dimension(120, 40));
         btnFire.setMinimumSize(new java.awt.Dimension(120, 40));
         btnFire.setPreferredSize(new java.awt.Dimension(120, 40));

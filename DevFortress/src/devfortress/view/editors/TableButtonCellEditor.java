@@ -7,6 +7,7 @@ package devfortress.view.editors;
 import java.awt.Component;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultCellEditor;
+import javax.swing.Icon;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JTable;
@@ -19,6 +20,7 @@ public class TableButtonCellEditor extends DefaultCellEditor {
 
     private ActionListener buttonListener;
     private String buttonText;
+    private Icon icon;
 
     /**
      * Constructor for TableButtonCellEditor.
@@ -48,6 +50,7 @@ public class TableButtonCellEditor extends DefaultCellEditor {
         JButton button = (JButton) value;
         button.addActionListener(buttonListener);
         buttonText = button.getText();
+        icon = button.getIcon();
 
         /* Set employee's name as button's action command. */
         button.setActionCommand((String) table.getValueAt(row, 0));
@@ -63,6 +66,6 @@ public class TableButtonCellEditor extends DefaultCellEditor {
      */
     @Override
     public Object getCellEditorValue() {
-        return new JButton(buttonText);
+        return new JButton(buttonText, icon);
     }
 }

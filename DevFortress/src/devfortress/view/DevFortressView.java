@@ -20,7 +20,6 @@ import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 
 /**
  *
@@ -321,7 +320,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         );
         pnlBlankLayout.setVerticalGroup(
             pnlBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 86, Short.MAX_VALUE)
+            .addGap(0, 94, Short.MAX_VALUE)
         );
 
         pnlManagement.add(pnlBlank);
@@ -334,7 +333,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
 
         tblEmployee.setAutoCreateRowSorter(true);
         tblEmployee.setModel(new devfortress.view.models.EmployeesTableModel());
-        tblEmployee.setRowHeight(30);
+        tblEmployee.setRowHeight(36);
         tblEmployee.setRowSelectionAllowed(false);
         scpDevelopers.setViewportView(tblEmployee);
 
@@ -372,7 +371,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
             .addGroup(pnlSystemControlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(pnlSystemControlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnInformation, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)
+                    .addComponent(btnInformation, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
                     .addComponent(btnCurrentProjects, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -478,7 +477,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
                 .addGap(0, 0, 0)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(scpDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, 488, Short.MAX_VALUE)
+                        .addComponent(scpDevelopers, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
                         .addGap(0, 0, 0)
                         .addComponent(pnlLogAndControl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(scpManagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -534,7 +533,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         tblDevelopersModel.setEmployeeList(model.getEmployeeList());
 
         /* Fix overstretch problem of Management panel. */
-        pnlManagement.setSize(0, 0);
+        pnlManagement.setSize(0, pnlManagement.getHeight());
 
         /* Adjust sizes of Management panel and its child components. */
         treeExpansion(null);

@@ -13,7 +13,6 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.util.List;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 
 /**
  *
@@ -89,8 +88,8 @@ public class CurrentProjectsPanel extends javax.swing.JPanel {
 
         tblProjects.setAutoCreateRowSorter(true);
         tblProjects.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        tblProjects.setModel(new CurrentProjectsTableModel());
-        tblProjects.setRowHeight(30);
+        tblProjects.setModel(new devfortress.view.models.CurrentProjectsTableModel());
+        tblProjects.setRowHeight(36);
         tblProjects.setRowSelectionAllowed(false);
         scpProject.setViewportView(tblProjects);
 
@@ -102,6 +101,7 @@ public class CurrentProjectsPanel extends javax.swing.JPanel {
         jPanel2.setPreferredSize(new java.awt.Dimension(120, 60));
 
         btnClose.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icCancel.png"))); // NOI18N
         btnClose.setText(Constant.CLOSE_BTN);
         btnClose.setMaximumSize(new java.awt.Dimension(120, 40));
         btnClose.setMinimumSize(new java.awt.Dimension(120, 40));

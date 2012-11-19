@@ -133,7 +133,7 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
         tblEmployees.setAutoCreateRowSorter(true);
         tblEmployees.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         tblEmployees.setModel(new devfortress.view.models.EmployeeTableModel());
-        tblEmployees.setRowHeight(30);
+        tblEmployees.setRowHeight(36);
         tblEmployees.setRowSelectionAllowed(false);
         scpEmployees.setViewportView(tblEmployees);
 
@@ -161,15 +161,12 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
         add(pnlSalary);
 
         pnlPreviousNext.setBackground(new java.awt.Color(255, 255, 255));
-        pnlPreviousNext.setMaximumSize(new java.awt.Dimension(225, 50));
-        pnlPreviousNext.setMinimumSize(new java.awt.Dimension(225, 50));
-        pnlPreviousNext.setPreferredSize(new java.awt.Dimension(225, 50));
+        pnlPreviousNext.setMaximumSize(new java.awt.Dimension(122, 56));
+        pnlPreviousNext.setMinimumSize(new java.awt.Dimension(122, 56));
+        pnlPreviousNext.setPreferredSize(new java.awt.Dimension(122, 56));
 
         btnPrevious.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        btnPrevious.setText(Constant.PREVIOUS_BTN);
-        btnPrevious.setMaximumSize(new java.awt.Dimension(100, 30));
-        btnPrevious.setMinimumSize(new java.awt.Dimension(100, 30));
-        btnPrevious.setPreferredSize(new java.awt.Dimension(100, 30));
+        btnPrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icPrevious.png"))); // NOI18N
         btnPrevious.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPreviousActionPerformed(evt);
@@ -177,10 +174,7 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
         });
 
         btnNext.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        btnNext.setText(Constant.NEXT_BTN);
-        btnNext.setMaximumSize(new java.awt.Dimension(100, 30));
-        btnNext.setMinimumSize(new java.awt.Dimension(100, 30));
-        btnNext.setPreferredSize(new java.awt.Dimension(100, 30));
+        btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icNext.png"))); // NOI18N
         btnNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNextActionPerformed(evt);
@@ -192,17 +186,19 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
         pnlPreviousNextLayout.setHorizontalGroup(
             pnlPreviousNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPreviousNextLayout.createSequentialGroup()
-                .addComponent(btnPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addComponent(btnPrevious)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(btnNext)
+                .addContainerGap())
         );
         pnlPreviousNextLayout.setVerticalGroup(
             pnlPreviousNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPreviousNextLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(pnlPreviousNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnPrevious)
+                    .addComponent(btnNext))
                 .addGap(10, 10, 10))
         );
 
@@ -211,12 +207,14 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
         pnlAcceptCancel.setBackground(new java.awt.Color(255, 255, 255));
 
         btnCancel.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icCancel.png"))); // NOI18N
         btnCancel.setText(Constant.CANCEL);
         btnCancel.setMaximumSize(new java.awt.Dimension(120, 40));
         btnCancel.setMinimumSize(new java.awt.Dimension(120, 40));
         btnCancel.setPreferredSize(new java.awt.Dimension(120, 40));
 
         btnHire.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        btnHire.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icHire.png"))); // NOI18N
         btnHire.setText(Constant.HIRE);
         btnHire.setMaximumSize(new java.awt.Dimension(120, 40));
         btnHire.setMinimumSize(new java.awt.Dimension(120, 40));
@@ -290,5 +288,14 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
                 currentEmployee.getSalary()));
         tableModel.setSkillList(currentEmployee.getSkillList());
         btnHire.setActionCommand(String.valueOf(index));
+    }
+
+    /**
+     * Get selected employee.
+     *
+     * @return
+     */
+    public Employee getSelectedEmployee() {
+        return currentEmployee;
     }
 }

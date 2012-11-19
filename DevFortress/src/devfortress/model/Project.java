@@ -232,18 +232,18 @@ public class Project {
      * @param emp
      * @param field
      */
-    public boolean assignEmployeeToProject(Employee emp, Skill field) throws EmployeeIsBusyException {
+    public boolean assignEmployeeToProject(Employee emp, Skill field){
         if (emp.getWorkingProject() != null) {
-            throw new EmployeeIsBusyException();
-        } else {
             if (emp.getMainSkill() == mainSkill) {
                 emp.getHappy();
             } else {
                 emp.getSad();
             }
             skill_employeeMap.put(field, emp);
-            emp.getProject(this);
             return true;
+        } else {
+            return false;
         }
+
     }
 }

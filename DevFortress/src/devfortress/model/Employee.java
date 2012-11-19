@@ -25,7 +25,7 @@ public class Employee {
         this.name = name;
         this.skillList = skillList;
         status = new boolean[4];
-        workingProject= null;
+        workingProject = null;
         //0 is having beer, 1 is full, 2 is happy, 3 is working;
         status[0] = false;
         status[1] = false;
@@ -261,8 +261,6 @@ public class Employee {
     public Project getWorkingProject() {
         return workingProject;
     }
-
-    void getProject(Project proj) {
-        workingProject = proj;
-    }
+    
+    
 }

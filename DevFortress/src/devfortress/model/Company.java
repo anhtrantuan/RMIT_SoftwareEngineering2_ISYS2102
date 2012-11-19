@@ -27,6 +27,8 @@ public class Company {
     private List<Project> currentProjectList;
     private float expenses;
     private Map<String, Float> items;
+    private int foodStock, beerStock;
+    
 
     public Company() {
         this(1000f, new ArrayList<>(), new HashMap<>(), new ArrayList<>(), new HashMap<>());
@@ -122,8 +124,10 @@ public class Company {
                 name = Constant.EXPENSE_COMPUTERS;
             } else if (item instanceof Food) {
                 name = Constant.EXPENSE_FOODS;
+                foodStock+=quantity;
             } else if (item instanceof Beer) {
                 name = Constant.EXPENSE_BEERS;
+                beerStock+=quantity;
             }
             float newValue;
             if (items.containsKey(name)) {
@@ -283,7 +287,8 @@ public class Company {
      * @param emp
      * @param field 
      */
-    public boolean assignEmployeeToProject(Employee emp, Project proj, Skill field) throws EmployeeIsBusyException {       
+    public boolean assignEmployeeToProject(Employee emp, Project proj, Skill field){
         return proj.assignEmployeeToProject(emp, field);
+        
     }
 }
