@@ -275,7 +275,19 @@ public class Company {
         items.clear();
     }
     
-    public void assignEmployeeToProject(Employee emp,Project proj,Skill field){
-        proj.assignEmployeeToProject( emp, field);
+    /**
+     * assign an employee to selected project with a specific field, employee will be happy 
+     * if he/she is assigned into a project which having the project type similar as his/her 
+     * main skill, get sad otherwise
+     * @param emp
+     * @param field 
+     */
+    public void assignEmployeeToProject(Employee emp, Project proj, Skill field) {
+        proj.assignEmployeeToProject(emp, field);
+        if (emp.getMainSkill() == proj.getMainSkill()) {
+            emp.getHappy();
+        } else {
+            emp.getSad();
+        }
     }
 }

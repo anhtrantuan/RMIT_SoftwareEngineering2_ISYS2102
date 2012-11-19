@@ -225,6 +225,11 @@ public class Project {
         return hash;
     }
     
+    /**
+     * assign an employee to specific field
+     * @param emp
+     * @param field 
+     */
     public void assignEmployeeToProject(Employee emp,Skill field){
         skill_employeeMap.put(field, emp);
     }
