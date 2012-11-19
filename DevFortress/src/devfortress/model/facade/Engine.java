@@ -216,6 +216,7 @@ public class Engine extends Observable implements Model {
      */
     private void nextWeek() {
         eventOccur();
+        consumeFood();
         dateTime.nextWeek();
 
     }
@@ -289,5 +290,10 @@ public class Engine extends Observable implements Model {
     
     public void assignEmployeeToProject(Employee emp,Project proj,Skill field){
         company.assignEmployeeToProject(emp, proj, field);
+    }
+    
+       
+    private void consumeFood(){
+        //TODO next sprint
     }
 }
