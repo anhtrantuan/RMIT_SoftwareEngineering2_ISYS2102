@@ -287,4 +287,13 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
         tableModel.setSkillList(currentEmployee.getSkillList());
         btnHire.setActionCommand(String.valueOf(index));
     }
+
+    /**
+     * Get selected employee.
+     *
+     * @return
+     */
+    public Employee getSelectedEmployee() {
+        return currentEmployee;
+    }
 }

@@ -4,7 +4,6 @@
  */
 package devfortress.controller;
 
-import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.facade.Model;
 import devfortress.utilities.Constant;
 import devfortress.view.dialogs.CurrentProjectsPanel;
@@ -14,7 +13,6 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -40,7 +38,8 @@ public class MainScreenButtonListener implements ActionListener {
         JDialog dialog = new JDialog((JFrame) null, text, true);
         dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 
-        DialogButtonListener buttonListener = new DialogButtonListener(model);
+        DialogButtonListener buttonListener =
+                new DialogButtonListener(model, dialog);
 
         if (text.equals(Constant.BUTTON_SYSTEM)) {
             SystemPanel panel = new SystemPanel(buttonListener);
@@ -48,11 +47,7 @@ public class MainScreenButtonListener implements ActionListener {
             dialog.pack();
             dialog.setVisible(true);
         } else if (text.equals(Constant.BUTTON_NEXT_TURN)) {
-            try {
-                model.nextTurn();
-            } catch (MoneyRunOutException ex) {
-                JOptionPane.showMessageDialog(null, "Game over!");
-            }
+            throw new UnsupportedOperationException("Not supported yet!");
         } else if (text.equals(Constant.BUTTON_INFORMATION)) {
             throw new UnsupportedOperationException("Not supported yet!");
         } else if (text.equals(Constant.BUTTTON_CURRENT_PROJECTS)) {

@@ -341,4 +341,13 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
         tableModel.setSkillList(currentProject.getOriginalSkillRequirementMap());
         btnAccept.setActionCommand(String.valueOf(index));
     }
+
+    /**
+     * Get selected project.
+     *
+     * @return
+     */
+    public Project getSelectedProject() {
+        return currentProject;
+    }
 }
