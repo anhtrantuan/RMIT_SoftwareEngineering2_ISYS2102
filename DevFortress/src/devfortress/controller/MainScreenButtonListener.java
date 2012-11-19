@@ -4,12 +4,15 @@
  */
 package devfortress.controller;
 
+import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.facade.Model;
 import devfortress.utilities.Constant;
 import devfortress.view.dialogs.CurrentProjectsPanel;
 import devfortress.view.dialogs.SystemPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -47,7 +50,11 @@ public class MainScreenButtonListener implements ActionListener {
             dialog.pack();
             dialog.setVisible(true);
         } else if (text.equals(Constant.BUTTON_NEXT_TURN)) {
-            throw new UnsupportedOperationException("Not supported yet!");
+            try {
+                model.nextTurn();
+            } catch (MoneyRunOutException ex) {
+                Logger.getLogger(MainScreenButtonListener.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else if (text.equals(Constant.BUTTON_INFORMATION)) {
             throw new UnsupportedOperationException("Not supported yet!");
         } else if (text.equals(Constant.BUTTTON_CURRENT_PROJECTS)) {

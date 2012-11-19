@@ -533,7 +533,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         tblDevelopersModel.setEmployeeList(model.getEmployeeList());
 
         /* Fix overstretch problem of Management panel. */
-        pnlManagement.setSize(0, 0);
+        pnlManagement.setSize(0, pnlManagement.getHeight());
 
         /* Adjust sizes of Management panel and its child components. */
         treeExpansion(null);

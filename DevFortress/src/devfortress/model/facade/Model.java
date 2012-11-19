@@ -35,9 +35,9 @@ public interface Model {
 
     void paySalary();
 
-    List<Employee> generateEmployeeList();
+    List<Employee> getAvailableEmployeeList();
 
-    List<Project> generateProjectList();
+    List<Project> getAvailableProjectList();
 
     void nextTurn() throws MoneyRunOutException;
 
