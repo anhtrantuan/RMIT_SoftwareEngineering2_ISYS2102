@@ -74,14 +74,11 @@ public class ProjectInformationTableModel extends DefaultTableModel {
         Map<Skill, Integer> skillPointMap = project.getSkillRequirementMap();
         Map<Skill, Integer> originalSkillPointMap =
                 project.getOriginalSkillRequirementMap();
-        /*
-         * Reset table.
-         */
+
+        /* Reset table. */
         setRowCount(0);
 
-        /*
-         * Add new records.
-         */
+        /* Add new records. */
         for (Iterator<Skill> iterator = originalSkillPointMap.keySet().iterator();
                 iterator.hasNext();) {
             Skill skill = iterator.next();
@@ -91,7 +88,7 @@ public class ProjectInformationTableModel extends DefaultTableModel {
                 button.setText(Constant.ASSIGN);
                 button.setIcon(new ImageIcon(getClass().
                         getResource("/devfortress/view/resources/icHire.png")));
-                addRow(new Object[]{"N/A", skill.toString(),
+                addRow(new Object[]{Constant.NA, skill.toString(),
                             skillPointMap.get(skill).intValue(),
                             originalSkillPointMap.get(skill),
                             button});

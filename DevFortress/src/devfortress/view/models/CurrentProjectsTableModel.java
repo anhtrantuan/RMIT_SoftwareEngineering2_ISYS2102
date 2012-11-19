@@ -6,6 +6,7 @@ package devfortress.view.models;
 
 import devfortress.model.Project;
 import devfortress.utilities.Constant;
+import java.awt.Component;
 import java.util.List;
 import java.util.ListIterator;
 import javax.swing.ImageIcon;
@@ -32,7 +33,11 @@ public class CurrentProjectsTableModel extends DefaultTableModel {
      */
     @Override
     public Class<?> getColumnClass(int columnIndex) {
-        return getValueAt(0, columnIndex).getClass();
+        if (getRowCount() > 0) {
+            return getValueAt(0, columnIndex).getClass();
+        } else {
+            return Component.class;
+        }
     }
 
     /**
@@ -64,14 +69,10 @@ public class CurrentProjectsTableModel extends DefaultTableModel {
      */
     public void setProjectList(List<Project> projectList) {
 
-        /*
-         * Reset table.
-         */
+        /* Reset table. */
         setRowCount(0);
 
-        /*
-         * Add new records.
-         */
+        /* Add new records. */
         if (projectList.size() > 0) {
             for (ListIterator<Project> iterator = projectList.listIterator();
                     iterator.hasNext();) {

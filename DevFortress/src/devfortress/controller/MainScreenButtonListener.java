@@ -62,7 +62,7 @@ public class MainScreenButtonListener implements ActionListener {
                     new CurrentProjectsPanel(model.getProjectList(),
                     buttonListener);
             ProjectsTableButtonListener tableButtonListener =
-                    new ProjectsTableButtonListener(model);
+                    new ProjectsTableButtonListener(model, dialog);
             panel.setTableButtonListener(tableButtonListener);
             dialog.setContentPane(panel);
             dialog.pack();

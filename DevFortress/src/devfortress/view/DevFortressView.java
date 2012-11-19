@@ -28,7 +28,6 @@ import javax.swing.JButton;
 public class DevFortressView extends javax.swing.JFrame implements View, Observer {
 
     private Model model;
-    private ActionListener employeeTableButtonListener = null;
 
     /**
      * Creates new form DevFortressView.

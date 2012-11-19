@@ -196,7 +196,7 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
             pnlPreviousNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPreviousNextLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(pnlPreviousNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlPreviousNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnPrevious)
                     .addComponent(btnNext))
                 .addGap(10, 10, 10))
@@ -246,14 +246,22 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
 
     private void btnPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousActionPerformed
         if (index > 0) {
+            btnNext.setEnabled(true);
             index--;
+            if (index == 0) {
+                btnPrevious.setEnabled(false);
+            }
             populateData();
         }
     }//GEN-LAST:event_btnPreviousActionPerformed
 
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
         if (index < employeeList.size() - 1) {
+            btnPrevious.setEnabled(true);
             index++;
+            if (index == employeeList.size() - 1) {
+                btnNext.setEnabled(false);
+            }
             populateData();
         }
     }//GEN-LAST:event_btnNextActionPerformed
@@ -279,15 +287,37 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
      * Populate data to view.
      */
     private void populateData() {
-        currentEmployee = employeeList.get(index);
-        lblName.setText(String.format("%s: %s", Constant.EMPLOYEE_NAME,
-                currentEmployee.getName()));
-        lblMainSkill.setText(String.format("%s: %s", Constant.MAIN_SKILL_LABEL,
-                currentEmployee.getMainSkill().toString()));
-        lblSalary.setText(String.format("%s: $%.2f", Constant.SALARY_LABEL,
-                currentEmployee.getSalary()));
-        tableModel.setSkillList(currentEmployee.getSkillList());
-        btnHire.setActionCommand(String.valueOf(index));
+        if (employeeList.size() > 0) {
+            currentEmployee = employeeList.get(index);
+            lblName.setText(String.format("%s: %s", Constant.EMPLOYEE_NAME,
+                    currentEmployee.getName()));
+            lblMainSkill.setText(String.format("%s: %s", Constant.MAIN_SKILL_LABEL,
+                    currentEmployee.getMainSkill().toString()));
+            lblSalary.setText(String.format("%s: $%.2f", Constant.SALARY_LABEL,
+                    currentEmployee.getSalary()));
+            tableModel.setSkillList(currentEmployee.getSkillList());
+            btnHire.setActionCommand(String.valueOf(index));
+        } else {
+            lblName.setText(String.format("%s: %s", Constant.EMPLOYEE_NAME,
+                    Constant.NA));
+            lblMainSkill.setText(String.format("%s: %s", Constant.MAIN_SKILL_LABEL,
+                    Constant.NA));
+            lblSalary.setText(String.format("%s: %s", Constant.SALARY_LABEL,
+                    Constant.NA));
+            tableModel.setSkillList(null);
+        }
+
+        /* Update buttons' availability. */
+        if (index > 0) {
+            btnPrevious.setEnabled(true);
+        } else {
+            btnPrevious.setEnabled(false);
+        }
+        if (employeeList.size() < 2 || index == employeeList.size() - 1) {
+            btnNext.setEnabled(false);
+        } else {
+            btnNext.setEnabled(true);
+        }
     }
 
     /**

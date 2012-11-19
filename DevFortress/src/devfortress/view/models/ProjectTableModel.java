@@ -34,10 +34,12 @@ public class ProjectTableModel extends DefaultTableModel {
         setRowCount(0);
 
         /* Add new records. */
-        for (Iterator<Skill> iterator = skillList.keySet().iterator();
-                iterator.hasNext();) {
-            Skill skill = iterator.next();
-            addRow(new Object[]{skill.toString(), skillList.get(skill)});
+        if (skillList != null) {
+            for (Iterator<Skill> iterator = skillList.keySet().iterator();
+                    iterator.hasNext();) {
+                Skill skill = iterator.next();
+                addRow(new Object[]{skill.toString(), skillList.get(skill)});
+            }
         }
     }
 }

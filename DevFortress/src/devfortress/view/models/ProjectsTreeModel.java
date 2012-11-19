@@ -37,7 +37,7 @@ public class ProjectsTreeModel extends DefaultTreeModel {
     public void setProjects(List<Project> projects) {
         DefaultMutableTreeNode rootNode = (DefaultMutableTreeNode) root;
         rootNode.removeAllChildren();
-        
+
         /* Loop through project list to update data. */
         for (ListIterator<Project> iterator = projects.listIterator();
                 iterator.hasNext();) {

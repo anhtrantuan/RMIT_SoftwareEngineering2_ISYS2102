@@ -6,6 +6,7 @@ package devfortress.view.models;
 
 import devfortress.model.Employee;
 import devfortress.utilities.Constant;
+import java.awt.Component;
 import java.util.List;
 import java.util.ListIterator;
 import javax.swing.ImageIcon;
@@ -37,7 +38,11 @@ public class EmployeesTableModel extends DefaultTableModel {
      */
     @Override
     public Class<?> getColumnClass(int columnIndex) {
-        return getValueAt(0, columnIndex).getClass();
+        if (getRowCount() > 0) {
+            return getValueAt(0, columnIndex).getClass();
+        } else {
+            return Component.class;
+        }
     }
 
     /**

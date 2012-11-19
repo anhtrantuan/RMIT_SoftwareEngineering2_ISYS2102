@@ -5,7 +5,6 @@
 package devfortress.controller;
 
 import devfortress.model.Employee;
-import devfortress.model.Project;
 import devfortress.model.exception.OvercrowdedException;
 import devfortress.model.facade.Model;
 import devfortress.utilities.Constant;
@@ -17,7 +16,6 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JDialog;
-import javax.swing.JFrame;
 
 /**
  *
