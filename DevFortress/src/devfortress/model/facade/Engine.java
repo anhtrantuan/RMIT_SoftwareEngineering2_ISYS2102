@@ -9,16 +9,10 @@ import devfortress.model.dificulity.DifficultLevel;
 import devfortress.model.dificulity.EasyLevel;
 import devfortress.model.dificulity.GameLevel;
 import devfortress.model.dificulity.MediumLevel;
-import devfortress.model.exception.MoneyRunOutException;
-import devfortress.model.exception.OvercrowdedException;
-import devfortress.model.exception.ProjectFailsException;
-import devfortress.model.exception.UnaffordableException;
+import devfortress.model.exception.*;
 import devfortress.utilities.Skill;
 import devfortress.utilities.Utilities;
-import java.util.List;
-import java.util.Map;
-import java.util.Observable;
-import java.util.Random;
+import java.util.*;
 // TODO implement statergy partern
 
 /**
@@ -196,6 +190,10 @@ public class Engine extends Observable implements Model {
      */
     @Override
     public void nextTurn() throws MoneyRunOutException {
+
+        List<Project> succeededProject = new ArrayList();
+        List<Project> failedProject = new ArrayList();
+
         if (dateTime.getYear() < 2) {
             level = new EasyLevel();
         } else if (dateTime.getYear() < 4) {
@@ -211,12 +209,20 @@ public class Engine extends Observable implements Model {
         for (Project project : company.getCurrentProjectList()) {
             try {
                 if (project.checkProjectProcess()) {
-                    company.removeProject(project);
+                    succeededProject.add(project);
+
                 }
             } catch (ProjectFailsException ex) {
-                company.cancelProject(project);
+                failedProject.add(project);
+
                 System.out.println(ex.getMessage());
             }
+        }
+        for (Project proj : failedProject) {
+            company.removeProject(proj);
+        }
+        for (Project proj : succeededProject) {
+            company.cancelProject(proj);
         }
         availableProjects = generateProjectList();
         availableEmployees = generateEmployeeList();
@@ -309,8 +315,11 @@ public class Engine extends Observable implements Model {
         return company.getProjectByName(name);
     }
 
-    public void assignEmployeeToProject(Employee emp, Project proj, Skill field) {
-        company.assignEmployeeToProject(emp, proj, field);
+    @Override
+    public void assignEmployeeToProject(Employee emp, Project proj, Skill field) throws EmployeeIsBusyException {
+        if (!company.assignEmployeeToProject(emp, proj, field)) {
+            throw new EmployeeIsBusyException();
+        }
     }
 
     private void consumeFood() {
