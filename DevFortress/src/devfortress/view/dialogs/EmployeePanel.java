@@ -15,7 +15,7 @@ import java.awt.event.ActionListener;
  * @author cathoanghuy
  */
 public class EmployeePanel extends javax.swing.JPanel {
-
+    
     private Employee employee;
     private EmployeeTableModel tableModel;
 
@@ -29,6 +29,7 @@ public class EmployeePanel extends javax.swing.JPanel {
         tableModel = (EmployeeTableModel) tblSkills.getModel();
         populateData();
         btnFire.addActionListener(buttonListener);
+        btnFire.setActionCommand(employee.getName());
         btnCancel.addActionListener(buttonListener);
     }
 
