@@ -4,6 +4,7 @@
  */
 package devfortress.view.editors;
 
+import devfortress.utilities.Constant;
 import java.awt.Component;
 import java.awt.event.ActionListener;
 import javax.swing.DefaultCellEditor;
@@ -52,8 +53,14 @@ public class TableButtonCellEditor extends DefaultCellEditor {
         buttonText = button.getText();
         icon = button.getIcon();
 
-        /* Set employee's name as button's action command. */
-        button.setActionCommand((String) table.getValueAt(row, 0));
+        /* Set employee's name or row index as button's action command. */
+        String name = (String) table.getValueAt(row, 0);
+        if (name.equals(Constant.NA)) {
+            button.setActionCommand(String.format("%d",
+                    table.convertRowIndexToModel(row)));
+        } else {
+            button.setActionCommand(name);
+        }
 
         /* Return button component. */
         return button;

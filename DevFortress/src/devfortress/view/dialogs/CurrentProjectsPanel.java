@@ -141,4 +141,13 @@ public class CurrentProjectsPanel extends javax.swing.JPanel {
         tblProjects.setDefaultEditor(JButton.class,
                 new TableButtonCellEditor(tableButtonListener));
     }
+
+    /**
+     * Set project list.
+     *
+     * @param projectList
+     */
+    public void setProjectList(List<Project> projectList) {
+        tableModel.setProjectList(projectList);
+    }
 }

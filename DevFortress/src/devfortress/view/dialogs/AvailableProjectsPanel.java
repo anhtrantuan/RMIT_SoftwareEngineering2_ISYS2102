@@ -111,9 +111,9 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
         pnlNameAndLevelLayout.setHorizontalGroup(
             pnlNameAndLevelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlNameAndLevelLayout.createSequentialGroup()
-                .addComponent(lblProjectName, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(lblProjectName, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(lblProjectLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lblProjectLevel, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlNameAndLevelLayout.setVerticalGroup(
             pnlNameAndLevelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -238,9 +238,9 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
             pnlPreviousAndNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPreviousAndNextLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(pnlPreviousAndNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(pnlPreviousAndNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnNext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnPrevious, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnPrevious, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -325,19 +325,47 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
      * Populate data to view.
      */
     private void populateData() {
-        currentProject = projectList.get(index);
-        lblProjectName.setText(String.format("%s: %s", Constant.PROJECT_NAME,
-                projectList.get(index).getName()));
-        lblProjectLevel.setText(String.format("%s: %s", Constant.PROJECT_LEVEL,
-                projectList.get(index).getProjectLevel()));
-        lblMainSkill.setText(String.format("%s: %s", Constant.MAIN_SKILL_LABEL,
-                projectList.get(index).getMainSkill().toString()));
-        lblDue.setText(String.format("%s: %d Month(s)", Constant.PROJECT_DUE,
-                projectList.get(index).getProjectTime().getMonths()));
-        lblPay.setText(String.format("%s: $%.2f", Constant.PROJECT_PAY,
-                projectList.get(index).getPayment()));
-        tableModel.setSkillList(currentProject.getOriginalSkillRequirementMap());
-        btnAccept.setActionCommand(String.valueOf(index));
+        if (projectList.size() > 0) {
+            currentProject = projectList.get(index);
+            lblProjectName.setText(String.format("%s: %s", Constant.PROJECT_NAME,
+                    projectList.get(index).getName()));
+            lblProjectLevel.setText(String.format("%s: %s", Constant.PROJECT_LEVEL,
+                    projectList.get(index).getProjectLevel()));
+            lblMainSkill.setText(String.format("%s: %s", Constant.MAIN_SKILL_LABEL,
+                    projectList.get(index).getMainSkill().toString()));
+            lblDue.setText(String.format("%s: %d Month(s)", Constant.PROJECT_DUE,
+                    projectList.get(index).getProjectTime().getMonths()));
+            lblPay.setText(String.format("%s: $%.2f", Constant.PROJECT_PAY,
+                    projectList.get(index).getPayment()));
+            tableModel.setSkillList(currentProject.getOriginalSkillRequirementMap());
+            btnAccept.setActionCommand(String.valueOf(index));
+            btnAccept.setEnabled(true);
+        } else {
+            lblProjectName.setText(String.format("%s: %s", Constant.PROJECT_NAME,
+                    Constant.NA));
+            lblProjectLevel.setText(String.format("%s: %s", Constant.PROJECT_LEVEL,
+                    Constant.NA));
+            lblMainSkill.setText(String.format("%s: %s", Constant.MAIN_SKILL_LABEL,
+                    Constant.NA));
+            lblDue.setText(String.format("%s: %s", Constant.PROJECT_DUE,
+                    Constant.NA));
+            lblPay.setText(String.format("%s: %s", Constant.PROJECT_PAY,
+                    Constant.NA));
+            tableModel.setSkillList(null);
+            btnAccept.setEnabled(false);
+        }
+
+        /* Update buttons' availability. */
+        if (index > 0) {
+            btnPrevious.setEnabled(true);
+        } else {
+            btnPrevious.setEnabled(false);
+        }
+        if (projectList.size() < 2 || index == projectList.size() - 1) {
+            btnNext.setEnabled(false);
+        } else {
+            btnNext.setEnabled(true);
+        }
     }
 
     /**

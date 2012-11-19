@@ -297,4 +297,13 @@ public class ProjectPanel extends javax.swing.JPanel {
         tblFields.setDefaultEditor(JButton.class,
                 new TableButtonCellEditor(tableButtonListener));
     }
+
+    /**
+     * Get current project.
+     *
+     * @return
+     */
+    public Project getProject() {
+        return project;
+    }
 }
