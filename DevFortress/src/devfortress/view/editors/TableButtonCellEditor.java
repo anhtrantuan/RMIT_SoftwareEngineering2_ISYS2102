@@ -25,9 +25,8 @@ public class TableButtonCellEditor extends DefaultCellEditor {
      *
      * @param checkBox
      */
-    public TableButtonCellEditor(JCheckBox checkBox,
-            ActionListener buttonListener) {
-        super(checkBox);
+    public TableButtonCellEditor(ActionListener buttonListener) {
+        super(new JCheckBox());
         this.buttonListener = buttonListener;
     }
 

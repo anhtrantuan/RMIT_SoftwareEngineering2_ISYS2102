@@ -6,6 +6,7 @@ package devfortress.model;
 
 import devfortress.model.exception.ProjectFailsException;
 import devfortress.utilities.Skill;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Random;
@@ -41,6 +42,7 @@ public class Project {
         remainingTime = projectTime;
         this.skillRequirementMap = skillRequirementMap;
         originalSkillRequirementMap = skillRequirementMap;
+        skill_employeeMap = new HashMap<>();
         calculateMainSkill();
     }
 

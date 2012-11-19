@@ -150,6 +150,7 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
 
         tblSkills.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         tblSkills.setModel(new devfortress.view.models.ProjectTableModel());
+        tblSkills.setRowHeight(30);
         tblSkills.setRowSelectionAllowed(false);
         scpSkills.setViewportView(tblSkills);
 

@@ -498,8 +498,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
     public void setTableButtonListener(ActionListener tableButtonListener) {
         /* Set cell renderer for Employee table. */
         tblEmployee.setDefaultEditor(JButton.class,
-                new TableButtonCellEditor(new JCheckBox(),
-                tableButtonListener));
+                new TableButtonCellEditor(tableButtonListener));
     }
 
     /**

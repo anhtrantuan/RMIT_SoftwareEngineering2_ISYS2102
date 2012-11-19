@@ -4,22 +4,9 @@
  */
 package devfortress.view.dialogs;
 
-import devfortress.DevFortress;
-import devfortress.controller.Controller;
-import devfortress.model.Beer;
-import devfortress.model.Computer;
-import devfortress.model.Employee;
-import devfortress.model.Food;
-import devfortress.model.Project;
-import devfortress.model.dificulity.EasyLevel;
-import devfortress.model.exception.OvercrowdedException;
-import devfortress.model.facade.Engine;
 import devfortress.utilities.Constant;
-import devfortress.utilities.Utilities;
 import devfortress.view.DevFortressView;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 /**
  *
@@ -43,52 +30,107 @@ public class SystemPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        pnlTitle = new javax.swing.JPanel();
+        lblTitle = new javax.swing.JLabel();
+        pnlContract = new javax.swing.JPanel();
+        btnContract = new javax.swing.JButton();
+        pnlHire = new javax.swing.JPanel();
+        btnHire = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText(Constant.BUTTON_SYSTEM);
+        setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        setMaximumSize(new java.awt.Dimension(300, 250));
+        setMinimumSize(new java.awt.Dimension(300, 250));
+        setPreferredSize(new java.awt.Dimension(300, 250));
+        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton1.setText(Constant.VIEW_CONTRACT_BUTTON);
+        pnlTitle.setBackground(new java.awt.Color(255, 255, 255));
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jButton2.setText(Constant.AVAILABLE_EMPLOYEE);
+        lblTitle.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText(Constant.BUTTON_SYSTEM);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jLabel1)
-                        .addGap(0, 18, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+        javax.swing.GroupLayout pnlTitleLayout = new javax.swing.GroupLayout(pnlTitle);
+        pnlTitle.setLayout(pnlTitleLayout);
+        pnlTitleLayout.setHorizontalGroup(
+            pnlTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblTitle, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
+        );
+        pnlTitleLayout.setVerticalGroup(
+            pnlTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTitleLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(lblTitle)
+                .addGap(10, 10, 10))
+        );
+
+        add(pnlTitle);
+
+        pnlContract.setBackground(new java.awt.Color(255, 255, 255));
+        pnlContract.setMaximumSize(new java.awt.Dimension(240, 80));
+        pnlContract.setMinimumSize(new java.awt.Dimension(240, 80));
+        pnlContract.setPreferredSize(new java.awt.Dimension(240, 80));
+
+        btnContract.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        btnContract.setText(Constant.BUTTON_CONTRACT);
+        btnContract.setMaximumSize(new java.awt.Dimension(240, 60));
+        btnContract.setMinimumSize(new java.awt.Dimension(240, 60));
+        btnContract.setPreferredSize(new java.awt.Dimension(240, 60));
+
+        javax.swing.GroupLayout pnlContractLayout = new javax.swing.GroupLayout(pnlContract);
+        pnlContract.setLayout(pnlContractLayout);
+        pnlContractLayout.setHorizontalGroup(
+            pnlContractLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlContractLayout.createSequentialGroup()
+                .addComponent(btnContract, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(27, 27, 27)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34))
+        pnlContractLayout.setVerticalGroup(
+            pnlContractLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlContractLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnContract, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
         );
+
+        add(pnlContract);
+
+        pnlHire.setBackground(new java.awt.Color(255, 255, 255));
+        pnlHire.setMaximumSize(new java.awt.Dimension(240, 80));
+        pnlHire.setMinimumSize(new java.awt.Dimension(240, 80));
+        pnlHire.setPreferredSize(new java.awt.Dimension(240, 80));
+
+        btnHire.setFont(new java.awt.Font("Ubuntu", 1, 18)); // NOI18N
+        btnHire.setText(Constant.BUTTON_HIRE);
+        btnHire.setMaximumSize(new java.awt.Dimension(240, 60));
+        btnHire.setMinimumSize(new java.awt.Dimension(240, 60));
+        btnHire.setPreferredSize(new java.awt.Dimension(240, 60));
+
+        javax.swing.GroupLayout pnlHireLayout = new javax.swing.GroupLayout(pnlHire);
+        pnlHire.setLayout(pnlHireLayout);
+        pnlHireLayout.setHorizontalGroup(
+            pnlHireLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlHireLayout.createSequentialGroup()
+                .addComponent(btnHire, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        pnlHireLayout.setVerticalGroup(
+            pnlHireLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlHireLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(btnHire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(10, Short.MAX_VALUE))
+        );
+
+        add(pnlHire);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnContract;
+    private javax.swing.JButton btnHire;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JPanel pnlContract;
+    private javax.swing.JPanel pnlHire;
+    private javax.swing.JPanel pnlTitle;
     // End of variables declaration//GEN-END:variables
 
     public static void main(String[] args) {
@@ -122,35 +164,12 @@ public class SystemPanel extends javax.swing.JPanel {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                /*
-                 * Create MVC modules.
-                 */
-                Engine model = new Engine();
-                DevFortressView view = new DevFortressView(model);
-                model.addObserver(view);
-                Controller controller = new Controller(model, view);
-
-                /*
-                 * Display DevFortressView.
-                 */
-                view.setVisible(true);
-                model.buyItem(new Beer(50), 1);
-                model.buyItem(new Computer(), 3);
-                model.buyItem(new Food(300, "Pizza"), 1);
-
-                EasyLevel level = new EasyLevel();
-                List<Project> projects = Utilities.generateProjectList(level, 2, model);
-                model.takeProject(projects.get(0));
-                model.takeProject(projects.get(1));
-                List<Employee> employees = Utilities.generateEmployeeList(level, 3, model);
-
-                try {
-                    model.hireEmployee(employees.get(0));
-                    model.hireEmployee(employees.get(1));
-                    model.hireEmployee(employees.get(2));
-                } catch (OvercrowdedException ex) {
-                    Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                JFrame f = new JFrame();
+                SystemPanel p = new SystemPanel();
+                f.add(p);
+                f.pack();
+                f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                f.setVisible(true);
             }
         });
     }

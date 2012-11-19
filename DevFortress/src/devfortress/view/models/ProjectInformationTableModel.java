@@ -17,9 +17,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Sherlock
  */
-public class DetailedProjectInfoTableModel extends DefaultTableModel {
+public class ProjectInformationTableModel extends DefaultTableModel {
 
-    public DetailedProjectInfoTableModel() {
+    /**
+     * Constructor for ProjectInformationTableModel.
+     */
+    public ProjectInformationTableModel() {
         addColumn(Constant.EMPLOYEE_NAME);
         addColumn(Constant.FIELD_LABEL);
         addColumn(Constant.PRODUCED_FUNCTION_POINT);
@@ -66,9 +69,9 @@ public class DetailedProjectInfoTableModel extends DefaultTableModel {
      * @param employeeList
      */
     public void setProject(Project project) {
-        Map<Skill, Employee> skill_dev_map = project.getSkill_employeeMap();
-        Map<Skill, Integer> skill_point_map = project.getSkillRequirementMap();
-        Map<Skill, Integer> original_skill_point_map =
+        Map<Skill, Employee> skillEmployeeMap = project.getSkill_employeeMap();
+        Map<Skill, Integer> skillPointMap = project.getSkillRequirementMap();
+        Map<Skill, Integer> originalSkillPointMap =
                 project.getOriginalSkillRequirementMap();
         /*
          * Reset table.
@@ -78,14 +81,22 @@ public class DetailedProjectInfoTableModel extends DefaultTableModel {
         /*
          * Add new records.
          */
-        for (Iterator<Skill> fieldSetIterator = skill_dev_map.keySet().iterator();
-                fieldSetIterator.hasNext();) {
-            Skill skill = fieldSetIterator.next();
-            String devName = skill_dev_map.get(skill).getName();
-            int producedPoint = skill_point_map.get(skill);
-            int requiredPoint = original_skill_point_map.get(skill);
-            addRow(new Object[]{devName, skill, producedPoint, requiredPoint,
-                        new JButton(Constant.ASSIGN)});
+        for (Iterator<Skill> iterator = originalSkillPointMap.keySet().iterator();
+                iterator.hasNext();) {
+            Skill skill = iterator.next();
+            Employee employee = skillEmployeeMap.get(skill);
+            if (employee == null) {
+                addRow(new Object[]{"N/A", skill.toString(),
+                            skillPointMap.get(skill).intValue(),
+                            originalSkillPointMap.get(skill),
+                            new JButton(Constant.ASSIGN)});
+            } else {
+                addRow(new Object[]{skillEmployeeMap.get(skill).getName(),
+                            skill.toString(),
+                            skillPointMap.get(skill).intValue(),
+                            originalSkillPointMap.get(skill),
+                            new JButton(Constant.ASSIGN)});
+            }
         }
 
     }

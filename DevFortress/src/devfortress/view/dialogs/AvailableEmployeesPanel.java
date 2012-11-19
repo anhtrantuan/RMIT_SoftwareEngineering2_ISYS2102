@@ -78,7 +78,7 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
         lblTitle.setBackground(new java.awt.Color(255, 255, 255));
         lblTitle.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lblTitle.setText("Available Employee");
+        lblTitle.setText(Constant.AVAILABLE_EMPLOYEES);
 
         javax.swing.GroupLayout pnlTitleLayout = new javax.swing.GroupLayout(pnlTitle);
         pnlTitle.setLayout(pnlTitleLayout);
@@ -133,6 +133,7 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
         tblEmployees.setAutoCreateRowSorter(true);
         tblEmployees.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         tblEmployees.setModel(new devfortress.view.models.EmployeeTableModel());
+        tblEmployees.setRowHeight(30);
         tblEmployees.setRowSelectionAllowed(false);
         scpEmployees.setViewportView(tblEmployees);
 

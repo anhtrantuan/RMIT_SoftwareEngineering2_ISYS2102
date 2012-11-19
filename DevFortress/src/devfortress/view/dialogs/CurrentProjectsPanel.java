@@ -7,7 +7,7 @@ package devfortress.view.dialogs;
 import devfortress.model.Project;
 import devfortress.utilities.Constant;
 import devfortress.view.editors.TableButtonCellEditor;
-import devfortress.view.models.CurrentProjectTableModel;
+import devfortress.view.models.CurrentProjectsTableModel;
 import devfortress.view.renderers.TableButtonCellRenderer;
 import java.awt.Color;
 import java.awt.event.ActionListener;
@@ -21,7 +21,7 @@ import javax.swing.JCheckBox;
  */
 public class CurrentProjectsPanel extends javax.swing.JPanel {
 
-    private CurrentProjectTableModel tableModel;
+    private CurrentProjectsTableModel tableModel;
 
     /**
      * Creates new form CurrentProjectsPanel.
@@ -33,7 +33,7 @@ public class CurrentProjectsPanel extends javax.swing.JPanel {
             ActionListener buttonListener) {
         initComponents();
         scpProject.getViewport().setBackground(Color.white);
-        tableModel = (CurrentProjectTableModel) tblProjects.getModel();
+        tableModel = (CurrentProjectsTableModel) tblProjects.getModel();
         tableModel.setProjectList(projectList);
         btnClose.addActionListener(buttonListener);
         tblProjects.setDefaultRenderer(JButton.class,
@@ -89,7 +89,7 @@ public class CurrentProjectsPanel extends javax.swing.JPanel {
 
         tblProjects.setAutoCreateRowSorter(true);
         tblProjects.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        tblProjects.setModel(new CurrentProjectTableModel());
+        tblProjects.setModel(new CurrentProjectsTableModel());
         tblProjects.setRowHeight(30);
         tblProjects.setRowSelectionAllowed(false);
         scpProject.setViewportView(tblProjects);
@@ -139,6 +139,6 @@ public class CurrentProjectsPanel extends javax.swing.JPanel {
      */
     public void setTableButtonListener(ActionListener tableButtonListener) {
         tblProjects.setDefaultEditor(JButton.class,
-                new TableButtonCellEditor(new JCheckBox(), tableButtonListener));
+                new TableButtonCellEditor(tableButtonListener));
     }
 }

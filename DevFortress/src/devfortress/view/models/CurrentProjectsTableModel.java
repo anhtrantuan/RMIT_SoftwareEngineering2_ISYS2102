@@ -15,9 +15,9 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Sherlock
  */
-public class CurrentProjectTableModel extends DefaultTableModel {
+public class CurrentProjectsTableModel extends DefaultTableModel {
 
-    public CurrentProjectTableModel() {
+    public CurrentProjectsTableModel() {
         addColumn(Constant.CURRENT_PROJECT_LABEL);
         addColumn(Constant.BUTTON_INFORMATION);
         addColumn(Constant.CANCEL);

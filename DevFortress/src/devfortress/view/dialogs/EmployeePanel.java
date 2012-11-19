@@ -4,34 +4,18 @@
  */
 package devfortress.view.dialogs;
 
-import devfortress.DevFortress;
-import devfortress.controller.Controller;
-import devfortress.model.Beer;
-import devfortress.model.Computer;
 import devfortress.model.Employee;
-import devfortress.model.Food;
-import devfortress.model.Project;
-import devfortress.model.dificulity.EasyLevel;
-import devfortress.model.exception.OvercrowdedException;
-import devfortress.model.facade.Engine;
 import devfortress.utilities.Constant;
-import devfortress.utilities.MyTableModel;
-import devfortress.utilities.Utilities;
-import devfortress.view.DevFortressView;
 import devfortress.view.models.EmployeeTableModel;
-import java.awt.event.ActionEvent;
+import java.awt.Color;
 import java.awt.event.ActionListener;
-import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JFrame;
 
 /**
  *
  * @author cathoanghuy
  */
 public class EmployeePanel extends javax.swing.JPanel {
-    
+
     private Employee employee;
     private EmployeeTableModel tableModel;
 
@@ -40,6 +24,7 @@ public class EmployeePanel extends javax.swing.JPanel {
      */
     public EmployeePanel(Employee employee, ActionListener buttonListener) {
         initComponents();
+        scpSkills.getViewport().setBackground(Color.white);
         this.employee = employee;
         tableModel = (EmployeeTableModel) tblSkills.getModel();
         populateData();
@@ -56,9 +41,9 @@ public class EmployeePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        pnlTitle = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        pnlNameAndMainSkill = new javax.swing.JPanel();
         lblName = new javax.swing.JLabel();
         lblMainSkill = new javax.swing.JLabel();
         scpSkills = new javax.swing.JScrollPane();
@@ -71,84 +56,106 @@ public class EmployeePanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        setMaximumSize(new java.awt.Dimension(520, 520));
+        setMinimumSize(new java.awt.Dimension(520, 520));
+        setPreferredSize(new java.awt.Dimension(520, 520));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
+
+        pnlTitle.setBackground(new java.awt.Color(255, 255, 255));
 
         lblTitle.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText(Constant.EMPLOYEE_INFORMATION);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)
+        javax.swing.GroupLayout pnlTitleLayout = new javax.swing.GroupLayout(pnlTitle);
+        pnlTitle.setLayout(pnlTitleLayout);
+        pnlTitleLayout.setHorizontalGroup(
+            pnlTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+        pnlTitleLayout.setVerticalGroup(
+            pnlTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTitleLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
                 .addComponent(lblTitle)
-                .addContainerGap())
+                .addGap(10, 10, 10))
         );
 
-        add(jPanel1);
+        add(pnlTitle);
 
+        pnlNameAndMainSkill.setBackground(new java.awt.Color(255, 255, 255));
+
+        lblName.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         lblName.setText(Constant.EMPLOYEE_NAME);
 
+        lblMainSkill.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         lblMainSkill.setText(Constant.MAIN_SKILL_LABEL);
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblName)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 540, Short.MAX_VALUE)
-                .addComponent(lblMainSkill)
-                .addContainerGap())
+        javax.swing.GroupLayout pnlNameAndMainSkillLayout = new javax.swing.GroupLayout(pnlNameAndMainSkill);
+        pnlNameAndMainSkill.setLayout(pnlNameAndMainSkillLayout);
+        pnlNameAndMainSkillLayout.setHorizontalGroup(
+            pnlNameAndMainSkillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlNameAndMainSkillLayout.createSequentialGroup()
+                .addComponent(lblName, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                .addComponent(lblMainSkill, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+        pnlNameAndMainSkillLayout.setVerticalGroup(
+            pnlNameAndMainSkillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlNameAndMainSkillLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addGroup(pnlNameAndMainSkillLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(lblMainSkill)
                     .addComponent(lblName))
-                .addContainerGap())
+                .addGap(10, 10, 10))
         );
 
-        add(jPanel2);
+        add(pnlNameAndMainSkill);
 
+        scpSkills.setBackground(new java.awt.Color(255, 255, 255));
+
+        tblSkills.setAutoCreateRowSorter(true);
+        tblSkills.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         tblSkills.setModel(new EmployeeTableModel());
+        tblSkills.setRowHeight(30);
         scpSkills.setViewportView(tblSkills);
 
         add(scpSkills);
 
+        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+
+        lblSalary.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         lblSalary.setText(Constant.SALARY_LABEL);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(lblSalary)
-                .addContainerGap())
+            .addComponent(lblSalary, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addComponent(lblSalary)
-                .addContainerGap())
+                .addGap(10, 10, 10))
         );
 
         add(jPanel3);
 
-        btnCancel.setText(Constant.CANCEL);
+        jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
+        btnCancel.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        btnCancel.setText(Constant.CANCEL);
+        btnCancel.setMaximumSize(new java.awt.Dimension(120, 40));
+        btnCancel.setMinimumSize(new java.awt.Dimension(120, 40));
+        btnCancel.setPreferredSize(new java.awt.Dimension(120, 40));
+
+        btnFire.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
         btnFire.setText(Constant.FIRE);
+        btnFire.setMaximumSize(new java.awt.Dimension(120, 40));
+        btnFire.setMinimumSize(new java.awt.Dimension(120, 40));
+        btnFire.setPreferredSize(new java.awt.Dimension(120, 40));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -156,19 +163,19 @@ public class EmployeePanel extends javax.swing.JPanel {
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnFire, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 604, Short.MAX_VALUE)
-                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnFire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 216, Short.MAX_VALUE)
+                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnFire)
-                    .addComponent(btnCancel))
-                .addContainerGap())
+                    .addComponent(btnFire, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         add(jPanel4);
@@ -176,14 +183,14 @@ public class EmployeePanel extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
     private javax.swing.JButton btnFire;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel lblMainSkill;
     private javax.swing.JLabel lblName;
     private javax.swing.JLabel lblSalary;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JPanel pnlNameAndMainSkill;
+    private javax.swing.JPanel pnlTitle;
     private javax.swing.JScrollPane scpSkills;
     private javax.swing.JTable tblSkills;
     // End of variables declaration//GEN-END:variables
@@ -199,53 +206,5 @@ public class EmployeePanel extends javax.swing.JPanel {
         lblSalary.setText(String.format("%s: $%.2f", Constant.SALARY_LABEL,
                 employee.getSalary()));
         tableModel.setSkillList(employee.getSkillList());
-    }
-    
-    public static void main(String[] args) {
-        /*
-         * Set the Nimbus look and feel
-         */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the
-         * default look and feel. For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info :
-                    javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException |
-                IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(
-                    DevFortressView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /*
-         * Create and display the form
-         */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                JFrame f = new JFrame();
-                EasyLevel level = new EasyLevel();
-                List<Employee> el = Utilities.generateEmployeeList(level, 1, null);
-                EmployeePanel p = new EmployeePanel(el.get(0), new ActionListener() {
-                    @Override
-                    public void actionPerformed(ActionEvent e) {
-                        System.out.println(e.getActionCommand() + " clicked!");
-                    }
-                });
-                f.add(p);
-                f.pack();
-                f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-                f.setVisible(true);
-            }
-        });
     }
 }
