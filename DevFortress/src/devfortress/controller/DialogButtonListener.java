@@ -65,8 +65,6 @@ public class DialogButtonListener implements ActionListener {
             newDialog.pack();
             newDialog.setVisible(true);
         } else {
-            int index = Integer.parseInt(e.getActionCommand());
-
             try {
                 if (text.equals(Constant.HIRE)) {
                     AvailableEmployeesPanel panel =
@@ -76,7 +74,8 @@ public class DialogButtonListener implements ActionListener {
                     model.getAvailableEmployeeList().
                             remove(panel.getSelectedEmployee());
                 } else if (text.equals(Constant.BUTTON_FIRE)) {
-                    Employee employee = model.getEmployeeList().get(index);
+                    Employee employee =
+                            model.getEmployeeByName(e.getActionCommand());
                     model.fireEmployee(employee);
                 } else if (text.equals(Constant.BUTTON_ACCEPT)) {
                     AvailableProjectsPanel panel =

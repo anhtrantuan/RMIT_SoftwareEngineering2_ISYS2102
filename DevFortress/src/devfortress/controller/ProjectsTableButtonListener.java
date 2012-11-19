@@ -46,10 +46,10 @@ public class ProjectsTableButtonListener implements ActionListener {
                     new DialogButtonListener(model, newDialog);
 
             ProjectPanel panel = new ProjectPanel(project, buttonListener);
-
             ProjectTableButtonListener tableButtonListener =
                     new ProjectTableButtonListener(model, newDialog);
             panel.setTableButtonListener(tableButtonListener);
+
             newDialog.setContentPane(panel);
             newDialog.pack();
             newDialog.setVisible(true);
