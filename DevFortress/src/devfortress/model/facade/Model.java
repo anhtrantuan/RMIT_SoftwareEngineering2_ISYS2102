@@ -8,8 +8,10 @@ import devfortress.model.DateTime;
 import devfortress.model.Employee;
 import devfortress.model.Item;
 import devfortress.model.Project;
+import devfortress.model.exception.EmployeeIsBusyException;
 import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.OvercrowdedException;
+import devfortress.utilities.Skill;
 import java.util.List;
 import java.util.Map;
 
@@ -62,4 +64,8 @@ public interface Model {
     Employee getEmployeeByName(String name);
 
     Project getProjectByName(String name);
+    
+    void assignEmployeeToProject(Employee emp,Project proj,Skill field)throws EmployeeIsBusyException;
+    
+    String getWorkingProjectOfEmployee(Employee emp);
 }
