@@ -23,7 +23,7 @@ public class DetailedProjectInfoTableModel extends DefaultTableModel {
         addColumn(Constant.EMPLOYEE_NAME);
         addColumn(Constant.FIELD_LABEL);
         addColumn(Constant.PRODUCED_FUNCTION_POINT);
-        addColumn(Constant.REQUIRED_FUNCTIONPOINT_LABEL);
+        addColumn(Constant.REQUIRED_FUNCTION_POINT_LABEL);
         addColumn(Constant.ASSIGN);
     }
 

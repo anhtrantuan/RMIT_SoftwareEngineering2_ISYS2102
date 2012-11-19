@@ -18,26 +18,33 @@ import devfortress.utilities.Constant;
 import devfortress.utilities.MyTableModel;
 import devfortress.utilities.Utilities;
 import devfortress.view.DevFortressView;
+import devfortress.view.models.EmployeeTableModel;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 
 /**
  *
  * @author cathoanghuy
  */
 public class EmployeePanel extends javax.swing.JPanel {
-
+    
     private Employee employee;
-    MyTableModel myTableModel;
+    private EmployeeTableModel tableModel;
 
     /**
      * Creates new form EmployeeInformation
      */
-    public EmployeePanel(Employee employee) {
-        this.employee = employee;
-        initInformation();
+    public EmployeePanel(Employee employee, ActionListener buttonListener) {
         initComponents();
+        this.employee = employee;
+        tableModel = (EmployeeTableModel) tblSkills.getModel();
+        populateData();
+        btnFire.addActionListener(buttonListener);
+        btnCancel.addActionListener(buttonListener);
     }
 
     /**
@@ -49,121 +56,151 @@ public class EmployeePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        lblTitle = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        lblName = new javax.swing.JLabel();
+        lblMainSkill = new javax.swing.JLabel();
+        scpSkills = new javax.swing.JScrollPane();
+        tblSkills = new javax.swing.JTable();
+        jPanel3 = new javax.swing.JPanel();
+        lblSalary = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
+        btnCancel = new javax.swing.JButton();
+        btnFire = new javax.swing.JButton();
 
-        jLabel1.setFont(new java.awt.Font("Ubuntu", 0, 24)); // NOI18N
-        jLabel1.setText("Employee Information");
+        setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
-        jLabel2.setText("Name:");
+        lblTitle.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText(Constant.EMPLOYEE_INFORMATION);
 
-        jLabel3.setText("Main skill:");
-
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        jButton1.setText("Fire");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Close");
-
-        jLabel4.setText("Salary:");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel3)
-                .addGap(110, 110, 110))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(79, 79, 79)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(78, 78, 78))
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(77, 77, 77)
-                        .addComponent(jLabel1))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel4)))
-                .addContainerGap(81, Short.MAX_VALUE))
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 748, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel4)
-                .addGap(9, 9, 9)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
-                .addContainerGap(73, Short.MAX_VALUE))
+                .addComponent(lblTitle)
+                .addContainerGap())
         );
-    }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+        add(jPanel1);
+
+        lblName.setText(Constant.EMPLOYEE_NAME);
+
+        lblMainSkill.setText(Constant.MAIN_SKILL_LABEL);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblName)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 540, Short.MAX_VALUE)
+                .addComponent(lblMainSkill)
+                .addContainerGap())
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblMainSkill)
+                    .addComponent(lblName))
+                .addContainerGap())
+        );
+
+        add(jPanel2);
+
+        tblSkills.setModel(new EmployeeTableModel());
+        scpSkills.setViewportView(tblSkills);
+
+        add(scpSkills);
+
+        lblSalary.setText(Constant.SALARY_LABEL);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblSalary)
+                .addContainerGap())
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblSalary)
+                .addContainerGap())
+        );
+
+        add(jPanel3);
+
+        btnCancel.setText(Constant.CANCEL);
+
+        btnFire.setText(Constant.FIRE);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnFire, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 604, Short.MAX_VALUE)
+                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnFire)
+                    .addComponent(btnCancel))
+                .addContainerGap())
+        );
+
+        add(jPanel4);
+    }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnFire;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel lblMainSkill;
+    private javax.swing.JLabel lblName;
+    private javax.swing.JLabel lblSalary;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JScrollPane scpSkills;
+    private javax.swing.JTable tblSkills;
     // End of variables declaration//GEN-END:variables
 
-    private void initInformation() {
-        String[] columnName = {Constant.SKILL_LABEL, Constant.SKILL_LVL_LABEL};
-        jLabel2.setText(Constant.EMPLOYEE_NAME + ": " + employee.getName());
-        jLabel3.setText(Constant.MAIN_SKILL_LABEL + ": " + employee.getMainSkill());
-        jLabel4.setText(Constant.SALARY_LABEL + ": " + employee.getSalary());
-        tableInit(columnName);
+    /**
+     * Populate data to view.
+     */
+    private void populateData() {
+        lblName.setText(String.format("%s: %s", Constant.EMPLOYEE_NAME,
+                employee.getName()));
+        lblMainSkill.setText(String.format("%s: %s", Constant.MAIN_SKILL_LABEL,
+                employee.getMainSkill().toString()));
+        lblSalary.setText(String.format("%s: $%.2f", Constant.SALARY_LABEL,
+                employee.getSalary()));
+        tableModel.setSkillList(employee.getSkillList());
     }
-
-    private void tableInit(String[] columnName) {
-        myTableModel = new MyTableModel(employee.getSkillList(), 2, columnName);
-        jTable1.setModel(myTableModel);
-    }
-
+    
     public static void main(String[] args) {
         /*
          * Set the Nimbus look and feel
@@ -195,35 +232,19 @@ public class EmployeePanel extends javax.swing.JPanel {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                /*
-                 * Create MVC modules.
-                 */
-                Engine model = new Engine();
-                DevFortressView view = new DevFortressView(model);
-                model.addObserver(view);
-                Controller controller = new Controller(model, view);
-
-                /*
-                 * Display DevFortressView.
-                 */
-                view.setVisible(true);
-                model.buyItem(new Beer(50), 1);
-                model.buyItem(new Computer(), 3);
-                model.buyItem(new Food(300, "Pizza"), 1);
-
+                JFrame f = new JFrame();
                 EasyLevel level = new EasyLevel();
-                List<Project> projects = Utilities.generateProjectList(level, 2, model);
-                model.takeProject(projects.get(0));
-                model.takeProject(projects.get(1));
-                List<Employee> employees = Utilities.generateEmployeeList(level, 3, model);
-
-                try {
-                    model.hireEmployee(employees.get(0));
-                    model.hireEmployee(employees.get(1));
-                    model.hireEmployee(employees.get(2));
-                } catch (OvercrowdedException ex) {
-                    Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                List<Employee> el = Utilities.generateEmployeeList(level, 1, null);
+                EmployeePanel p = new EmployeePanel(el.get(0), new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        System.out.println(e.getActionCommand() + " clicked!");
+                    }
+                });
+                f.add(p);
+                f.pack();
+                f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+                f.setVisible(true);
             }
         });
     }

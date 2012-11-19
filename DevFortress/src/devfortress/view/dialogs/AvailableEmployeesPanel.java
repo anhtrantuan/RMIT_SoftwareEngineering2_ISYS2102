@@ -6,7 +6,7 @@ package devfortress.view.dialogs;
 
 import devfortress.model.Employee;
 import devfortress.utilities.Constant;
-import devfortress.view.models.AvailableEmployeesTableModel;
+import devfortress.view.models.EmployeeTableModel;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -20,7 +20,7 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
     private int index;
     private List<Employee> employeeList;
     private Employee currentEmployee;
-    private AvailableEmployeesTableModel tableModel;
+    private EmployeeTableModel tableModel;
 
     /**
      * Creates new form AvaiableEmployee,
@@ -32,7 +32,7 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
             ActionListener buttonListener) {
         initComponents();
         scpEmployees.getViewport().setBackground(Color.white);
-        tableModel = (AvailableEmployeesTableModel) tblEmployees.getModel();
+        tableModel = (EmployeeTableModel) tblEmployees.getModel();
         index = 0;
         employeeList = employees;
         populateData();
@@ -132,7 +132,7 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
 
         tblEmployees.setAutoCreateRowSorter(true);
         tblEmployees.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        tblEmployees.setModel(new devfortress.view.models.AvailableEmployeesTableModel());
+        tblEmployees.setModel(new devfortress.view.models.EmployeeTableModel());
         tblEmployees.setRowSelectionAllowed(false);
         scpEmployees.setViewportView(tblEmployees);
 

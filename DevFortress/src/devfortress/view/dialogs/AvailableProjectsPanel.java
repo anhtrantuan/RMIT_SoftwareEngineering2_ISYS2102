@@ -6,7 +6,7 @@ package devfortress.view.dialogs;
 
 import devfortress.model.Project;
 import devfortress.utilities.Constant;
-import devfortress.view.models.AvailableProjectsTableModel;
+import devfortress.view.models.ProjectTableModel;
 import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.util.List;
@@ -20,7 +20,7 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
     private int index;
     private List<Project> projectList;
     private Project currentProject;
-    private AvailableProjectsTableModel tableModel;
+    private ProjectTableModel tableModel;
 
     /**
      * Creates new form AvailableProjectsPanel.
@@ -32,7 +32,7 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
             ActionListener buttonListener) {
         initComponents();
         scpSkills.getViewport().setBackground(Color.white);
-        tableModel = (AvailableProjectsTableModel) tblSkills.getModel();
+        tableModel = (ProjectTableModel) tblSkills.getModel();
         index = 0;
         projectList = availableProjectList;
         populateData();
@@ -149,7 +149,7 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
         add(pnlMainSkill);
 
         tblSkills.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
-        tblSkills.setModel(new devfortress.view.models.AvailableProjectsTableModel());
+        tblSkills.setModel(new devfortress.view.models.ProjectTableModel());
         tblSkills.setRowSelectionAllowed(false);
         scpSkills.setViewportView(tblSkills);
 
