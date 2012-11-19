@@ -68,4 +68,6 @@ public interface Model {
     void assignEmployeeToProject(Employee emp, Project proj, Skill field) throws EmployeeIsBusyException;
 
     void unassignEmployee(Project proj, Employee emp);
+
+    Project getWorkingProjectOfEmployee(Employee emp);
 }

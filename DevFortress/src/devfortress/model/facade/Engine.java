@@ -348,13 +348,14 @@ public class Engine extends Observable implements Model {
     public List<Project> getAvailableProjectList() {
         return availableProjects;
     }
-    
+
     @Override
-    public void unassignEmployee(Project proj,Employee emp){
-        company.unassignEmployee(proj,emp);
+    public void unassignEmployee(Project proj, Employee emp) {
+        company.unassignEmployee(proj, emp);
     }
-    
-    public Project getWorkingProjectOfEmployee(Employee emp){
+
+    @Override
+    public Project getWorkingProjectOfEmployee(Employee emp) {
         return emp.getWorkingProject();
     }
 }
