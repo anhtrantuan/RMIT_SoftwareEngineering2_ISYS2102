@@ -107,6 +107,7 @@ public class Utilities {
      *
      */
     public static boolean assignComputerToEmployee(Company company, Employee employee) {
+        //assume that Company will automatically buy computer for new employee in case of lacking computer
         Map<Computer, Employee> computerMap = company.getComputerList();
         for (Computer com : computerMap.keySet()) {
             if (computerMap.get(com) == null) {

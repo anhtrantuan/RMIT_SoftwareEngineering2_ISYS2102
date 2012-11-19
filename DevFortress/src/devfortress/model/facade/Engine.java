@@ -76,8 +76,11 @@ public class Engine extends Observable implements Model {
      */
     @Override
     public void hireEmployee(Employee employee) throws OvercrowdedException {
+        //assume that Company will automatically buy computer for new employee in case of lacking computer
+        //TODO fix this in next phase
         if (!Utilities.assignComputerToEmployee(company, employee)) {
-            throw new OvercrowdedException("Not enough computer");
+            buyItem(new Computer(), 1);
+            Utilities.assignComputerToEmployee(company, employee);
         }
         company.addEmployee(employee);
         setChanged();
