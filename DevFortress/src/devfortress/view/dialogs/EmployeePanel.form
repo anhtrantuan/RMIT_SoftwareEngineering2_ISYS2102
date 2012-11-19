@@ -253,7 +253,7 @@
               <Image iconType="3" name="/devfortress/view/resources/icFire.png"/>
             </Property>
             <Property name="text" type="java.lang.String" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
-              <Connection code="Constant.FIRE" type="code"/>
+              <Connection code="Constant.BUTTON_FIRE" type="code"/>
             </Property>
             <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[120, 40]"/>

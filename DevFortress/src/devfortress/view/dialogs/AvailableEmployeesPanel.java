@@ -161,9 +161,9 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
         add(pnlSalary);
 
         pnlPreviousNext.setBackground(new java.awt.Color(255, 255, 255));
-        pnlPreviousNext.setMaximumSize(new java.awt.Dimension(92, 56));
-        pnlPreviousNext.setMinimumSize(new java.awt.Dimension(92, 56));
-        pnlPreviousNext.setPreferredSize(new java.awt.Dimension(92, 56));
+        pnlPreviousNext.setMaximumSize(new java.awt.Dimension(122, 56));
+        pnlPreviousNext.setMinimumSize(new java.awt.Dimension(122, 56));
+        pnlPreviousNext.setPreferredSize(new java.awt.Dimension(122, 56));
 
         btnPrevious.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         btnPrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icPrevious.png"))); // NOI18N
@@ -186,9 +186,11 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
         pnlPreviousNextLayout.setHorizontalGroup(
             pnlPreviousNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPreviousNextLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(btnPrevious)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addComponent(btnNext))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(btnNext)
+                .addContainerGap())
         );
         pnlPreviousNextLayout.setVerticalGroup(
             pnlPreviousNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -286,5 +288,14 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
                 currentEmployee.getSalary()));
         tableModel.setSkillList(currentEmployee.getSkillList());
         btnHire.setActionCommand(String.valueOf(index));
+    }
+
+    /**
+     * Get selected employee.
+     *
+     * @return
+     */
+    public Employee getSelectedEmployee() {
+        return currentEmployee;
     }
 }

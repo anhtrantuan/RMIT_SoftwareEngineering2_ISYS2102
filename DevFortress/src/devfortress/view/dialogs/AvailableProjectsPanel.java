@@ -202,16 +202,13 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
         add(pnlPay);
 
         pnlPreviousAndNext.setBackground(new java.awt.Color(255, 255, 255));
-        pnlPreviousAndNext.setMaximumSize(new java.awt.Dimension(92, 46));
-        pnlPreviousAndNext.setMinimumSize(new java.awt.Dimension(92, 46));
+        pnlPreviousAndNext.setMaximumSize(new java.awt.Dimension(122, 56));
+        pnlPreviousAndNext.setMinimumSize(new java.awt.Dimension(122, 56));
         pnlPreviousAndNext.setName(""); // NOI18N
-        pnlPreviousAndNext.setPreferredSize(new java.awt.Dimension(92, 46));
+        pnlPreviousAndNext.setPreferredSize(new java.awt.Dimension(122, 56));
 
         btnNext.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icNext.png"))); // NOI18N
-        btnNext.setMaximumSize(new java.awt.Dimension(40, 30));
-        btnNext.setMinimumSize(new java.awt.Dimension(40, 30));
-        btnNext.setPreferredSize(new java.awt.Dimension(40, 30));
         btnNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNextActionPerformed(evt);
@@ -231,19 +228,20 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
         pnlPreviousAndNextLayout.setHorizontalGroup(
             pnlPreviousAndNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPreviousAndNextLayout.createSequentialGroup()
+                .addContainerGap()
                 .addComponent(btnPrevious)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(btnNext)
+                .addContainerGap())
         );
         pnlPreviousAndNextLayout.setVerticalGroup(
             pnlPreviousAndNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPreviousAndNextLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(pnlPreviousAndNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap(6, Short.MAX_VALUE))
+                    .addComponent(btnNext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPrevious, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         add(pnlPreviousAndNext);
@@ -252,7 +250,7 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
 
         btnAccept.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
         btnAccept.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icContract.png"))); // NOI18N
-        btnAccept.setText(Constant.ACCEPT);
+        btnAccept.setText(Constant.BUTTON_ACCEPT);
         btnAccept.setMaximumSize(new java.awt.Dimension(120, 40));
         btnAccept.setMinimumSize(new java.awt.Dimension(120, 40));
         btnAccept.setPreferredSize(new java.awt.Dimension(120, 40));
@@ -340,5 +338,14 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
                 projectList.get(index).getPayment()));
         tableModel.setSkillList(currentProject.getOriginalSkillRequirementMap());
         btnAccept.setActionCommand(String.valueOf(index));
+    }
+
+    /**
+     * Get selected project.
+     *
+     * @return
+     */
+    public Project getSelectedProject() {
+        return currentProject;
     }
 }
