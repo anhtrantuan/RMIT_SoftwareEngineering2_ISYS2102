@@ -252,7 +252,7 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
 
         btnAccept.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
         btnAccept.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icContract.png"))); // NOI18N
-        btnAccept.setText(Constant.ACCEPT);
+        btnAccept.setText(Constant.BUTTON_ACCEPT);
         btnAccept.setMaximumSize(new java.awt.Dimension(120, 40));
         btnAccept.setMinimumSize(new java.awt.Dimension(120, 40));
         btnAccept.setPreferredSize(new java.awt.Dimension(120, 40));

@@ -52,8 +52,8 @@ public class Constant {
     public static String CURRENT_PROJECT_LABEL = "Current Projects";
     public static String CANCEL = "Cancel";
     public static String HIRE = "Hire";
-    public static String FIRE = "Fire";
-    public static String ACCEPT = "Accept";
+    public static String BUTTON_FIRE = "Fire";
+    public static String BUTTON_ACCEPT = "Accept";
     public static String OK = "Ok";
     public static String TOTAL = "Total";
     public static String DEVELOPER_LABEL = "Developer";

@@ -154,7 +154,7 @@ public class EmployeePanel extends javax.swing.JPanel {
 
         btnFire.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
         btnFire.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icFire.png"))); // NOI18N
-        btnFire.setText(Constant.FIRE);
+        btnFire.setText(Constant.BUTTON_FIRE);
         btnFire.setMaximumSize(new java.awt.Dimension(120, 40));
         btnFire.setMinimumSize(new java.awt.Dimension(120, 40));
         btnFire.setPreferredSize(new java.awt.Dimension(120, 40));
