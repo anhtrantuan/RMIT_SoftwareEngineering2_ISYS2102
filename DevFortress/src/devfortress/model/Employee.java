@@ -28,7 +28,7 @@ public class Employee {
         workingProject = null;
         //0 is having beer, 1 is full, 2 is happy, 3 is working;
         status[0] = false;
-        status[1] = false;
+        status[1] = true;
         status[2] = true;
         status[3] = false;
     }

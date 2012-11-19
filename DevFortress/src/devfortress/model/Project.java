@@ -152,9 +152,7 @@ public class Project {
         } else {
             level = employee.getLowestSkillLevel();
         }
-        return (level + (2 * employee.getDesignSkill()) + (level * employee.getAlgorithmSkill()) + (employee.getTeamPlayerSkill() * skill_employeeMap.size())) / ((10 - employee.getConfigurationSkill()) + 2);
-
-
+        return (level + (2 * employee.getDesignSkill()) + (level * employee.getAlgorithmSkill()) + (employee.getTeamPlayerSkill() * skill_employeeMap.size()) / ((10 - employee.getConfigurationSkill()) + 2));
     }
 
     private int calculateFinalFunctionPoint(int basicPoint, Employee employee) {
@@ -163,15 +161,17 @@ public class Project {
         if (status[0] == true) {
             finalPoint = finalPoint / 2;
         }
-        if (status[1] == false) {
-            finalPoint = 1;
-        }
+        //TODO sprint 2
+//        if (status[1] == false) {
+//            finalPoint = 1;
+//        }
+        System.out.println("fianl point :" + finalPoint);
         return finalPoint;
     }
 
     public boolean checkProjectProcess() throws ProjectFailsException {
         int finish = 0;
-        totalFunctionPointsDelivered = 0;
+        //totalFunctionPointsDelivered = 0;
         for (Skill sk : skill_employeeMap.keySet()) {
             Employee emp = skill_employeeMap.get(sk);
             int functionPointProduced = calculateFinalFunctionPoint(calculateBasicFunctionPoint(emp), emp);
