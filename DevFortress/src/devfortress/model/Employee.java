@@ -19,11 +19,13 @@ public class Employee {
     private String name;
     private Map<Skill, Integer> skillList;
     private boolean status[];
+    private Project workingProject;
     
     public Employee(String name, Map<Skill, Integer> skillList) {
         this.name = name;
         this.skillList = skillList;
         status = new boolean[4];
+        workingProject = null;
         //0 is having beer, 1 is full, 2 is happy, 3 is working;
         status[0] = false;
         status[1] = false;
@@ -255,4 +257,10 @@ public class Employee {
         }
         return false;
     }
+
+    public Project getWorkingProject() {
+        return workingProject;
+    }
+    
+    
 }

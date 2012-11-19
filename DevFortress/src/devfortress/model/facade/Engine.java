@@ -6,10 +6,7 @@ package devfortress.model.facade;
 
 import devfortress.model.*;
 import devfortress.model.dificulity.GameLevel;
-import devfortress.model.exception.MoneyRunOutException;
-import devfortress.model.exception.OvercrowdedException;
-import devfortress.model.exception.ProjectFailsException;
-import devfortress.model.exception.UnaffordableException;
+import devfortress.model.exception.*;
 import devfortress.utilities.Skill;
 import devfortress.utilities.Utilities;
 import java.util.List;
@@ -288,8 +285,10 @@ public class Engine extends Observable implements Model {
         return company.getProjectByName(name);
     }
     
-    public void assignEmployeeToProject(Employee emp,Project proj,Skill field){
-        company.assignEmployeeToProject(emp, proj, field);
+    public void assignEmployeeToProject(Employee emp,Project proj,Skill field) throws EmployeeIsBusyException{
+        if(!company.assignEmployeeToProject(emp, proj, field)){
+            throw new EmployeeIsBusyException();
+        }
     }
     
        

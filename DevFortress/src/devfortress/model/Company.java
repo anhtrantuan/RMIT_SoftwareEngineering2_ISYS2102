@@ -4,6 +4,7 @@
  */
 package devfortress.model;
 
+import devfortress.model.exception.EmployeeIsBusyException;
 import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.UnaffordableException;
 import devfortress.utilities.Constant;
@@ -286,12 +287,8 @@ public class Company {
      * @param emp
      * @param field 
      */
-    public void assignEmployeeToProject(Employee emp, Project proj, Skill field) {
-        proj.assignEmployeeToProject(emp, field);
-        if (emp.getMainSkill() == proj.getMainSkill()) {
-            emp.getHappy();
-        } else {
-            emp.getSad();
-        }
+    public boolean assignEmployeeToProject(Employee emp, Project proj, Skill field){
+        return proj.assignEmployeeToProject(emp, field);
+        
     }
 }

@@ -4,6 +4,7 @@
  */
 package devfortress.model;
 
+import devfortress.model.exception.EmployeeIsBusyException;
 import devfortress.model.exception.ProjectFailsException;
 import devfortress.utilities.Skill;
 import java.util.HashMap;
@@ -224,13 +225,25 @@ public class Project {
         hash = 37 * hash + Objects.hashCode(this.name);
         return hash;
     }
-    
+
     /**
      * assign an employee to specific field
+     *
      * @param emp
-     * @param field 
+     * @param field
      */
-    public void assignEmployeeToProject(Employee emp,Skill field){
-        skill_employeeMap.put(field, emp);
+    public boolean assignEmployeeToProject(Employee emp, Skill field){
+        if (emp.getWorkingProject() != null) {
+            if (emp.getMainSkill() == mainSkill) {
+                emp.getHappy();
+            } else {
+                emp.getSad();
+            }
+            skill_employeeMap.put(field, emp);
+            return true;
+        } else {
+            return false;
+        }
+
     }
 }
