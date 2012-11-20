@@ -165,7 +165,6 @@ public class Project {
 //        if (status[1] == false) {
 //            finalPoint = 1;
 //        }
-        System.out.println("fianl point :" + finalPoint);
         return finalPoint;
     }
 
