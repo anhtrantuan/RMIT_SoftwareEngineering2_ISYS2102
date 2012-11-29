@@ -65,7 +65,7 @@ public class Utilities {
 
     public static List<Project> generateProjectList(GameLevel level,
             int numberOfProject, Model model) {
-        List<Project> projects = new ArrayList<>();
+        List<Project> projects = new ArrayList<Project>();
         for (int i = 0; i < numberOfProject; i++) {
             Project project;
             do {
@@ -80,7 +80,7 @@ public class Utilities {
 
     public static List<Employee> generateEmployeeList(GameLevel level,
             int numberOfEmployee, Model model) {
-        List<Employee> employees = new ArrayList<>();
+        List<Employee> employees = new ArrayList<Employee>();
         for (int i = 0; i < numberOfEmployee; i++) {
             Employee employee;
             do {

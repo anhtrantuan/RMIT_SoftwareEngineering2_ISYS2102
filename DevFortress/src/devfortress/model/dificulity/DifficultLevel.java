@@ -8,7 +8,7 @@ import devfortress.model.DateTime;
 import devfortress.model.Project;
 import devfortress.utilities.Constant;
 import devfortress.utilities.Skill;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Map;
 import java.util.Random;
 
@@ -20,7 +20,7 @@ public class DifficultLevel implements GameLevel {
 
     @Override
     public Map<Skill, Integer> generateSkillList() {
-        Map<Skill, Integer> map = new HashMap<>();
+        Map<Skill, Integer> map = new EnumMap<Skill, Integer>(Skill.class);
         Random random = new Random();
         int numOfField = random.nextInt(4) + 10;
         for (int i = 0; i < numOfField; i++) {
@@ -51,7 +51,7 @@ public class DifficultLevel implements GameLevel {
     @Override
     public Project generateProject(String projectName) {
         Random random = new Random();
-        Map<Skill, Integer> map = new HashMap<>();
+        Map<Skill, Integer> map = new EnumMap<Skill, Integer>(Skill.class);
 
         DateTime projectTime = this.generateProjectTime();
         int maxFuntionPoints = projectTime.getMonths()

@@ -29,10 +29,14 @@ public class Company {
     private int foodStock, beerStock;
 
     public Company() {
-        this(1000f, new ArrayList<>(), new HashMap<>(), new ArrayList<>(), new HashMap<>());
+        this(1000f, new ArrayList<Employee>(),
+                new HashMap<Computer, Employee>(),
+                new ArrayList<Project>(), new HashMap<String, Float>());
     }
 
-    public Company(float money, List empList, Map computerList, List projectList, Map itemsList) {
+    public Company(float money, List<Employee> empList,
+            Map<Computer, Employee> computerList, List<Project> projectList,
+            Map<String, Float> itemsList) {
         this.money = money;
         employeeList = empList;
         this.computerList = computerList;

@@ -5,7 +5,7 @@
 package devfortress.model;
 
 import devfortress.utilities.Skill;
-import java.util.HashMap;
+import java.util.EnumMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Objects;
@@ -170,7 +170,7 @@ public class Employee {
     }
 
     public int getLowestSkillLevel() {
-        Map<Skill, Integer> specialSkill = new HashMap<>();
+        Map<Skill, Integer> specialSkill = new EnumMap<Skill, Integer>(Skill.class);
         if (skillList.containsKey(Skill.HASKELL)) {
             specialSkill.put(Skill.HASKELL, skillList.get(Skill.HASKELL));
         }
