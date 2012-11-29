@@ -77,6 +77,7 @@ public class DevFortress {
                 model.buyItem(new Beer(50), 1);
                 model.buyItem(new Computer(), 1);
                 model.buyItem(new Food(300, "Pizza"), 1);
+                model.buyItem(new Food(300, "Coffee"), 1);
 
                 EasyLevel level = new EasyLevel();
                 List<Project> projects = Utilities.generateProjectList(level, 1, model);
