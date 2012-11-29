@@ -8,7 +8,6 @@ import devfortress.model.exception.ProjectFailsException;
 import devfortress.utilities.Skill;
 import java.util.EnumMap;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Random;
 
 /**
@@ -220,7 +219,13 @@ public class Project {
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 37 * hash + Objects.hashCode(this.name);
+        hash = 79 * hash + Float.floatToIntBits(this.payment);
+        hash = 79 * hash + this.projectLevel;
+        hash = 79 * hash + (this.projectTime != null ? this.projectTime.hashCode() : 0);
+        hash = 79 * hash + (this.originalSkillRequirementMap != null ? this.originalSkillRequirementMap.hashCode() : 0);
+        hash = 79 * hash + (this.mainSkill != null ? this.mainSkill.hashCode() : 0);
+        hash = 79 * hash + (this.name != null ? this.name.hashCode() : 0);
+        hash = 79 * hash + this.totalPoints;
         return hash;
     }
 

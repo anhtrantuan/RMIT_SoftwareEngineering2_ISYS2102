@@ -8,7 +8,6 @@ import devfortress.utilities.Skill;
 import java.util.EnumMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Objects;
 
 /**
  *
@@ -238,13 +237,6 @@ public class Employee {
         }
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 5;
-        hash = 97 * hash + Objects.hashCode(this.name);
-        return hash;
-    }
-
     /**
      * Check if 2 employees have the same name.
      *
@@ -257,6 +249,13 @@ public class Employee {
             return true;
         }
         return false;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + (this.name != null ? this.name.hashCode() : 0);
+        return hash;
     }
 
     public Project getWorkingProject() {

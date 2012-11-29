@@ -27,7 +27,7 @@ import javax.swing.JOptionPane;
  * @author tommy
  */
 public class DevFortressView extends javax.swing.JFrame implements View, Observer {
-    
+
     private Model model;
 
     /**
@@ -649,7 +649,8 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         pnlManagement.setPreferredSize(pnlManagementSize);
 
         /* Revalidate the frame layout. */
-        revalidate();
+        validate();
+        repaint();
     }//GEN-LAST:event_treeExpansion
 
     /**
@@ -661,7 +662,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         int response = JOptionPane.showConfirmDialog(this, "Do you really want to exit?",
                 "Exit Confirmation", JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE);
-        
+
         if (response == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
