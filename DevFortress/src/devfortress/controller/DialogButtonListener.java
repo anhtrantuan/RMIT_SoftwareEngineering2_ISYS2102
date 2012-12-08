@@ -8,6 +8,7 @@ import devfortress.model.Employee;
 import devfortress.model.exception.OvercrowdedException;
 import devfortress.model.facade.Model;
 import devfortress.utilities.Constant;
+import devfortress.view.dialogs.AllCurrentEmpolyees;
 import devfortress.view.dialogs.AvailableEmployeesPanel;
 import devfortress.view.dialogs.AvailableProjectsPanel;
 import java.awt.event.ActionEvent;
@@ -60,6 +61,13 @@ public class DialogButtonListener implements ActionListener {
         } else if (text.equals(Constant.BUTTON_HIRE)) {
             AvailableEmployeesPanel panel =
                     new AvailableEmployeesPanel(model.getAvailableEmployeeList(),
+                    buttonListener);
+            newDialog.setContentPane(panel);
+            newDialog.pack();
+            newDialog.setVisible(true);
+        } else if (text.equals(Constant.EMPLOYEE_LIST_BTN)) {
+            AllCurrentEmpolyees panel =
+                    new AllCurrentEmpolyees(model.getEmployeeList(),
                     buttonListener);
             newDialog.setContentPane(panel);
             newDialog.pack();

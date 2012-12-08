@@ -21,6 +21,7 @@ public class SystemPanel extends javax.swing.JPanel {
         btnContract.addActionListener(buttonListener);
         btnHire.addActionListener(buttonListener);
         btnClose.addActionListener(buttonListener);
+        btnEmployeeList.addActionListener(buttonListener);
     }
 
     /**
@@ -38,6 +39,8 @@ public class SystemPanel extends javax.swing.JPanel {
         btnContract = new javax.swing.JButton();
         pnlHire = new javax.swing.JPanel();
         btnHire = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        btnEmployeeList = new javax.swing.JButton();
         pnlCloseButton = new javax.swing.JPanel();
         btnClose = new javax.swing.JButton();
 
@@ -111,6 +114,11 @@ public class SystemPanel extends javax.swing.JPanel {
         btnHire.setMaximumSize(new java.awt.Dimension(240, 60));
         btnHire.setMinimumSize(new java.awt.Dimension(240, 60));
         btnHire.setPreferredSize(new java.awt.Dimension(240, 60));
+        btnHire.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHireActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlHireLayout = new javax.swing.GroupLayout(pnlHire);
         pnlHire.setLayout(pnlHireLayout);
@@ -130,40 +138,72 @@ public class SystemPanel extends javax.swing.JPanel {
 
         add(pnlHire);
 
+        jPanel1.setMaximumSize(new java.awt.Dimension(240, 80));
+        jPanel1.setMinimumSize(new java.awt.Dimension(240, 80));
+        jPanel1.setPreferredSize(new java.awt.Dimension(240, 80));
+
+        btnEmployeeList.setText(Constant.EMPLOYEE_LIST_BTN);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnEmployeeList, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnEmployeeList, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        add(jPanel1);
+
         pnlCloseButton.setBackground(new java.awt.Color(255, 255, 255));
         pnlCloseButton.setMaximumSize(new java.awt.Dimension(120, 60));
         pnlCloseButton.setMinimumSize(new java.awt.Dimension(120, 60));
         pnlCloseButton.setPreferredSize(new java.awt.Dimension(120, 60));
 
-        btnClose.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
         btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icCancel.png"))); // NOI18N
-        btnClose.setText(Constant.CLOSE_BTN);
-        btnClose.setMaximumSize(new java.awt.Dimension(120, 40));
-        btnClose.setMinimumSize(new java.awt.Dimension(120, 40));
-        btnClose.setPreferredSize(new java.awt.Dimension(120, 40));
+        btnClose.setText(Constant.CLOSE_BTN );
+        btnClose.setActionCommand(Constant.CLOSE_BTN);
+        btnClose.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCloseActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout pnlCloseButtonLayout = new javax.swing.GroupLayout(pnlCloseButton);
         pnlCloseButton.setLayout(pnlCloseButtonLayout);
         pnlCloseButtonLayout.setHorizontalGroup(
             pnlCloseButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCloseButtonLayout.createSequentialGroup()
-                .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlCloseButtonLayout.setVerticalGroup(
             pnlCloseButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCloseButtonLayout.createSequentialGroup()
-                .addGap(10, 10, 10)
-                .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(10, 10, 10))
+            .addGroup(pnlCloseButtonLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE))
         );
 
         add(pnlCloseButton);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnHireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHireActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnHireActionPerformed
+
+    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnCloseActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnContract;
+    private javax.swing.JButton btnEmployeeList;
     private javax.swing.JButton btnHire;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JPanel pnlCloseButton;
     private javax.swing.JPanel pnlContract;
