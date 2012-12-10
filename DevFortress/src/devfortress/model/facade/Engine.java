@@ -4,6 +4,7 @@
  */
 package devfortress.model.facade;
 
+import devfortress.model.project.Project;
 import devfortress.model.*;
 import devfortress.model.dificulity.DifficultLevel;
 import devfortress.model.dificulity.EasyLevel;

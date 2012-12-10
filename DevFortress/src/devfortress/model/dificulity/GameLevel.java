@@ -5,7 +5,7 @@
 package devfortress.model.dificulity;
 
 import devfortress.model.DateTime;
-import devfortress.model.Project;
+import devfortress.model.project.Project;
 import devfortress.model.event.Event;
 import devfortress.utilities.Skill;
 import java.util.Map;

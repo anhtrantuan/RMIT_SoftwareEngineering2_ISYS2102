@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package devfortress.model;
+package devfortress.model.project;
 
+import devfortress.model.DateTime;
 import devfortress.model.employee.Employee;
 import devfortress.model.exception.ProjectFailsException;
 import devfortress.utilities.Skill;
@@ -46,6 +47,10 @@ public class Project {
         calculateMainSkill();
     }
 
+    public Project() {
+        skill_employeeMap = new EnumMap<Skill, Employee>(Skill.class);
+    }
+
     public float getPayment() {
         return payment;
     }
@@ -74,10 +79,6 @@ public class Project {
         return remainingTime;
     }
 
-    public void setRemainingtime(DateTime remainingtime) {
-        this.remainingTime = remainingtime;
-    }
-
     public Map<Skill, Integer> getSkillRequirementMap() {
         return skillRequirementMap;
     }
@@ -98,8 +99,33 @@ public class Project {
         return totalPoints;
     }
 
+    public void setOriginalSkillRequirementMap(Map<Skill, Integer> originalSkillRequirementMap) {
+        this.originalSkillRequirementMap = originalSkillRequirementMap;
+    }
+
+    public void setRemainingTime(DateTime remainingTime) {
+        this.remainingTime = remainingTime;
+    }
+
+    public void setTotalPoints(int totalPoints) {
+        this.totalPoints = totalPoints;
+    }
+    
+
     public int getRemainingPoints() {
         return remainingPoints;
+    }
+
+    public void setMainSkill(Skill mainSkill) {
+        this.mainSkill = mainSkill;
+    }
+
+    public void setRemainingPoints(int remainingPoints) {
+        this.remainingPoints = remainingPoints;
+    }
+
+    public void setTotalFunctionPointsDelivered(int totalFunctionPointsDelivered) {
+        this.totalFunctionPointsDelivered = totalFunctionPointsDelivered;
     }
 
     public int getTotalFunctionPointsDelivered() {
@@ -128,7 +154,7 @@ public class Project {
         }
     }
 
-    private Skill calculateMainSkill() {
+    public Skill calculateMainSkill() {
         Skill main = null;
         int highest = 0;
         for (Skill sk : skillRequirementMap.keySet()) {

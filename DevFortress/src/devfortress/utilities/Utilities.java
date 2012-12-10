@@ -7,11 +7,13 @@ package devfortress.utilities;
 import devfortress.model.Company;
 import devfortress.model.Computer;
 import devfortress.model.employee.Employee;
-import devfortress.model.Project;
+import devfortress.model.project.Project;
 import devfortress.model.dificulity.GameLevel;
 import devfortress.model.employee.DevFortressEmployeeBuilder;
 import devfortress.model.employee.EmployeeBuilder;
 import devfortress.model.facade.Model;
+import devfortress.model.project.DevFortressProjectBuilder;
+import devfortress.model.project.ProjectBuilder;
 import java.util.*;
 
 /**
@@ -88,6 +90,7 @@ public class Utilities {
             Project project;
             do {
                 project = level.generateProject(Name.getProjectName());
+                project.calculateMainSkill();
             } while (projects.contains(project)
                     || !(model == null
                     || model.getProjectByName(project.getName()) == null));

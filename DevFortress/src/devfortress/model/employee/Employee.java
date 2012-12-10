@@ -4,7 +4,7 @@
  */
 package devfortress.model.employee;
 
-import devfortress.model.Project;
+import devfortress.model.project.Project;
 import devfortress.utilities.Skill;
 import java.util.EnumMap;
 import java.util.Iterator;

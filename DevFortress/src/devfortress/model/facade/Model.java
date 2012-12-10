@@ -7,7 +7,7 @@ package devfortress.model.facade;
 import devfortress.model.DateTime;
 import devfortress.model.employee.Employee;
 import devfortress.model.Item;
-import devfortress.model.Project;
+import devfortress.model.project.Project;
 import devfortress.model.exception.EmployeeIsBusyException;
 import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.OvercrowdedException;

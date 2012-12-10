@@ -8,7 +8,7 @@ import devfortress.controller.Controller;
 import devfortress.model.Beer;
 import devfortress.model.Computer;
 import devfortress.model.Food;
-import devfortress.model.Project;
+import devfortress.model.project.Project;
 import devfortress.model.dificulity.EasyLevel;
 import devfortress.model.employee.Employee;
 import devfortress.model.exception.EmployeeIsBusyException;
