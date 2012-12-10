@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package devfortress.model;
+package devfortress.model.employee;
 
+import devfortress.model.Project;
 import devfortress.utilities.Skill;
 import java.util.EnumMap;
 import java.util.Iterator;
@@ -23,6 +24,16 @@ public class Employee {
     public Employee(String name, Map<Skill, Integer> skillList) {
         this.name = name;
         this.skillList = skillList;
+        status = new boolean[4];
+        workingProject = null;
+        //0 is having beer, 1 is full, 2 is happy, 3 is working;
+        status[0] = false;
+        status[1] = true;
+        status[2] = true;
+        status[3] = false;
+    }
+    
+    public Employee() {
         status = new boolean[4];
         workingProject = null;
         //0 is having beer, 1 is full, 2 is happy, 3 is working;

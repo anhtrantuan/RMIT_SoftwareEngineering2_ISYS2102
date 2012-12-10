@@ -5,7 +5,7 @@
 package devfortress.model.facade;
 
 import devfortress.model.DateTime;
-import devfortress.model.Employee;
+import devfortress.model.employee.Employee;
 import devfortress.model.Item;
 import devfortress.model.Project;
 import devfortress.model.exception.EmployeeIsBusyException;

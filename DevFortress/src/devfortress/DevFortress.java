@@ -7,10 +7,10 @@ package devfortress;
 import devfortress.controller.Controller;
 import devfortress.model.Beer;
 import devfortress.model.Computer;
-import devfortress.model.Employee;
 import devfortress.model.Food;
 import devfortress.model.Project;
 import devfortress.model.dificulity.EasyLevel;
+import devfortress.model.employee.Employee;
 import devfortress.model.exception.EmployeeIsBusyException;
 import devfortress.model.exception.OvercrowdedException;
 import devfortress.model.facade.Engine;
@@ -26,7 +26,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author tommy
  */
 public class DevFortress {
-
+    
     /**
      * DevFortress's driver function.
      *
@@ -90,9 +90,9 @@ public class DevFortress {
                 model.buyItem(new Food(300, "Coffee"), 1);
 
                 EasyLevel level = new EasyLevel();
-                List<Project> projects = Utilities.generateProjectList(level, 1, model);
+                List<Project> projects = Utilities.getInstance().generateProjectList(level, 1, model);
                 model.takeProject(projects.get(0));
-                List<Employee> employees = Utilities.generateEmployeeList(level, 1, model);
+                List<Employee> employees = Utilities.getInstance().generateEmployeeList(level, 1, model);
 
                 try {
                     model.hireEmployee(employees.get(0));

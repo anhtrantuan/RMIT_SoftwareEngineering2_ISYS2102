@@ -4,7 +4,7 @@
  */
 package devfortress.view.dialogs;
 
-import devfortress.model.Employee;
+import devfortress.model.employee.Employee;
 import devfortress.utilities.Constant;
 import devfortress.view.models.EmployeeTableModel;
 import java.awt.Color;

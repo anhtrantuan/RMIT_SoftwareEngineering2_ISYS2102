@@ -4,7 +4,7 @@
  */
 package devfortress.view.models;
 
-import devfortress.model.Employee;
+import devfortress.model.employee.Employee;
 import devfortress.model.Project;
 import devfortress.utilities.Constant;
 import java.awt.Component;

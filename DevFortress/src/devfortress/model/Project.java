@@ -4,6 +4,7 @@
  */
 package devfortress.model;
 
+import devfortress.model.employee.Employee;
 import devfortress.model.exception.ProjectFailsException;
 import devfortress.utilities.Skill;
 import java.util.EnumMap;
