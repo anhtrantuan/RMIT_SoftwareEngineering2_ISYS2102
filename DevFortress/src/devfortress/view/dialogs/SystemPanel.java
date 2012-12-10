@@ -39,16 +39,16 @@ public class SystemPanel extends javax.swing.JPanel {
         btnContract = new javax.swing.JButton();
         pnlHire = new javax.swing.JPanel();
         btnHire = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
+        allEmployeePnl = new javax.swing.JPanel();
         btnEmployeeList = new javax.swing.JButton();
         pnlCloseButton = new javax.swing.JPanel();
         btnClose = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        setMaximumSize(new java.awt.Dimension(300, 300));
-        setMinimumSize(new java.awt.Dimension(300, 300));
-        setPreferredSize(new java.awt.Dimension(300, 300));
+        setMaximumSize(new java.awt.Dimension(300, 450));
+        setMinimumSize(new java.awt.Dimension(300, 450));
+        setPreferredSize(new java.awt.Dimension(300, 450));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
         pnlTitle.setBackground(new java.awt.Color(255, 255, 255));
@@ -138,27 +138,28 @@ public class SystemPanel extends javax.swing.JPanel {
 
         add(pnlHire);
 
-        jPanel1.setMaximumSize(new java.awt.Dimension(240, 80));
-        jPanel1.setMinimumSize(new java.awt.Dimension(240, 80));
-        jPanel1.setPreferredSize(new java.awt.Dimension(240, 80));
+        allEmployeePnl.setBackground(new java.awt.Color(255, 255, 255));
+        allEmployeePnl.setMaximumSize(new java.awt.Dimension(240, 80));
+        allEmployeePnl.setMinimumSize(new java.awt.Dimension(240, 80));
+        allEmployeePnl.setPreferredSize(new java.awt.Dimension(240, 80));
 
         btnEmployeeList.setText(Constant.EMPLOYEE_LIST_BTN);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout allEmployeePnlLayout = new javax.swing.GroupLayout(allEmployeePnl);
+        allEmployeePnl.setLayout(allEmployeePnlLayout);
+        allEmployeePnlLayout.setHorizontalGroup(
+            allEmployeePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnEmployeeList, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        allEmployeePnlLayout.setVerticalGroup(
+            allEmployeePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(allEmployeePnlLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnEmployeeList, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        add(jPanel1);
+        add(allEmployeePnl);
 
         pnlCloseButton.setBackground(new java.awt.Color(255, 255, 255));
         pnlCloseButton.setMaximumSize(new java.awt.Dimension(120, 60));
@@ -199,11 +200,11 @@ public class SystemPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCloseActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel allEmployeePnl;
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnContract;
     private javax.swing.JButton btnEmployeeList;
     private javax.swing.JButton btnHire;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JPanel pnlCloseButton;
     private javax.swing.JPanel pnlContract;

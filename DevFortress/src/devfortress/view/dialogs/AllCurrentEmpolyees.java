@@ -59,6 +59,7 @@ public class AllCurrentEmpolyees extends javax.swing.JPanel {
 
         employeeTable.setModel(new EmployeesTableModel());
         devListScroll.setViewportView(employeeTable);
+        employeeTable.setRowHeight(36);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
