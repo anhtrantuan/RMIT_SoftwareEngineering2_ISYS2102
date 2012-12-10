@@ -76,6 +76,21 @@ public class EasyLevel implements GameLevel {
 
     @Override
     public Event generateEvent() {
+        Random r = new Random();
+
+        if (r.nextBoolean()) {
+            return generateInvidiualEvent();
+        } else {
+            return generateTeamEvent();
+        }
+        
+    }
+
+    private Event generateInvidiualEvent() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    private Event generateTeamEvent() {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 }
