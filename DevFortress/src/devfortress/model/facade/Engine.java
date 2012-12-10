@@ -9,6 +9,7 @@ import devfortress.model.dificulity.DifficultLevel;
 import devfortress.model.dificulity.EasyLevel;
 import devfortress.model.dificulity.GameLevel;
 import devfortress.model.dificulity.MediumLevel;
+import devfortress.model.employee.Employee;
 import devfortress.model.exception.*;
 import devfortress.utilities.Skill;
 import devfortress.utilities.Utilities;
@@ -29,12 +30,14 @@ public class Engine extends Observable implements Model {
     private DifficultLevel difficultLevel;
     private List<Employee> availableEmployees;
     private List<Project> availableProjects;
-
+    private Utilities utilities;
+    
     public Engine() {
         this(new Company());
     }
 
     public Engine(Company company) {
+        utilities = Utilities.getInstance();
         this.company = company;
         dateTime = new DateTime();
         easyLevel = new EasyLevel();
@@ -78,9 +81,9 @@ public class Engine extends Observable implements Model {
     public void hireEmployee(Employee employee) throws OvercrowdedException {
         //assume that Company will automatically buy computer for new employee in case of lacking computer
         //TODO fix this in next phase
-        if (!Utilities.assignComputerToEmployee(company, employee)) {
+        if (!utilities.assignComputerToEmployee(company, employee)) {
             buyItem(new Computer(), 1);
-            Utilities.assignComputerToEmployee(company, employee);
+            utilities.assignComputerToEmployee(company, employee);
         }
         company.addEmployee(employee);
         setChanged();
@@ -169,7 +172,7 @@ public class Engine extends Observable implements Model {
     private List<Employee> generateEmployeeList() {
         Random random = new Random();
         int number = random.nextInt(3) + 3;
-        return Utilities.generateEmployeeList(level, number, this);
+        return utilities.generateEmployeeList(level, number, this);
     }
 
     /**
@@ -180,7 +183,7 @@ public class Engine extends Observable implements Model {
     private List<Project> generateProjectList() {
         Random random = new Random();
         int number = random.nextInt(3) + 8;
-        return Utilities.generateProjectList(level, number, this);
+        return utilities.generateProjectList(level, number, this);
     }
 
     /**

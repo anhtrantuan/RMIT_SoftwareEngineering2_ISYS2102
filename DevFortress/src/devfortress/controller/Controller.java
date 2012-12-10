@@ -4,7 +4,7 @@
  */
 package devfortress.controller;
 
-import devfortress.model.Employee;
+import devfortress.model.employee.Employee;
 import devfortress.model.exception.OvercrowdedException;
 import devfortress.model.facade.Model;
 import devfortress.view.View;

@@ -6,9 +6,11 @@ package devfortress.utilities;
 
 import devfortress.model.Company;
 import devfortress.model.Computer;
-import devfortress.model.Employee;
+import devfortress.model.employee.Employee;
 import devfortress.model.Project;
 import devfortress.model.dificulity.GameLevel;
+import devfortress.model.employee.DevFortressEmployeeBuilder;
+import devfortress.model.employee.EmployeeBuilder;
 import devfortress.model.facade.Model;
 import java.util.*;
 
@@ -18,7 +20,23 @@ import java.util.*;
  */
 public class Utilities {
 
-    public static int calculateSalaryPoint(Skill skill, int skillLevel) {
+    private EmployeeBuilder employeeBuilder;
+    private static Utilities uInstance = null;
+
+    private Utilities() {
+        employeeBuilder = new DevFortressEmployeeBuilder();
+    }
+
+    public static Utilities getInstance() {
+        if (uInstance == null) {
+            uInstance = new Utilities();
+            return uInstance;
+        } else {
+            return uInstance;
+        }
+    }
+
+    public int calculateSalaryPoint(Skill skill, int skillLevel) {
 
         if (skill.ordinal() <= 24) {
             if (skillLevel == 1) {
@@ -49,7 +67,7 @@ public class Utilities {
         }
     }
 
-    public static int calculateSalary(Map<Skill, Integer> skillList) {
+    public int calculateSalary(Map<Skill, Integer> skillList) {
         int salary = 0;
         for (Skill sk : skillList.keySet()) {
             if (sk.ordinal() <= 24) {
@@ -63,7 +81,7 @@ public class Utilities {
         return salary;
     }
 
-    public static List<Project> generateProjectList(GameLevel level,
+    public List<Project> generateProjectList(GameLevel level,
             int numberOfProject, Model model) {
         List<Project> projects = new ArrayList<Project>();
         for (int i = 0; i < numberOfProject; i++) {
@@ -78,7 +96,7 @@ public class Utilities {
         return projects;
     }
 
-    public static List<Employee> generateEmployeeList(GameLevel level,
+    public List<Employee> generateEmployeeList(GameLevel level,
             int numberOfEmployee, Model model) {
         List<Employee> employees = new ArrayList<Employee>();
         for (int i = 0; i < numberOfEmployee; i++) {
@@ -93,12 +111,15 @@ public class Utilities {
         return employees;
     }
 
-    private static String generateEmployeeName() {
+    private String generateEmployeeName() {
         return Name.getEmployeeName();
     }
 
-    private static Employee generateEmployee(GameLevel level) {
-        return new Employee(generateEmployeeName(), level.generateSkillList());
+    private Employee generateEmployee(GameLevel level) {
+        employeeBuilder.createNewEmployee();
+        employeeBuilder.addName(generateEmployeeName());
+        employeeBuilder.addSkillList(level.generateSkillList());
+        return employeeBuilder.getEmployee();
     }
 
     /**
@@ -106,7 +127,7 @@ public class Utilities {
      * that computer, return true if having empty computer
      *
      */
-    public static boolean assignComputerToEmployee(Company company, Employee employee) {
+    public boolean assignComputerToEmployee(Company company, Employee employee) {
         //assume that Company will automatically buy computer for new employee in case of lacking computer
         Map<Computer, Employee> computerMap = company.getComputerList();
         for (Computer com : computerMap.keySet()) {

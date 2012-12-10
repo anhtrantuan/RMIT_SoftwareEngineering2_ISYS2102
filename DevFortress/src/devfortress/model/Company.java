@@ -4,6 +4,7 @@
  */
 package devfortress.model;
 
+import devfortress.model.employee.Employee;
 import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.UnaffordableException;
 import devfortress.utilities.Constant;
