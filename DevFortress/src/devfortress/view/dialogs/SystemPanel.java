@@ -137,12 +137,10 @@ public class SystemPanel extends javax.swing.JPanel {
         );
 
         add(pnlHire);
-
         allEmployeePnl.setBackground(new java.awt.Color(255, 255, 255));
         allEmployeePnl.setMaximumSize(new java.awt.Dimension(240, 80));
         allEmployeePnl.setMinimumSize(new java.awt.Dimension(240, 80));
         allEmployeePnl.setPreferredSize(new java.awt.Dimension(240, 80));
-
         btnEmployeeList.setText(Constant.EMPLOYEE_LIST_BTN);
 
         javax.swing.GroupLayout allEmployeePnlLayout = new javax.swing.GroupLayout(allEmployeePnl);
