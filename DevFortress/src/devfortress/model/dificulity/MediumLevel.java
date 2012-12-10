@@ -7,6 +7,7 @@ package devfortress.model.dificulity;
 
 import devfortress.model.DateTime;
 import devfortress.model.Project;
+import devfortress.model.event.Event;
 import devfortress.utilities.Constant;
 import devfortress.utilities.Skill;
 import java.util.EnumMap;
@@ -76,5 +77,10 @@ public class MediumLevel implements GameLevel {
         return new Project(projectName, totalPoints,
                 this.generateProjectPayment(),
                 this.generateProjectLevel(), projectTime, map);
+    }
+
+    @Override
+    public Event generateEvent() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }
