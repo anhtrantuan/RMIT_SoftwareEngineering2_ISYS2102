@@ -46,9 +46,9 @@ public class SystemPanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        setMaximumSize(new java.awt.Dimension(300, 300));
-        setMinimumSize(new java.awt.Dimension(300, 300));
-        setPreferredSize(new java.awt.Dimension(300, 300));
+        setMaximumSize(new java.awt.Dimension(300, 340));
+        setMinimumSize(new java.awt.Dimension(300, 340));
+        setPreferredSize(new java.awt.Dimension(300, 340));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
         pnlTitle.setBackground(new java.awt.Color(255, 255, 255));
@@ -138,6 +138,7 @@ public class SystemPanel extends javax.swing.JPanel {
 
         add(pnlHire);
 
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(240, 80));
         jPanel1.setMinimumSize(new java.awt.Dimension(240, 80));
         jPanel1.setPreferredSize(new java.awt.Dimension(240, 80));
