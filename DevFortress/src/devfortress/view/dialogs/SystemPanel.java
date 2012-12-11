@@ -41,14 +41,16 @@ public class SystemPanel extends javax.swing.JPanel {
         btnHire = new javax.swing.JButton();
         allEmployeePnl = new javax.swing.JPanel();
         btnEmployeeList = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         pnlCloseButton = new javax.swing.JPanel();
         btnClose = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        setMaximumSize(new java.awt.Dimension(300, 450));
-        setMinimumSize(new java.awt.Dimension(300, 450));
-        setPreferredSize(new java.awt.Dimension(300, 450));
+        setMaximumSize(new java.awt.Dimension(300, 465));
+        setMinimumSize(new java.awt.Dimension(300, 465));
+        setPreferredSize(new java.awt.Dimension(300, 465));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
         pnlTitle.setBackground(new java.awt.Color(255, 255, 255));
@@ -78,7 +80,7 @@ public class SystemPanel extends javax.swing.JPanel {
         pnlContract.setMinimumSize(new java.awt.Dimension(240, 80));
         pnlContract.setPreferredSize(new java.awt.Dimension(240, 80));
 
-        btnContract.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        btnContract.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         btnContract.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icContract.png"))); // NOI18N
         btnContract.setText(Constant.BUTTON_CONTRACT);
         btnContract.setMaximumSize(new java.awt.Dimension(240, 60));
@@ -108,7 +110,7 @@ public class SystemPanel extends javax.swing.JPanel {
         pnlHire.setMinimumSize(new java.awt.Dimension(240, 80));
         pnlHire.setPreferredSize(new java.awt.Dimension(240, 80));
 
-        btnHire.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        btnHire.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         btnHire.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icHire.png"))); // NOI18N
         btnHire.setText(Constant.BUTTON_HIRE);
         btnHire.setMaximumSize(new java.awt.Dimension(240, 60));
@@ -137,33 +139,68 @@ public class SystemPanel extends javax.swing.JPanel {
         );
 
         add(pnlHire);
+
         allEmployeePnl.setBackground(new java.awt.Color(255, 255, 255));
         allEmployeePnl.setMaximumSize(new java.awt.Dimension(240, 80));
         allEmployeePnl.setMinimumSize(new java.awt.Dimension(240, 80));
         allEmployeePnl.setPreferredSize(new java.awt.Dimension(240, 80));
+
+        btnEmployeeList.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         btnEmployeeList.setText(Constant.EMPLOYEE_LIST_BTN);
+        btnEmployeeList.setMaximumSize(new java.awt.Dimension(240, 60));
+        btnEmployeeList.setMinimumSize(new java.awt.Dimension(240, 60));
+        btnEmployeeList.setOpaque(false);
+        btnEmployeeList.setPreferredSize(new java.awt.Dimension(240, 60));
 
         javax.swing.GroupLayout allEmployeePnlLayout = new javax.swing.GroupLayout(allEmployeePnl);
         allEmployeePnl.setLayout(allEmployeePnlLayout);
         allEmployeePnlLayout.setHorizontalGroup(
             allEmployeePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnEmployeeList, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
+            .addComponent(btnEmployeeList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         allEmployeePnlLayout.setVerticalGroup(
             allEmployeePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(allEmployeePnlLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnEmployeeList, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                .addComponent(btnEmployeeList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
         add(allEmployeePnl);
 
-        pnlCloseButton.setBackground(new java.awt.Color(255, 255, 255));
-        pnlCloseButton.setMaximumSize(new java.awt.Dimension(120, 60));
-        pnlCloseButton.setMinimumSize(new java.awt.Dimension(120, 60));
-        pnlCloseButton.setPreferredSize(new java.awt.Dimension(120, 60));
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setMaximumSize(new java.awt.Dimension(240, 80));
+        jPanel1.setMinimumSize(new java.awt.Dimension(240, 80));
+        jPanel1.setPreferredSize(new java.awt.Dimension(240, 80));
 
+        jButton1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jButton1.setText(Constant.BUY_BTN);
+        jButton1.setMaximumSize(new java.awt.Dimension(240, 60));
+        jButton1.setMinimumSize(new java.awt.Dimension(240, 60));
+        jButton1.setPreferredSize(new java.awt.Dimension(240, 60));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(9, Short.MAX_VALUE))
+        );
+
+        add(jPanel1);
+
+        pnlCloseButton.setBackground(new java.awt.Color(255, 255, 255));
+        pnlCloseButton.setMaximumSize(new java.awt.Dimension(127, 60));
+        pnlCloseButton.setMinimumSize(new java.awt.Dimension(127, 60));
+        pnlCloseButton.setPreferredSize(new java.awt.Dimension(127, 60));
+
+        btnClose.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icCancel.png"))); // NOI18N
         btnClose.setText(Constant.CLOSE_BTN );
         btnClose.setActionCommand(Constant.CLOSE_BTN);
@@ -177,11 +214,11 @@ public class SystemPanel extends javax.swing.JPanel {
         pnlCloseButton.setLayout(pnlCloseButtonLayout);
         pnlCloseButtonLayout.setHorizontalGroup(
             pnlCloseButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 127, Short.MAX_VALUE)
         );
         pnlCloseButtonLayout.setVerticalGroup(
             pnlCloseButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlCloseButtonLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCloseButtonLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE))
         );
@@ -203,6 +240,8 @@ public class SystemPanel extends javax.swing.JPanel {
     private javax.swing.JButton btnContract;
     private javax.swing.JButton btnEmployeeList;
     private javax.swing.JButton btnHire;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JPanel pnlCloseButton;
     private javax.swing.JPanel pnlContract;
