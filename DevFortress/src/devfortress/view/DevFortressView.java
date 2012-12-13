@@ -4,6 +4,7 @@
  */
 package devfortress.view;
 
+import devfortress.DevFortress;
 import devfortress.model.DateTime;
 import devfortress.model.facade.Model;
 import devfortress.utilities.Constant;
@@ -19,8 +20,11 @@ import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 /**
  *
@@ -37,6 +41,26 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
      */
     public DevFortressView(Model model) {
         this.model = model;
+
+        /* Set theme for View. */
+        try {
+            /* If current platform does not have specialized theme, use Nimbus. */
+            if (UIManager.getSystemLookAndFeelClassName().
+                    equals(UIManager.getCrossPlatformLookAndFeelClassName())) {
+                for (UIManager.LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {
+                    if ("Nimbus".equals(info.getName())) {
+                        UIManager.setLookAndFeel(info.getClassName());
+                        break;
+                    }
+                }
+            } else {
+                /* Else, setup look and feel to match current system. */
+                UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         /* Initialize components. */
         initComponents();
