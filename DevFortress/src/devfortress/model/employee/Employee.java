@@ -80,6 +80,7 @@ public class Employee {
             } else {
                 skillList.put(sk, 2);
             }
+            isTalented = false;
         } else {
             if (skillList.containsKey(sk)) {
                 int val = ((Integer) skillList.get(sk)).intValue();
@@ -302,5 +303,21 @@ public class Employee {
         } else {
             royalCountdown--;
         }
+    }
+    
+    public void talentFound(){
+        isTalented = true;
+    }
+    
+    public boolean getIsTalent(){
+        return isTalented;
+    }
+    
+    public void becomeRoyal(){
+        isRoyal = true;
+    }
+    
+    public boolean getIsRoyal(){
+        return isRoyal;
     }
 }
