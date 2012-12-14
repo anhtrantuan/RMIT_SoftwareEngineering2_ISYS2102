@@ -6,6 +6,8 @@ package devfortress.model.dificulity;
 
 import devfortress.model.DateTime;
 import devfortress.model.Project;
+import devfortress.model.event.Event;
+import devfortress.model.event.InvidiualEvent;
 import devfortress.utilities.Constant;
 import devfortress.utilities.Skill;
 import java.util.EnumMap;
@@ -72,4 +74,14 @@ public class EasyLevel implements GameLevel {
                 this.generateProjectPayment(),
                 this.generateProjectLevel(), projectTime, map);
     }
+
+    @Override
+    public Event generateEvent() {
+        Random r = new Random();
+        if (r.nextBoolean()) {
+            return new 
+        }
+    }
+    
+    
 }
