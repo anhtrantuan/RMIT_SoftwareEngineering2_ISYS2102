@@ -4,7 +4,9 @@
  */
 package devfortress.model.dificulity;
 
+import devfortress.model.Company;
 import devfortress.model.DateTime;
+import devfortress.model.employee.Employee;
 
 
 import devfortress.model.event.Event;
@@ -86,16 +88,22 @@ public class EasyLevel implements GameLevel {
         return projectBuilder.getProject();
     }
 
-
     @Override
-    public void generateEvent() {
+    public void generateEvent(Employee e, Company company) {
         Random r = new Random();
         if (r.nextBoolean()) {
-            
-            if (r.nextDouble()<0.1) {
-                InvidiualEvent.sickDeveloper(null);
-            }
-        
+
+            generateInvidiualEvent(e);
+
         }
+    }
+
+    private void generateInvidiualEvent(Employee e) {
+        Double r = new Random().nextDouble();
+        if (r <0.1) {
+            InvidiualEvent.sickDeveloper(e);
+        }else if(r<0.15){
+            InvidiualEvent.requirementChange(e);
+        }else if()
     }
 }
