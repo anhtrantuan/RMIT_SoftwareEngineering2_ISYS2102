@@ -73,4 +73,8 @@ public class Constant {
     public static String TOTAL_REQUIRED_FUNCTIONPOINT_LABEL = "Total Required Points";
     public static String TOTAL_PRODUCED_FUNCTION_POINT = "Total Produced Points";
     public static String NA = "N/A";
+    public static String EMPLOYEE_LIST_BTN = "Employee List";
+    public static String HAVE_BEER_BTN = "Have beer";
+    public static String TRAIN_BTN = "Train";
+    public static String BUY_BTN = "Buy items";
 }

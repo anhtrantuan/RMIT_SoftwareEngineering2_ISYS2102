@@ -6,7 +6,10 @@
 package devfortress.model.dificulity;
 
 import devfortress.model.DateTime;
-import devfortress.model.Project;
+import devfortress.model.project.Project;
+import devfortress.model.event.Event;
+import devfortress.model.project.DevFortressProjectBuilder;
+import devfortress.model.project.ProjectBuilder;
 import devfortress.utilities.Constant;
 import devfortress.utilities.Skill;
 import java.util.EnumMap;
@@ -18,7 +21,7 @@ import java.util.Random;
  * @author cathoanghuy
  */
 public class MediumLevel implements GameLevel {
-
+    ProjectBuilder projectBuilder = new DevFortressProjectBuilder();
     @Override
     public Map<Skill, Integer> generateSkillList() {
         Map<Skill, Integer> map = new EnumMap<Skill, Integer>(Skill.class);
@@ -73,8 +76,18 @@ public class MediumLevel implements GameLevel {
             }
         }
 
-        return new Project(projectName, totalPoints,
-                this.generateProjectPayment(),
-                this.generateProjectLevel(), projectTime, map);
+        projectBuilder.createNewProject();
+        projectBuilder.addName(projectName);
+        projectBuilder.addTotalPoint(totalPoints);
+        projectBuilder.addPayment(this.generateProjectPayment());
+        projectBuilder.addProjectLvl(this.generateProjectLevel());
+        projectBuilder.addProjectTime(projectTime);
+        projectBuilder.addSkillRequirementMap(map);
+        return projectBuilder.getProject();
+    }
+
+    @Override
+    public Event generateEvent() {
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

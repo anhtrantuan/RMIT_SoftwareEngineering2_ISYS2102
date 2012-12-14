@@ -4,7 +4,7 @@
  */
 package devfortress.view.models;
 
-import devfortress.model.Project;
+import devfortress.model.project.Project;
 import devfortress.utilities.Constant;
 import java.awt.Component;
 import java.util.List;

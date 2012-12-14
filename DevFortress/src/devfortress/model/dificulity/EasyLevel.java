@@ -5,9 +5,13 @@
 package devfortress.model.dificulity;
 
 import devfortress.model.DateTime;
-import devfortress.model.Project;
+
+
 import devfortress.model.event.Event;
-import devfortress.model.event.InvidiualEvent;
+import devfortress.model.project.DevFortressProjectBuilder;
+import devfortress.model.project.Project;
+import devfortress.model.project.ProjectBuilder;
+
 import devfortress.utilities.Constant;
 import devfortress.utilities.Skill;
 import java.util.EnumMap;
@@ -19,7 +23,8 @@ import java.util.Random;
  * @author cathoanghuy
  */
 public class EasyLevel implements GameLevel {
-
+    
+    ProjectBuilder projectBuilder = new DevFortressProjectBuilder();
     @Override
     public Map<Skill, Integer> generateSkillList() {
         Map<Skill, Integer> map = new EnumMap<Skill, Integer>(Skill.class);
@@ -38,7 +43,7 @@ public class EasyLevel implements GameLevel {
 
     @Override
     public int generateProjectPayment() {
-        return (new Random().nextInt(51) + 30) * 10000;
+        return ((new Random().nextInt(51) + 30) * 10000) / 2;
     }
 
     @Override
@@ -69,19 +74,43 @@ public class EasyLevel implements GameLevel {
             }
 
         }
-
-        return new Project(projectName, totalPoints,
-                this.generateProjectPayment(),
-                this.generateProjectLevel(), projectTime, map);
+        projectBuilder.createNewProject();
+        projectBuilder.addName(projectName);
+        projectBuilder.addTotalPoint(totalPoints);
+        projectBuilder.addPayment(this.generateProjectPayment());
+        projectBuilder.addProjectLvl(this.generateProjectLevel());
+        projectBuilder.addProjectTime(projectTime);
+        projectBuilder.addSkillRequirementMap(map);
+        return projectBuilder.getProject();
     }
 
     @Override
     public Event generateEvent() {
         Random r = new Random();
+
         if (r.nextBoolean()) {
-            return new 
+            return generateInvidiualEvent();
+        } else {
+            return generateTeamEvent();
         }
+        
     }
+
+    private Event generateInvidiualEvent() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+    private Event generateTeamEvent() {
+        throw new UnsupportedOperationException("Not supported yet.");
+    }
+
+//    @Override
+//    public Event generateEvent() {
+//        Random r = new Random();
+//        if (r.nextBoolean()) {
+//            return new 
+//        }
+//    }
     
     
 }

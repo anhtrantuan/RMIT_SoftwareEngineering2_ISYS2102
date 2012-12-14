@@ -7,19 +7,18 @@ package devfortress;
 import devfortress.controller.Controller;
 import devfortress.model.Beer;
 import devfortress.model.Computer;
-import devfortress.model.Employee;
 import devfortress.model.Food;
-import devfortress.model.Project;
 import devfortress.model.dificulity.EasyLevel;
+import devfortress.model.employee.Employee;
 import devfortress.model.exception.EmployeeIsBusyException;
 import devfortress.model.exception.OvercrowdedException;
 import devfortress.model.facade.Engine;
+import devfortress.model.project.Project;
 import devfortress.utilities.Utilities;
 import devfortress.view.DevFortressView;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -33,39 +32,6 @@ public class DevFortress {
      * @param args
      */
     public static void main(String[] args) {
-        /*
-         * Set the Nimbus look and feel
-         */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /*
-         * If Nimbus (introduced in Java SE 6) is not available, stay with the
-         * default look and feel. For details see
-         * http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-         */
-        try {
-            if (javax.swing.UIManager.getSystemLookAndFeelClassName().equals(javax.swing.UIManager.getCrossPlatformLookAndFeelClassName())) {
-                for (javax.swing.UIManager.LookAndFeelInfo info :
-                        javax.swing.UIManager.getInstalledLookAndFeels()) {
-                    if ("Nimbus".equals(info.getName())) {
-                        javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                        break;
-                    }
-                }
-            } else {
-                javax.swing.UIManager.setLookAndFeel(javax.swing.UIManager.getSystemLookAndFeelClassName());
-            }
-
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
         /*
          * Create and display the form
          */
@@ -90,9 +56,9 @@ public class DevFortress {
                 model.buyItem(new Food(300, "Coffee"), 1);
 
                 EasyLevel level = new EasyLevel();
-                List<Project> projects = Utilities.generateProjectList(level, 1, model);
+                List<Project> projects = Utilities.getInstance().generateProjectList(level, 1, model);
                 model.takeProject(projects.get(0));
-                List<Employee> employees = Utilities.generateEmployeeList(level, 1, model);
+                List<Employee> employees = Utilities.getInstance().generateEmployeeList(level, 1, model);
 
                 try {
                     model.hireEmployee(employees.get(0));

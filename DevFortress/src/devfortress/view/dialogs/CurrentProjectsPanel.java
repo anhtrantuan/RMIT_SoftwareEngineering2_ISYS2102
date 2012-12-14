@@ -4,7 +4,7 @@
  */
 package devfortress.view.dialogs;
 
-import devfortress.model.Project;
+import devfortress.model.project.Project;
 import devfortress.utilities.Constant;
 import devfortress.view.editors.TableButtonCellEditor;
 import devfortress.view.models.CurrentProjectsTableModel;

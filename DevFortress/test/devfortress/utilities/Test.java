@@ -4,7 +4,7 @@
  */
 package devfortress.utilities;
 
-import devfortress.model.Employee;
+import devfortress.model.employee.Employee;
 import devfortress.model.dificulity.EasyLevel;
 import devfortress.model.dificulity.GameLevel;
 

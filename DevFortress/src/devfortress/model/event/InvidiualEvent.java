@@ -1,3 +1,4 @@
+
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -6,8 +7,9 @@ package devfortress.model.event;
 
 /**
  *
- * @author Cat Hoang Huy
+ * @author satthuvdh
  */
-public class InvidiualEvent implements Event{
+public class InvidiualEvent implements Event {
     
 }
+

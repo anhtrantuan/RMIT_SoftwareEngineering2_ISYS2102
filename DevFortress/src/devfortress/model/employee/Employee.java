@@ -2,8 +2,9 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package devfortress.model;
+package devfortress.model.employee;
 
+import devfortress.model.project.Project;
 import devfortress.utilities.Skill;
 import java.util.EnumMap;
 import java.util.Iterator;
@@ -19,6 +20,9 @@ public class Employee {
     private Map<Skill, Integer> skillList;
     private boolean status[];
     private Project workingProject;
+    private boolean isRoyal;
+    private int royalCountdown;
+    private boolean isTalented;
 
     public Employee(String name, Map<Skill, Integer> skillList) {
         this.name = name;
@@ -30,6 +34,22 @@ public class Employee {
         status[1] = true;
         status[2] = true;
         status[3] = false;
+        isRoyal = false;
+        royalCountdown = 36;
+        isTalented = false;
+    }
+
+    public Employee() {
+        status = new boolean[4];
+        workingProject = null;
+        //0 is having beer, 1 is full, 2 is happy, 3 is working;
+        status[0] = false;
+        status[1] = true;
+        status[2] = true;
+        status[3] = false;
+        isRoyal = false;
+        royalCountdown = 36;
+        isTalented = false;
     }
 
     public String getName() {
@@ -53,11 +73,22 @@ public class Employee {
     }
 
     public void skillLevelUp(Skill sk) {
-        if (skillList.containsKey(sk)) {
-            int val = ((Integer) skillList.get(sk)).intValue();
-            skillList.put(sk, ++val);
+        if (isTalented) {
+            if (skillList.containsKey(sk)) {
+                int val = ((Integer) skillList.get(sk)).intValue();
+                skillList.put(sk, val + 2);
+            } else {
+                skillList.put(sk, 2);
+            }
+            isTalented = false;
         } else {
-            skillList.put(sk, 1);
+            if (skillList.containsKey(sk)) {
+                int val = ((Integer) skillList.get(sk)).intValue();
+                val = val + 2;
+                skillList.put(sk, val);
+            } else {
+                skillList.put(sk, 1);
+            }
         }
         getMainSkill();
     }
@@ -264,5 +295,29 @@ public class Employee {
 
     public void assignToProject(Project project) {
         workingProject = project;
+    }
+
+    public void checkRoyal() {
+        if (royalCountdown == 0) {
+            isRoyal = true;
+        } else {
+            royalCountdown--;
+        }
+    }
+    
+    public void talentFound(){
+        isTalented = true;
+    }
+    
+    public boolean getIsTalent(){
+        return isTalented;
+    }
+    
+    public void becomeRoyal(){
+        isRoyal = true;
+    }
+    
+    public boolean getIsRoyal(){
+        return isRoyal;
     }
 }
