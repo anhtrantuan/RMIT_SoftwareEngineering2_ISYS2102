@@ -76,16 +76,16 @@ public class Employee {
         if (isTalented) {
             if (skillList.containsKey(sk)) {
                 int val = ((Integer) skillList.get(sk)).intValue();
-                skillList.put(sk, val + 2);
+                val = val + 3;
+                skillList.put(sk, val);
             } else {
-                skillList.put(sk, 2);
+                skillList.put(sk, 3);
             }
             isTalented = false;
         } else {
             if (skillList.containsKey(sk)) {
                 int val = ((Integer) skillList.get(sk)).intValue();
-                val = val + 2;
-                skillList.put(sk, val);
+                skillList.put(sk, ++val);
             } else {
                 skillList.put(sk, 1);
             }
