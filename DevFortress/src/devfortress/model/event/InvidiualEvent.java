@@ -6,6 +6,7 @@
 package devfortress.model.event;
 
 import devfortress.model.employee.Employee;
+import java.util.Map;
 
 /**
  *
@@ -18,8 +19,7 @@ public class InvidiualEvent implements Event {
 
     public static void requirementChange(Employee e) {
     }
-    
-    public static void newTechnology(Employee e){
-        
+
+    public static void newTechnology(Employee e) {
     }
 }
