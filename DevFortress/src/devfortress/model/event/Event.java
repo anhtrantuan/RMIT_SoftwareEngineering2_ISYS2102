@@ -9,5 +9,5 @@ package devfortress.model.event;
  * @author Cat Hoang Huy
  */
 public interface Event {
-    
+
 }
