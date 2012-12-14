@@ -13,9 +13,5 @@ import devfortress.model.employee.Employee;
  */
 public class ProjectEvent implements Event {
 
-    public static void sickDeveloper(Employee e) {
-    }
-
-    public static void requirementChange(Employee e) {
-    }
+    
 }

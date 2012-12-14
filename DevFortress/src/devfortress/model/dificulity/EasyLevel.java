@@ -8,6 +8,7 @@ import devfortress.model.DateTime;
 
 
 import devfortress.model.event.Event;
+import devfortress.model.event.InvidiualEvent;
 import devfortress.model.project.DevFortressProjectBuilder;
 import devfortress.model.project.Project;
 import devfortress.model.project.ProjectBuilder;
@@ -23,8 +24,9 @@ import java.util.Random;
  * @author cathoanghuy
  */
 public class EasyLevel implements GameLevel {
-    
+
     ProjectBuilder projectBuilder = new DevFortressProjectBuilder();
+
     @Override
     public Map<Skill, Integer> generateSkillList() {
         Map<Skill, Integer> map = new EnumMap<Skill, Integer>(Skill.class);
@@ -84,33 +86,16 @@ public class EasyLevel implements GameLevel {
         return projectBuilder.getProject();
     }
 
+
     @Override
-    public Event generateEvent() {
+    public void generateEvent() {
         Random r = new Random();
-
         if (r.nextBoolean()) {
-            return generateInvidiualEvent();
-        } else {
-            return generateTeamEvent();
-        }
+            
+            if (r.nextDouble()<0.1) {
+                InvidiualEvent.sickDeveloper(null);
+            }
         
+        }
     }
-
-    private Event generateInvidiualEvent() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-    private Event generateTeamEvent() {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
-
-//    @Override
-//    public Event generateEvent() {
-//        Random r = new Random();
-//        if (r.nextBoolean()) {
-//            return new 
-//        }
-//    }
-    
-    
 }

@@ -12,9 +12,11 @@ import devfortress.model.dificulity.GameLevel;
 import devfortress.model.dificulity.MediumLevel;
 import devfortress.model.employee.Employee;
 import devfortress.model.exception.*;
+import devfortress.model.project.Project;
 import devfortress.utilities.Skill;
 import devfortress.utilities.Utilities;
 import java.util.*;
+import java.util.List;
 // TODO implement statergy partern
 
 /**
@@ -32,7 +34,7 @@ public class Engine extends Observable implements Model {
     private List<Employee> availableEmployees;
     private List<Project> availableProjects;
     private Utilities utilities;
-    
+
     public Engine() {
         this(new Company());
     }
@@ -197,6 +199,7 @@ public class Engine extends Observable implements Model {
      */
     @Override
     public void nextTurn() throws MoneyRunOutException {
+        
         List<Project> succeededProject = new ArrayList();
         List<Project> failedProject = new ArrayList();
 
@@ -212,6 +215,39 @@ public class Engine extends Observable implements Model {
             nextWeek();
         }
 
+        generateEvent(level);
+
+        checkProject(succeededProject, failedProject);
+
+        availableProjects = generateProjectList();
+        availableEmployees = generateEmployeeList();
+        
+        paySalary();
+        
+        if (company.getMoney() <= 0) {
+            throw new MoneyRunOutException();
+        }
+        
+        company.clearItemList();
+
+        setChanged();
+        
+        String message = String.format("New turn began: Year %d Month %d Week %d.",
+                dateTime.getYear(), dateTime.getMonthOfYear(),
+                dateTime.getWeekOfMonth());
+        notifyObservers(message);
+    }
+
+    /**
+     * Increase the week number by one
+     */
+    private void nextWeek() {
+        eventOccur();
+        consumeFood();
+        dateTime.nextWeek();
+    }
+
+    private void checkProject(List<Project> succeededProject, List<Project> failedProject) {
         for (Project project : company.getCurrentProjectList()) {
             try {
                 if (project.checkProjectProcess()) {
@@ -232,29 +268,6 @@ public class Engine extends Observable implements Model {
         for (Project proj : succeededProject) {
             company.cancelProject(proj);
         }
-
-        availableProjects = generateProjectList();
-        availableEmployees = generateEmployeeList();
-        paySalary();
-        if (company.getMoney() <= 0) {
-            throw new MoneyRunOutException();
-        }
-        company.clearItemList();
-
-        setChanged();
-        String message = String.format("New turn began: Year %d Month %d Week %d.",
-                dateTime.getYear(), dateTime.getMonthOfYear(),
-                dateTime.getWeekOfMonth());
-        notifyObservers(message);
-    }
-
-    /**
-     * Increase the week number by one
-     */
-    private void nextWeek() {
-        eventOccur();
-        consumeFood();
-        dateTime.nextWeek();
     }
 
     @Override
@@ -372,5 +385,11 @@ public class Engine extends Observable implements Model {
     @Override
     public Project getWorkingProjectOfEmployee(Employee emp) {
         return emp.getWorkingProject();
+    }
+
+    private void generateEvent(GameLevel level) {
+        for (Employee employee : availableEmployees) {
+            level.generateEvent(employee);
+        }
     }
 }
