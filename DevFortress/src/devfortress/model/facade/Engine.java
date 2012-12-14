@@ -392,4 +392,9 @@ public class Engine extends Observable implements Model {
             level.generateEvent(employee);
         }
     }
+    
+    public void train(Employee emp,Skill sk){
+        
+    }
+    
 }
