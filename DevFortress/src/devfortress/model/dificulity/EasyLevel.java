@@ -9,13 +9,14 @@ import devfortress.model.DateTime;
 import devfortress.model.employee.Employee;
 
 
-import devfortress.model.event.Event;
 import devfortress.model.event.InvidiualEvent;
+import devfortress.model.event.ProjectEvent;
 import devfortress.model.project.DevFortressProjectBuilder;
 import devfortress.model.project.Project;
 import devfortress.model.project.ProjectBuilder;
 
 import devfortress.utilities.Constant;
+import devfortress.utilities.Event;
 import devfortress.utilities.Skill;
 import java.util.EnumMap;
 import java.util.Map;
@@ -89,21 +90,31 @@ public class EasyLevel implements GameLevel {
     }
 
     @Override
-    public void generateEvent(Employee e, Company company) {
-        Random r = new Random();
-        if (r.nextBoolean()) {
-
-            generateInvidiualEvent(e);
-
-        }
-    }
-
-    private void generateInvidiualEvent(Employee e) {
+    public Event generateEvent(Employee e, Company company) {
         Double r = new Random().nextDouble();
-        if (r <0.1) {
-            InvidiualEvent.sickDeveloper(e);
-        }else if(r<0.15){
-            InvidiualEvent.requirementChange(e);
-        }else if()
+        if (r < 0.1) {
+            return InvidiualEvent.sickDeveloper(e);
+        } else if (r < 0.15) {
+            return InvidiualEvent.requirementChange(e);
+        } else if (r < 0.2) {
+            return InvidiualEvent.newTechnology(e);
+        } else if (r < 0.25) {
+            return InvidiualEvent.solutionScale(e);
+        } else if (r < 0.26) {
+            return InvidiualEvent.hacked(e);
+        } else if (r < 0.31) {
+            return InvidiualEvent.featureCut(e);
+        } else if (r < 0.36) {
+            return InvidiualEvent.backupFailed(e);
+        } else if (r < 0.41) {
+            return InvidiualEvent.holiday(e);
+        } else if (r < 0.46) {
+            return InvidiualEvent.redundancies(e);
+        } else if (r < 0.47) {
+            return InvidiualEvent.bonus(e);
+        } else if (r < 0.52) {
+            return ProjectEvent.teamBuilding(e);
+        }
+        return 0;
     }
 }

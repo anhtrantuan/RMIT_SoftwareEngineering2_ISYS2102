@@ -199,7 +199,7 @@ public class Engine extends Observable implements Model {
      */
     @Override
     public void nextTurn() throws MoneyRunOutException {
-        
+
         List<Project> succeededProject = new ArrayList();
         List<Project> failedProject = new ArrayList();
 
@@ -215,23 +215,23 @@ public class Engine extends Observable implements Model {
             nextWeek();
         }
 
-        generateEvent(level);
+        generateEvent(level, company);
 
         checkProject(succeededProject, failedProject);
 
         availableProjects = generateProjectList();
         availableEmployees = generateEmployeeList();
-        
+
         paySalary();
-        
+
         if (company.getMoney() <= 0) {
             throw new MoneyRunOutException();
         }
-        
+
         company.clearItemList();
 
         setChanged();
-        
+
         String message = String.format("New turn began: Year %d Month %d Week %d.",
                 dateTime.getYear(), dateTime.getMonthOfYear(),
                 dateTime.getWeekOfMonth());
@@ -387,14 +387,12 @@ public class Engine extends Observable implements Model {
         return emp.getWorkingProject();
     }
 
-    private void generateEvent(GameLevel level) {
+    private void generateEvent(GameLevel level, Company company) {
         for (Employee employee : availableEmployees) {
-            level.generateEvent(employee);
+            level.generateEvent(employee, company);
         }
     }
-    
-    public void train(Employee emp,Skill sk){
-        
+
+    public void train(Employee emp, Skill sk) {
     }
-    
 }

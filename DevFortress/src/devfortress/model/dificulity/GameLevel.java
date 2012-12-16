@@ -4,10 +4,11 @@
  */
 package devfortress.model.dificulity;
 
+import devfortress.model.Company;
 import devfortress.model.DateTime;
 import devfortress.model.employee.Employee;
 import devfortress.model.project.Project;
-import devfortress.model.event.Event;
+import devfortress.utilities.Event;
 import devfortress.utilities.Skill;
 import java.util.Map;
 
@@ -25,7 +26,7 @@ public interface GameLevel {
 
     int generateProjectPayment();
 
-    void generateEvent(Employee e);
+    Event generateEvent(Employee e, Company company);
 
     DateTime generateProjectTime();
 }
