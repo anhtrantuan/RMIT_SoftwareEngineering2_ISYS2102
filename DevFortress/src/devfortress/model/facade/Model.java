@@ -70,6 +70,6 @@ public interface Model {
     void unassignEmployee(Project proj, Employee emp);
 
     Project getWorkingProjectOfEmployee(Employee emp);
-    
-    
+
+    void train(Employee emp, Skill sk);
 }

@@ -393,6 +393,9 @@ public class Engine extends Observable implements Model {
         }
     }
 
+    @Override
     public void train(Employee emp, Skill sk) {
+        company.trainEmployee(emp, sk);
     }
+    
 }
