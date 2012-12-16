@@ -110,7 +110,6 @@ public class Project {
     public void setTotalPoints(int totalPoints) {
         this.totalPoints = totalPoints;
     }
-    
 
     public int getRemainingPoints() {
         return remainingPoints;
@@ -188,9 +187,25 @@ public class Project {
             finalPoint = finalPoint / 2;
         }
         //TODO sprint 2
-//        if (status[1] == false) {
-//            finalPoint = 1;
-//        }
+        //0 is having beer, 1 is full, 2 is happy, 3 is working,
+        //4 is sick, 5 is hacked, 6 is in holiday, 7 team buidling;
+        //8 is inspired, 9 is having baby, 10 is talented
+        if (status[1] == false || status[6] == true) {
+            finalPoint = 1;
+        }
+        if (status[4] == true) {
+            finalPoint = finalPoint / 2;
+        }
+        if (status[5] == true) {
+            finalPoint = 0;
+        }
+        if (status[7] == true) {
+            finalPoint = 5;
+        }
+        if (status[8] == true || status[9] == true) {
+            finalPoint = finalPoint * 2;
+        }
+
         return finalPoint;
     }
 

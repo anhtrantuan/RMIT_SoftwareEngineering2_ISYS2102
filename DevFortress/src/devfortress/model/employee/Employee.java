@@ -20,36 +20,52 @@ public class Employee {
     private Map<Skill, Integer> skillList;
     private boolean status[];
     private Project workingProject;
-    private boolean isRoyal;
     private int royalCountdown;
-    private boolean isTalented;
+    private int eventCountdown;
 
     public Employee(String name, Map<Skill, Integer> skillList) {
         this.name = name;
         this.skillList = skillList;
-        status = new boolean[4];
+        status = new boolean[11];
         workingProject = null;
-        //0 is having beer, 1 is full, 2 is happy, 3 is working;
+        //0 is having beer, 1 is full, 2 is happy, 3 is working,
+        //4 is sick, 5 is hacked, 6 is in holiday, 7 team buidling;
+        //8 is inspired, 9 is having baby, 10 is talented
         status[0] = false;
         status[1] = true;
         status[2] = true;
         status[3] = false;
-        isRoyal = false;
+        status[4] = false;
+        status[5] = false;
+        status[6] = false;
+        status[7] = false;
+        status[8] = false;
+        status[9] = false;
+        status[10] = false;
+        status[11] = false;
         royalCountdown = 36;
-        isTalented = false;
+
     }
 
     public Employee() {
         status = new boolean[4];
         workingProject = null;
-        //0 is having beer, 1 is full, 2 is happy, 3 is working;
+        //0 is having beer, 1 is full, 2 is happy, 3 is working,
+        //4 is sick, 5 is hacked, 6 is in holiday, 7 team buidling;
+        //8 is inspired, 9 is having baby, 10 is talented, 11 is royal
         status[0] = false;
         status[1] = true;
         status[2] = true;
         status[3] = false;
-        isRoyal = false;
+        status[4] = false;
+        status[5] = false;
+        status[6] = false;
+        status[7] = false;
+        status[8] = false;
+        status[9] = false;
+        status[10] = false;
+        status[11] = false;;
         royalCountdown = 36;
-        isTalented = false;
     }
 
     public String getName() {
@@ -73,7 +89,7 @@ public class Employee {
     }
 
     public void skillLevelUp(Skill sk) {
-        if (isTalented) {
+        if (status[10]) {
             if (skillList.containsKey(sk)) {
                 int val = ((Integer) skillList.get(sk)).intValue();
                 val = val + 3;
@@ -81,7 +97,7 @@ public class Employee {
             } else {
                 skillList.put(sk, 3);
             }
-            isTalented = false;
+            status[10] = false;
         } else {
             if (skillList.containsKey(sk)) {
                 int val = ((Integer) skillList.get(sk)).intValue();
@@ -199,6 +215,73 @@ public class Employee {
         status[3] = false;
     }
 
+    public void getSick() {
+        status[4] = true;
+    }
+
+    public void getHealthy() {
+        status[4] = false;
+    }
+    //4 is sick, 5 is hacked, 6 is in holiday, 7 team buidling;
+    //8 is inspired, 9 is having baby, 10 is talented, 11 is royal
+
+    public void getHacked() {
+        status[5] = true;
+    }
+
+    public void hackingSolved() {
+        status[5] = false;
+    }
+
+    public void goHoliday() {
+        status[6] = true;
+    }
+
+    public void holidayDone() {
+        status[6] = false;
+    }
+
+    public void getTeamBuilding() {
+        status[7] = true;
+    }
+
+    public void teamBuildingDone() {
+        status[7] = false;
+    }
+
+    public void getInspired() {
+        status[8] = true;
+    }
+
+    public void inspiredDone() {
+        status[8] = false;
+    }
+
+    public void haveBaby() {
+        eventCountdown = 3;
+        status[9] = true;
+    }
+
+    public void haveBabyDone() {
+        status[9] = false;
+    }
+
+    public void getTalented() {
+        status[10] = true;
+    }
+
+    public void talentedDone() {
+        status[10] = false;
+    }
+
+    public void havingBabyProgress() {
+        if (eventCountdown == 0) {
+            haveBabyDone();
+        } else {
+            eventCountdown--;
+        }
+    }
+
     public int getLowestSkillLevel() {
         Map<Skill, Integer> specialSkill = new EnumMap<Skill, Integer>(Skill.class);
         if (skillList.containsKey(Skill.HASKELL)) {
@@ -299,25 +382,9 @@ public class Employee {
 
     public void checkRoyal() {
         if (royalCountdown == 0) {
-            isRoyal = true;
+            status[11] = true;
         } else {
             royalCountdown--;
         }
-    }
-    
-    public void talentFound(){
-        isTalented = true;
-    }
-    
-    public boolean getIsTalent(){
-        return isTalented;
-    }
-    
-    public void becomeRoyal(){
-        isRoyal = true;
-    }
-    
-    public boolean getIsRoyal(){
-        return isRoyal;
     }
 }
