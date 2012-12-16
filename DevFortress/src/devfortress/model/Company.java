@@ -303,4 +303,8 @@ public class Company {
     public void unassignEmployee(Project proj, Employee emp) {
         proj.unassignEmployee(emp);
     }
+    
+    public int trainEmployee(Employee e, Skill sk){
+       return e.trained(sk);
+    }
 }

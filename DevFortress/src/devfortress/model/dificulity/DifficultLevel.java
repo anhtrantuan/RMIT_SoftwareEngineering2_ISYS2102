@@ -143,6 +143,6 @@ public class DifficultLevel implements GameLevel {
         } else if (r < 0.782) {
             return ProjectEvent.zombie(e);
         }
-        return 0;
+        return Event.NO_EVENT;
     }
 }

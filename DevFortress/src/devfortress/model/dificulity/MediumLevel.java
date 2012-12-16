@@ -134,6 +134,6 @@ public class MediumLevel implements GameLevel {
         } else if (r < 0.755) {
             return ProjectEvent.gotSued(e);
         }
-        return 0;
+        return Event.NO_EVENT;
     }
 }

@@ -115,6 +115,6 @@ public class EasyLevel implements GameLevel {
         } else if (r < 0.52) {
             return ProjectEvent.teamBuilding(e);
         }
-        return 0;
+        return Event.NO_EVENT;
     }
 }
