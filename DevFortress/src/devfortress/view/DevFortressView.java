@@ -4,10 +4,12 @@
  */
 package devfortress.view;
 
+import com.tabuto.j2dgf.gui.J2DCanvasPanel;
 import devfortress.DevFortress;
 import devfortress.model.DateTime;
 import devfortress.model.facade.Model;
 import devfortress.utilities.Constant;
+import devfortress.view.animation.GameAnimationEngine;
 import devfortress.view.models.ExpensesTreeModel;
 import devfortress.view.models.ProjectsTreeModel;
 import devfortress.view.renderers.ExpensesTreeCellRenderer;
@@ -25,10 +27,13 @@ import javax.swing.UIManager;
  *
  * @author tommy
  */
-public class DevFortressView extends javax.swing.JFrame implements View, Observer {
+public class DevFortressView extends javax.swing.JFrame implements View, Observer, Runnable {
 
     private Model model;
     private String logMessages;
+    private Dimension dimension;
+    private J2DCanvasPanel animationCanvas;
+    private GameAnimationEngine animationEngine;
 
     /**
      * Creates new form DevFortressView.
@@ -59,11 +64,29 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
             Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        /* Initialize components. */
-        initComponents();
+        /* Initialize view. */
+        initialize();
 
         /* Populate data for trees and tables. */
         populateData();
+    }
+
+    /**
+     * Initialize DevFortress View.
+     */
+    private void initialize() {
+        /* Initialize components. */
+        initComponents();
+
+        /* Get animation panel dimension. */
+        dimension = pnlGameAnimation.getSize();
+
+        /* Create animationEngine engine and placeholder panel for animation. */
+        animationEngine = new GameAnimationEngine(dimension);
+        animationCanvas = new J2DCanvasPanel(dimension);
+        animationCanvas.setSize(dimension);
+        pnlGameAnimation.add(animationCanvas);
+        animationEngine.initGame();
     }
 
     /**
@@ -102,6 +125,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         pnlBlank = new javax.swing.JPanel();
         pnlEvents = new javax.swing.JPanel();
         pnlAnimation = new javax.swing.JPanel();
+        pnlGameAnimation = new javax.swing.JPanel();
         menu = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         menuFile_Exit = new javax.swing.JMenuItem();
@@ -399,15 +423,28 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         pnlAnimation.setBackground(new java.awt.Color(255, 255, 255));
         pnlAnimation.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
+        pnlGameAnimation.setBackground(new java.awt.Color(255, 255, 255));
+
+        javax.swing.GroupLayout pnlGameAnimationLayout = new javax.swing.GroupLayout(pnlGameAnimation);
+        pnlGameAnimation.setLayout(pnlGameAnimationLayout);
+        pnlGameAnimationLayout.setHorizontalGroup(
+            pnlGameAnimationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pnlGameAnimationLayout.setVerticalGroup(
+            pnlGameAnimationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 428, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout pnlAnimationLayout = new javax.swing.GroupLayout(pnlAnimation);
         pnlAnimation.setLayout(pnlAnimationLayout);
         pnlAnimationLayout.setHorizontalGroup(
             pnlAnimationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(pnlGameAnimation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlAnimationLayout.setVerticalGroup(
             pnlAnimationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 428, Short.MAX_VALUE)
+            .addComponent(pnlGameAnimation, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         menu.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
@@ -661,6 +698,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
     private javax.swing.JPanel pnlDuration;
     private javax.swing.JPanel pnlEmployees;
     private javax.swing.JPanel pnlEvents;
+    private javax.swing.JPanel pnlGameAnimation;
     private javax.swing.JPanel pnlManagement;
     private javax.swing.JPanel pnlProjects;
     private javax.swing.JPanel pnlStatus;
@@ -686,8 +724,8 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         /* Populate data. */
         populateData();
 
+        /* Append log message. */
         logMessages += arg + "\n";
-        System.out.println(logMessages);
     }
 
     /**
@@ -701,5 +739,18 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         btnInformation.addActionListener(buttonListener);
         btnCurrentProjects.addActionListener(buttonListener);
         btnNextTurn.addActionListener(buttonListener);
+    }
+
+    /**
+     * Runnable method allow View to be run in separate thread.
+     */
+    @Override
+    public void run() {
+        setVisible(true);
+        while (true) {
+            while (animationEngine.isActive()) {
+                animationCanvas.run(animationEngine);
+            }
+        }
     }
 }
