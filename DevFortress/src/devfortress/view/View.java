@@ -12,7 +12,5 @@ import java.awt.event.ActionListener;
  */
 public interface View {
 
-    void setTableButtonListener(ActionListener tableButtonListener);
-
     void addButtonListener(ActionListener buttonListener);
 }

@@ -4,8 +4,8 @@
  */
 package devfortress.controller;
 
-import devfortress.model.project.Project;
 import devfortress.model.facade.Model;
+import devfortress.model.project.Project;
 import devfortress.utilities.Constant;
 import devfortress.view.dialogs.CurrentProjectsPanel;
 import devfortress.view.dialogs.ProjectPanel;

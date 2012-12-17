@@ -26,7 +26,7 @@ public class Employee {
     public Employee(String name, Map<Skill, Integer> skillList) {
         this.name = name;
         this.skillList = skillList;
-        status = new boolean[11];
+        status = new boolean[12];
         workingProject = null;
         //0 is having beer, 1 is full, 2 is happy, 3 is working,
         //4 is sick, 5 is hacked, 6 is in holiday, 7 team buidling;
@@ -48,7 +48,7 @@ public class Employee {
     }
 
     public Employee() {
-        status = new boolean[4];
+        status = new boolean[12];
         workingProject = null;
         //0 is having beer, 1 is full, 2 is happy, 3 is working,
         //4 is sick, 5 is hacked, 6 is in holiday, 7 team buidling;

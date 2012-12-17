@@ -31,7 +31,6 @@ public class Controller {
 
         /* Set up button listeners. */
         view.addButtonListener(new MainScreenButtonListener(model));
-        view.setTableButtonListener(new EmployeesTableButtonListener(model));
     }
 
     public void hireEmployee(Employee emp) throws OvercrowdedException {

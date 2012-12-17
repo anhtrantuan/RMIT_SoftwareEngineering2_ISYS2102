@@ -6,14 +6,12 @@ package devfortress.utilities;
 
 import devfortress.model.Company;
 import devfortress.model.Computer;
-import devfortress.model.employee.Employee;
-import devfortress.model.project.Project;
 import devfortress.model.dificulity.GameLevel;
 import devfortress.model.employee.DevFortressEmployeeBuilder;
+import devfortress.model.employee.Employee;
 import devfortress.model.employee.EmployeeBuilder;
 import devfortress.model.facade.Model;
-import devfortress.model.project.DevFortressProjectBuilder;
-import devfortress.model.project.ProjectBuilder;
+import devfortress.model.project.Project;
 import java.util.*;
 
 /**
