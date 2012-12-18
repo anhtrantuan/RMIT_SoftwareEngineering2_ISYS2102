@@ -4,10 +4,10 @@
  */
 package devfortress.model;
 
-import devfortress.model.project.Project;
 import devfortress.model.employee.Employee;
 import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.UnaffordableException;
+import devfortress.model.project.Project;
 import devfortress.utilities.Constant;
 import devfortress.utilities.Skill;
 import java.util.ArrayList;

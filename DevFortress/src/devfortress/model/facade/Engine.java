@@ -4,7 +4,6 @@
  */
 package devfortress.model.facade;
 
-import devfortress.model.project.Project;
 import devfortress.model.*;
 import devfortress.model.dificulity.DifficultLevel;
 import devfortress.model.dificulity.EasyLevel;
@@ -16,7 +15,6 @@ import devfortress.model.project.Project;
 import devfortress.utilities.Skill;
 import devfortress.utilities.Utilities;
 import java.util.*;
-import java.util.List;
 // TODO implement statergy partern
 
 /**

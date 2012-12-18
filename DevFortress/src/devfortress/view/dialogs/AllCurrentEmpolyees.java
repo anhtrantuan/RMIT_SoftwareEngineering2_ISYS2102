@@ -5,7 +5,6 @@
 package devfortress.view.dialogs;
 
 import devfortress.model.employee.Employee;
-import devfortress.model.facade.Model;
 import devfortress.view.editors.TableButtonCellEditor;
 import devfortress.view.models.EmployeesTableModel;
 import devfortress.view.renderers.TableButtonCellRenderer;

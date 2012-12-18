@@ -7,14 +7,11 @@ package devfortress.model.dificulity;
 import devfortress.model.Company;
 import devfortress.model.DateTime;
 import devfortress.model.employee.Employee;
-
-
 import devfortress.model.event.InvidiualEvent;
 import devfortress.model.event.ProjectEvent;
 import devfortress.model.project.DevFortressProjectBuilder;
 import devfortress.model.project.Project;
 import devfortress.model.project.ProjectBuilder;
-
 import devfortress.utilities.Constant;
 import devfortress.utilities.Event;
 import devfortress.utilities.Skill;
