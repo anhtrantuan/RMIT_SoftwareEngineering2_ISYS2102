@@ -22,7 +22,7 @@ import java.util.Map;
  */
 public class Company {
 
-    private float money;
+    private float budget;
     private List<Employee> employeeList;
     private Map<Computer, Employee> computerList;
     private List<Project> currentProjectList;
@@ -39,7 +39,7 @@ public class Company {
     public Company(float money, List<Employee> empList,
             Map<Computer, Employee> computerList, List<Project> projectList,
             Map<String, Float> itemsList) {
-        this.money = money;
+        this.budget = money;
         employeeList = empList;
         this.computerList = computerList;
         currentProjectList = projectList;
@@ -48,7 +48,7 @@ public class Company {
     }
 
     public float getMoney() {
-        return money;
+        return budget;
     }
 
     /**
@@ -56,7 +56,7 @@ public class Company {
      * @param amount
      */
     public void increaseMoney(float amount) {
-        money += amount;
+        budget += amount;
     }
 
     /**
@@ -64,7 +64,7 @@ public class Company {
      * @param amount
      */
     public void decreaseMoney(float amount) {
-        money -= amount;
+        budget -= amount;
     }
 
     /**
@@ -119,7 +119,7 @@ public class Company {
      */
     public void buyItem(Item item, int quantity) throws UnaffordableException {
         float value = item.getPrice() * quantity;
-        if (money < (item.getPrice() * quantity)) {
+        if (budget < (item.getPrice() * quantity)) {
             throw new UnaffordableException("You do not have enough money to buy");
         } else {
             decreaseMoney(item.getPrice() * quantity);
@@ -154,8 +154,8 @@ public class Company {
      */
     public boolean paySalary() throws MoneyRunOutException {
 
-        money -= calculateTotalSalary();
-        if (money <= 0) {
+        budget -= calculateTotalSalary();
+        if (budget <= 0) {
             throw new MoneyRunOutException("You are out of money");
         }
 
@@ -297,14 +297,14 @@ public class Company {
      */
     public boolean assignEmployeeToProject(Employee emp, Project proj, Skill field) {
         return proj.assignEmployeeToProject(emp, field);
-
     }
 
     public void unassignEmployee(Project proj, Employee emp) {
         proj.unassignEmployee(emp);
     }
-    
-    public int trainEmployee(Employee e, Skill sk){
-       return e.trained(sk);
+
+    public void trainEmployee(Employee e, Skill sk) {
+        int fee = e.trained(sk);
+        budget -= fee;
     }
 }

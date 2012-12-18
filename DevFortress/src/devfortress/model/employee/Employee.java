@@ -89,24 +89,29 @@ public class Employee {
     }
 
     public void skillLevelUp(Skill sk) {
-        if (status[10]) {
-            if (skillList.containsKey(sk)) {
-                int val = ((Integer) skillList.get(sk)).intValue();
-                val = val + 3;
-                skillList.put(sk, val);
+        if (skillList.get(sk) < 10) {
+            if (status[10]) {
+                if (skillList.containsKey(sk)) {
+                    int val = ((Integer) skillList.get(sk)).intValue();
+                    val = val + 3;
+                    if (val > 10) {
+                        val = 10;
+                    }
+                    skillList.put(sk, val);
+                } else {
+                    skillList.put(sk, 3);
+                }
+                status[10] = false;
             } else {
-                skillList.put(sk, 3);
+                if (skillList.containsKey(sk)) {
+                    int val = ((Integer) skillList.get(sk)).intValue();
+                    skillList.put(sk, ++val);
+                } else {
+                    skillList.put(sk, 1);
+                }
             }
-            status[10] = false;
-        } else {
-            if (skillList.containsKey(sk)) {
-                int val = ((Integer) skillList.get(sk)).intValue();
-                skillList.put(sk, ++val);
-            } else {
-                skillList.put(sk, 1);
-            }
+            getMainSkill();
         }
-        getMainSkill();
     }
 
     public Skill getMainSkill() {
@@ -321,7 +326,6 @@ public class Employee {
     }
 
     private int calculateSalaryPoint(Skill skill, int skillLevel) {
-
         if (skill.ordinal() <= 24) {
             if (skillLevel == 1) {
                 if (skill.ordinal() == 24) {
@@ -389,7 +393,6 @@ public class Employee {
     }
 
     public int trained(Skill sk) {
-        int fee = 0;
         skillLevelUp(sk);
         if (skillList.containsKey(sk) && skillList.get(sk) != 10) {
             if (sk.ordinal() <= 24) {
