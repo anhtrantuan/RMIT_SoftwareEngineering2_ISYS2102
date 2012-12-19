@@ -19,7 +19,20 @@ import javax.imageio.ImageIO;
  */
 public class GameAnimationEngine extends Game2D {
 
-    private BufferedImage background;
+    private BufferedImage background, objects;
+    private double widthRatio, heightRatio;
+    private int objectConfigurations[][] = new int[][]{
+        {0, 0, 0, 0, 0, 0, 0, 0},
+        {45, 45, 97, 86, 208, 11, 260, 52},
+        {0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0}
+    };
 
     /**
      * Constructor to create new game animation engine.
@@ -34,15 +47,38 @@ public class GameAnimationEngine extends Game2D {
     public void drawStuff(Graphics g) {
         /* Draw background. */
         g.drawImage(background, 0, 0, DIM.width, DIM.height, null);
+
+        /* Draw objects. */
+        for (int i = 0; i < objectConfigurations.length; i++) {
+            g.drawImage(objects, objectConfigurations[i][0],
+                    objectConfigurations[i][1], objectConfigurations[i][2],
+                    objectConfigurations[i][3], objectConfigurations[i][4],
+                    objectConfigurations[i][5], objectConfigurations[i][6],
+                    objectConfigurations[i][7], null);
+        }
     }
 
     @Override
     public void initGame() {
-        URL backgroundURL = getClass().getResource("../resources/floors.png");
+        URL backgroundURL = getClass().getResource("../resources/imgBackground.png"),
+                objectsURL = getClass().getResource("../resources/imgObjects.png");
         try {
             background = ImageIO.read(backgroundURL);
+            objects = ImageIO.read(objectsURL);
         } catch (Exception ex) {
             Logger.getLogger(GameAnimationEngine.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        /* Calculate scale ratios. */
+        widthRatio = (double) DIM.width / background.getWidth();
+        heightRatio = (double) DIM.height / background.getHeight();
+
+        /* Re-calculate objects' sizes. */
+        for (int i = 0; i < objectConfigurations.length; i++) {
+            objectConfigurations[i][0] *= widthRatio;
+            objectConfigurations[i][1] *= heightRatio;
+            objectConfigurations[i][2] *= widthRatio;
+            objectConfigurations[i][3] *= heightRatio;
         }
     }
 }
