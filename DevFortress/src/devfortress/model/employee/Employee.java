@@ -392,15 +392,15 @@ public class Employee {
         }
     }
 
-    public int trained(Skill sk) {
-        skillLevelUp(sk);
+    public int getTrainingFee(Skill sk) {
+        
         if (skillList.containsKey(sk) && skillList.get(sk) != 10) {
             if (sk.ordinal() <= 24) {
-                return (calculateSalaryPoint(sk, skillList.get(sk)) * 2) * skillList.get(sk) + 1;
+                return (calculateSalaryPoint(sk, skillList.get(sk)) * 2) * (skillList.get(sk) + 1);
             } else if (sk.ordinal() >= 25 && sk.ordinal() <= 27) {
-                return calculateSalaryPoint(sk, skillList.get(sk)) * 4 * skillList.get(sk) + 1;
+                return calculateSalaryPoint(sk, skillList.get(sk)) * 4 * (skillList.get(sk) + 1);
             } else {
-                return calculateSalaryPoint(sk, skillList.get(sk)) * 5 * skillList.get(sk) + 1;
+                return calculateSalaryPoint(sk, skillList.get(sk)) * 5 * (skillList.get(sk) + 1);
             }
         } else {
             if (sk.ordinal() <= 24) {

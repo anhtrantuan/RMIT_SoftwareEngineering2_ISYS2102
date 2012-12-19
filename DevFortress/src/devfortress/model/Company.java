@@ -303,8 +303,13 @@ public class Company {
         proj.unassignEmployee(emp);
     }
 
-    public void trainEmployee(Employee e, Skill sk) {
-        int fee = e.trained(sk);
-        budget -= fee;
+    public void trainEmployee(Employee e, Skill sk) throws UnaffordableException {
+        int fee = e.getTrainingFee(sk);
+        if (budget - fee < 0) {
+            throw new UnaffordableException("Not enough money");
+        } else {
+            e.skillLevelUp(sk);
+            budget -= fee;
+        }
     }
 }
