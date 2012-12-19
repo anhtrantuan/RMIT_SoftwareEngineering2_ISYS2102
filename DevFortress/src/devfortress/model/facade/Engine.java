@@ -15,6 +15,8 @@ import devfortress.model.project.Project;
 import devfortress.utilities.Skill;
 import devfortress.utilities.Utilities;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 // TODO implement statergy partern
 
 /**
@@ -393,7 +395,11 @@ public class Engine extends Observable implements Model {
 
     @Override
     public void train(Employee emp, Skill sk) {
-        company.trainEmployee(emp, sk);
+        try {
+            company.trainEmployee(emp, sk);
+        } catch (UnaffordableException ex) {
+            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
 }
