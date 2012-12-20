@@ -19,21 +19,69 @@ import javax.imageio.ImageIO;
  */
 public class GameAnimationEngine extends Game2D {
 
-    private BufferedImage background, objects;
+    private BufferedImage FLOORS_IMAGE, OBJECTS_IMAGE, CHARACTERS_IMAGE;
     private double widthRatio, heightRatio;
-    private int objectConfigurations[][] = new int[][]{
-        {50, 35, 67, 64, 16, 1, 33, 30}, // Sprite goes here
-        {45, 45, 97, 86, 208, 11, 260, 52},
-        {116, 60, 133, 89, 16, 1, 33, 30}, // Sprite goes here
-        {111, 62, 163, 110, 106, 4, 158, 52},
-        {80, 78, 97, 107, 16, 1, 33, 30}, // Sprite goes here
-        {75, 80, 127, 128, 106, 4, 158, 52},
-        {127, 70, 179, 118, 157, 4, 209, 52},
-        {156, 92, 172, 117, 1, 5, 17, 30}, // Sprite goes here
-        {161, 92, 172, 109, 48, 1, 59, 18},
-        {91, 88, 143, 136, 157, 4, 209, 52},
-        {120, 110, 136, 135, 1, 5, 17, 30}, // Sprite goes here
-        {125, 110, 136, 127, 48, 1, 59, 18}
+    private int SPRITE_CHARACTER = 1, SPRITE_OBJECT = 2;
+//    private int spriteConfigurations[][] = new int[][]{
+//        {SPRITE_OBJECT, 50, 36, 65, 63, 17, 2, 32, 29},
+//        {SPRITE_CHARACTER, 53, 35, 66, 48, 17, 62, 30, 75}, // Head
+//        {SPRITE_CHARACTER, 53, 46, 70, 58, 67, 265, 83, 277}, // Body
+//        {SPRITE_OBJECT, 47, 46, 97, 85, 209, 12, 259, 51},
+//        {SPRITE_OBJECT, 118, 59, 133, 88, 17, 2, 32, 29},
+//        {SPRITE_CHARACTER, 0, 0, 0, 0, 0, 0, 0, 0}, // Head
+//        {SPRITE_CHARACTER, 119, 71, 135, 83, 406, 343, 422, 355}, // Body
+//        {SPRITE_OBJECT, 114, 63, 164, 109, 107, 5, 157, 51},
+//        {SPRITE_OBJECT, 81, 77, 98, 106, 17, 2, 32, 29},
+//        {SPRITE_CHARACTER, 0, 0, 0, 0, 0, 0, 0, 0}, // Head
+//        {SPRITE_CHARACTER, 0, 0, 0, 0, 0, 0, 0, 0}, // Body
+//        {SPRITE_OBJECT, 78, 81, 128, 127, 107, 5, 157, 51},
+//        {SPRITE_OBJECT, 130, 71, 180, 117, 158, 5, 208, 51},
+//        {SPRITE_OBJECT, 158, 93, 172, 116, 2, 6, 16, 29},
+//        {SPRITE_CHARACTER, 0, 0, 0, 0, 0, 0, 0, 0}, // Head
+//        {SPRITE_CHARACTER, 0, 0, 0, 0, 0, 0, 0, 0}, // Body
+//        {SPRITE_OBJECT, 162, 92, 173, 109, 48, 1, 59, 18},
+//        {SPRITE_OBJECT, 94, 89, 144, 135, 158, 5, 208, 51},
+//        {SPRITE_OBJECT, 121, 112, 135, 134, 2, 6, 16, 29},
+//        {SPRITE_CHARACTER, 0, 0, 0, 0, 0, 0, 0, 0}, // Head
+//        {SPRITE_CHARACTER, 0, 0, 0, 0, 0, 0, 0, 0}, // Body
+//        {SPRITE_OBJECT, 125, 111, 136, 128, 48, 1, 59, 18}
+    private int spriteConfigurations[][] = new int[][]{
+        {SPRITE_OBJECT, 0},
+        {SPRITE_CHARACTER, 0, 1},
+        {SPRITE_OBJECT, 1},
+        {SPRITE_OBJECT, 2},
+        {SPRITE_CHARACTER, 1, 1},
+        {SPRITE_OBJECT, 3},
+        {SPRITE_OBJECT, 4},
+        {SPRITE_CHARACTER, 2, 1},
+        {SPRITE_OBJECT, 5},
+        {SPRITE_OBJECT, 6},
+        {SPRITE_CHARACTER, 3, 1},
+        {SPRITE_OBJECT, 7},
+        {SPRITE_OBJECT, 8},
+        {SPRITE_OBJECT, 9},
+        {SPRITE_CHARACTER, 4, 1},
+        {SPRITE_OBJECT, 10},
+        {SPRITE_OBJECT, 11}
+    }, objectSprites[][] = new int[][]{
+        {50, 36, 65, 63, 17, 2, 32, 29},
+        {47, 46, 97, 85, 209, 12, 259, 51},
+        {118, 59, 133, 88, 17, 2, 32, 29},
+        {114, 63, 164, 109, 107, 5, 157, 51},
+        {81, 77, 98, 106, 17, 2, 32, 29},
+        {78, 81, 128, 127, 107, 5, 157, 51},
+        {130, 71, 180, 117, 158, 5, 208, 51},
+        {158, 93, 172, 116, 2, 6, 16, 29},
+        {162, 92, 173, 109, 48, 1, 59, 18},
+        {94, 89, 144, 135, 158, 5, 208, 51},
+        {121, 112, 135, 134, 2, 6, 16, 29},
+        {125, 111, 136, 128, 48, 1, 59, 18}
+    }, characterSprites[][][] = new int[][][]{
+        {{53, 35, 66, 48, 17, 62, 30, 75}, {53, 46, 70, 58, 67, 265, 83, 277}},
+        {{0, 0, 0, 0, 0, 0, 0, 0}, {119, 71, 135, 83, 406, 343, 422, 355}},
+        {{0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}},
+        {{0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}},
+        {{0, 0, 0, 0, 0, 0, 0, 0}, {0, 0, 0, 0, 0, 0, 0, 0}}
     };
 
     /**
@@ -45,42 +93,82 @@ public class GameAnimationEngine extends Game2D {
         super(dim);
     }
 
+    /**
+     * Draw game canvas.
+     *
+     * @param g
+     */
     @Override
     public void drawStuff(Graphics g) {
-        /* Draw background. */
-        g.drawImage(background, 0, 0, DIM.width, DIM.height, null);
+        /* Draw FLOORS_IMAGE. */
+        g.drawImage(FLOORS_IMAGE, 0, 0, DIM.width, DIM.height, 2, 2, 240, 177, null);
 
-        /* Draw objects. */
-        for (int i = 0; i < objectConfigurations.length; i++) {
-            g.drawImage(objects, objectConfigurations[i][0],
-                    objectConfigurations[i][1], objectConfigurations[i][2],
-                    objectConfigurations[i][3], objectConfigurations[i][4],
-                    objectConfigurations[i][5], objectConfigurations[i][6],
-                    objectConfigurations[i][7], null);
+        /* Draw OBJECTS_IMAGE. */
+        for (int i = 0; i < spriteConfigurations.length; i++) {
+            int index = spriteConfigurations[i][1];
+            if (spriteConfigurations[i][0] == SPRITE_OBJECT) {
+                g.drawImage(OBJECTS_IMAGE, objectSprites[index][0],
+                        objectSprites[index][1], objectSprites[index][2],
+                        objectSprites[index][3], objectSprites[index][4],
+                        objectSprites[index][5], objectSprites[index][6],
+                        objectSprites[index][7], null);
+            } else {
+                int spriteIndex = spriteConfigurations[i][2];
+                g.drawImage(CHARACTERS_IMAGE, characterSprites[index][0][0],
+                        characterSprites[index][0][1],
+                        characterSprites[index][0][2],
+                        characterSprites[index][0][3],
+                        characterSprites[index][0][4],
+                        characterSprites[index][0][5],
+                        characterSprites[index][0][6],
+                        characterSprites[index][0][7], null);
+                g.drawImage(CHARACTERS_IMAGE,
+                        characterSprites[index][spriteIndex][0],
+                        characterSprites[index][spriteIndex][1],
+                        characterSprites[index][spriteIndex][2],
+                        characterSprites[index][spriteIndex][3],
+                        characterSprites[index][spriteIndex][4],
+                        characterSprites[index][spriteIndex][5],
+                        characterSprites[index][spriteIndex][6],
+                        characterSprites[index][spriteIndex][7], null);
+            }
         }
     }
 
+    /**
+     * Initialize game elements
+     */
     @Override
     public void initGame() {
-        URL backgroundURL = getClass().getResource("../resources/imgBackground.png"),
-                objectsURL = getClass().getResource("../resources/imgObjects.png");
+        URL floorsURL = getClass().getResource("../resources/imgFloors.png"),
+                objectsURL = getClass().getResource("../resources/imgObjects.png"),
+                charactersURL = getClass().getResource("../resources/imgCharacters.png");
         try {
-            background = ImageIO.read(backgroundURL);
-            objects = ImageIO.read(objectsURL);
+            FLOORS_IMAGE = ImageIO.read(floorsURL);
+            OBJECTS_IMAGE = ImageIO.read(objectsURL);
+            CHARACTERS_IMAGE = ImageIO.read(charactersURL);
         } catch (Exception ex) {
             Logger.getLogger(GameAnimationEngine.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         /* Calculate scale ratios. */
-        widthRatio = (double) DIM.width / background.getWidth();
-        heightRatio = (double) DIM.height / background.getHeight();
+        widthRatio = (double) DIM.width / 238;
+        heightRatio = (double) DIM.height / 175;
 
-        /* Re-calculate objects' sizes. */
-        for (int i = 0; i < objectConfigurations.length; i++) {
-            objectConfigurations[i][0] *= widthRatio;
-            objectConfigurations[i][1] *= heightRatio;
-            objectConfigurations[i][2] *= widthRatio;
-            objectConfigurations[i][3] *= heightRatio;
+        /* Re-calculate sprite sizes. */
+        for (int i = 0; i < objectSprites.length; i++) {
+            objectSprites[i][0] *= widthRatio;
+            objectSprites[i][1] *= heightRatio;
+            objectSprites[i][2] *= widthRatio;
+            objectSprites[i][3] *= heightRatio;
+        }
+        for (int i = 0; i < characterSprites.length; i++) {
+            for (int j = 0; j < characterSprites[i].length; j++) {
+                characterSprites[i][j][0] *= widthRatio;
+                characterSprites[i][j][1] *= heightRatio;
+                characterSprites[i][j][2] *= widthRatio;
+                characterSprites[i][j][3] *= heightRatio;
+            }
         }
     }
 }
