@@ -66,8 +66,6 @@ public class Engine extends Observable implements Model {
                     quantity, item.getName() + (quantity > 1 ? "s" : ""),
                     (item.getPrice() * quantity));
             notifyObservers(message);
-
-            // TODO implement Engine.buyItem
         } catch (UnaffordableException ex) {
             System.out.println(ex.getMessage());
         }
@@ -401,5 +399,4 @@ public class Engine extends Observable implements Model {
             Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
 }
