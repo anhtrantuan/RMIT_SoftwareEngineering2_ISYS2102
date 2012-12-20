@@ -79,4 +79,5 @@ public class Constant {
     public static String UNTRAIN_BTN = "Train";
     public static String BUY_BTN = "Buy items";
     public static String TRAINING_FEE = "Training fee";
+    public static String CLEAR_BTN = "Clear";
 }
