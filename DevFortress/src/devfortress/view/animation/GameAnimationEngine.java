@@ -7,6 +7,7 @@ package devfortress.view.animation;
 import com.tabuto.j2dgf.Game2D;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Image;
 import java.awt.image.BufferedImage;
 import java.net.URL;
 import java.util.logging.Level;
@@ -100,39 +101,41 @@ public class GameAnimationEngine extends Game2D {
      */
     @Override
     public void drawStuff(Graphics g) {
-        /* Draw FLOORS_IMAGE. */
-        g.drawImage(FLOORS_IMAGE, 0, 0, DIM.width, DIM.height, 2, 2, 240, 177, null);
-
-        /* Draw OBJECTS_IMAGE. */
-        for (int i = 0; i < spriteConfigurations.length; i++) {
-            int index = spriteConfigurations[i][1];
-            if (spriteConfigurations[i][0] == SPRITE_OBJECT) {
-                g.drawImage(OBJECTS_IMAGE, objectSprites[index][0],
-                        objectSprites[index][1], objectSprites[index][2],
-                        objectSprites[index][3], objectSprites[index][4],
-                        objectSprites[index][5], objectSprites[index][6],
-                        objectSprites[index][7], null);
-            } else {
-                int spriteIndex = spriteConfigurations[i][2];
-                g.drawImage(CHARACTERS_IMAGE, characterSprites[index][0][0],
-                        characterSprites[index][0][1],
-                        characterSprites[index][0][2],
-                        characterSprites[index][0][3],
-                        characterSprites[index][0][4],
-                        characterSprites[index][0][5],
-                        characterSprites[index][0][6],
-                        characterSprites[index][0][7], null);
-                g.drawImage(CHARACTERS_IMAGE,
-                        characterSprites[index][spriteIndex][0],
-                        characterSprites[index][spriteIndex][1],
-                        characterSprites[index][spriteIndex][2],
-                        characterSprites[index][spriteIndex][3],
-                        characterSprites[index][spriteIndex][4],
-                        characterSprites[index][spriteIndex][5],
-                        characterSprites[index][spriteIndex][6],
-                        characterSprites[index][spriteIndex][7], null);
-            }
-        }
+        Image image = FLOORS_IMAGE.getScaledInstance(FLOORS_IMAGE.getWidth() * 2, FLOORS_IMAGE.getHeight() * 2, Image.SCALE_SMOOTH);
+        g.drawImage(image, 0, 0, null);
+//        /* Draw FLOORS_IMAGE. */
+//        g.drawImage(FLOORS_IMAGE, 0, 0, DIM.width, DIM.height, 2, 2, 240, 177, null);
+//
+//        /* Draw OBJECTS_IMAGE. */
+//        for (int i = 0; i < spriteConfigurations.length; i++) {
+//            int index = spriteConfigurations[i][1];
+//            if (spriteConfigurations[i][0] == SPRITE_OBJECT) {
+//                g.drawImage(OBJECTS_IMAGE, objectSprites[index][0],
+//                        objectSprites[index][1], objectSprites[index][2],
+//                        objectSprites[index][3], objectSprites[index][4],
+//                        objectSprites[index][5], objectSprites[index][6],
+//                        objectSprites[index][7], null);
+//            } else {
+//                int spriteIndex = spriteConfigurations[i][2];
+//                g.drawImage(CHARACTERS_IMAGE, characterSprites[index][0][0],
+//                        characterSprites[index][0][1],
+//                        characterSprites[index][0][2],
+//                        characterSprites[index][0][3],
+//                        characterSprites[index][0][4],
+//                        characterSprites[index][0][5],
+//                        characterSprites[index][0][6],
+//                        characterSprites[index][0][7], null);
+//                g.drawImage(CHARACTERS_IMAGE,
+//                        characterSprites[index][spriteIndex][0],
+//                        characterSprites[index][spriteIndex][1],
+//                        characterSprites[index][spriteIndex][2],
+//                        characterSprites[index][spriteIndex][3],
+//                        characterSprites[index][spriteIndex][4],
+//                        characterSprites[index][spriteIndex][5],
+//                        characterSprites[index][spriteIndex][6],
+//                        characterSprites[index][spriteIndex][7], null);
+//            }
+//        }
     }
 
     /**
