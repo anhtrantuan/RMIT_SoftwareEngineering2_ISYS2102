@@ -5,8 +5,11 @@
 package devfortress.model.facade;
 
 import devfortress.model.Company;
+import devfortress.model.Computer;
 import devfortress.model.Food;
 import devfortress.model.Item;
+import devfortress.model.employee.Employee;
+import devfortress.model.exception.OvercrowdedException;
 import devfortress.model.exception.UnaffordableException;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -21,7 +24,9 @@ import static org.junit.Assert.*;
  */
 public class DevFortressTest {
 
+    private Model company;
     private Item item;
+    private Employee employee;
 
     public DevFortressTest() {
     }
@@ -37,7 +42,7 @@ public class DevFortressTest {
     @Before
     public void setUp() {
         item = new Food(100, "pizza");
-
+        employee = new Employee();
     }
 
     @After
@@ -54,29 +59,52 @@ public class DevFortressTest {
 //        System.out.println("Sample Test");
 //        assertTrue(true);
 //    }
-    
     @Test
     public void testBuyItem2() throws UnaffordableException {
-        Company company = new Company();
+        Model company = new Engine();
         System.out.println("Test Buy 0 Item");
-        float money = company.getMoney();
+        float money = company.getBudget();
         company.buyItem(item, 0);
-        assertEquals(money, company.getMoney(), 0);
-    }
-    
-    @Test
-    public void testBuyItem() throws UnaffordableException {
-        Company company = new Company();
-        System.out.println("Test Buy 1 Item:");
-        float money = company.getMoney() - item.getPrice();
-        company.buyItem(item, 1);
-        assertEquals(money, company.getMoney(), 0);
+        assertEquals(money, company.getBudget(), 0);
     }
 
-    @Test(expected=UnaffordableException.class)
-    public void testBuyManyItem() throws UnaffordableException{
-        Company company = new Company();
+    @Test
+    public void testBuyItem() throws UnaffordableException {
+        Model company = new Engine();
+        System.out.println("Test Buy 1 Item:");
+        float money = company.getBudget() - item.getPrice();
+        company.buyItem(item, 1);
+        assertEquals(money, company.getBudget(), 0);
+    }
+
+    @Test(expected = UnaffordableException.class)
+    public void testBuyManyItem() throws UnaffordableException {
+        Model company = new Engine();
+        company.buyItem(item, 11);
         System.out.println("Test Buy too much Item");
-        company.buyItem(item, 11);      
+    }
+
+    @Test(expected = OvercrowdedException.class)
+    public void testHireEmployee() throws OvercrowdedException, UnaffordableException {
+        Model company = new Engine();
+        System.out.println("Test hire employee");
+        company.hireEmployee(employee);
+        assertEquals("Result: ", 1, company.getEmployeeList().size());
+    }
+
+    @Test
+    public void testHireEmployee2() throws OvercrowdedException, UnaffordableException {
+
+        System.out.println("Test hire employee");
+        company.buyItem(new Computer(), 1);
+        company.hireEmployee(employee);
+        assertEquals("Result: ", 1, company.getEmployeeList().size());
+    }
+
+    @Test
+    public void testFireEmployee() {
+        System.out.println("Test fire employee");
+        company.fireEmployee(employee);
+        assertEquals("Result", 0, company.getEmployeeList().size());
     }
 }

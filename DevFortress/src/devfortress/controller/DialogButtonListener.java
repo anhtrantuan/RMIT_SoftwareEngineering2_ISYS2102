@@ -5,7 +5,9 @@
 package devfortress.controller;
 
 import devfortress.model.employee.Employee;
+import devfortress.model.exception.EmployeeNotExist;
 import devfortress.model.exception.OvercrowdedException;
+import devfortress.model.exception.UnaffordableException;
 import devfortress.model.facade.Model;
 import devfortress.utilities.Constant;
 import devfortress.view.dialogs.AllCurrentEmpolyees;
@@ -95,7 +97,11 @@ public class DialogButtonListener implements ActionListener {
 
                 dialog.setVisible(false);
                 dialog.dispose();
+            } catch (UnaffordableException ex) {
+                Logger.getLogger(DialogButtonListener.class.getName()).log(Level.SEVERE, null, ex);
             } catch (OvercrowdedException ex) {
+                Logger.getLogger(DialogButtonListener.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (EmployeeNotExist ex) {
                 Logger.getLogger(DialogButtonListener.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

@@ -12,6 +12,7 @@ import devfortress.model.dificulity.EasyLevel;
 import devfortress.model.employee.Employee;
 import devfortress.model.exception.EmployeeIsBusyException;
 import devfortress.model.exception.OvercrowdedException;
+import devfortress.model.exception.UnaffordableException;
 import devfortress.model.facade.Engine;
 import devfortress.model.project.Project;
 import devfortress.utilities.Utilities;
@@ -49,14 +50,18 @@ public class DevFortress {
         /* Wait until View is active. */
         while (!view.isActive()) {
         }
+        try {
+            /* Dummy Data
+             * Start:
+             */
+            model.buyItem(new Beer(50), 1);
+            model.buyItem(new Computer(), 1);
+            model.buyItem(new Food(300, "Pizza"), 1);
+            model.buyItem(new Food(300, "Coffee"), 1);
+        } catch (UnaffordableException ex) {
+            Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-        /* Dummy Data
-         * Start:
-         */
-        model.buyItem(new Beer(50), 1);
-        model.buyItem(new Computer(), 1);
-        model.buyItem(new Food(300, "Pizza"), 1);
-        model.buyItem(new Food(300, "Coffee"), 1);
 
         EasyLevel level = new EasyLevel();
         List<Project> projects = Utilities.getInstance().generateProjectList(level, 1, model);
@@ -64,8 +69,12 @@ public class DevFortress {
         List<Employee> employees = Utilities.getInstance().generateEmployeeList(level, 1, model);
 
         try {
+
             model.hireEmployee(employees.get(0));
+
         } catch (OvercrowdedException ex) {
+            Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnaffordableException ex) {
             Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
         }
 

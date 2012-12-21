@@ -15,9 +15,6 @@ import devfortress.model.project.Project;
 import devfortress.utilities.Skill;
 import devfortress.utilities.Utilities;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-// TODO implement statergy partern
 
 /**
  *
@@ -58,17 +55,15 @@ public class Engine extends Observable implements Model {
      * @param quantity
      */
     @Override
-    public void buyItem(Item item, int quantity) {
-        try {
-            company.buyItem(item, quantity);
-            setChanged();
-            String message = String.format("Bought %d new %s: -$%.2f.",
-                    quantity, item.getName() + (quantity > 1 ? "s" : ""),
-                    (item.getPrice() * quantity));
-            notifyObservers(message);
-        } catch (UnaffordableException ex) {
-            System.out.println(ex.getMessage());
-        }
+    public void buyItem(Item item, int quantity) throws UnaffordableException {
+
+        company.buyItem(item, quantity);
+        setChanged();
+        String message = String.format("Bought %d new %s: -$%.2f.",
+                quantity, item.getName() + (quantity > 1 ? "s" : ""),
+                (item.getPrice() * quantity));
+        notifyObservers(message);
+
     }
 
     /**
@@ -79,12 +74,11 @@ public class Engine extends Observable implements Model {
      * of computer
      */
     @Override
-    public void hireEmployee(Employee employee) throws OvercrowdedException {
+    public void hireEmployee(Employee employee) throws UnaffordableException, OvercrowdedException {
         //assume that Company will automatically buy computer for new employee in case of lacking computer
         //TODO fix this in next phase
         if (!utilities.assignComputerToEmployee(company, employee)) {
-            buyItem(new Computer(), 1);
-            utilities.assignComputerToEmployee(company, employee);
+            throw new OvercrowdedException();
         }
         company.addEmployee(employee);
         setChanged();
@@ -94,7 +88,7 @@ public class Engine extends Observable implements Model {
     }
 
     @Override
-    public void fireEmployee(Employee employee) {
+    public void fireEmployee(Employee employee) throws EmployeeNotExist {
         company.removeEmployee(employee);
         setChanged();
         String message = String.format("Fired employee %s: +$%.2f.",
@@ -153,16 +147,14 @@ public class Engine extends Observable implements Model {
      * loop through employee list and reduce user's capital
      */
     @Override
-    public void paySalary() {
-        try {
-            company.paySalary();
-            setChanged();
-            String message = String.format("Paid salary: -$%.2f.",
-                    company.calculateTotalSalary());
-            notifyObservers(message);
-        } catch (MoneyRunOutException ex) {
-            System.out.println(ex.getMessage());
-        }
+    public void paySalary() throws MoneyRunOutException {
+
+        company.paySalary();
+        setChanged();
+        String message = String.format("Paid salary: -$%.2f.",
+                company.calculateTotalSalary());
+        notifyObservers(message);
+
     }
 
     /**
@@ -247,22 +239,16 @@ public class Engine extends Observable implements Model {
 
     private void checkProject(List<Project> succeededProject, List<Project> failedProject) {
         for (Project project : company.getCurrentProjectList()) {
-            try {
-                if (project.checkProjectProcess()) {
-                    succeededProject.add(project);
-
-                }
-            } catch (ProjectFailsException ex) {
+            if (project.checkProjectProcess()) {
+                succeededProject.add(project);
+            } else {
                 failedProject.add(project);
-
-                System.out.println(ex.getMessage());
             }
         }
 
         for (Project proj : failedProject) {
             company.removeProject(proj);
         }
-
         for (Project proj : succeededProject) {
             company.cancelProject(proj);
         }
@@ -392,11 +378,14 @@ public class Engine extends Observable implements Model {
     }
 
     @Override
-    public void train(Employee emp, Skill sk) {
-        try {
-            company.trainEmployee(emp, sk);
-        } catch (UnaffordableException ex) {
-            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+    public void train(Employee emp, Skill sk) throws UnaffordableException {
+        company.trainEmployee(emp, sk);
+    }
+
+    @Override
+    public void checkBudget() throws MoneyRunOutException{
+        if(company.getMoney()<=0){
+            throw new MoneyRunOutException();
         }
     }
 }

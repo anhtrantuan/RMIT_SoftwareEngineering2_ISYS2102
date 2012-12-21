@@ -8,8 +8,10 @@ import devfortress.model.DateTime;
 import devfortress.model.Item;
 import devfortress.model.employee.Employee;
 import devfortress.model.exception.EmployeeIsBusyException;
+import devfortress.model.exception.EmployeeNotExist;
 import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.OvercrowdedException;
+import devfortress.model.exception.UnaffordableException;
 import devfortress.model.project.Project;
 import devfortress.utilities.Skill;
 import java.util.List;
@@ -21,11 +23,11 @@ import java.util.Map;
  */
 public interface Model {
 
-    void buyItem(Item item, int quantity);
+    void buyItem(Item item, int quantity) throws UnaffordableException;
 
-    void hireEmployee(Employee employee) throws OvercrowdedException;
+    void hireEmployee(Employee employee) throws OvercrowdedException, UnaffordableException;
 
-    void fireEmployee(Employee employee);
+    void fireEmployee(Employee employee) throws EmployeeNotExist;
 
     void takeProject(Project project);
 
@@ -35,7 +37,7 @@ public interface Model {
 
     void levelUp(Project project);
 
-    void paySalary();
+    void paySalary() throws MoneyRunOutException;
 
     List<Employee> getAvailableEmployeeList();
 
@@ -52,6 +54,8 @@ public interface Model {
     DateTime getCurrentTimePlayed();
 
     float getBudget();
+
+    public void checkBudget() throws MoneyRunOutException;
 
     float getTotalSalary();
 
@@ -71,5 +75,5 @@ public interface Model {
 
     Project getWorkingProjectOfEmployee(Employee emp);
 
-    void train(Employee emp, Skill sk);
+    void train(Employee emp, Skill sk) throws UnaffordableException;
 }

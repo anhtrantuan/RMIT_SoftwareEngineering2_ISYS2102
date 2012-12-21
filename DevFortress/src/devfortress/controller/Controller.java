@@ -6,6 +6,7 @@ package devfortress.controller;
 
 import devfortress.model.employee.Employee;
 import devfortress.model.exception.OvercrowdedException;
+import devfortress.model.exception.UnaffordableException;
 import devfortress.model.facade.Model;
 import devfortress.view.View;
 
@@ -33,7 +34,7 @@ public class Controller {
         view.addButtonListener(new MainScreenButtonListener(model));
     }
 
-    public void hireEmployee(Employee emp) throws OvercrowdedException {
+    public void hireEmployee(Employee emp) throws OvercrowdedException, UnaffordableException {
         model.hireEmployee(emp);
     }
 }

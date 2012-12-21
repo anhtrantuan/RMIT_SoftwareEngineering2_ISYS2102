@@ -209,7 +209,7 @@ public class Project {
         return finalPoint;
     }
 
-    public boolean checkProjectProcess() throws ProjectFailsException {
+    public boolean checkProjectProcess(){
         int finish = 0;
         //totalFunctionPointsDelivered = 0;
         for (Skill sk : skill_employeeMap.keySet()) {
@@ -230,7 +230,7 @@ public class Project {
         } else {
             remainingTime.nextTurn();
             if (remainingTime.getMonths() == 0) {
-                throw new ProjectFailsException("Project Fails");
+                return false;
             }
         }
         return false;

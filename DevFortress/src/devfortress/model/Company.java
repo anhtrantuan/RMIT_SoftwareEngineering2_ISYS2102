@@ -5,6 +5,7 @@
 package devfortress.model;
 
 import devfortress.model.employee.Employee;
+import devfortress.model.exception.EmployeeNotExist;
 import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.UnaffordableException;
 import devfortress.model.project.Project;
@@ -72,8 +73,8 @@ public class Company {
      * @param newEmp
      */
     public void addEmployee(Employee newEmp) {
-        calculateTotalSalary();
         employeeList.add(newEmp);
+        calculateTotalSalary();
         decreaseMoney(newEmp.getSalary());
         expenses += newEmp.getSalary();
     }
@@ -100,8 +101,11 @@ public class Company {
      *
      * @param emp Employee that user want to fire
      */
-    public void removeEmployee(Employee emp) {
+    public void removeEmployee(Employee emp) throws EmployeeNotExist {
         Project workingProj = emp.getWorkingProject();
+        if (!employeeList.contains(emp)) {
+            throw new EmployeeNotExist();
+        }
         if (workingProj != null) {
             unassignEmployee(workingProj, emp);
         }
