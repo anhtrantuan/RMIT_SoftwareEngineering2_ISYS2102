@@ -9,6 +9,7 @@ import devfortress.model.Computer;
 import devfortress.model.Food;
 import devfortress.model.Item;
 import devfortress.model.employee.Employee;
+import devfortress.model.exception.EmployeeNotExist;
 import devfortress.model.exception.OvercrowdedException;
 import devfortress.model.exception.UnaffordableException;
 import org.junit.After;
@@ -102,9 +103,11 @@ public class DevFortressTest {
     }
 
     @Test
-    public void testFireEmployee() {
+    public void testFireEmployee() throws EmployeeNotExist {
         System.out.println("Test fire employee");
         company.fireEmployee(employee);
         assertEquals("Result", 0, company.getEmployeeList().size());
     }
+    
+    
 }

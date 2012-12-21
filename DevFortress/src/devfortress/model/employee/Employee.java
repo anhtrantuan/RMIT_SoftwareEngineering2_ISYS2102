@@ -6,6 +6,7 @@ package devfortress.model.employee;
 
 import devfortress.model.project.Project;
 import devfortress.utilities.Skill;
+import devfortress.utilities.Utilities;
 import java.util.EnumMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -393,7 +394,7 @@ public class Employee {
     }
 
     public int getTrainingFee(Skill sk) {
-        
+
         if (skillList.containsKey(sk) && skillList.get(sk) != 10) {
             if (sk.ordinal() <= 24) {
                 return (calculateSalaryPoint(sk, skillList.get(sk)) * 2) * (skillList.get(sk) + 1);
