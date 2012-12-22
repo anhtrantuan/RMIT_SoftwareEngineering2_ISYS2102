@@ -23,15 +23,15 @@ import java.util.Map;
  */
 public interface Model {
 
-    void buyItem(Item item, int quantity) throws UnaffordableException;
+    void buyItem(Item item, int quantity) throws UnaffordableException, MoneyRunOutException;
 
-    void hireEmployee(Employee employee) throws OvercrowdedException, UnaffordableException;
+    void hireEmployee(Employee employee) throws OvercrowdedException, UnaffordableException, MoneyRunOutException;
 
     void fireEmployee(Employee employee) throws EmployeeNotExist;
 
     void takeProject(Project project);
 
-    void cancelProject(Project project);
+    void cancelProject(Project project) throws MoneyRunOutException;
 
     void eventOccur();
 
@@ -43,7 +43,7 @@ public interface Model {
 
     List<Project> getAvailableProjectList();
 
-    void nextTurn() throws MoneyRunOutException;
+    void nextTurn() throws MoneyRunOutException, EmployeeNotExist;
 
     Map<String, Float> getItems();
 

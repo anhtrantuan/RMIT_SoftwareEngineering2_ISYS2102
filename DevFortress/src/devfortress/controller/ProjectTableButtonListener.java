@@ -5,6 +5,7 @@
 package devfortress.controller;
 
 import devfortress.model.employee.Employee;
+import devfortress.model.exception.EmployeeNotExist;
 import devfortress.model.facade.Model;
 import devfortress.model.project.Project;
 import devfortress.utilities.Constant;
@@ -13,6 +14,8 @@ import devfortress.view.dialogs.ProjectPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
@@ -47,20 +50,22 @@ public class ProjectTableButtonListener implements ActionListener {
         if (text.equals(Constant.ASSIGN)) {
             throw new UnsupportedOperationException("Not supported yet!");
         } else if (text.equals(Constant.UNASSIGN)) {
-            Employee employee = model.getEmployeeByName(e.getActionCommand());
-            Skill skill = null;
             
-            Skill skills[] = new Skill[skillEmployeeMap.size()];
-            skillEmployeeMap.keySet().toArray(skills);
-            
-            for (int i = 0; i < skills.length; i++) {
-                if (skillEmployeeMap.get(skills[i]).equals(employee)) {
-                    skill = skills[i];
-                    i = skills.length;
+                Employee employee = model.getEmployeeByName(e.getActionCommand());
+                Skill skill = null;
+                
+                Skill skills[] = new Skill[skillEmployeeMap.size()];
+                skillEmployeeMap.keySet().toArray(skills);
+                
+                for (int i = 0; i < skills.length; i++) {
+                    if (skillEmployeeMap.get(skills[i]).equals(employee)) {
+                        skill = skills[i];
+                        i = skills.length;
+                    }
                 }
-            }
-            model.unassignEmployee(project, employee);
-            panel.setProject(model.getProjectByName(project.getName()));
+                model.unassignEmployee(project, employee);
+                panel.setProject(model.getProjectByName(project.getName()));
+            
         }
     }
 }

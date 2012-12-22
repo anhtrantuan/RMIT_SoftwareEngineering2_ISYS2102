@@ -5,11 +5,14 @@
 package devfortress.controller;
 
 import devfortress.model.employee.Employee;
+import devfortress.model.exception.EmployeeNotExist;
 import devfortress.model.facade.Model;
 import devfortress.utilities.Constant;
 import devfortress.view.dialogs.EmployeePanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
@@ -33,6 +36,7 @@ public class EmployeesTableButtonListener implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         String text = ((JButton) e.getSource()).getText();
         Employee employee = model.getEmployeeByName(e.getActionCommand());
 
@@ -51,5 +55,6 @@ public class EmployeesTableButtonListener implements ActionListener {
         } else if (text.equals(Constant.EMPLOYEE_MANAGE)) {
             throw new UnsupportedOperationException("Not supported yet!");
         }
+
     }
 }

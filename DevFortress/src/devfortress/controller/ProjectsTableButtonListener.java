@@ -4,6 +4,7 @@
  */
 package devfortress.controller;
 
+import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.facade.Model;
 import devfortress.model.project.Project;
 import devfortress.utilities.Constant;
@@ -11,6 +12,8 @@ import devfortress.view.dialogs.CurrentProjectsPanel;
 import devfortress.view.dialogs.ProjectPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
@@ -54,10 +57,14 @@ public class ProjectsTableButtonListener implements ActionListener {
             newDialog.pack();
             newDialog.setVisible(true);
         } else if (text.equals(Constant.CANCEL)) {
-            model.cancelProject(project);
-            CurrentProjectsPanel panel =
-                    (CurrentProjectsPanel) dialog.getContentPane();
-            panel.setProjectList(model.getProjectList());
+            try {
+                model.cancelProject(project);
+                CurrentProjectsPanel panel =
+                        (CurrentProjectsPanel) dialog.getContentPane();
+                panel.setProjectList(model.getProjectList());
+            } catch (MoneyRunOutException ex) {
+                Logger.getLogger(ProjectsTableButtonListener.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
 }

@@ -64,15 +64,18 @@ public class Company {
      *
      * @param amount
      */
-    public void decreaseMoney(float amount) {
+    public void decreaseMoney(float amount) throws MoneyRunOutException {
         budget -= amount;
+        if (budget <= 0) {
+            throw new MoneyRunOutException();
+        }
     }
 
     /**
      *
      * @param newEmp
      */
-    public void addEmployee(Employee newEmp) {
+    public void addEmployee(Employee newEmp) throws MoneyRunOutException {
         employeeList.add(newEmp);
         calculateTotalSalary();
         decreaseMoney(newEmp.getSalary());
@@ -93,7 +96,6 @@ public class Company {
                 return employee;
             }
         }
-
         return null;
     }
 
@@ -121,10 +123,10 @@ public class Company {
      * @param quantity
      * @throws UnaffordableException
      */
-    public void buyItem(Item item, int quantity) throws UnaffordableException {
+    public void buyItem(Item item, int quantity) throws UnaffordableException, MoneyRunOutException {
         float value = item.getPrice() * quantity;
-        if (budget < (item.getPrice() * quantity)) {
-            throw new UnaffordableException("You do not have enough money to buy");
+        if (budget < (value)) {
+            throw new UnaffordableException();
         } else {
             decreaseMoney(item.getPrice() * quantity);
             expenses += value;
@@ -231,7 +233,7 @@ public class Company {
      *
      * @param project
      */
-    public void cancelProject(Project project) {
+    public void cancelProject(Project project) throws MoneyRunOutException {
         project.unassignEmployees();
         currentProjectList.remove(project);
         decreaseMoney(project.getPayment() * 0.8f);

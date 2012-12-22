@@ -32,11 +32,11 @@ public class Engine extends Observable implements Model {
     private List<Project> availableProjects;
     private Utilities utilities;
 
-    public Engine() {
+    public Engine() throws EmployeeNotExist {
         this(new Company());
     }
 
-    public Engine(Company company) {
+    public Engine(Company company) throws EmployeeNotExist {
         utilities = Utilities.getInstance();
         this.company = company;
         dateTime = new DateTime();
@@ -55,7 +55,7 @@ public class Engine extends Observable implements Model {
      * @param quantity
      */
     @Override
-    public void buyItem(Item item, int quantity) throws UnaffordableException {
+    public void buyItem(Item item, int quantity) throws UnaffordableException, MoneyRunOutException {
 
         company.buyItem(item, quantity);
         setChanged();
@@ -74,7 +74,7 @@ public class Engine extends Observable implements Model {
      * of computer
      */
     @Override
-    public void hireEmployee(Employee employee) throws UnaffordableException, OvercrowdedException {
+    public void hireEmployee(Employee employee) throws UnaffordableException, OvercrowdedException, MoneyRunOutException {
         //assume that Company will automatically buy computer for new employee in case of lacking computer
         //TODO fix this in next phase
         if (!utilities.assignComputerToEmployee(company, employee)) {
@@ -111,7 +111,7 @@ public class Engine extends Observable implements Model {
      * @param project
      */
     @Override
-    public void cancelProject(Project project) {
+    public void cancelProject(Project project) throws MoneyRunOutException {
         company.cancelProject(project);
         setChanged();
         String message = String.format("Cancel project %s: -$%.2f.",
@@ -162,7 +162,7 @@ public class Engine extends Observable implements Model {
      *
      * @return List of Employee
      */
-    private List<Employee> generateEmployeeList() {
+    private List<Employee> generateEmployeeList(){
         Random random = new Random();
         int number = random.nextInt(3) + 3;
         return utilities.generateEmployeeList(level, number, this);
@@ -188,7 +188,7 @@ public class Engine extends Observable implements Model {
      * zero
      */
     @Override
-    public void nextTurn() throws MoneyRunOutException {
+    public void nextTurn() throws MoneyRunOutException, EmployeeNotExist {
 
         List<Project> succeededProject = new ArrayList();
         List<Project> failedProject = new ArrayList();
@@ -237,7 +237,7 @@ public class Engine extends Observable implements Model {
         dateTime.nextWeek();
     }
 
-    private void checkProject(List<Project> succeededProject, List<Project> failedProject) {
+    private void checkProject(List<Project> succeededProject, List<Project> failedProject) throws MoneyRunOutException {
         for (Project project : company.getCurrentProjectList()) {
             if (project.checkProjectProcess()) {
                 succeededProject.add(project);
@@ -306,7 +306,7 @@ public class Engine extends Observable implements Model {
      * @return
      */
     @Override
-    public Employee getEmployeeByName(String name) {
+    public Employee getEmployeeByName(String name){
         return company.getEmployeeByName(name);
     }
 
@@ -383,8 +383,8 @@ public class Engine extends Observable implements Model {
     }
 
     @Override
-    public void checkBudget() throws MoneyRunOutException{
-        if(company.getMoney()<=0){
+    public void checkBudget() throws MoneyRunOutException {
+        if (company.getMoney() <= 0) {
             throw new MoneyRunOutException();
         }
     }

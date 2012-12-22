@@ -4,6 +4,7 @@
  */
 package devfortress.controller;
 
+import devfortress.model.exception.EmployeeNotExist;
 import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.facade.Model;
 import devfortress.utilities.Constant;
@@ -53,6 +54,8 @@ public class MainScreenButtonListener implements ActionListener {
             try {
                 model.nextTurn();
             } catch (MoneyRunOutException ex) {
+                Logger.getLogger(MainScreenButtonListener.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (EmployeeNotExist ex) {
                 Logger.getLogger(MainScreenButtonListener.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (text.equals(Constant.BUTTON_INFORMATION)) {

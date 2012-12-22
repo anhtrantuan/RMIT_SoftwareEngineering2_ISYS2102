@@ -10,6 +10,7 @@ import devfortress.model.dificulity.GameLevel;
 import devfortress.model.employee.DevFortressEmployeeBuilder;
 import devfortress.model.employee.Employee;
 import devfortress.model.employee.EmployeeBuilder;
+import devfortress.model.exception.EmployeeNotExist;
 import devfortress.model.facade.Model;
 import devfortress.model.project.Project;
 import java.util.*;
@@ -98,7 +99,7 @@ public class Utilities {
     }
 
     public List<Employee> generateEmployeeList(GameLevel level,
-            int numberOfEmployee, Model model) {
+            int numberOfEmployee, Model model){
         List<Employee> employees = new ArrayList<Employee>();
         for (int i = 0; i < numberOfEmployee; i++) {
             Employee employee;
