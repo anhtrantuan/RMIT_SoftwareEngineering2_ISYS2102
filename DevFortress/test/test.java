@@ -21,10 +21,10 @@ public class test {
         // TODO code application logic here
         JFrame f = new JFrame();
         BuyItemPanel panel = new BuyItemPanel();
-        panel.setSize(600, 300);
+        panel.setSize(400, 700);
         panel.setVisible(true);
         f.add(panel);
-        f.setSize(600, 300);
+        f.setSize(400, 700);
         f.setVisible(true);
     }
 }

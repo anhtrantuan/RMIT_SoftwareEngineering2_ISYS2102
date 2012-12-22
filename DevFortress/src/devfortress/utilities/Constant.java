@@ -80,4 +80,14 @@ public class Constant {
     public static String BUY_BTN = "Buy items";
     public static String TRAINING_FEE = "Training fee";
     public static String CLEAR_BTN = "Clear";
+    public static String SHOP_LBL = "Shop";
+    public static String PLUS_SIGN = "+";
+    public static String MINUS_SIGN = "-";
+    public static String MULTIPLY_LBL = "Quantity Multiply by: ";
+    public static String MUL_SIGN = "x";
+    public static String EQUAL_SIGN = "=";
+    public static String TOTAL_COST_LBL = "Total cost: ";
+    public static int MUL_1 = 1;
+    public static int MUL_10 = 10;
+    public static int MUL_100 = 100;
 }
