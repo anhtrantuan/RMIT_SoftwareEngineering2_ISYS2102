@@ -16,7 +16,8 @@ import static org.junit.Assert.*;
  * @author Cat Hoang Huy
  */
 public class DateTimeTest {
-    
+
+//    private static DateTime date;
     public DateTimeTest() {
     }
     
@@ -40,4 +41,32 @@ public class DateTimeTest {
     //
     // @Test
     // public void hello() {}
+
+    @Test
+    public void nextWeek() {
+        System.out.println("Test next week method");
+        DateTime date = new DateTime(4, 4, 1);
+        date.nextWeek();
+        assertEquals(1, date.getWeekOfMonth());
+        assertEquals(5, date.getMonthOfYear());
+        
+    }
+    
+    @Test
+    public void nextMonth() {
+        System.out.println("Test next month method");
+        DateTime date = new DateTime(4, 12, 1);
+        date.nextMonth();
+        assertEquals(1, date.getMonthOfYear());
+        assertEquals(2, date.getYear());
+    }
+    
+    @Test
+    public void nextTurn() {
+        System.out.println("Test next turn method");
+        DateTime date = new DateTime(2, 0, 1);
+        date.nextTurn();
+        assertEquals(12, date.getMonthOfYear());
+        assertEquals(0, date.getYear());
+    }
 }

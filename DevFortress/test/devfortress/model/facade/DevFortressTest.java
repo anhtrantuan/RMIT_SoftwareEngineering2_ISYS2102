@@ -13,6 +13,8 @@ import devfortress.model.exception.EmployeeNotExist;
 import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.OvercrowdedException;
 import devfortress.model.exception.UnaffordableException;
+import devfortress.utilities.Skill;
+import java.util.HashMap;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -26,15 +28,17 @@ import static org.junit.Assert.*;
  */
 public class DevFortressTest {
 
-    private Model company;
-    private Item item;
-    private Employee employee;
+    private static Model company;
+    private static Item item;
+    private static Employee employee;
 
     public DevFortressTest() {
     }
 
     @BeforeClass
     public static void setUpClass() {
+        item = new Food(100, "pizza");
+        employee = new Employee("employee1", new HashMap<Skill, Integer>());
     }
 
     @AfterClass
@@ -43,8 +47,6 @@ public class DevFortressTest {
 
     @Before
     public void setUp() {
-        item = new Food(100, "pizza");
-        employee = new Employee();
     }
 
     @After
