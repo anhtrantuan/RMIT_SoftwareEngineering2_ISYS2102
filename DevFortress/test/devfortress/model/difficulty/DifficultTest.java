@@ -40,4 +40,9 @@ public class DifficultTest {
     //
     // @Test
     // public void hello() {}
+    
+    @Test
+    public void generateSkillList(){
+        System.out.println("Test generate skill list for difficult level");
+    }
 }
