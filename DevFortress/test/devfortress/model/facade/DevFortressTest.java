@@ -10,6 +10,7 @@ import devfortress.model.Food;
 import devfortress.model.Item;
 import devfortress.model.employee.Employee;
 import devfortress.model.exception.EmployeeNotExist;
+import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.OvercrowdedException;
 import devfortress.model.exception.UnaffordableException;
 import org.junit.After;
@@ -61,7 +62,7 @@ public class DevFortressTest {
 //        assertTrue(true);
 //    }
     @Test
-    public void testBuyItem2() throws UnaffordableException {
+    public void testBuyItem2() throws UnaffordableException, EmployeeNotExist, MoneyRunOutException {
         Model company = new Engine();
         System.out.println("Test Buy 0 Item");
         float money = company.getBudget();
@@ -70,7 +71,7 @@ public class DevFortressTest {
     }
 
     @Test
-    public void testBuyItem() throws UnaffordableException {
+    public void testBuyItem() throws UnaffordableException, EmployeeNotExist, MoneyRunOutException {
         Model company = new Engine();
         System.out.println("Test Buy 1 Item:");
         float money = company.getBudget() - item.getPrice();
@@ -79,14 +80,14 @@ public class DevFortressTest {
     }
 
     @Test(expected = UnaffordableException.class)
-    public void testBuyManyItem() throws UnaffordableException {
+    public void testBuyManyItem() throws UnaffordableException, EmployeeNotExist, MoneyRunOutException {
         Model company = new Engine();
         company.buyItem(item, 11);
         System.out.println("Test Buy too much Item");
     }
 
     @Test(expected = OvercrowdedException.class)
-    public void testHireEmployee() throws OvercrowdedException, UnaffordableException {
+    public void testHireEmployee() throws OvercrowdedException, UnaffordableException, EmployeeNotExist, MoneyRunOutException {
         Model company = new Engine();
         System.out.println("Test hire employee");
         company.hireEmployee(employee);
@@ -94,7 +95,7 @@ public class DevFortressTest {
     }
 
     @Test
-    public void testHireEmployee2() throws OvercrowdedException, UnaffordableException {
+    public void testHireEmployee2() throws OvercrowdedException, UnaffordableException, MoneyRunOutException {
 
         System.out.println("Test hire employee");
         company.buyItem(new Computer(), 1);
@@ -108,6 +109,4 @@ public class DevFortressTest {
         company.fireEmployee(employee);
         assertEquals("Result", 0, company.getEmployeeList().size());
     }
-    
-    
 }

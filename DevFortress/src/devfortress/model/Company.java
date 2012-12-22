@@ -244,12 +244,9 @@ public class Company {
      *
      * @param project
      */
-    public void removeProject(Project project) {
+    public void finishProject(Project project) {
         currentProjectList.remove(project);
         increaseMoney(project.getPayment() / 2);
-    }
-
-    public void test() {
     }
 
     public float calculateTotalSalary() {
@@ -304,7 +301,12 @@ public class Company {
     public boolean assignEmployeeToProject(Employee emp, Project proj, Skill field) {
         return proj.assignEmployeeToProject(emp, field);
     }
-
+    
+    /**
+     * 
+     * @param proj
+     * @param emp 
+     */
     public void unassignEmployee(Project proj, Employee emp) {
         proj.unassignEmployee(emp);
     }

@@ -247,7 +247,7 @@ public class Engine extends Observable implements Model {
         }
 
         for (Project proj : failedProject) {
-            company.removeProject(proj);
+            company.finishProject(proj);
         }
         for (Project proj : succeededProject) {
             company.cancelProject(proj);

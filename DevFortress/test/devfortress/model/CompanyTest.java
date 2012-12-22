@@ -6,10 +6,11 @@ package devfortress.model;
 
 import devfortress.model.employee.Employee;
 import devfortress.model.exception.EmployeeNotExist;
+import devfortress.model.exception.MoneyRunOutException;
+import devfortress.model.exception.UnaffordableException;
+import devfortress.model.project.Project;
 import devfortress.utilities.Skill;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -25,6 +26,7 @@ public class CompanyTest {
 
     private static Company company;
     private static Employee employee;
+    private static Project project;
 
     public CompanyTest() {
     }
@@ -33,6 +35,7 @@ public class CompanyTest {
     public static void setUpClass() {
         company = new Company();
         employee = new Employee("employee1", new HashMap<Skill, Integer>());
+        project = new Project("project1", 100, 100, 1, new DateTime(), new HashMap<Skill, Integer>());
     }
 
     @AfterClass
@@ -60,34 +63,32 @@ public class CompanyTest {
     }
 
     @Test
-    public void decreaseMoney() {
+    public void decreaseMoney() throws MoneyRunOutException {
         System.out.println("Test decrease money: decrease budget by 100");
         company.decreaseMoney(100f);
         assertEquals(1000f, company.getMoney(), 0);
     }
 
     @Test
-    public void getEmployeeByName() throws EmployeeNotExist {
+    public void getEmployeeByName() throws EmployeeNotExist, MoneyRunOutException {
         System.out.println("Test get employee by name: valid name");
         company.addEmployee(employee);
         assertEquals(employee, company.getEmployeeByName("employee1"));
     }
 
-    @Test(expected = EmployeeNotExist.class)
+    @Test
     public void getEmployeeByName2() throws EmployeeNotExist {
         System.out.println("Test get employee by name: invalid name");
-        company.getEmployeeByName("abc");
+        assertEquals(null, company.getEmployeeByName("abc"));
     }
 
-    @Test(expected = EmployeeNotExist.class)
+    @Test
     public void removeEmployee() throws EmployeeNotExist {
         System.out.println("Test remove employee: valid employee");
-        try {
-            company.removeEmployee(employee);
-        } catch (EmployeeNotExist ex) {
-            Logger.getLogger(CompanyTest.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        company.getEmployeeByName("employee1");
+
+        company.removeEmployee(employee);
+
+        assertEquals(null, company.getEmployeeByName("employee1"));
 
     }
 
@@ -97,9 +98,45 @@ public class CompanyTest {
 
         company.removeEmployee(employee);
     }
-    
+
     @Test
-    public void buyItem(){
-        System.out.println("Test buy item:");
+    public void buyItem() throws UnaffordableException, MoneyRunOutException {
+        System.out.println("Test buy item: buy affordable item");
+        company.buyItem(new Computer(100f), 1);
+        assertEquals(1000f - 100f, company.getMoney(), 0);
+
     }
+
+    @Test(expected = UnaffordableException.class)
+    public void buyItem2() throws UnaffordableException, MoneyRunOutException {
+        System.out.println("Test buy item: buy unaffordable item");
+        company.buyItem(new Computer(1000f), 1);
+    }
+
+    @Test
+    public void getProjectByName() {
+        System.out.println("Test get project by name: valid project");
+        company.addProject(project);
+        assertEquals(project, company.getProjectByName("project1"));
+    }
+
+    @Test
+    public void getProjectByName2() {
+        System.out.println("Test get project by name: invalid project");
+        assertEquals(null, company.getProjectByName("project2"));
+    }
+
+   @Test
+   public void cancelProject() throws MoneyRunOutException{
+       System.out.println("Test cancel project: valid project");
+       company.cancelProject(project);
+       assertEquals(null, company.getProjectByName("project1"));
+   }
+   
+//   @Test
+//   public void cancelProject(){
+//       System.out.println("Test cancel project: invalid project");
+//       company.cancelProject(new Project);
+//   }
+   
 }
