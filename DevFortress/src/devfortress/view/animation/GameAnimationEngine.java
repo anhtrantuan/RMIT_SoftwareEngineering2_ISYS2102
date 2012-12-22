@@ -5,10 +5,12 @@
 package devfortress.view.animation;
 
 import com.tabuto.j2dgf.Game2D;
+import com.tabuto.j2dgf.Group;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.net.URL;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
@@ -19,22 +21,31 @@ import javax.imageio.ImageIO;
  */
 public class GameAnimationEngine extends Game2D {
 
-    private BufferedImage background, objects;
-    private double widthRatio, heightRatio;
-    private int objectConfigurations[][] = new int[][]{
-        {50, 35, 67, 64, 16, 1, 33, 30}, // Sprite goes here
-        {45, 45, 97, 86, 208, 11, 260, 52},
-        {116, 60, 133, 89, 16, 1, 33, 30}, // Sprite goes here
-        {111, 62, 163, 110, 106, 4, 158, 52},
-        {80, 78, 97, 107, 16, 1, 33, 30}, // Sprite goes here
-        {75, 80, 127, 128, 106, 4, 158, 52},
-        {127, 70, 179, 118, 157, 4, 209, 52},
-        {156, 92, 172, 117, 1, 5, 17, 30}, // Sprite goes here
-        {161, 92, 172, 109, 48, 1, 59, 18},
-        {91, 88, 143, 136, 157, 4, 209, 52},
-        {120, 110, 136, 135, 1, 5, 17, 30}, // Sprite goes here
-        {125, 110, 136, 127, 48, 1, 59, 18}
-    };
+    private BufferedImage FLOORS_IMAGE, TABLES_IMAGE, CHAIRS_IMAGE, CHARACTERS_IMAGE;
+    private double widthScale, heightScale;
+    private Group<GameSprite> sprites;
+    private GameSprite floor, table1, table2, table3, table4, table5, chair1,
+            chair2, chair3, chair4, chair5, chair4Lean, chair5Lean,
+            employee1, employee2, employee3, employee4, employee5;
+    private int FLOOR_CROP[] = new int[]{0, 0, 240, 177},
+            TABLE_SIZES[] = new int[]{48, 48},
+            TABLE_EMPTY_CROP[] = new int[]{480, 0, 48, 48},
+            TABLE_BACK_CROP[] = new int[]{0, 0, 48, 48},
+            TABLE_FRONT_CROP[] = new int[]{48, 0, 432, 48},
+            TABLE_FRONT_SEQUENCE[] = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8},
+            CHAIR_BACK_CROP[] = new int[]{0, 0, 15, 27},
+            CHAIR_FRONT_RIGHT_CROP[] = new int[]{15, 0, 15, 27},
+            CHAIR_LEAN_CROP[] = new int[]{45, 0, 15, 27},
+            EMPLOYEE_SIZES[] = new int[]{20, 30},
+            EMPLOYEE1_CROP[] = new int[]{120, 0, 20, 30},
+            EMPLOYEE2_CROP[] = new int[]{120, 30, 40, 30},
+            EMPLOYEE3_CROP[] = new int[]{120, 60, 40, 30},
+            EMPLOYEE4_CROP[] = new int[]{400, 90, 40, 30},
+            EMPLOYEE5_CROP[] = new int[]{400, 120, 40, 30},
+            EMPLOYEE2_SEQUENCE[] = new int[]{0, 1},
+            EMPLOYEE3_SEQUENCE[] = new int[]{0, 1},
+            EMPLOYEE4_SEQUENCE[] = new int[]{0, 1},
+            EMPLOYEE5_SEQUENCE[] = new int[]{0, 1};
 
     /**
      * Constructor to create new game animation engine.
@@ -45,42 +56,165 @@ public class GameAnimationEngine extends Game2D {
         super(dim);
     }
 
+    /**
+     * Draw game canvas.
+     *
+     * @param g
+     */
     @Override
     public void drawStuff(Graphics g) {
-        /* Draw background. */
-        g.drawImage(background, 0, 0, DIM.width, DIM.height, null);
+        /* Update sprites. */
+        sprites.move();
 
-        /* Draw objects. */
-        for (int i = 0; i < objectConfigurations.length; i++) {
-            g.drawImage(objects, objectConfigurations[i][0],
-                    objectConfigurations[i][1], objectConfigurations[i][2],
-                    objectConfigurations[i][3], objectConfigurations[i][4],
-                    objectConfigurations[i][5], objectConfigurations[i][6],
-                    objectConfigurations[i][7], null);
-        }
+        /* Draw sprites. */
+        sprites.draw(g);
     }
 
+    /**
+     * Initialize game elements.
+     */
     @Override
     public void initGame() {
-        URL backgroundURL = getClass().getResource("../resources/imgBackground.png"),
-                objectsURL = getClass().getResource("../resources/imgObjects.png");
         try {
-            background = ImageIO.read(backgroundURL);
-            objects = ImageIO.read(objectsURL);
+            /* Get resource URLs. */
+            URL floorsURL = getClass().getResource("../resources/imgFloors.png"),
+                    tablesURL = getClass().getResource("../resources/imgTables.png"),
+                    chairsURL = getClass().getResource("../resources/imgChairs.png"),
+                    charactersURL = getClass().getResource("../resources/imgCharacters.png");
+
+            /* Load resource into place. */
+            FLOORS_IMAGE = ImageIO.read(floorsURL);
+            TABLES_IMAGE = ImageIO.read(tablesURL);
+            CHAIRS_IMAGE = ImageIO.read(chairsURL);
+            CHARACTERS_IMAGE = ImageIO.read(charactersURL);
+
+            /* Calculate scale ratios. */
+            widthScale = (double) DIM.width / (FLOORS_IMAGE.getWidth(null) / 3);
+            heightScale = (double) DIM.height / FLOORS_IMAGE.getHeight(null);
+
+            /* Create sprite group. */
+            sprites = new Group<GameSprite>();
+
+            Random random = new Random();
+
+            /* Add sprites. */
+            floor = new GameSprite(DIM, 0, 0, FLOORS_IMAGE.getSubimage(
+                    FLOOR_CROP[0], FLOOR_CROP[1], FLOOR_CROP[2], FLOOR_CROP[3]));
+            floor.setScales(widthScale, heightScale);
+            sprites.add(floor);
+            chair1 = new GameSprite(DIM, 0, 0, CHAIRS_IMAGE.getSubimage(
+                    CHAIR_FRONT_RIGHT_CROP[0], CHAIR_FRONT_RIGHT_CROP[1],
+                    CHAIR_FRONT_RIGHT_CROP[2], CHAIR_FRONT_RIGHT_CROP[3]));
+            chair1.setScales(widthScale, heightScale);
+            sprites.add(chair1);
+            employee1 = new GameSprite(DIM, 0, 0, CHARACTERS_IMAGE.getSubimage(
+                    EMPLOYEE1_CROP[0], EMPLOYEE1_CROP[1], EMPLOYEE1_CROP[2],
+                    EMPLOYEE1_CROP[3]));
+            employee1.setScales(widthScale, heightScale);
+            sprites.add(employee1);
+            table1 = new GameSprite(DIM, 0, 0, TABLES_IMAGE.getSubimage(
+                    TABLE_EMPTY_CROP[0], TABLE_EMPTY_CROP[1],
+                    TABLE_EMPTY_CROP[2], TABLE_EMPTY_CROP[3]));
+            table1.setScales(widthScale, heightScale);
+            sprites.add(table1);
+            chair2 = new GameSprite(DIM, 0, 0, CHAIRS_IMAGE.getSubimage(
+                    CHAIR_FRONT_RIGHT_CROP[0], CHAIR_FRONT_RIGHT_CROP[1],
+                    CHAIR_FRONT_RIGHT_CROP[2], CHAIR_FRONT_RIGHT_CROP[3]));
+            chair2.setScales(widthScale, heightScale);
+            sprites.add(chair2);
+            employee2 = new GameSprite(DIM, 0, 0, CHARACTERS_IMAGE.getSubimage(
+                    EMPLOYEE2_CROP[0], EMPLOYEE2_CROP[1], EMPLOYEE2_CROP[2],
+                    EMPLOYEE2_CROP[3]), EMPLOYEE_SIZES[0], EMPLOYEE_SIZES[1]);
+            employee2.setScales(widthScale, heightScale);
+            employee2.setFrameSequence(EMPLOYEE2_SEQUENCE);
+            employee2.setFrameIndex(random.nextInt(EMPLOYEE2_SEQUENCE.length));
+            employee2.setAngleDegree(0);
+            employee2.setSpeed(0);
+            sprites.add(employee2);
+            table2 = new GameSprite(DIM, 0, 0, TABLES_IMAGE.getSubimage(
+                    TABLE_BACK_CROP[0], TABLE_BACK_CROP[1], TABLE_BACK_CROP[2],
+                    TABLE_BACK_CROP[3]));
+            table2.setScales(widthScale, heightScale);
+            sprites.add(table2);
+            chair3 = new GameSprite(DIM, 0, 0, CHAIRS_IMAGE.getSubimage(
+                    CHAIR_FRONT_RIGHT_CROP[0], CHAIR_FRONT_RIGHT_CROP[1],
+                    CHAIR_FRONT_RIGHT_CROP[2], CHAIR_FRONT_RIGHT_CROP[3]));
+            chair3.setScales(widthScale, heightScale);
+            sprites.add(chair3);
+            employee3 = new GameSprite(DIM, 0, 0, CHARACTERS_IMAGE.getSubimage(
+                    EMPLOYEE3_CROP[0], EMPLOYEE3_CROP[1], EMPLOYEE3_CROP[2],
+                    EMPLOYEE3_CROP[3]), EMPLOYEE_SIZES[0], EMPLOYEE_SIZES[1]);
+            employee3.setScales(widthScale, heightScale);
+            employee3.setFrameSequence(EMPLOYEE3_SEQUENCE);
+            employee3.setFrameIndex(random.nextInt(EMPLOYEE3_SEQUENCE.length));
+            employee3.setAngleDegree(0);
+            employee3.setSpeed(0);
+            sprites.add(employee3);
+            table3 = new GameSprite(DIM, 0, 0, TABLES_IMAGE.getSubimage(
+                    TABLE_BACK_CROP[0], TABLE_BACK_CROP[1], TABLE_BACK_CROP[2],
+                    TABLE_BACK_CROP[3]));
+            table3.setScales(widthScale, heightScale);
+            sprites.add(table3);
+            table4 = new GameSprite(DIM, 0, 0, TABLES_IMAGE.getSubimage(
+                    TABLE_FRONT_CROP[0], TABLE_FRONT_CROP[1],
+                    TABLE_FRONT_CROP[2], TABLE_FRONT_CROP[3]), TABLE_SIZES[0],
+                    TABLE_SIZES[1]);
+            table4.setScales(widthScale, heightScale);
+            table4.setFrameSequence(TABLE_FRONT_SEQUENCE);
+            table4.setFrameIndex(random.nextInt(TABLE_FRONT_SEQUENCE.length));
+            table4.setAngleDegree(0);
+            table4.setSpeed(0);
+            sprites.add(table4);
+            chair4 = new GameSprite(DIM, 0, 0, CHAIRS_IMAGE.getSubimage(
+                    CHAIR_BACK_CROP[0], CHAIR_BACK_CROP[1], CHAIR_BACK_CROP[2],
+                    CHAIR_BACK_CROP[3]));
+            chair4.setScales(widthScale, heightScale);
+            sprites.add(chair4);
+            employee4 = new GameSprite(DIM, 0, 0, CHARACTERS_IMAGE.getSubimage(
+                    EMPLOYEE4_CROP[0], EMPLOYEE4_CROP[1], EMPLOYEE4_CROP[2],
+                    EMPLOYEE4_CROP[3]), EMPLOYEE_SIZES[0], EMPLOYEE_SIZES[1]);
+            employee4.setScales(widthScale, heightScale);
+            employee4.setFrameSequence(EMPLOYEE4_SEQUENCE);
+            employee4.setFrameIndex(random.nextInt(EMPLOYEE4_SEQUENCE.length));
+            employee4.setAngleDegree(0);
+            employee4.setSpeed(0);
+            sprites.add(employee4);
+            chair4Lean = new GameSprite(DIM, 0, 0, CHAIRS_IMAGE.getSubimage(
+                    CHAIR_LEAN_CROP[0], CHAIR_LEAN_CROP[1], CHAIR_LEAN_CROP[2],
+                    CHAIR_LEAN_CROP[3]));
+            chair4Lean.setScales(widthScale, heightScale);
+            sprites.add(chair4Lean);
+            table5 = new GameSprite(DIM, 0, 0, TABLES_IMAGE.getSubimage(
+                    TABLE_FRONT_CROP[0], TABLE_FRONT_CROP[1],
+                    TABLE_FRONT_CROP[2], TABLE_FRONT_CROP[3]), TABLE_SIZES[0],
+                    TABLE_SIZES[1]);
+            table5.setScales(widthScale, heightScale);
+            table5.setFrameSequence(TABLE_FRONT_SEQUENCE);
+            table5.setFrameIndex(random.nextInt(TABLE_FRONT_SEQUENCE.length));
+            table5.setAngleDegree(0);
+            table5.setSpeed(0);
+            sprites.add(table5);
+            chair5 = new GameSprite(DIM, 0, 0, CHAIRS_IMAGE.getSubimage(
+                    CHAIR_BACK_CROP[0], CHAIR_BACK_CROP[1], CHAIR_BACK_CROP[2],
+                    CHAIR_BACK_CROP[3]));
+            chair5.setScales(widthScale, heightScale);
+            sprites.add(chair5);
+            employee5 = new GameSprite(DIM, 0, 0, CHARACTERS_IMAGE.getSubimage(
+                    EMPLOYEE5_CROP[0], EMPLOYEE5_CROP[1], EMPLOYEE5_CROP[2],
+                    EMPLOYEE5_CROP[3]), EMPLOYEE_SIZES[0], EMPLOYEE_SIZES[1]);
+            employee5.setScales(widthScale, heightScale);
+            employee5.setFrameSequence(EMPLOYEE5_SEQUENCE);
+            employee5.setFrameIndex(random.nextInt(EMPLOYEE5_SEQUENCE.length));
+            employee5.setAngleDegree(0);
+            employee5.setSpeed(0);
+            sprites.add(employee5);
+            chair5Lean = new GameSprite(DIM, 0, 0, CHAIRS_IMAGE.getSubimage(
+                    CHAIR_LEAN_CROP[0], CHAIR_LEAN_CROP[1], CHAIR_LEAN_CROP[2],
+                    CHAIR_LEAN_CROP[3]));
+            chair5Lean.setScales(widthScale, heightScale);
+            sprites.add(chair5Lean);
         } catch (Exception ex) {
             Logger.getLogger(GameAnimationEngine.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        /* Calculate scale ratios. */
-        widthRatio = (double) DIM.width / background.getWidth();
-        heightRatio = (double) DIM.height / background.getHeight();
-
-        /* Re-calculate objects' sizes. */
-        for (int i = 0; i < objectConfigurations.length; i++) {
-            objectConfigurations[i][0] *= widthRatio;
-            objectConfigurations[i][1] *= heightRatio;
-            objectConfigurations[i][2] *= widthRatio;
-            objectConfigurations[i][3] *= heightRatio;
         }
     }
 }
