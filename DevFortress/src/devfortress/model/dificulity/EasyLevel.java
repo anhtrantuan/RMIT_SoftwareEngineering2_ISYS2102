@@ -52,7 +52,7 @@ public class EasyLevel implements GameLevel {
     public DateTime generateProjectTime() {
         return new DateTime(0, new Random().nextInt(7) + 2, 0);
     }
-
+    
     @Override
     public Project generateProject(String projectName) {
         Random random = new Random();

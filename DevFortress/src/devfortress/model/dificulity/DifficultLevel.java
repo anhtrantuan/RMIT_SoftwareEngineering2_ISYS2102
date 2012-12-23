@@ -54,7 +54,7 @@ public class DifficultLevel implements GameLevel {
     public DateTime generateProjectTime() {
         Random random = new Random();
         int months = random.nextInt(13) + 12;
-        return new DateTime(0, months % 12, months % 12);
+        return new DateTime(0, months % 12, months / 12);
     }
 
     @Override
