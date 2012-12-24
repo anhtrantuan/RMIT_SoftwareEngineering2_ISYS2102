@@ -28,20 +28,4 @@ import org.junit.runners.Suite;
 @Suite.SuiteClasses({CompanyTest.class, DateTime.class, DifficultTest.class, MediumTest.class,
     EasyTest.class, EmployeeBuilderTest.class, EmployeeTest.class, UtilityTest.class, DevFortressTest.class})
 public class DevfortressTestSuit {
-
-    @BeforeClass
-    public static void setUpClass() throws Exception {
-    }
-
-    @AfterClass
-    public static void tearDownClass() throws Exception {
-    }
-
-    @Before
-    public void setUp() throws Exception {
-    }
-
-    @After
-    public void tearDown() throws Exception {
-    }
 }
