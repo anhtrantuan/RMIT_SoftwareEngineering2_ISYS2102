@@ -400,7 +400,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         );
         pnlBlankLayout.setVerticalGroup(
             pnlBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 36, Short.MAX_VALUE)
+            .addGap(0, 34, Short.MAX_VALUE)
         );
 
         pnlManagement.add(pnlBlank);
@@ -515,7 +515,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
                         .addComponent(pnlAnimation, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(pnlEvents, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 2, Short.MAX_VALUE)))
+                        .addGap(0, 0, 0)))
                 .addComponent(pnlStatusBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -653,7 +653,6 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
 
         /* Revalidate the frame layout. */
         validate();
-        repaint();
     }//GEN-LAST:event_treeExpansion
 
     /**
