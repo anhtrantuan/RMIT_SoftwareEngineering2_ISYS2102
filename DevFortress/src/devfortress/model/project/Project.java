@@ -209,7 +209,7 @@ public class Project {
         return finalPoint;
     }
 
-    public boolean checkProjectProcess(){
+    public boolean checkProjectProcess() {
         int finish = 0;
         //totalFunctionPointsDelivered = 0;
         for (Skill sk : skill_employeeMap.keySet()) {
@@ -225,11 +225,9 @@ public class Project {
                 skillRequirementMap.put(sk, functionPointRequire - functionPointProduced);
             }
         }
-        System.out.println(finish);
         if (skillRequirementMap.size() == finish && remainingTime.getMonths() != 0) {
             return true;
         }
-        System.out.println("SHIT");
         return false;
     }
 

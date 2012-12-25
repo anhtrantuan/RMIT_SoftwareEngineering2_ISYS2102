@@ -64,18 +64,15 @@ public class Company {
      *
      * @param amount
      */
-    public void decreaseMoney(float amount) throws MoneyRunOutException {
+    public void decreaseMoney(float amount) {
         budget -= amount;
-        if (budget <= 0) {
-            throw new MoneyRunOutException();
-        }
     }
 
     /**
      *
      * @param newEmp
      */
-    public void addEmployee(Employee newEmp) throws MoneyRunOutException {
+    public void addEmployee(Employee newEmp) {
         employeeList.add(newEmp);
         calculateTotalSalary();
         decreaseMoney(newEmp.getSalary());
@@ -123,7 +120,7 @@ public class Company {
      * @param quantity
      * @throws UnaffordableException
      */
-    public void buyItem(Item item, int quantity) throws UnaffordableException, MoneyRunOutException {
+    public void buyItem(Item item, int quantity) throws UnaffordableException {
         float value = item.getPrice() * quantity;
         if (budget < (value)) {
             throw new UnaffordableException();
@@ -158,13 +155,12 @@ public class Company {
      * @return @throws MoneyRunOutException when the capital is less or equal
      * than zero
      */
-    public boolean paySalary() throws MoneyRunOutException {
+    public boolean paySalary() {
 
         budget -= calculateTotalSalary();
         if (budget <= 0) {
-            throw new MoneyRunOutException("You are out of money");
+            return false;
         }
-
         return true;
     }
 
@@ -233,7 +229,7 @@ public class Company {
      *
      * @param project
      */
-    public void cancelProject(Project project) throws MoneyRunOutException {
+    public void cancelProject(Project project) {
         project.unassignEmployees();
         currentProjectList.remove(project);
         decreaseMoney(project.getPayment() * 0.8f);
@@ -321,7 +317,7 @@ public class Company {
         }
     }
 
-    public void consumeItem()  {
+    public void consumeItem() {
 
         for (Employee employee : employeeList) {
             if (foodStock > 0) {

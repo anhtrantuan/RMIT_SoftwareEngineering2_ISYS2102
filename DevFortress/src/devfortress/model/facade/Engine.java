@@ -15,6 +15,8 @@ import devfortress.model.project.Project;
 import devfortress.utilities.Skill;
 import devfortress.utilities.Utilities;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -55,7 +57,7 @@ public class Engine extends Observable implements Model {
      * @param quantity
      */
     @Override
-    public void buyItem(Item item, int quantity) throws UnaffordableException, MoneyRunOutException {
+    public void buyItem(Item item, int quantity) throws UnaffordableException {
 
         company.buyItem(item, quantity);
         setChanged();
@@ -74,7 +76,7 @@ public class Engine extends Observable implements Model {
      * of computer
      */
     @Override
-    public void hireEmployee(Employee employee) throws UnaffordableException, OvercrowdedException, MoneyRunOutException {
+    public void hireEmployee(Employee employee) throws UnaffordableException, OvercrowdedException {
         //assume that Company will automatically buy computer for new employee in case of lacking computer
         //TODO fix this in next phase
         if (!utilities.assignComputerToEmployee(company, employee)) {
@@ -111,7 +113,7 @@ public class Engine extends Observable implements Model {
      * @param project
      */
     @Override
-    public void cancelProject(Project project) throws MoneyRunOutException {
+    public void cancelProject(Project project) {
         company.cancelProject(project);
         setChanged();
         String message = String.format("Cancel project %s: -$%.2f.",
@@ -147,7 +149,7 @@ public class Engine extends Observable implements Model {
      * loop through employee list and reduce user's capital
      */
     @Override
-    public void paySalary() throws MoneyRunOutException {
+    public void paySalary() {
 
         company.paySalary();
         setChanged();
@@ -188,7 +190,7 @@ public class Engine extends Observable implements Model {
      * zero
      */
     @Override
-    public void nextTurn() throws MoneyRunOutException, EmployeeNotExist {
+    public void nextTurn() {
 
         List<Project> succeededProject = new ArrayList();
         List<Project> failedProject = new ArrayList();
@@ -228,21 +230,24 @@ public class Engine extends Observable implements Model {
 
         availableProjects = generateProjectList();
         availableEmployees = generateEmployeeList();
-
+        System.out.println("abc");
         paySalary();
 
-        if (company.getMoney() <= 0) {
-            throw new MoneyRunOutException();
+        try {
+            checkBudget();
+        } catch (MoneyRunOutException ex) {
+            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+
+            company.clearItemList();
+
+            setChanged();
+
+            String message = String.format("New turn began: Year %d Month %d Week %d.",
+                    dateTime.getYear(), dateTime.getMonthOfYear(),
+                    dateTime.getWeekOfMonth());
+            notifyObservers(message);
         }
-
-        company.clearItemList();
-
-        setChanged();
-
-        String message = String.format("New turn began: Year %d Month %d Week %d.",
-                dateTime.getYear(), dateTime.getMonthOfYear(),
-                dateTime.getWeekOfMonth());
-        notifyObservers(message);
     }
 
     /**
@@ -254,7 +259,7 @@ public class Engine extends Observable implements Model {
         dateTime.nextWeek();
     }
 
-    private void checkProject(List<Project> succeededProject, List<Project> failedProject) throws MoneyRunOutException {
+    private void checkProject(List<Project> succeededProject, List<Project> failedProject) {
         for (Project project : company.getCurrentProjectList()) {
             if (project.checkProjectProcess()) {
                 System.out.println("success");
