@@ -58,8 +58,8 @@ public class DevFortress {
              */
             model.buyItem(new Beer(50), 1);
             model.buyItem(new Computer(), 1);
-            model.buyItem(new Food(300, "Pizza"), 1);
-            model.buyItem(new Food(300, "Coffee"), 1);
+            model.buyItem(new Food(10, "Pizza"), 4);
+            model.buyItem(new Food(10, "Coffee"), 4);
         } catch (UnaffordableException ex) {
             Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
         }

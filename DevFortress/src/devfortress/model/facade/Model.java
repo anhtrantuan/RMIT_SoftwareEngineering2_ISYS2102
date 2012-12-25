@@ -76,4 +76,6 @@ public interface Model {
     Project getWorkingProjectOfEmployee(Employee emp);
 
     void train(Employee emp, Skill sk) throws UnaffordableException;
+
+    void drink(Employee emp);
 }

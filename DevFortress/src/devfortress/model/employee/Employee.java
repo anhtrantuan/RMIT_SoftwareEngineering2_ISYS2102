@@ -6,7 +6,6 @@ package devfortress.model.employee;
 
 import devfortress.model.project.Project;
 import devfortress.utilities.Skill;
-import devfortress.utilities.Utilities;
 import java.util.EnumMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -187,7 +186,7 @@ public class Employee {
         return status;
     }
 
-    public void haveBeer() {
+    public void drink() {
         status[0] = true;
         status[2] = true;
     }

@@ -231,7 +231,7 @@ public class Engine extends Observable implements Model {
     /**
      * Increase the week number by one
      */
-    private void nextWeek() {
+    private void nextWeek()  {
         eventOccur();
         consumeFood();
         dateTime.nextWeek();
@@ -240,8 +240,10 @@ public class Engine extends Observable implements Model {
     private void checkProject(List<Project> succeededProject, List<Project> failedProject) throws MoneyRunOutException {
         for (Project project : company.getCurrentProjectList()) {
             if (project.checkProjectProcess()) {
+                System.out.println("success");
                 succeededProject.add(project);
             } else {
+                System.out.println("fail");
                 failedProject.add(project);
             }
         }
@@ -333,8 +335,8 @@ public class Engine extends Observable implements Model {
         notifyObservers(message);
     }
 
-    private void consumeFood() {
-        //TODO next sprint
+    private void consumeFood(){
+        company.consumeItem();
     }
 
     /**
@@ -388,4 +390,11 @@ public class Engine extends Observable implements Model {
             throw new MoneyRunOutException();
         }
     }
+
+    @Override
+    public void drink(Employee emp){
+        company.drinkBeer(emp);
+    }
+    
+    
 }

@@ -301,11 +301,11 @@ public class Company {
     public boolean assignEmployeeToProject(Employee emp, Project proj, Skill field) {
         return proj.assignEmployeeToProject(emp, field);
     }
-    
+
     /**
-     * 
+     *
      * @param proj
-     * @param emp 
+     * @param emp
      */
     public void unassignEmployee(Project proj, Employee emp) {
         proj.unassignEmployee(emp);
@@ -318,6 +318,23 @@ public class Company {
         } else {
             e.skillLevelUp(sk);
             budget -= fee;
+        }
+    }
+
+    public void consumeItem()  {
+
+        for (Employee employee : employeeList) {
+            if (foodStock > 0) {
+                employee.eat();
+                foodStock--;
+            }
+        }
+    }
+
+    public void drinkBeer(Employee e) {
+        if (beerStock > 0) {
+            e.drink();
+            beerStock--;
         }
     }
 }
