@@ -29,11 +29,11 @@ public class DeveloperIsSickEventAnimation extends Game2D {
     private double widthScale, heightScale;
     private GameSprite dev, doctor, bed, doctor_talking, floor;
     private int FLOOR_CROP[] = new int[]{0, 0, 569, 219},
-            DEV_SPRITE[] = new int[]{0, 0, 220, 30},
+            DEV_SPRITE[] = new int[]{0, 0, 264, 30},
             DOC_SPRITE[] = new int[]{0, 0, 16, 30},
             DOC_TALKING_SPRITE1[] = new int[]{0, 0, 207, 104},
             DOC_TALKING_SPRITE2[] = new int[]{0, 111, 207, 88},
-            DEV_SEQUENCE[] = new int[]{0, 1,2,3,4,5,6,7,8,9,10};
+            DEV_SEQUENCE[] = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     /**
      * Constructor to create new game sick event animation.
@@ -50,7 +50,6 @@ public class DeveloperIsSickEventAnimation extends Game2D {
          * Update sprites.
          */
         sprites.move();
-
         /*
          * Draw sprites.
          */
@@ -102,7 +101,7 @@ public class DeveloperIsSickEventAnimation extends Game2D {
             sprites.add(floor);
 
             dev = new GameSprite(DIM, 50, 50, DEV_IMAGE.getSubimage(DEV_SPRITE[0], DEV_SPRITE[1],
-                    DEV_SPRITE[2], DEV_SPRITE[3]),20,30);
+                    DEV_SPRITE[2], DEV_SPRITE[3]), 24, 30);
             dev.setScales(3, 3);
             dev.setFrameSequence(DEV_SEQUENCE);
             dev.setFrameIndex(DEV_SEQUENCE[0]);
