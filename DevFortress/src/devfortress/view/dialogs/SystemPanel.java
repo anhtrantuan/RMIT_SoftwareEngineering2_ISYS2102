@@ -39,10 +39,10 @@ public class SystemPanel extends javax.swing.JPanel {
         btnContract = new javax.swing.JButton();
         pnlHire = new javax.swing.JPanel();
         btnHire = new javax.swing.JButton();
-        allEmployeePnl = new javax.swing.JPanel();
+        pnlAllEmployees = new javax.swing.JPanel();
         btnEmployeeList = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
+        pnlBuyItems = new javax.swing.JPanel();
+        btnBuyItems = new javax.swing.JButton();
         pnlCloseButton = new javax.swing.JPanel();
         btnClose = new javax.swing.JButton();
 
@@ -140,60 +140,61 @@ public class SystemPanel extends javax.swing.JPanel {
 
         add(pnlHire);
 
-        allEmployeePnl.setBackground(new java.awt.Color(255, 255, 255));
-        allEmployeePnl.setMaximumSize(new java.awt.Dimension(240, 80));
-        allEmployeePnl.setMinimumSize(new java.awt.Dimension(240, 80));
-        allEmployeePnl.setPreferredSize(new java.awt.Dimension(240, 80));
+        pnlAllEmployees.setBackground(new java.awt.Color(255, 255, 255));
+        pnlAllEmployees.setMaximumSize(new java.awt.Dimension(240, 80));
+        pnlAllEmployees.setMinimumSize(new java.awt.Dimension(240, 80));
+        pnlAllEmployees.setPreferredSize(new java.awt.Dimension(240, 80));
 
         btnEmployeeList.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        btnEmployeeList.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icEmployees.png"))); // NOI18N
         btnEmployeeList.setText(Constant.EMPLOYEE_LIST_BTN);
         btnEmployeeList.setMaximumSize(new java.awt.Dimension(240, 60));
         btnEmployeeList.setMinimumSize(new java.awt.Dimension(240, 60));
-        btnEmployeeList.setOpaque(false);
         btnEmployeeList.setPreferredSize(new java.awt.Dimension(240, 60));
 
-        javax.swing.GroupLayout allEmployeePnlLayout = new javax.swing.GroupLayout(allEmployeePnl);
-        allEmployeePnl.setLayout(allEmployeePnlLayout);
-        allEmployeePnlLayout.setHorizontalGroup(
-            allEmployeePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout pnlAllEmployeesLayout = new javax.swing.GroupLayout(pnlAllEmployees);
+        pnlAllEmployees.setLayout(pnlAllEmployeesLayout);
+        pnlAllEmployeesLayout.setHorizontalGroup(
+            pnlAllEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(btnEmployeeList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        allEmployeePnlLayout.setVerticalGroup(
-            allEmployeePnlLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(allEmployeePnlLayout.createSequentialGroup()
+        pnlAllEmployeesLayout.setVerticalGroup(
+            pnlAllEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlAllEmployeesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnEmployeeList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        add(allEmployeePnl);
+        add(pnlAllEmployees);
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setMaximumSize(new java.awt.Dimension(240, 80));
-        jPanel1.setMinimumSize(new java.awt.Dimension(240, 80));
-        jPanel1.setPreferredSize(new java.awt.Dimension(240, 80));
+        pnlBuyItems.setBackground(new java.awt.Color(255, 255, 255));
+        pnlBuyItems.setMaximumSize(new java.awt.Dimension(240, 80));
+        pnlBuyItems.setMinimumSize(new java.awt.Dimension(240, 80));
+        pnlBuyItems.setPreferredSize(new java.awt.Dimension(240, 80));
 
-        jButton1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jButton1.setText(Constant.BUY_BTN);
-        jButton1.setMaximumSize(new java.awt.Dimension(240, 60));
-        jButton1.setMinimumSize(new java.awt.Dimension(240, 60));
-        jButton1.setPreferredSize(new java.awt.Dimension(240, 60));
+        btnBuyItems.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        btnBuyItems.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icBuyItems.png"))); // NOI18N
+        btnBuyItems.setText(Constant.BUY_BTN);
+        btnBuyItems.setMaximumSize(new java.awt.Dimension(240, 60));
+        btnBuyItems.setMinimumSize(new java.awt.Dimension(240, 60));
+        btnBuyItems.setPreferredSize(new java.awt.Dimension(240, 60));
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        javax.swing.GroupLayout pnlBuyItemsLayout = new javax.swing.GroupLayout(pnlBuyItems);
+        pnlBuyItems.setLayout(pnlBuyItemsLayout);
+        pnlBuyItemsLayout.setHorizontalGroup(
+            pnlBuyItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnBuyItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+        pnlBuyItemsLayout.setVerticalGroup(
+            pnlBuyItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlBuyItemsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(9, Short.MAX_VALUE))
+                .addComponent(btnBuyItems, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(8, Short.MAX_VALUE))
         );
 
-        add(jPanel1);
+        add(pnlBuyItems);
 
         pnlCloseButton.setBackground(new java.awt.Color(255, 255, 255));
         pnlCloseButton.setMaximumSize(new java.awt.Dimension(127, 60));
@@ -214,13 +215,13 @@ public class SystemPanel extends javax.swing.JPanel {
         pnlCloseButton.setLayout(pnlCloseButtonLayout);
         pnlCloseButtonLayout.setHorizontalGroup(
             pnlCloseButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 127, Short.MAX_VALUE)
+            .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
         );
         pnlCloseButtonLayout.setVerticalGroup(
             pnlCloseButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCloseButtonLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, 49, Short.MAX_VALUE))
+                .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
         );
 
         add(pnlCloseButton);
@@ -235,14 +236,14 @@ public class SystemPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCloseActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel allEmployeePnl;
+    private javax.swing.JButton btnBuyItems;
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnContract;
     private javax.swing.JButton btnEmployeeList;
     private javax.swing.JButton btnHire;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblTitle;
+    private javax.swing.JPanel pnlAllEmployees;
+    private javax.swing.JPanel pnlBuyItems;
     private javax.swing.JPanel pnlCloseButton;
     private javax.swing.JPanel pnlContract;
     private javax.swing.JPanel pnlHire;

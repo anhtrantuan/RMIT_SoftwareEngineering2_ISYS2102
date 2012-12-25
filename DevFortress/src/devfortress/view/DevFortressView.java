@@ -124,10 +124,10 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         scpProjects = new javax.swing.JScrollPane();
         treProjects = new javax.swing.JTree();
         pnlBlank = new javax.swing.JPanel();
-        pnlEvents = new javax.swing.JPanel();
-        eventScp = new javax.swing.JScrollPane();
         pnlAnimation = new javax.swing.JPanel();
         pnlGameAnimation = new javax.swing.JPanel();
+        scpEvents = new javax.swing.JScrollPane();
+        pnlEvents = new javax.swing.JPanel();
         menu = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         menuFile_Exit = new javax.swing.JMenuItem();
@@ -142,7 +142,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         setTitle("DevFortress");
         setBackground(new java.awt.Color(255, 255, 255));
         setName("DevFortress"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(1000, 600));
+        setPreferredSize(new java.awt.Dimension(1000, 700));
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
@@ -165,10 +165,13 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         );
         pnlStatusBarLayout.setVerticalGroup(
             pnlStatusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblStatus, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 19, Short.MAX_VALUE)
+            .addGroup(pnlStatusBarLayout.createSequentialGroup()
+                .addComponent(lblStatus)
+                .addGap(0, 1, Short.MAX_VALUE))
         );
 
         scpManagement.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        scpManagement.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
         scpManagement.setMinimumSize(new java.awt.Dimension(0, 0));
         scpManagement.setPreferredSize(new java.awt.Dimension(0, 0));
 
@@ -193,22 +196,22 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         btnInformation.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         btnInformation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icInformation.png"))); // NOI18N
         btnInformation.setText(Constant.BUTTON_INFORMATION);
-        btnInformation.setMaximumSize(new java.awt.Dimension(228, 40));
-        btnInformation.setMinimumSize(new java.awt.Dimension(228, 40));
-        btnInformation.setPreferredSize(new java.awt.Dimension(228, 40));
+        btnInformation.setMaximumSize(new java.awt.Dimension(227, 40));
+        btnInformation.setMinimumSize(new java.awt.Dimension(227, 40));
+        btnInformation.setPreferredSize(new java.awt.Dimension(227, 40));
 
         btnCurrentProjects.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         btnCurrentProjects.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icProjects.png"))); // NOI18N
         btnCurrentProjects.setText(Constant.BUTTTON_CURRENT_PROJECTS);
-        btnCurrentProjects.setMaximumSize(new java.awt.Dimension(228, 40));
-        btnCurrentProjects.setMinimumSize(new java.awt.Dimension(228, 40));
-        btnCurrentProjects.setPreferredSize(new java.awt.Dimension(228, 40));
+        btnCurrentProjects.setMaximumSize(new java.awt.Dimension(227, 40));
+        btnCurrentProjects.setMinimumSize(new java.awt.Dimension(227, 40));
+        btnCurrentProjects.setPreferredSize(new java.awt.Dimension(227, 40));
 
         btnNextTurn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         btnNextTurn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icNextTurn.png"))); // NOI18N
         btnNextTurn.setText(Constant.BUTTON_NEXT_TURN);
-        btnNextTurn.setMaximumSize(new java.awt.Dimension(136, 90));
-        btnNextTurn.setMinimumSize(new java.awt.Dimension(136, 90));
+        btnNextTurn.setMaximumSize(new java.awt.Dimension(128, 90));
+        btnNextTurn.setMinimumSize(new java.awt.Dimension(128, 90));
         btnNextTurn.setPreferredSize(new java.awt.Dimension(136, 90));
 
         javax.swing.GroupLayout pnlControlsLayout = new javax.swing.GroupLayout(pnlControls);
@@ -218,12 +221,12 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
             .addGroup(pnlControlsLayout.createSequentialGroup()
                 .addGroup(pnlControlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnlControlsLayout.createSequentialGroup()
-                        .addGroup(pnlControlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(pnlControlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(btnInformation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnCurrentProjects, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(10, 10, 10)
-                        .addComponent(btnNextTurn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnSystem, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE))
+                        .addComponent(btnNextTurn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnSystem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
         pnlControlsLayout.setVerticalGroup(
@@ -266,7 +269,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         pnlDuration.setLayout(pnlDurationLayout);
         pnlDurationLayout.setHorizontalGroup(
             pnlDurationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblDuration, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
+            .addComponent(lblDuration, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
         );
         pnlDurationLayout.setVerticalGroup(
             pnlDurationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -289,7 +292,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         pnlBudget.setLayout(pnlBudgetLayout);
         pnlBudgetLayout.setHorizontalGroup(
             pnlBudgetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblBudget, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
+            .addComponent(lblBudget, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
         );
         pnlBudgetLayout.setVerticalGroup(
             pnlBudgetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -338,7 +341,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         pnlEmployees.setLayout(pnlEmployeesLayout);
         pnlEmployeesLayout.setHorizontalGroup(
             pnlEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblEmployees, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
+            .addComponent(lblEmployees, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
         );
         pnlEmployeesLayout.setVerticalGroup(
             pnlEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -396,31 +399,16 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         pnlBlank.setLayout(pnlBlankLayout);
         pnlBlankLayout.setHorizontalGroup(
             pnlBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 376, Short.MAX_VALUE)
+            .addGap(0, 361, Short.MAX_VALUE)
         );
         pnlBlankLayout.setVerticalGroup(
             pnlBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 36, Short.MAX_VALUE)
+            .addGap(0, 68, Short.MAX_VALUE)
         );
 
         pnlManagement.add(pnlBlank);
 
         scpManagement.setViewportView(pnlManagement);
-
-        pnlEvents.setBackground(new java.awt.Color(255, 255, 255));
-        pnlEvents.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        pnlEvents.setPreferredSize(new java.awt.Dimension(0, 120));
-
-        javax.swing.GroupLayout pnlEventsLayout = new javax.swing.GroupLayout(pnlEvents);
-        pnlEvents.setLayout(pnlEventsLayout);
-        pnlEventsLayout.setHorizontalGroup(
-            pnlEventsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(eventScp)
-        );
-        pnlEventsLayout.setVerticalGroup(
-            pnlEventsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(eventScp, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
-        );
 
         pnlAnimation.setBackground(new java.awt.Color(255, 255, 255));
         pnlAnimation.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
@@ -452,6 +440,25 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
             pnlAnimationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(pnlGameAnimation, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
+
+        scpEvents.setBackground(new java.awt.Color(255, 255, 255));
+        scpEvents.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+
+        pnlEvents.setBackground(new java.awt.Color(255, 255, 255));
+        pnlEvents.setPreferredSize(new java.awt.Dimension(594, 202));
+
+        javax.swing.GroupLayout pnlEventsLayout = new javax.swing.GroupLayout(pnlEvents);
+        pnlEvents.setLayout(pnlEventsLayout);
+        pnlEventsLayout.setHorizontalGroup(
+            pnlEventsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 594, Short.MAX_VALUE)
+        );
+        pnlEventsLayout.setVerticalGroup(
+            pnlEventsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 202, Short.MAX_VALUE)
+        );
+
+        scpEvents.setViewportView(pnlEvents);
 
         menu.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
@@ -503,7 +510,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
                 .addComponent(scpManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlAnimation, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-                    .addComponent(pnlEvents, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)))
+                    .addComponent(scpEvents)))
             .addComponent(pnlStatusBar, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -514,8 +521,8 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pnlAnimation, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(pnlEvents, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 2, Short.MAX_VALUE)))
+                        .addComponent(scpEvents, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addComponent(pnlStatusBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -653,7 +660,6 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
 
         /* Revalidate the frame layout. */
         validate();
-        repaint();
     }//GEN-LAST:event_treeExpansion
 
     /**
@@ -684,7 +690,6 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
     private javax.swing.JButton btnInformation;
     private javax.swing.JButton btnNextTurn;
     private javax.swing.JButton btnSystem;
-    private javax.swing.JScrollPane eventScp;
     private javax.swing.JLabel lblBudget;
     private javax.swing.JLabel lblDuration;
     private javax.swing.JLabel lblEmployees;
@@ -713,6 +718,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
     private javax.swing.JPanel pnlStatusBar;
     private javax.swing.Box.Filler rigidArea1;
     private javax.swing.Box.Filler rigidArea2;
+    private javax.swing.JScrollPane scpEvents;
     private javax.swing.JScrollPane scpExpenses;
     private javax.swing.JScrollPane scpManagement;
     private javax.swing.JScrollPane scpProjects;
@@ -754,8 +760,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
     @Override
     public void run() {
         setVisible(true);
-        System.out.println(eventScp.getSize());
-        
+
         while (true) {
             while (animationEngine.isActive()) {
                 animationCanvas.run(animationEngine);

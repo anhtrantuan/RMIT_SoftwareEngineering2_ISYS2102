@@ -337,5 +337,14 @@ public class Company {
         }
     }
 
-private void save
+
+    public int getBeerStock() {
+        return beerStock;
+    }
+
+    public int getFoodStock() {
+        return foodStock;
+    }
+    
+    //private void save
 }

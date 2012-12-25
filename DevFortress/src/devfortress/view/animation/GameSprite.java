@@ -29,6 +29,8 @@ public class GameSprite extends Sprite {
      */
     public GameSprite(Dimension dim, double posX, double posY, Image image) {
         super(dim, posX, posY);
+        widthScale = 1;
+        heightScale = 1;
         speed = 0;
         setAngleDegree(0);
         this.image = image;
@@ -57,6 +59,9 @@ public class GameSprite extends Sprite {
         }
 
         /* Else, initialize frame. */
+        widthScale = 1;
+        heightScale = 1;
+        speed = DefaultSpeed;
         this.image = image;
         this.frameWidth = frameWidth;
         this.frameHeight = frameHeight;
