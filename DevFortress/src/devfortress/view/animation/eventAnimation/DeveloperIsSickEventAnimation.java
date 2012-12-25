@@ -25,10 +25,10 @@ public class DeveloperIsSickEventAnimation extends Game2D {
     private BufferedImage FLOORS_IMAGE, BED_IMAGE, DEV_IMAGE, DOCTOR_IMAGE, DOCTOR_TALKING_IMAGE;
     private Group<GameSprite> sprites;
     private GameSprite dev, doctor, bed, doctor_talking;
-    private int FLOOR_CROP[] = new int[]{0, 0, 240, 177},
-            DEV_SPRITE[] = new int[]{480, 0, 48, 48},
-            DOC_SPRITE[] = new int[]{480, 0, 48, 48},
-            DOC_TALKING_SPRITE[] = new int[]{480, 0, 48, 48};
+//    private int FLOOR_CROP[] = new int[]{0, 0, 240, 177},
+//            DEV_SPRITE[] = new int[]{480, 0, 48, 48},
+//            DOC_SPRITE[] = new int[]{480, 0, 48, 48},
+//            DOC_TALKING_SPRITE[] = new int[]{480, 0, 48, 48};
 
     public DeveloperIsSickEventAnimation(Dimension dim) {
         super(dim);

@@ -125,6 +125,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         treProjects = new javax.swing.JTree();
         pnlBlank = new javax.swing.JPanel();
         pnlEvents = new javax.swing.JPanel();
+        eventScp = new javax.swing.JScrollPane();
         pnlAnimation = new javax.swing.JPanel();
         pnlGameAnimation = new javax.swing.JPanel();
         menu = new javax.swing.JMenuBar();
@@ -222,7 +223,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
                             .addComponent(btnCurrentProjects, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(10, 10, 10)
                         .addComponent(btnNextTurn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(btnSystem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnSystem, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
         pnlControlsLayout.setVerticalGroup(
@@ -265,7 +266,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         pnlDuration.setLayout(pnlDurationLayout);
         pnlDurationLayout.setHorizontalGroup(
             pnlDurationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblDuration, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+            .addComponent(lblDuration, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
         );
         pnlDurationLayout.setVerticalGroup(
             pnlDurationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -288,7 +289,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         pnlBudget.setLayout(pnlBudgetLayout);
         pnlBudgetLayout.setHorizontalGroup(
             pnlBudgetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblBudget, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+            .addComponent(lblBudget, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
         );
         pnlBudgetLayout.setVerticalGroup(
             pnlBudgetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,7 +338,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         pnlEmployees.setLayout(pnlEmployeesLayout);
         pnlEmployeesLayout.setHorizontalGroup(
             pnlEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblEmployees, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
+            .addComponent(lblEmployees, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 352, Short.MAX_VALUE)
         );
         pnlEmployeesLayout.setVerticalGroup(
             pnlEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -395,7 +396,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         pnlBlank.setLayout(pnlBlankLayout);
         pnlBlankLayout.setHorizontalGroup(
             pnlBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 374, Short.MAX_VALUE)
+            .addGap(0, 376, Short.MAX_VALUE)
         );
         pnlBlankLayout.setVerticalGroup(
             pnlBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -414,11 +415,11 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         pnlEvents.setLayout(pnlEventsLayout);
         pnlEventsLayout.setHorizontalGroup(
             pnlEventsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addComponent(eventScp)
         );
         pnlEventsLayout.setVerticalGroup(
             pnlEventsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 104, Short.MAX_VALUE)
+            .addComponent(eventScp, javax.swing.GroupLayout.DEFAULT_SIZE, 104, Short.MAX_VALUE)
         );
 
         pnlAnimation.setBackground(new java.awt.Color(255, 255, 255));
@@ -501,8 +502,8 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
             .addGroup(layout.createSequentialGroup()
                 .addComponent(scpManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlEvents, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-                    .addComponent(pnlAnimation, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)))
+                    .addComponent(pnlAnimation, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+                    .addComponent(pnlEvents, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)))
             .addComponent(pnlStatusBar, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -514,7 +515,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
                         .addComponent(pnlAnimation, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(pnlEvents, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 4, Short.MAX_VALUE)))
+                        .addGap(0, 2, Short.MAX_VALUE)))
                 .addComponent(pnlStatusBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -683,6 +684,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
     private javax.swing.JButton btnInformation;
     private javax.swing.JButton btnNextTurn;
     private javax.swing.JButton btnSystem;
+    private javax.swing.JScrollPane eventScp;
     private javax.swing.JLabel lblBudget;
     private javax.swing.JLabel lblDuration;
     private javax.swing.JLabel lblEmployees;
@@ -752,6 +754,8 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
     @Override
     public void run() {
         setVisible(true);
+        System.out.println(eventScp.getSize());
+        
         while (true) {
             while (animationEngine.isActive()) {
                 animationCanvas.run(animationEngine);

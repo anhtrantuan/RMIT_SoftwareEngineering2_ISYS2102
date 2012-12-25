@@ -1,4 +1,8 @@
 
+import devfortress.model.exception.EmployeeNotExist;
+import devfortress.model.facade.Engine;
+import devfortress.model.facade.Model;
+import devfortress.view.DevFortressView;
 import devfortress.view.dialogs.BuyItemPanel;
 import java.io.IOException;
 import javax.swing.JFrame;
@@ -17,7 +21,7 @@ public class test {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException, EmployeeNotExist {
         // TODO code application logic here
         JFrame f = new JFrame();
         BuyItemPanel panel = new BuyItemPanel();
