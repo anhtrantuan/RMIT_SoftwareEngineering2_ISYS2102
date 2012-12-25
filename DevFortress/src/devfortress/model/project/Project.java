@@ -225,14 +225,11 @@ public class Project {
                 skillRequirementMap.put(sk, functionPointRequire - functionPointProduced);
             }
         }
+        System.out.println(finish);
         if (skillRequirementMap.size() == finish && remainingTime.getMonths() != 0) {
             return true;
-        } else {
-            remainingTime.nextTurn();
-            if (remainingTime.getMonths() == 0) {
-                return false;
-            }
         }
+        System.out.println("SHIT");
         return false;
     }
 

@@ -162,7 +162,7 @@ public class Engine extends Observable implements Model {
      *
      * @return List of Employee
      */
-    private List<Employee> generateEmployeeList(){
+    private List<Employee> generateEmployeeList() {
         Random random = new Random();
         int number = random.nextInt(3) + 3;
         return utilities.generateEmployeeList(level, number, this);
@@ -207,7 +207,24 @@ public class Engine extends Observable implements Model {
 
         generateEvent(level, company);
 
-        checkProject(succeededProject, failedProject);
+        for (Project project : company.getCurrentProjectList()) {
+            if (project.checkProjectProcess()) {
+                succeededProject.add(project);
+            } else {
+                project.getRemainingTime().nextTurn();
+                System.out.println(project.getRemainingTime().getMonths());
+                if (project.getRemainingTime().getMonths() == 0) {
+                    failedProject.add(project);
+                }
+            }
+        }
+
+        for (Project proj : failedProject) {
+            company.cancelProject(proj);
+        }
+        for (Project proj : succeededProject) {
+            company.finishProject(proj);
+        }
 
         availableProjects = generateProjectList();
         availableEmployees = generateEmployeeList();
@@ -231,7 +248,7 @@ public class Engine extends Observable implements Model {
     /**
      * Increase the week number by one
      */
-    private void nextWeek()  {
+    private void nextWeek() {
         eventOccur();
         consumeFood();
         dateTime.nextWeek();
@@ -308,7 +325,7 @@ public class Engine extends Observable implements Model {
      * @return
      */
     @Override
-    public Employee getEmployeeByName(String name){
+    public Employee getEmployeeByName(String name) {
         return company.getEmployeeByName(name);
     }
 
@@ -335,7 +352,7 @@ public class Engine extends Observable implements Model {
         notifyObservers(message);
     }
 
-    private void consumeFood(){
+    private void consumeFood() {
         company.consumeItem();
     }
 
@@ -392,9 +409,7 @@ public class Engine extends Observable implements Model {
     }
 
     @Override
-    public void drink(Employee emp){
+    public void drink(Employee emp) {
         company.drinkBeer(emp);
     }
-    
-    
 }
