@@ -7,8 +7,10 @@ package devfortress.model.employee;
 import devfortress.model.memento.SkillMemento;
 import devfortress.model.project.Project;
 import devfortress.utilities.Skill;
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.Map;
 
 /**
@@ -23,10 +25,12 @@ public class Employee {
     private Project workingProject;
     private int royalCountdown;
     private int eventCountdown;
+    private LinkedList<SkillMemento> memento;
 
     public Employee(String name, Map<Skill, Integer> skillList) {
         this.name = name;
         this.skillList = skillList;
+        memento = new LinkedList<SkillMemento>();
         status = new boolean[12];
         workingProject = null;
         //0 is having beer, 1 is full, 2 is happy, 3 is working,
@@ -90,6 +94,7 @@ public class Employee {
     }
 
     public void skillLevelUp(Skill sk) {
+
         if (skillList.get(sk) < 10) {
             if (status[10]) {
                 if (skillList.containsKey(sk)) {
@@ -106,13 +111,15 @@ public class Employee {
             } else {
                 if (skillList.containsKey(sk)) {
                     int val = ((Integer) skillList.get(sk)).intValue();
-                    skillList.put(sk, ++val);
+                    skillList.put(sk, val);
                 } else {
                     skillList.put(sk, 1);
                 }
             }
-            getMainSkill();
+
         }
+
+        getMainSkill();
     }
 
     public Skill getMainSkill() {
@@ -413,12 +420,31 @@ public class Employee {
             }
         }
     }
-    
-    public SkillMemento getMemento(float price){
+
+    public SkillMemento createMemento(float price) {
         return new SkillMemento(skillList, price);
+
     }
-    
-    public void restoreMemento(SkillMemento memento){
+
+    public float restoreMemento(SkillMemento memento) {
         setSkillList(memento.restoreSkill());
+        this.memento.removeLast();
+        return memento.restorePrice();
+    }
+
+    public void addMemento(SkillMemento mem) {
+        memento.add(mem);
+    }
+
+    public SkillMemento getMemento() {
+        return memento.getLast();
+    }
+
+    public void saveState(float fee) {
+        addMemento(createMemento(fee));
+    }
+
+    public float back() {
+        return this.restoreMemento(getMemento());
     }
 }

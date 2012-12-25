@@ -4,8 +4,8 @@
  */
 package devfortress.model.memento;
 
+import devfortress.model.employee.Employee;
 import devfortress.utilities.Skill;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
@@ -20,6 +20,7 @@ public class SkillMemento {
     public SkillMemento(Map<Skill, Integer> skillList, float price) {
         this.skillList = skillList;
         this.price = price;
+
     }
 
     public Map<Skill, Integer> restoreSkill() {

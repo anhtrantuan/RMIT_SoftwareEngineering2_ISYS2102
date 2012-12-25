@@ -41,7 +41,7 @@ public class TrainingTableModel extends DefaultTableModel{
                 JButton trainBtn = new JButton(Constant.TRAIN_BTN),
                         untrainBtn = new JButton(Constant.UNTRAIN_BTN);
                 Skill skill = iterator.next();
-                addRow(new Object[]{skill.toString(), skillList.get(skill),e.getTrainingFee(skill),trainBtn,untrainBtn});
+//                addRow(new Object[]{skill.toString(), skillList.get(skill),e.getTrainingFee(skill),trainBtn,untrainBtn});
             }
         }
     }

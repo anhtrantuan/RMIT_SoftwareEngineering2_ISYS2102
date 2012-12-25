@@ -13,7 +13,6 @@ import devfortress.utilities.Constant;
 import devfortress.utilities.Skill;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
@@ -314,7 +313,7 @@ public class Company {
         if (budget - fee < 0) {
             throw new UnaffordableException("Not enough money");
         } else {
-            SkillMemento m = e.getMemento(fee);
+            e.saveState(fee);
             e.skillLevelUp(sk);
             budget -= fee;
         }
@@ -337,7 +336,6 @@ public class Company {
         }
     }
 
-
     public int getBeerStock() {
         return beerStock;
     }
@@ -345,6 +343,8 @@ public class Company {
     public int getFoodStock() {
         return foodStock;
     }
-    
-    //private void save
+
+    public void unTrain(Employee em) {
+        budget += em.back();
+    }
 }
