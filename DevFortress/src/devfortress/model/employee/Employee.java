@@ -4,6 +4,7 @@
  */
 package devfortress.model.employee;
 
+import devfortress.model.memento.SkillMemento;
 import devfortress.model.project.Project;
 import devfortress.utilities.Skill;
 import java.util.EnumMap;
@@ -392,7 +393,7 @@ public class Employee {
         }
     }
 
-    public int getTrainingFee(Skill sk) {
+    public float getTrainingFee(Skill sk) {
 
         if (skillList.containsKey(sk) && skillList.get(sk) != 10) {
             if (sk.ordinal() <= 24) {
@@ -411,5 +412,13 @@ public class Employee {
                 return calculateSalaryPoint(sk, 1) * 5;
             }
         }
+    }
+    
+    public SkillMemento getMemento(float price){
+        return new SkillMemento(skillList, price);
+    }
+    
+    public void restoreMemento(SkillMemento memento){
+        setSkillList(memento.restoreSkill());
     }
 }

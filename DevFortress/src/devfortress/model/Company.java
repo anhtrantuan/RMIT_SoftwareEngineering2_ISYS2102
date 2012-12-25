@@ -6,13 +6,14 @@ package devfortress.model;
 
 import devfortress.model.employee.Employee;
 import devfortress.model.exception.EmployeeNotExist;
-import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.UnaffordableException;
+import devfortress.model.memento.SkillMemento;
 import devfortress.model.project.Project;
 import devfortress.utilities.Constant;
 import devfortress.utilities.Skill;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
@@ -30,6 +31,7 @@ public class Company {
     private float expenses;
     private Map<String, Float> items;
     private int foodStock, beerStock;
+//    private LinkedHashMap<>
 
     public Company() {
         this(1000f, new ArrayList<Employee>(),
@@ -308,10 +310,11 @@ public class Company {
     }
 
     public void trainEmployee(Employee e, Skill sk) throws UnaffordableException {
-        int fee = e.getTrainingFee(sk);
+        float fee = e.getTrainingFee(sk);
         if (budget - fee < 0) {
             throw new UnaffordableException("Not enough money");
         } else {
+            SkillMemento m = e.getMemento(fee);
             e.skillLevelUp(sk);
             budget -= fee;
         }
@@ -333,4 +336,6 @@ public class Company {
             beerStock--;
         }
     }
+
+private void save
 }
