@@ -337,4 +337,14 @@ public class Company {
             beerStock--;
         }
     }
+
+    public int getBeerStock() {
+        return beerStock;
+    }
+
+    public int getFoodStock() {
+        return foodStock;
+    }
+    
+    
 }
