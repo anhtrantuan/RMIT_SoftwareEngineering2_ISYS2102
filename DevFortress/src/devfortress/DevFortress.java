@@ -48,6 +48,10 @@ public class DevFortress {
         /* Run and display View. */
         Thread viewThread = new Thread(view);
         viewThread.start();
+        
+        /*Thread for event animation*/
+        Thread eventThread = new Thread(view);
+        eventThread.start();
 
         /* Wait until View is active. */
         while (!view.isActive()) {

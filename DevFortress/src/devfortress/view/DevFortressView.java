@@ -773,9 +773,13 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         setVisible(true);
         
         while (true) {
-            while (animationEngine.isActive()) {
-                animationCanvas.run(animationEngine);
+//            while (animationEngine.isActive()) {
+//                animationCanvas.run(animationEngine); 
+//            }
+            while (devSickEvent.isActive()) {
+                eventAnimationCanvas.run(devSickEvent);
             }
+            
         }
     }
 }
