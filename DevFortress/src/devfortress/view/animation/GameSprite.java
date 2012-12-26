@@ -102,10 +102,13 @@ public class GameSprite extends Sprite {
         super.move();
 
         /* If sprite is animated, update sprite. */
-        index++;
-        if (getFrameCount() > 1 && index == getFrameCount()) {
-            index = 0;
+        if (getFrameCount() > 1) {
+            index++;
+            if (index == getFrameCount()) {
+                index = 0;
+            }
         }
+        System.out.println(index);
     }
 
     /**

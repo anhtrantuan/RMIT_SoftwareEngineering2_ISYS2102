@@ -90,7 +90,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
 
         animationCanvas = new J2DCanvasPanel(dimension);
         animationCanvas.setSize(dimension);
-        animationCanvas.setSleep(250);
+        animationCanvas.setSleep(500);
         pnlGameAnimation.add(animationCanvas);
         animationEngine.initGame();
 
@@ -772,12 +772,13 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         setVisible(true);
 
         while (true) {
-            if (animationEngine.isActive()) {
-                animationCanvas.run(animationEngine);
+//            if (animationEngine.isActive()) {
+            animationCanvas.run(animationEngine);
 //                animationCanvas.drawStuff(animationEngine);
 //                animationCanvas.panelDraw();
-            }
+//            }
 //            if (devSickEvent.isActive()) {
+//                eventAnimationCanvas.run(devSickEvent);
 //                eventAnimationCanvas.drawStuff(devSickEvent);
 //                eventAnimationCanvas.panelDraw();
 //            }
