@@ -38,10 +38,12 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
     private String logMessages;
     private Dimension dimension, eventDimension;
     private J2DCanvasPanel mainCanvas;
+    private volatile J2DCanvasPanel currentCanvas;
     private GameAnimationEngine mainEngine;
+    private volatile Game2D currentEngine;
     private ArrayList<J2DCanvasPanel> canvases;
     private ArrayList<Game2D> engines;
-    private volatile boolean run = false;
+    private int index = 0;
 
     /**
      * Creates new form DevFortressView.
@@ -88,7 +90,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
 
         /* Get animation panel dimension. */
         dimension = pnlGameAnimation.getSize();
-        eventDimension = scpEvents.getViewport().getSize();
+        eventDimension = pnlEvent.getSize();
 
         /* Create animation engine and placeholder panel for animations. */
         mainEngine = new GameAnimationEngine(dimension);
@@ -139,8 +141,11 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         pnlBlank = new javax.swing.JPanel();
         pnlAnimation = new javax.swing.JPanel();
         pnlGameAnimation = new javax.swing.JPanel();
-        scpEvents = new javax.swing.JScrollPane();
         pnlEvents = new javax.swing.JPanel();
+        pnlEvent = new javax.swing.JPanel();
+        pnlEventScrollers = new javax.swing.JPanel();
+        btnPrevious = new javax.swing.JButton();
+        btnNext = new javax.swing.JButton();
         menu = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         menuFile_Exit = new javax.swing.JMenuItem();
@@ -201,6 +206,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         btnSystem.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
         btnSystem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icSystem.png"))); // NOI18N
         btnSystem.setText(Constant.BUTTON_SYSTEM);
+        btnSystem.setToolTipText("Manage ");
         btnSystem.setMaximumSize(new java.awt.Dimension(126, 50));
         btnSystem.setMinimumSize(new java.awt.Dimension(126, 50));
         btnSystem.setPreferredSize(new java.awt.Dimension(126, 50));
@@ -453,16 +459,86 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
             .addComponent(pnlGameAnimation, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
-        scpEvents.setBackground(new java.awt.Color(255, 255, 255));
-        scpEvents.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        scpEvents.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
-        scpEvents.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
-        scpEvents.setDoubleBuffered(true);
-
         pnlEvents.setBackground(new java.awt.Color(255, 255, 255));
-        pnlEvents.setPreferredSize(new java.awt.Dimension(594, 202));
-        pnlEvents.setLayout(new javax.swing.BoxLayout(pnlEvents, javax.swing.BoxLayout.Y_AXIS));
-        scpEvents.setViewportView(pnlEvents);
+        pnlEvents.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        pnlEvents.setPreferredSize(new java.awt.Dimension(4, 208));
+
+        pnlEvent.setBackground(new java.awt.Color(255, 255, 255));
+        pnlEvent.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        javax.swing.GroupLayout pnlEventLayout = new javax.swing.GroupLayout(pnlEvent);
+        pnlEvent.setLayout(pnlEventLayout);
+        pnlEventLayout.setHorizontalGroup(
+            pnlEventLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        pnlEventLayout.setVerticalGroup(
+            pnlEventLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        pnlEventScrollers.setBackground(new java.awt.Color(255, 255, 255));
+        pnlEventScrollers.setPreferredSize(new java.awt.Dimension(64, 204));
+
+        btnPrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icUp.png"))); // NOI18N
+        btnPrevious.setToolTipText("Previous Event");
+        btnPrevious.setEnabled(false);
+        btnPrevious.setMaximumSize(new java.awt.Dimension(40, 80));
+        btnPrevious.setMinimumSize(new java.awt.Dimension(40, 80));
+        btnPrevious.setPreferredSize(new java.awt.Dimension(40, 80));
+        btnPrevious.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPreviousActionPerformed(evt);
+            }
+        });
+
+        btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icDown.png"))); // NOI18N
+        btnNext.setToolTipText("Next Event");
+        btnNext.setEnabled(false);
+        btnNext.setMaximumSize(new java.awt.Dimension(40, 80));
+        btnNext.setMinimumSize(new java.awt.Dimension(40, 80));
+        btnNext.setPreferredSize(new java.awt.Dimension(40, 80));
+        btnNext.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlEventScrollersLayout = new javax.swing.GroupLayout(pnlEventScrollers);
+        pnlEventScrollers.setLayout(pnlEventScrollersLayout);
+        pnlEventScrollersLayout.setHorizontalGroup(
+            pnlEventScrollersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEventScrollersLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(pnlEventScrollersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnPrevious, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnNext, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+        );
+        pnlEventScrollersLayout.setVerticalGroup(
+            pnlEventScrollersLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEventScrollersLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(btnPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout pnlEventsLayout = new javax.swing.GroupLayout(pnlEvents);
+        pnlEvents.setLayout(pnlEventsLayout);
+        pnlEventsLayout.setHorizontalGroup(
+            pnlEventsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlEventsLayout.createSequentialGroup()
+                .addComponent(pnlEvent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(0, 0, 0)
+                .addComponent(pnlEventScrollers, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        pnlEventsLayout.setVerticalGroup(
+            pnlEventsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(pnlEvent, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnlEventScrollers, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         menu.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
@@ -514,7 +590,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
                 .addComponent(scpManagement, javax.swing.GroupLayout.PREFERRED_SIZE, 400, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(pnlAnimation, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
-                    .addComponent(scpEvents, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addComponent(pnlEvents, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)))
             .addComponent(pnlStatusBar, javax.swing.GroupLayout.DEFAULT_SIZE, 1000, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
@@ -525,7 +601,8 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pnlAnimation, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(scpEvents, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(pnlEvents, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, 0)))
                 .addComponent(pnlStatusBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -570,10 +647,10 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
      * Clear all current events.
      */
     private void clearAllEvents() {
-        for (Game2D game : engines) {
-            game.deactivate();
+        if (currentEngine != null) {
+            currentEngine.deactivate();
         }
-        pnlEvents.removeAll();
+        pnlEvent.removeAll();
         engines.clear();
         canvases.clear();
     }
@@ -700,10 +777,34 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
     private void menuFile_ExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuFile_ExitActionPerformed
         formWindowClosing(null);
     }//GEN-LAST:event_menuFile_ExitActionPerformed
+
+    /**
+     * Handle scrolling back event.
+     *
+     * @param evt
+     */
+    private void btnPreviousActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreviousActionPerformed
+        currentEngine.deactivate();
+        index--;
+        showCurrentEvent();
+    }//GEN-LAST:event_btnPreviousActionPerformed
+
+    /**
+     * Handle scrolling forward event.
+     *
+     * @param evt
+     */
+    private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
+        currentEngine.deactivate();
+        index++;
+        showCurrentEvent();
+    }//GEN-LAST:event_btnNextActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCurrentProjects;
     private javax.swing.JButton btnInformation;
+    private javax.swing.JButton btnNext;
     private javax.swing.JButton btnNextTurn;
+    private javax.swing.JButton btnPrevious;
     private javax.swing.JButton btnSystem;
     private javax.swing.JLabel lblBudget;
     private javax.swing.JLabel lblDuration;
@@ -724,6 +825,8 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
     private javax.swing.JPanel pnlControls;
     private javax.swing.JPanel pnlDuration;
     private javax.swing.JPanel pnlEmployees;
+    private javax.swing.JPanel pnlEvent;
+    private javax.swing.JPanel pnlEventScrollers;
     private javax.swing.JPanel pnlEvents;
     private javax.swing.JPanel pnlGameAnimation;
     private javax.swing.JPanel pnlManagement;
@@ -733,7 +836,6 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
     private javax.swing.JPanel pnlStatusBar;
     private javax.swing.Box.Filler rigidArea1;
     private javax.swing.Box.Filler rigidArea2;
-    private javax.swing.JScrollPane scpEvents;
     private javax.swing.JScrollPane scpExpenses;
     private javax.swing.JScrollPane scpManagement;
     private javax.swing.JScrollPane scpProjects;
@@ -761,27 +863,40 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         /* Add events for display. */
         if (data.getEvents() != null) {
             clearAllEvents();
-            pnlEvents.setSize(eventDimension.width,
-                    eventDimension.height * data.getEvents().size());
-            pnlEvents.setPreferredSize(pnlEvents.getSize());
-            for (Event event : data.getEvents()) {
-                /* Create animation engine. */
-                Game2D engine = createAnimationEngine(event);
-                engine.initGame();
+            if (!data.getEvents().isEmpty()) {
+                for (Event event : data.getEvents()) {
+                    /* Create animation engine. */
+                    Game2D engine = createAnimationEngine(event);
+                    engine.initGame();
 
-                /* Create canvas panel to hold the game engine. */
-                J2DCanvasPanel canvas = new J2DCanvasPanel(eventDimension);
-                canvas.setSize(eventDimension);
-                canvas.setSleep(250);
+                    /* Create canvas panel to hold the game engine. */
+                    J2DCanvasPanel canvas = new J2DCanvasPanel(eventDimension);
+                    canvas.setSize(eventDimension);
+                    canvas.setSleep(250);
 
-                /* Add event to View. */
-                engines.add(engine);
-                canvases.add(canvas);
-                pnlEvents.add(canvas);
+                    /* Add event to View. */
+                    engines.add(engine);
+                    canvases.add(canvas);
+                }
+
+                /* Show first event. */
+                index = 0;
+                showCurrentEvent();
             }
-
-            run = true;
         }
+    }
+
+    /**
+     * Show current event.
+     */
+    private void showCurrentEvent() {
+        pnlEvent.removeAll();
+        currentEngine = engines.get(index);
+        currentEngine.activate();
+        currentCanvas = canvases.get(index);
+        pnlEvent.add(currentCanvas);
+        btnPrevious.setEnabled(index > 0);
+        btnNext.setEnabled(canvases.size() > index + 1);
     }
 
     /**
@@ -825,24 +940,13 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
             }
         }).start();
 
-        /* Run event animations. */
+        /* Run event animation. */
         new Thread(new Runnable() {
             @Override
             public void run() {
                 while (true) {
-                    if (run) {
-                        for (int i = 0; i < canvases.size(); i++) {
-                            final J2DCanvasPanel canvas = canvases.get(i);
-                            final Game2D engine = engines.get(i);
-                            new Thread(new Runnable() {
-                                @Override
-                                public void run() {
-                                    canvas.run(engine);
-                                }
-                            }).start();
-                        }
-
-                        run = false;
+                    if (!(currentEngine == null || currentCanvas == null)) {
+                        currentCanvas.run(currentEngine);
                     }
                 }
             }

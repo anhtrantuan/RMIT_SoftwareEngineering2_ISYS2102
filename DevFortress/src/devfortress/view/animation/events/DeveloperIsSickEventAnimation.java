@@ -44,6 +44,31 @@ public class DeveloperIsSickEventAnimation extends Game2D {
         super(dim);
     }
 
+    /**
+     * Activate/Re-activate this engine.
+     */
+    @Override
+    public void activate() {
+        super.activate();
+    }
+
+    /**
+     * Deactivate this engine and reset it to original state.
+     */
+    @Override
+    public void deactivate() {
+        super.deactivate();
+        timestamp = 0;
+        sprites.clear();
+        sprites.add(floor);
+        sprites.add(dev);
+        try {
+            dev.setFrameIndex(0);
+        } catch (Exception ex) {
+            Logger.getLogger(DeveloperIsSickEventAnimation.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
     @Override
     public void drawStuff(Graphics g) {
         /* Update sprites. */
@@ -57,7 +82,7 @@ public class DeveloperIsSickEventAnimation extends Game2D {
         }
 
         if (timestamp != 0 && System.currentTimeMillis() >= timestamp + 1500) {
-            g.clearRect(0, 0, DIM.width, DIM.height);
+//            g.clearRect(0, 0, DIM.width, DIM.height);
             sprites.add(floor);
             bed = new GameSprite(DIM, 0, 0, BED_IMAGE);
             bed.setScales(3, 3);
