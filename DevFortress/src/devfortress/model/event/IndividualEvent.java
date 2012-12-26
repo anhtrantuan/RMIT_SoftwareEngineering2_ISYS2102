@@ -76,27 +76,63 @@ public class IndividualEvent implements EventInterface {
     }
 
     public static Event featureCut(Employee e) {
-        System.out.println("feature cut");
-        return Event.FEATURE_CUT;
+        Project p = e.getWorkingProject();
+        if (p != null) {
+            Map<Skill, Employee> skill = e.getWorkingProject().getSkill_employeeMap();
+            Map<Skill, Integer> require = e.getWorkingProject().getSkillRequirementMap();
+            for (Skill sk : skill.keySet()) {
+                if (skill.get(sk).equals(e)) {
+                    int remainPoint = require.get(sk);
+                    require.put(sk, 0);
+                    e.getWorkingProject().decreaseRemainingPoint(remainPoint);
+                }
+            }
+            return Event.FEATURE_CUT;
+
+        }
+        return Event.NO_EVENT;
     }
 
     public static Event backupFailed(Employee e) {
-        System.out.println("backup fail");
-        return Event.BACKUP_FAIL;
+        Project p = e.getWorkingProject();
+        if (p != null) {
+            Map<Skill, Employee> skill = e.getWorkingProject().getSkill_employeeMap();
+            Map<Skill, Integer> require = e.getWorkingProject().getSkillRequirementMap();
+            for (Skill sk : skill.keySet()) {
+                if (skill.get(sk).equals(e)) {
+                    require.put(sk, require.get(sk) + 25);
+                    e.getWorkingProject().increaeRemainingPoint(25);
+                }
+            }
+            return Event.BACKUP_FAIL;
+        }
+        return Event.NO_EVENT;
     }
 
     public static Event holiday(Employee e) {
-        System.out.println("holiday");
+        e.goHoliday();
         return Event.HOLIDAY;
     }
 
     public static Event redundancies(Employee e) {
-        System.out.println("redundancies");
-        return Event.REDUNDANCIES;
+        Project p = e.getWorkingProject();
+        if (p != null) {
+            Map<Skill, Employee> skill = e.getWorkingProject().getSkill_employeeMap();
+            for (Skill sk : skill.keySet()) {
+                if (skill.get(sk).equals(e)) {
+                    skill.put(sk, null);
+                } else if (skill.get(sk) != null) {
+                    skill.get(sk).sad();
+                }
+            }
+            e.getOutOfWork();
+            return Event.REDUNDANCIES;
+        }
+        return Event.NO_EVENT;
     }
 
     public static Event bonus(Employee e) {
-        System.out.println("bonus");
+
         return Event.BONUS;
     }
 
