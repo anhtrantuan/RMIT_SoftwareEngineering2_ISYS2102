@@ -77,7 +77,7 @@ public class Constant {
     public static String HAVE_BEER_BTN = "Have beer";
     public static String TRAIN_BTN = "Train";
     public static String UNTRAIN_BTN = "Train";
-    public static String BUY_BTN = "Buy items";
+    public static String BUY_BTN = "Buy item";
     public static String TRAINING_FEE = "Training fee";
     public static String CLEAR_BTN = "Clear";
     public static String SHOP_LBL = "Shop";

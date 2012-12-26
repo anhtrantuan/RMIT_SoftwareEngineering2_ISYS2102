@@ -68,8 +68,6 @@ public class GameAnimationEngine extends Game2D {
 
         /* Draw sprites. */
         sprites.draw(g);
-        
-        System.out.println("Draw sprite 111");
     }
 
     /**
