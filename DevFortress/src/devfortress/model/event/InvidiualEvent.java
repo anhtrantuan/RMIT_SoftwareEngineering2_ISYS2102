@@ -6,6 +6,7 @@
 package devfortress.model.event;
 
 import devfortress.model.employee.Employee;
+import devfortress.model.project.Project;
 import devfortress.utilities.Event;
 import devfortress.utilities.Skill;
 import java.util.Map;
@@ -22,39 +23,51 @@ public class InvidiualEvent implements EventInterface {
     }
 
     public static Event requirementChange(Employee e) {
-        Map<Skill, Employee> skill = e.getWorkingProject().getSkill_employeeMap();
-        Map<Skill, Integer> require = e.getWorkingProject().getSkillRequirementMap();
-        for (Skill sk : skill.keySet()) {
-            if (skill.get(sk).equals(e)) {
-                require.put(sk, require.get(sk) + 20);
-                e.getWorkingProject().increaeRemainingPoint(20);
+        Project p = e.getWorkingProject();
+        if (p != null) {
+            Map<Skill, Employee> skill = e.getWorkingProject().getSkill_employeeMap();
+            Map<Skill, Integer> require = e.getWorkingProject().getSkillRequirementMap();
+            for (Skill sk : skill.keySet()) {
+                if (skill.get(sk).equals(e)) {
+                    require.put(sk, require.get(sk) + 20);
+                    e.getWorkingProject().increaeRemainingPoint(20);
+                }
             }
+            return Event.REQUIREMENT_CHANGE;
         }
-        return Event.REQUIREMENT_CHANGE;
+        return Event.NO_EVENT;
     }
 
     public static Event newTechnology(Employee e) {
-        Map<Skill, Employee> skill = e.getWorkingProject().getSkill_employeeMap();
-        Map<Skill, Integer> require = e.getWorkingProject().getSkillRequirementMap();
-        for (Skill sk : skill.keySet()) {
-            if (skill.get(sk).equals(e)) {
-                require.put(sk, require.get(sk) - 50);
-                e.getWorkingProject().decreaseRemainingPoint(50);
+        Project p = e.getWorkingProject();
+        if (p != null) {
+            Map<Skill, Employee> skill = e.getWorkingProject().getSkill_employeeMap();
+            Map<Skill, Integer> require = e.getWorkingProject().getSkillRequirementMap();
+            for (Skill sk : skill.keySet()) {
+                if (skill.get(sk).equals(e)) {
+                    require.put(sk, require.get(sk) - 50);
+                    e.getWorkingProject().decreaseRemainingPoint(50);
+                }
             }
+            return Event.NEW_TECHNOLOGY;
         }
-        return Event.NEW_TECHNOLOGY;
+        return Event.NO_EVENT;
     }
 
     public static Event solutionScale(Employee e) {
-        Map<Skill, Employee> skill = e.getWorkingProject().getSkill_employeeMap();
-        Map<Skill, Integer> require = e.getWorkingProject().getSkillRequirementMap();
-        for (Skill sk : skill.keySet()) {
-            if (skill.get(sk).equals(e)) {
-                require.put(sk, require.get(sk) + 10);
-                e.getWorkingProject().increaeRemainingPoint(10);
+        Project p = e.getWorkingProject();
+        if (p != null) {
+            Map<Skill, Employee> skill = e.getWorkingProject().getSkill_employeeMap();
+            Map<Skill, Integer> require = e.getWorkingProject().getSkillRequirementMap();
+            for (Skill sk : skill.keySet()) {
+                if (skill.get(sk).equals(e)) {
+                    require.put(sk, require.get(sk) + 10);
+                    e.getWorkingProject().increaeRemainingPoint(10);
+                }
             }
+            return Event.SOLUSTIONDOEST_NOT_SCALE;
         }
-        return Event.SOLUSTIONDOEST_NOT_SCALE;
+        return Event.NO_EVENT;
     }
 
     public static Event hacked(Employee e) {

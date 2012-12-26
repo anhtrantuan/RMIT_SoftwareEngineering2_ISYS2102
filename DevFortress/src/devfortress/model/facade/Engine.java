@@ -230,7 +230,6 @@ public class Engine extends Observable implements Model {
 
         availableProjects = generateProjectList();
         availableEmployees = generateEmployeeList();
-        System.out.println("abc");
         paySalary();
 
         try {
