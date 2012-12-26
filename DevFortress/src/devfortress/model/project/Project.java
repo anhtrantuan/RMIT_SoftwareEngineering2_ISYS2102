@@ -217,16 +217,19 @@ public class Project {
         //totalFunctionPointsDelivered = 0;
         for (Skill sk : skill_employeeMap.keySet()) {
             Employee emp = skill_employeeMap.get(sk);
-            int functionPointProduced = calculateFinalFunctionPoint(calculateBasicFunctionPoint(emp), emp);
-            remainingPoints -= functionPointProduced;
-            totalFunctionPointsDelivered += functionPointProduced;
-            int functionPointRequire = skillRequirementMap.get(sk);
-            if (functionPointRequire <= functionPointProduced) {
-                skillRequirementMap.put(sk, 0);
-                finish++;
-            } else {
-                skillRequirementMap.put(sk, functionPointRequire - functionPointProduced);
+            if (emp != null) {
+                int functionPointProduced = calculateFinalFunctionPoint(calculateBasicFunctionPoint(emp), emp);
+                remainingPoints -= functionPointProduced;
+                totalFunctionPointsDelivered += functionPointProduced;
+                int functionPointRequire = skillRequirementMap.get(sk);
+                if (functionPointRequire <= functionPointProduced) {
+                    skillRequirementMap.put(sk, 0);
+                    finish++;
+                } else {
+                    skillRequirementMap.put(sk, functionPointRequire - functionPointProduced);
+                }
             }
+
         }
         if (skillRequirementMap.size() == finish && remainingTime.getMonths() != 0) {
             return true;
