@@ -72,18 +72,18 @@ public class MediumLevel implements GameLevel {
 
 
         Skill[] sk = new Skill[numOfField];
-        
+
         int remainingMonthPoint;
-        int[]cumulativePoint = new int[numOfField];
+        int[] cumulativePoint = new int[numOfField];
         for (int i = 0; i < sk.length; i++) {
             sk[i] = Skill.randomSkill();
         }
         for (int i = 0; i < projectTime.getMonths(); i++) {
             remainingMonthPoint = Constant.MAX_FUCNTION_POINT_MEDIUM;
-            for (int j = 0; j< sk.length;j++) {
+            for (int j = 0; j < sk.length; j++) {
                 if (remainingMonthPoint >= 0) {
-                    int requireFuntionPoint = (random.nextInt(Constant.MAX_FUCNTION_POINT_MEDIUM/numOfField) + 1);
-                    cumulativePoint[j]+=requireFuntionPoint;
+                    int requireFuntionPoint = (random.nextInt(Constant.MAX_FUCNTION_POINT_MEDIUM / numOfField) + 1);
+                    cumulativePoint[j] += requireFuntionPoint;
                     map.put(sk[j], cumulativePoint[j]);
                     remainingMonthPoint -= requireFuntionPoint;
                     maxFuntionPoints -= requireFuntionPoint;
@@ -126,7 +126,7 @@ public class MediumLevel implements GameLevel {
         } else if (r < 0.46) {
             return IndividualEvent.redundancies(e);
         } else if (r < 0.47) {
-            return IndividualEvent.bonus(e);
+            return IndividualEvent.bonus(e, company);
         } else if (r < 0.52) {
             return ProjectEvent.teamBuilding(e);
         } else if (r < 0.57) {
@@ -144,7 +144,7 @@ public class MediumLevel implements GameLevel {
         } else if (r < 0.705) {
             return ProjectEvent.trainingSponsor(e);
         } else if (r < 0.755) {
-            return ProjectEvent.gotSued(e);
+            return ProjectEvent.gotSued(e,company);
         }
         return Event.NO_EVENT;
     }

@@ -5,6 +5,7 @@
  */
 package devfortress.model.event;
 
+import devfortress.model.Company;
 import devfortress.model.employee.Employee;
 import devfortress.model.project.Project;
 import devfortress.utilities.Event;
@@ -16,12 +17,12 @@ import java.util.Map;
  * @author satthuvdh
  */
 public class IndividualEvent implements EventInterface {
-
+    
     public static Event sickDeveloper(Employee e) {
         e.sick();
         return Event.DEVELOPER_IS_SICK;
     }
-
+    
     public static Event requirementChange(Employee e) {
         Project p = e.getWorkingProject();
         if (p != null) {
@@ -37,7 +38,7 @@ public class IndividualEvent implements EventInterface {
         }
         return Event.NO_EVENT;
     }
-
+    
     public static Event newTechnology(Employee e) {
         Project p = e.getWorkingProject();
         if (p != null) {
@@ -53,7 +54,7 @@ public class IndividualEvent implements EventInterface {
         }
         return Event.NO_EVENT;
     }
-
+    
     public static Event solutionScale(Employee e) {
         Project p = e.getWorkingProject();
         if (p != null) {
@@ -69,12 +70,12 @@ public class IndividualEvent implements EventInterface {
         }
         return Event.NO_EVENT;
     }
-
+    
     public static Event hacked(Employee e) {
         e.getHacked();
         return Event.HACKED;
     }
-
+    
     public static Event featureCut(Employee e) {
         Project p = e.getWorkingProject();
         if (p != null) {
@@ -88,11 +89,11 @@ public class IndividualEvent implements EventInterface {
                 }
             }
             return Event.FEATURE_CUT;
-
+            
         }
         return Event.NO_EVENT;
     }
-
+    
     public static Event backupFailed(Employee e) {
         Project p = e.getWorkingProject();
         if (p != null) {
@@ -108,12 +109,12 @@ public class IndividualEvent implements EventInterface {
         }
         return Event.NO_EVENT;
     }
-
+    
     public static Event holiday(Employee e) {
         e.goHoliday();
         return Event.HOLIDAY;
     }
-
+    
     public static Event redundancies(Employee e) {
         Project p = e.getWorkingProject();
         if (p != null) {
@@ -130,44 +131,44 @@ public class IndividualEvent implements EventInterface {
         }
         return Event.NO_EVENT;
     }
-
-    public static Event bonus(Employee e) {
-
+    
+    public static Event bonus(Employee e, Company c) {
+        c.increaseMoney(5000);
         return Event.BONUS;
     }
-
+    
     public static Event exploreTalent(Employee e) {
-        System.out.println("expore talent");
+        System.out.println("explore talent");
         return Event.EXPLORE_THE_EMPLOYEE_HAVING_TALENT;
     }
-
+    
     public static Event getSponsor(Employee e) {
-
+        
         return Event.GET_SPONSOR_FOR_CURRENT_PROJECT;
     }
-
+    
     public static Event projectStolen(Employee e) {
-
+        
         return Event.PROJECT_IS_STOLEN_BY_EMPLOYEE;
     }
-
+    
     public static Event employeeLeave(Employee e) {
-
+        
         return Event.EMPLOYEES_LEAVE_FOR_ANOTHER_COMPANY;
     }
-
+    
     public static Event inspiration(Employee e) {
-
+        
         return Event.INSPIRATION;
     }
-
+    
     public static Event developerHasBaby(Employee e) {
-
+        
         return Event.DEVELOPER_HAS_BABY;
     }
-
+    
     public static Event accident(Employee e) {
-
+        
         return Event.ACCIDENT_OCCURS_TO_EMPLOYEE;
     }
 }

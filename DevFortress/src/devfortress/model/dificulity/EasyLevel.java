@@ -118,7 +118,7 @@ public class EasyLevel implements GameLevel {
         } else if (r < 0.46) {
             return IndividualEvent.redundancies(e);
         } else if (r < 0.47) {
-            return IndividualEvent.bonus(e);
+            return IndividualEvent.bonus(e,company);
         } else if (r < 0.52) {
             return ProjectEvent.teamBuilding(e);
         }
