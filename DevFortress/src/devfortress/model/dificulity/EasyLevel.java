@@ -52,7 +52,7 @@ public class EasyLevel implements GameLevel {
     public DateTime generateProjectTime() {
         return new DateTime(0, new Random().nextInt(7) + 2, 0);
     }
-    
+
     @Override
     public Project generateProject(String projectName) {
         Random random = new Random();
@@ -64,17 +64,27 @@ public class EasyLevel implements GameLevel {
         int totalPoints = maxFuntionPoints;
 
         int numOfField = random.nextInt(6) + 2;
+        Skill[] sk = new Skill[numOfField];
 
-
-        for (int i = 0; i < numOfField; i++) {
-            int requireFuntionPoint = (random.nextInt(maxFuntionPoints / 2) + 1);
-            map.put(Skill.randomSkill(), requireFuntionPoint);
-            maxFuntionPoints -= requireFuntionPoint;
-
-            if (maxFuntionPoints <= 0) {
-                continue;
+        int remainingMonthPoint;
+        int[] cumulativePoint = new int[numOfField];
+        for (int i = 0; i < sk.length; i++) {
+            sk[i] = Skill.randomSkill();
+        }
+        for (int i = 0; i < projectTime.getMonths(); i++) {
+            remainingMonthPoint = Constant.MAX_FUCNTION_POINT_EASY;
+            for (int j = 0; j < sk.length; j++) {
+                if (remainingMonthPoint >= 0) {
+                    int requireFuntionPoint = (random.nextInt(Constant.MAX_FUCNTION_POINT_EASY / numOfField) + 1);
+                    cumulativePoint[j] += requireFuntionPoint;
+                    map.put(sk[j], cumulativePoint[j]);
+                    remainingMonthPoint -= requireFuntionPoint;
+                    maxFuntionPoints -= requireFuntionPoint;
+                }
+                if (maxFuntionPoints <= 0) {
+                    continue;
+                }
             }
-
         }
         projectBuilder.createNewProject();
         projectBuilder.addName(projectName);

@@ -71,14 +71,26 @@ public class MediumLevel implements GameLevel {
 
 
 
-        for (int i = 0; i < numOfField; i++) {
-            int requireFuntionPoint = (random.nextInt(maxFuntionPoints / 2) + 1);
-            map.put(Skill.randomSkill(), requireFuntionPoint);
-            maxFuntionPoints -= requireFuntionPoint;
-
-            if (maxFuntionPoints <= 5) {
-
-                continue;
+        Skill[] sk = new Skill[numOfField];
+        
+        int remainingMonthPoint;
+        int[]cumulativePoint = new int[numOfField];
+        for (int i = 0; i < sk.length; i++) {
+            sk[i] = Skill.randomSkill();
+        }
+        for (int i = 0; i < projectTime.getMonths(); i++) {
+            remainingMonthPoint = Constant.MAX_FUCNTION_POINT_MEDIUM;
+            for (int j = 0; j< sk.length;j++) {
+                if (remainingMonthPoint >= 0) {
+                    int requireFuntionPoint = (random.nextInt(Constant.MAX_FUCNTION_POINT_MEDIUM/numOfField) + 1);
+                    cumulativePoint[j]+=requireFuntionPoint;
+                    map.put(sk[j], cumulativePoint[j]);
+                    remainingMonthPoint -= requireFuntionPoint;
+                    maxFuntionPoints -= requireFuntionPoint;
+                }
+                if (maxFuntionPoints <= 0) {
+                    continue;
+                }
             }
         }
 
