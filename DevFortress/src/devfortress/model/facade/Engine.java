@@ -10,7 +10,6 @@ import devfortress.model.dificulity.EasyLevel;
 import devfortress.model.dificulity.GameLevel;
 import devfortress.model.dificulity.MediumLevel;
 import devfortress.model.employee.Employee;
-import devfortress.model.event.IndividualEvent;
 import devfortress.model.exception.*;
 import devfortress.model.project.Project;
 import devfortress.utilities.Event;
@@ -62,15 +61,14 @@ public class Engine extends Observable implements Model {
      */
     @Override
     public void buyItem(Item item, int quantity) throws UnaffordableException {
-
         company.buyItem(item, quantity);
-        setChanged();
-        String message = String.format("Bought %d new %s: -$%.2f.",
-                quantity, item.getName() + (quantity > 1 ? "s" : ""),
+
+        String message = String.format("Bought %d new %s%s: -$%.2f.",
+                quantity, item.getName(), (quantity > 1 ? "s" : ""),
                 (item.getPrice() * quantity));
         DataObject data = new DataObject(message, null);
+        setChanged();
         notifyObservers(data);
-
     }
 
     /**
@@ -88,29 +86,32 @@ public class Engine extends Observable implements Model {
             throw new OvercrowdedException();
         }
         company.addEmployee(employee);
-        setChanged();
+
         String message = String.format("Hired new employee %s: -$%.2f.",
                 employee.getName(), employee.getSalary());
         DataObject data = new DataObject(message, null);
+        setChanged();
         notifyObservers(data);
     }
 
     @Override
     public void fireEmployee(Employee employee) throws EmployeeNotExist {
         company.removeEmployee(employee);
-        setChanged();
+
         String message = String.format("Fired employee %s: +$%.2f.",
                 employee.getName(), employee.getSalary());
+        setChanged();
         notifyObservers(message);
     }
 
     @Override
     public void takeProject(Project project) {
         company.addProject(project);
-        setChanged();
+
         String message = String.format("Contracted new project %s: +$%.2f.",
                 project.getName(), project.getPayment() / 2);
         DataObject data = new DataObject(message, null);
+        setChanged();
         notifyObservers(data);
     }
 
@@ -122,10 +123,11 @@ public class Engine extends Observable implements Model {
     @Override
     public void cancelProject(Project project) {
         company.cancelProject(project);
-        setChanged();
+
         String message = String.format("Cancel project %s: -$%.2f.",
                 project.getName(), project.getPayment() * 0.8);
         DataObject data = new DataObject(message, null);
+        setChanged();
         notifyObservers(data);
     }
 
@@ -135,11 +137,19 @@ public class Engine extends Observable implements Model {
      */
     @Override
     public void eventOccur() {
-        for (Employee employee : availableEmployees) {
-            events.add(level.generateEvent(employee, company));
+        String message = "";
+
+        for (Employee employee : company.getEmployeeList()) {
+            Event event = level.generateEvent(employee, company);
+            events.add(event);
+            if (company.getEmployeeList().indexOf(employee) != 0) {
+                message += '\n';
+            }
+            message += String.format("Event %s occurred!", event.toString());
         }
-        String message = String.format("Event occurred!");
-        DataObject data = new DataObject(message, events);
+
+        DataObject data = new DataObject(message, null);
+        setChanged();
         notifyObservers(data);
     }
 
@@ -152,10 +162,11 @@ public class Engine extends Observable implements Model {
     @Override
     public void levelUp(Project project) {
         project.levelUp();
-        setChanged();
+
         String message = String.format("Leveled up employees in project %s.",
                 project.getName());
         DataObject data = new DataObject(message, null);
+        setChanged();
         notifyObservers(data);
     }
 
@@ -164,14 +175,13 @@ public class Engine extends Observable implements Model {
      */
     @Override
     public void paySalary() {
-
         company.paySalary();
-        setChanged();
+
         String message = String.format("Paid salary: -$%.2f.",
                 company.calculateTotalSalary());
         DataObject data = new DataObject(message, null);
+        setChanged();
         notifyObservers(data);
-
     }
 
     /**
@@ -206,7 +216,6 @@ public class Engine extends Observable implements Model {
      */
     @Override
     public void nextTurn() {
-
         List<Project> succeededProject = new ArrayList();
         List<Project> failedProject = new ArrayList();
 
@@ -250,15 +259,13 @@ public class Engine extends Observable implements Model {
         } catch (MoneyRunOutException ex) {
             Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
-
             company.clearItemList();
-
-            setChanged();
 
             String message = String.format("New turn began: Year %d Month %d Week %d.",
                     dateTime.getYear(), dateTime.getMonthOfYear(),
                     dateTime.getWeekOfMonth());
             DataObject data = new DataObject(message, events);
+            setChanged();
             notifyObservers(data);
         }
     }
@@ -340,15 +347,16 @@ public class Engine extends Observable implements Model {
     }
 
     @Override
-    public void assignEmployeeToProject(Employee emp, Project proj, Skill field) throws EmployeeIsBusyException {
+    public void assignEmployeeToProject(Employee emp, Project proj, Skill field)
+            throws EmployeeIsBusyException {
         if (!company.assignEmployeeToProject(emp, proj, field)) {
             throw new EmployeeIsBusyException();
         }
 
-        setChanged();
         String message = String.format("Assigned employee %s to skill %s in project %s.",
                 emp.getName(), field.toString(), proj.getName());
         DataObject data = new DataObject(message, null);
+        setChanged();
         notifyObservers(data);
     }
 
@@ -379,10 +387,11 @@ public class Engine extends Observable implements Model {
     @Override
     public void unassignEmployee(Project proj, Employee emp) {
         company.unassignEmployee(proj, emp);
-        setChanged();
+
         String message = String.format("Unassigned employee %s from project %s.",
                 emp.getName(), proj.getName());
         DataObject data = new DataObject(message, null);
+        setChanged();
         notifyObservers(data);
     }
 

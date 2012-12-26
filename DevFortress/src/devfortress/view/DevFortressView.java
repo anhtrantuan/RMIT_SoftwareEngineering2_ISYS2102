@@ -41,6 +41,8 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
     private GameAnimationEngine animationEngine;
     private ArrayList<J2DCanvasPanel> canvases;
     private ArrayList<Game2D> gameEngines;
+    private boolean run = false;
+    private int index;
 
     /**
      * Creates new form DevFortressView.
@@ -579,6 +581,9 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
      * Clear all current events.
      */
     private void clearAllEvents() {
+        for (Game2D game : gameEngines) {
+            game.deactivate();
+        }
         gameEngines.clear();
         canvases.clear();
     }
@@ -780,8 +785,13 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
                 canvas.setSleep(250);
 
                 /* Add event to View. */
-                addEvent(engine, canvas);
+//                addEvent(engine, canvas);
+                gameEngines.add(engine);
+                canvases.add(canvas);
+                pnlEvents.add(canvas);
             }
+
+            run = true;
         }
     }
 
@@ -824,6 +834,37 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
                 animationCanvas.run(animationEngine);
             }
         }).start();
+
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+//                    if (run) {
+                    if (!canvases.isEmpty()) {
+                        for (index = 0; index < canvases.size(); index++) {
+//                            new Thread(new Runnable() {
+//                                @Override
+//                                public void run() {
+                            System.out.println("Thread " + index);
+//                                    canvases.get(index).run(gameEngines.get(index));
+//                            canvases.get(index).drawStuff(gameEngines.get(index));
+//                            canvases.get(index).panelDraw();
+//                                }
+//                            }).start();
+//                        }
+//                        try {
+//                            Thread.sleep(canvases.get(0).getSleep());
+//                        } catch (InterruptedException ex) {
+//                            Logger.getLogger(DevFortressView.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+
+                    //                        run = false;
+                    //                    }
+                }
+            }
+        }).start();
+
 
 //        for (int i = 0; i < canvases.size(); i++) {
 //            canvases.get(i).drawStuff(gameEngines.get(i));
