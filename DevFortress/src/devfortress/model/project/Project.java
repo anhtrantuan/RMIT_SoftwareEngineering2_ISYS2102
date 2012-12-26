@@ -304,4 +304,12 @@ public class Project {
             employee.getOutOfWork();
         }
     }
+
+    public void increaeRemainingPoint(int point) {
+        this.remainingPoints += point;
+    }
+
+    public void decreaseRemainingPoint(int point) {
+        this.remainingPoints -= point;
+    }
 }

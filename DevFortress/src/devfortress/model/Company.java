@@ -7,7 +7,6 @@ package devfortress.model;
 import devfortress.model.employee.Employee;
 import devfortress.model.exception.EmployeeNotExist;
 import devfortress.model.exception.UnaffordableException;
-import devfortress.model.memento.SkillMemento;
 import devfortress.model.project.Project;
 import devfortress.utilities.Constant;
 import devfortress.utilities.Skill;

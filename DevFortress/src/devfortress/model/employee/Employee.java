@@ -228,7 +228,7 @@ public class Employee {
         status[3] = false;
     }
 
-    public void getSick() {
+    public void sick() {
         status[4] = true;
     }
 

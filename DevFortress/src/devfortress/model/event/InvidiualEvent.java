@@ -7,6 +7,8 @@ package devfortress.model.event;
 
 import devfortress.model.employee.Employee;
 import devfortress.utilities.Event;
+import devfortress.utilities.Skill;
+import java.util.Map;
 
 /**
  *
@@ -15,57 +17,78 @@ import devfortress.utilities.Event;
 public class InvidiualEvent implements EventInterface {
 
     public static Event sickDeveloper(Employee e) {
-
+        e.sick();
         return Event.DEVELOPER_IS_SICK;
     }
 
     public static Event requirementChange(Employee e) {
-
+        Map<Skill, Employee> skill = e.getWorkingProject().getSkill_employeeMap();
+        Map<Skill, Integer> require = e.getWorkingProject().getSkillRequirementMap();
+        for (Skill sk : skill.keySet()) {
+            if (skill.get(sk).equals(e)) {
+                require.put(sk, require.get(sk) + 20);
+                e.getWorkingProject().increaeRemainingPoint(20);
+            }
+        }
         return Event.REQUIREMENT_CHANGE;
     }
 
     public static Event newTechnology(Employee e) {
-
+        Map<Skill, Employee> skill = e.getWorkingProject().getSkill_employeeMap();
+        Map<Skill, Integer> require = e.getWorkingProject().getSkillRequirementMap();
+        for (Skill sk : skill.keySet()) {
+            if (skill.get(sk).equals(e)) {
+                require.put(sk, require.get(sk) - 50);
+                e.getWorkingProject().decreaseRemainingPoint(50);
+            }
+        }
         return Event.NEW_TECHNOLOGY;
     }
 
     public static Event solutionScale(Employee e) {
-
+        Map<Skill, Employee> skill = e.getWorkingProject().getSkill_employeeMap();
+        Map<Skill, Integer> require = e.getWorkingProject().getSkillRequirementMap();
+        for (Skill sk : skill.keySet()) {
+            if (skill.get(sk).equals(e)) {
+                require.put(sk, require.get(sk) + 10);
+                e.getWorkingProject().increaeRemainingPoint(10);
+            }
+        }
         return Event.SOLUSTIONDOEST_NOT_SCALE;
     }
 
     public static Event hacked(Employee e) {
-
+        e.getHacked();
         return Event.HACKED;
     }
 
     public static Event featureCut(Employee e) {
-
+        System.out.println("feature cut");
         return Event.FEATURE_CUT;
     }
 
     public static Event backupFailed(Employee e) {
-
+        System.out.println("backup fail");
         return Event.BACKUP_FAIL;
     }
 
     public static Event holiday(Employee e) {
-
+        System.out.println("holiday");
         return Event.HOLIDAY;
     }
 
     public static Event redundancies(Employee e) {
-
+        System.out.println("redundancies");
         return Event.REDUNDANCIES;
     }
 
     public static Event bonus(Employee e) {
-
+        System.out.println("bonus");
         return Event.BONUS;
     }
 
     public static Event exploreTalent(Employee e) {
-
+        System.out.println("expore talent");
         return Event.EXPLORE_THE_EMPLOYEE_HAVING_TALENT;
     }
 
