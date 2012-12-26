@@ -48,14 +48,11 @@ public class DevFortress {
         /* Run and display View. */
         Thread viewThread = new Thread(view);
         viewThread.start();
-        
-        /*Thread for event animation*/
-        Thread eventThread = new Thread(view);
-        eventThread.start();
 
         /* Wait until View is active. */
         while (!view.isActive()) {
         }
+
         try {
             /* Dummy Data
              * Start:
@@ -68,7 +65,7 @@ public class DevFortress {
             Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        
+
         EasyLevel level = new EasyLevel();
         List<Project> projects = Utilities.getInstance().generateProjectList(level, 1, model);
         model.takeProject(projects.get(0));
