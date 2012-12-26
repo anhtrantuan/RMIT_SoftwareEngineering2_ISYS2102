@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package devfortress.view.animation.eventAnimation;
+package devfortress.view.animation.events;
 
 import com.tabuto.j2dgf.Game2D;
 import com.tabuto.j2dgf.Group;
@@ -54,7 +54,6 @@ public class DeveloperIsSickEventAnimation extends Game2D {
          * Draw sprites.
          */
         sprites.draw(g);
-        System.out.println("Draw sprite");
     }
 
     @Override
@@ -82,7 +81,7 @@ public class DeveloperIsSickEventAnimation extends Game2D {
             /*
              * Calculate scale ratios.
              */
-            widthScale = (double) DIM.width / (FLOORS_IMAGE.getWidth(null));
+            widthScale = (double) DIM.width / FLOORS_IMAGE.getWidth(null);
             heightScale = (double) DIM.height / FLOORS_IMAGE.getHeight(null);
 
             /*
@@ -95,16 +94,14 @@ public class DeveloperIsSickEventAnimation extends Game2D {
             /*
              * Add sprites.
              */
-            floor = new GameSprite(DIM, 0, 0, FLOORS_IMAGE.getSubimage(
-                    FLOOR_CROP[0], FLOOR_CROP[1], FLOOR_CROP[2], FLOOR_CROP[3]));
+            floor = new GameSprite(DIM, 0, 0, FLOORS_IMAGE);
             floor.setScales(widthScale, heightScale);
             sprites.add(floor);
 
-            dev = new GameSprite(DIM, 50, 50, DEV_IMAGE.getSubimage(DEV_SPRITE[0], DEV_SPRITE[1],
-                    DEV_SPRITE[2], DEV_SPRITE[3]), 24, 30);
+            dev = new GameSprite(DIM, 50, 50, DEV_IMAGE, 24, 30);
             dev.setScales(3, 3);
             dev.setFrameSequence(DEV_SEQUENCE);
-            dev.setFrameIndex(DEV_SEQUENCE[0]);
+            dev.setFrameIndex(0);
             dev.setAngleDegree(0);
             dev.setSpeed(0);
             sprites.add(dev);

@@ -10,7 +10,7 @@ import devfortress.model.DateTime;
 import devfortress.model.facade.Model;
 import devfortress.utilities.Constant;
 import devfortress.view.animation.GameAnimationEngine;
-import devfortress.view.animation.eventAnimation.DeveloperIsSickEventAnimation;
+import devfortress.view.animation.events.DeveloperIsSickEventAnimation;
 import devfortress.view.models.ExpensesTreeModel;
 import devfortress.view.models.ProjectsTreeModel;
 import devfortress.view.renderers.ExpensesTreeCellRenderer;
@@ -32,8 +32,8 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
 
     private Model model;
     private String logMessages;
-    private Dimension dimension,eventDemension;
-    private J2DCanvasPanel animationCanvas,eventAnimationCanvas;
+    private Dimension dimension, eventDimension;
+    private J2DCanvasPanel animationCanvas, eventAnimationCanvas;
     private GameAnimationEngine animationEngine;
     private DeveloperIsSickEventAnimation devSickEvent;
 
@@ -82,23 +82,22 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
 
         /* Get animation panel dimension. */
         dimension = pnlGameAnimation.getSize();
-        eventDemension = pnlEvents.getSize();
+        eventDimension = pnlEvents.getSize();
 
         /* Create animationEngine engine and placeholder panel for animation. */
         animationEngine = new GameAnimationEngine(dimension);
-        devSickEvent = new DeveloperIsSickEventAnimation(eventDemension);
-        
+        devSickEvent = new DeveloperIsSickEventAnimation(eventDimension);
+
         animationCanvas = new J2DCanvasPanel(dimension);
         animationCanvas.setSize(dimension);
         animationCanvas.setSleep(250);
-        
-        eventAnimationCanvas = new J2DCanvasPanel(dimension);
-        eventAnimationCanvas.setSize(eventDemension);
-        eventAnimationCanvas.setSleep(250);
-        
         pnlGameAnimation.add(animationCanvas);
-        pnlEvents.add(eventAnimationCanvas);
         animationEngine.initGame();
+
+        eventAnimationCanvas = new J2DCanvasPanel(eventDimension);
+        eventAnimationCanvas.setSize(eventDimension);
+        eventAnimationCanvas.setSleep(250);
+        pnlEvents.add(eventAnimationCanvas);
         devSickEvent.initGame();
     }
 
@@ -178,7 +177,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
             pnlStatusBarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlStatusBarLayout.createSequentialGroup()
                 .addComponent(lblStatus)
-                .addGap(0, 5, Short.MAX_VALUE))
+                .addGap(0, 1, Short.MAX_VALUE))
         );
 
         scpManagement.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
@@ -280,7 +279,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         pnlDuration.setLayout(pnlDurationLayout);
         pnlDurationLayout.setHorizontalGroup(
             pnlDurationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblDuration, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+            .addComponent(lblDuration, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
         );
         pnlDurationLayout.setVerticalGroup(
             pnlDurationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -303,7 +302,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         pnlBudget.setLayout(pnlBudgetLayout);
         pnlBudgetLayout.setHorizontalGroup(
             pnlBudgetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblBudget, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+            .addComponent(lblBudget, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
         );
         pnlBudgetLayout.setVerticalGroup(
             pnlBudgetLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -327,10 +326,10 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         treExpenses.setRowHeight(30);
         treExpenses.setSelectionModel(null);
         treExpenses.addTreeExpansionListener(new javax.swing.event.TreeExpansionListener() {
-            public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
+            public void treeExpanded(javax.swing.event.TreeExpansionEvent evt) {
                 treeExpansion(evt);
             }
-            public void treeExpanded(javax.swing.event.TreeExpansionEvent evt) {
+            public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
                 treeExpansion(evt);
             }
         });
@@ -352,7 +351,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         pnlEmployees.setLayout(pnlEmployeesLayout);
         pnlEmployeesLayout.setHorizontalGroup(
             pnlEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(lblEmployees, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 335, Short.MAX_VALUE)
+            .addComponent(lblEmployees, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
         );
         pnlEmployeesLayout.setVerticalGroup(
             pnlEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -386,10 +385,10 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         treProjects.setRowHeight(30);
         treProjects.setSelectionModel(null);
         treProjects.addTreeExpansionListener(new javax.swing.event.TreeExpansionListener() {
-            public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
+            public void treeExpanded(javax.swing.event.TreeExpansionEvent evt) {
                 treeExpansion(evt);
             }
-            public void treeExpanded(javax.swing.event.TreeExpansionEvent evt) {
+            public void treeCollapsed(javax.swing.event.TreeExpansionEvent evt) {
                 treeExpansion(evt);
             }
         });
@@ -410,7 +409,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         pnlBlank.setLayout(pnlBlankLayout);
         pnlBlankLayout.setHorizontalGroup(
             pnlBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 359, Short.MAX_VALUE)
+            .addGap(0, 361, Short.MAX_VALUE)
         );
         pnlBlankLayout.setVerticalGroup(
             pnlBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -462,7 +461,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         pnlEvents.setLayout(pnlEventsLayout);
         pnlEventsLayout.setHorizontalGroup(
             pnlEventsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 596, Short.MAX_VALUE)
+            .addGap(0, 594, Short.MAX_VALUE)
         );
         pnlEventsLayout.setVerticalGroup(
             pnlEventsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -533,7 +532,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
                         .addComponent(pnlAnimation, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
                         .addComponent(scpEvents, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, 0)))
                 .addComponent(pnlStatusBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -771,15 +770,22 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
     @Override
     public void run() {
         setVisible(true);
-        
+
         while (true) {
-//            while (animationEngine.isActive()) {
-//                animationCanvas.run(animationEngine); 
-//            }
-            while (devSickEvent.isActive()) {
-                eventAnimationCanvas.run(devSickEvent);
+            if (animationEngine.isActive()) {
+                animationCanvas.run(animationEngine);
+//                animationCanvas.drawStuff(animationEngine);
+//                animationCanvas.panelDraw();
             }
-            
+//            if (devSickEvent.isActive()) {
+//                eventAnimationCanvas.drawStuff(devSickEvent);
+//                eventAnimationCanvas.panelDraw();
+//            }
+//            try {
+//                Thread.sleep(250);
+//            } catch (Exception ex) {
+//                Logger.getLogger(DevFortressView.class.getName()).log(Level.SEVERE, null, ex);
+//            }
         }
     }
 }

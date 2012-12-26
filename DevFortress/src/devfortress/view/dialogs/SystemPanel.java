@@ -42,7 +42,7 @@ public class SystemPanel extends javax.swing.JPanel {
         pnlAllEmployees = new javax.swing.JPanel();
         btnEmployeeList = new javax.swing.JButton();
         pnlBuyItems = new javax.swing.JPanel();
-        btnBuyItems = new javax.swing.JButton();
+        btnBuyItem = new javax.swing.JButton();
         pnlCloseButton = new javax.swing.JPanel();
         btnClose = new javax.swing.JButton();
 
@@ -173,24 +173,24 @@ public class SystemPanel extends javax.swing.JPanel {
         pnlBuyItems.setMinimumSize(new java.awt.Dimension(240, 80));
         pnlBuyItems.setPreferredSize(new java.awt.Dimension(240, 80));
 
-        btnBuyItems.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        btnBuyItems.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icBuyItems.png"))); // NOI18N
-        btnBuyItems.setText(Constant.BUY_BTN);
-        btnBuyItems.setMaximumSize(new java.awt.Dimension(240, 60));
-        btnBuyItems.setMinimumSize(new java.awt.Dimension(240, 60));
-        btnBuyItems.setPreferredSize(new java.awt.Dimension(240, 60));
+        btnBuyItem.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        btnBuyItem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icBuyItems.png"))); // NOI18N
+        btnBuyItem.setText(Constant.BUY_BTN);
+        btnBuyItem.setMaximumSize(new java.awt.Dimension(240, 60));
+        btnBuyItem.setMinimumSize(new java.awt.Dimension(240, 60));
+        btnBuyItem.setPreferredSize(new java.awt.Dimension(240, 60));
 
         javax.swing.GroupLayout pnlBuyItemsLayout = new javax.swing.GroupLayout(pnlBuyItems);
         pnlBuyItems.setLayout(pnlBuyItemsLayout);
         pnlBuyItemsLayout.setHorizontalGroup(
             pnlBuyItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnBuyItems, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnBuyItem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlBuyItemsLayout.setVerticalGroup(
             pnlBuyItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBuyItemsLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(btnBuyItems, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBuyItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
@@ -236,7 +236,7 @@ public class SystemPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_btnCloseActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnBuyItems;
+    private javax.swing.JButton btnBuyItem;
     private javax.swing.JButton btnClose;
     private javax.swing.JButton btnContract;
     private javax.swing.JButton btnEmployeeList;
