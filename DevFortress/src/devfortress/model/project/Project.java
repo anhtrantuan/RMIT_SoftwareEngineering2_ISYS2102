@@ -6,7 +6,6 @@ package devfortress.model.project;
 
 import devfortress.model.DateTime;
 import devfortress.model.employee.Employee;
-import devfortress.model.exception.ProjectFailsException;
 import devfortress.utilities.Skill;
 import java.util.EnumMap;
 import java.util.Map;
@@ -177,7 +176,11 @@ public class Project {
         } else {
             level = employee.getLowestSkillLevel();
         }
-        return (level + (2 * employee.getDesignSkill()) + (level * employee.getAlgorithmSkill()) + (employee.getTeamPlayerSkill() * skill_employeeMap.size()) / ((10 - employee.getConfigurationSkill()) + 2));
+        return (level + (2 * employee.getDesignSkill())
+                + (level * employee.getAlgorithmSkill())
+                + (employee.getTeamPlayerSkill() * skill_employeeMap.size())
+                / ((10 - employee.getConfigurationSkill()) + 2));
+
     }
 
     private int calculateFinalFunctionPoint(int basicPoint, Employee employee) {
@@ -275,9 +278,9 @@ public class Project {
     public boolean assignEmployeeToProject(Employee emp, Skill field) {
         if (emp.getWorkingProject() == null) {
             if (emp.getMainSkill() == mainSkill) {
-                emp.getHappy();
+                emp.happy();
             } else {
-                emp.getSad();
+                emp.sad();
             }
             skill_employeeMap.put(field, emp);
             emp.assignToProject(this);
@@ -289,7 +292,7 @@ public class Project {
 
     public void unassignEmployee(Employee emp) {
         for (Skill sk : skill_employeeMap.keySet()) {
-            if (skill_employeeMap.get(sk) == emp) {
+            if (skill_employeeMap.get(sk).equals(emp)) {
                 skill_employeeMap.put(sk, null);
                 emp.getOutOfWork();
             }

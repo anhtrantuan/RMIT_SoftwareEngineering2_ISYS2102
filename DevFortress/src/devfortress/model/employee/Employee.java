@@ -26,7 +26,7 @@ public class Employee {
     private int royalCountdown;
     private int eventCountdown;
     private LinkedList<SkillMemento> memento;
-
+  
     public Employee(String name, Map<Skill, Integer> skillList) {
         this.name = name;
         this.skillList = skillList;
@@ -211,11 +211,11 @@ public class Employee {
         status[1] = false;
     }
 
-    public void getSad() {
+    public void sad() {
         status[2] = false;
     }
 
-    public void getHappy() {
+    public void happy() {
         status[2] = true;
     }
 
