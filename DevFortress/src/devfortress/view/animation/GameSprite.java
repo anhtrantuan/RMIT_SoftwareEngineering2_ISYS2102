@@ -104,11 +104,10 @@ public class GameSprite extends Sprite {
         /* If sprite is animated, update sprite. */
         if (getFrameCount() > 1) {
             index++;
-            if (index == getFrameCount()) {
+            if (index == sequence.length) {
                 index = 0;
             }
         }
-        System.out.println(index);
     }
 
     /**
@@ -142,12 +141,21 @@ public class GameSprite extends Sprite {
      */
     public void setFrameIndex(int index) throws Exception {
         /* If index is outside frame range, throw exception. */
-        if (index < 0 || index >= getFrameCount()) {
+        if (getFrameCount() == 1 || index < 0 || index >= sequence.length) {
             throw new Exception("Invalid frame index!");
         }
 
         /* Else, set new frame index. */
         this.index = index;
+    }
+
+    /**
+     * Get current frame index.
+     *
+     * @return
+     */
+    public int getFrameIndex() {
+        return index;
     }
 
     /**

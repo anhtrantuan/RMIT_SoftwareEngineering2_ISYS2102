@@ -6,9 +6,9 @@ package devfortress.view.animation.events;
 
 import com.tabuto.j2dgf.Game2D;
 import com.tabuto.j2dgf.Group;
-import com.tabuto.j2dgf.Sprite;
 import devfortress.view.animation.GameAnimationEngine;
 import devfortress.view.animation.GameSprite;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -29,11 +29,11 @@ public class DeveloperIsSickEventAnimation extends Game2D {
     private double widthScale, heightScale;
     private GameSprite dev, doctor, bed, doctor_talking, floor;
     private int FLOOR_CROP[] = new int[]{0, 0, 569, 219},
-            DEV_SPRITE[] = new int[]{0, 0, 264, 30},
             DOC_SPRITE[] = new int[]{0, 0, 16, 30},
             DOC_TALKING_SPRITE1[] = new int[]{0, 0, 207, 104},
             DOC_TALKING_SPRITE2[] = new int[]{0, 111, 207, 88},
-            DEV_SEQUENCE[] = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+            DEV_SEQUENCE[] = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 10, 10};
+    private long timestamp = 0;
 
     /**
      * Constructor to create new game sick event animation.
@@ -46,54 +46,58 @@ public class DeveloperIsSickEventAnimation extends Game2D {
 
     @Override
     public void drawStuff(Graphics g) {
-        /*
-         * Update sprites.
-         */
+        /* Update sprites. */
         sprites.move();
-        /*
-         * Draw sprites.
-         */
-        sprites.draw(g);
+
+        if (timestamp == 0 && dev.getFrameIndex() == DEV_SEQUENCE.length - 1) {
+            sprites.clear();
+            g.setColor(Color.black);
+            g.fillRect(0, 0, DIM.width, DIM.height);
+            timestamp = System.currentTimeMillis();
+        }
+
+        if (timestamp != 0 && System.currentTimeMillis() >= timestamp + 1500) {
+            g.clearRect(0, 0, DIM.width, DIM.height);
+            sprites.add(floor);
+            bed = new GameSprite(DIM, 0, 0, BED_IMAGE);
+            bed.setScales(3, 3);
+            sprites.add(bed);
+            timestamp = -1;
+        }
+
+        /* Draw sprites. */
+        if (!sprites.isEmpty()) {
+            sprites.draw(g);
+        }
     }
 
     @Override
     public void initGame() {
         try {
-            /*
-             * Get resource URLs.
-             */
-
+            /* Get resource URLs. */
             URL floorsURL = getClass().getResource("../../resources/sick_floor.png"),
                     bedURL = getClass().getResource("../../resources/sickbed.png"),
                     devURL = getClass().getResource("../../resources/sick.png"),
                     doctorURL = getClass().getResource("../../resources/doctor_moving.png"),
                     doctorTalkingURL = getClass().getResource("../../resources/doctor_talking.png");
-            /*
-             * Load resource into place.
-             */
-            //FLOORS_IMAGE = ImageIO.read(getClass().getResourceAsStream("../../resources/sick_floor.png"));
+
+            /* Load resource into place. */
             FLOORS_IMAGE = ImageIO.read(floorsURL);
             BED_IMAGE = ImageIO.read(bedURL);
             DEV_IMAGE = ImageIO.read(devURL);
             DOCTOR_IMAGE = ImageIO.read(doctorURL);
             DOCTOR_TALKING_IMAGE = ImageIO.read(doctorTalkingURL);
 
-            /*
-             * Calculate scale ratios.
-             */
+            /* Calculate scale ratios. */
             widthScale = (double) DIM.width / FLOORS_IMAGE.getWidth(null);
             heightScale = (double) DIM.height / FLOORS_IMAGE.getHeight(null);
 
-            /*
-             * Create sprite group.
-             */
+            /* Create sprite group. */
             sprites = new Group<GameSprite>();
 
             Random random = new Random();
 
-            /*
-             * Add sprites.
-             */
+            /* Add sprites. */
             floor = new GameSprite(DIM, 0, 0, FLOORS_IMAGE);
             floor.setScales(widthScale, heightScale);
             sprites.add(floor);
