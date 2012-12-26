@@ -13,9 +13,7 @@ import devfortress.model.facade.Model;
 import devfortress.utilities.Constant;
 import devfortress.utilities.Event;
 import devfortress.view.animation.GameAnimationEngine;
-import devfortress.view.animation.events.DeveloperIsSickEventAnimation;
-import devfortress.view.animation.events.NewTechnologyEventAnimation;
-import devfortress.view.animation.events.WorkIsHacked;
+import devfortress.view.animation.events.*;
 import devfortress.view.models.ExpensesTreeModel;
 import devfortress.view.models.ProjectsTreeModel;
 import devfortress.view.renderers.ExpensesTreeCellRenderer;
@@ -910,7 +908,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
     private Game2D createAnimationEngine(Event event) {
         // TODO Create animation engine
 //        if (event == Event.DEVELOPER_IS_SICK) {
-        return new WorkIsHacked(eventDimension);
+        return new Bonus(eventDimension);
 //        }
 //        return null;
     }
