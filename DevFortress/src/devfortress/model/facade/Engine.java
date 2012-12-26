@@ -227,7 +227,6 @@ public class Engine extends Observable implements Model {
                 succeededProject.add(project);
             } else {
                 project.getRemainingTime().nextTurn();
-                System.out.println(project.getRemainingTime().getMonths());
                 if (project.getRemainingTime().getMonths() == 0) {
                     failedProject.add(project);
                 }
