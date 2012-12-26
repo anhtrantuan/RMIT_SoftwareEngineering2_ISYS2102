@@ -37,10 +37,11 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
     private Model model;
     private String logMessages;
     private Dimension dimension, eventDimension;
-    private J2DCanvasPanel animationCanvas;
-    private GameAnimationEngine animationEngine;
+    private J2DCanvasPanel mainCanvas;
+    private GameAnimationEngine mainEngine;
     private ArrayList<J2DCanvasPanel> canvases;
-    private ArrayList<Game2D> gameEngines;
+    private ArrayList<Game2D> engines;
+    private volatile boolean run = false;
 
     /**
      * Creates new form DevFortressView.
@@ -90,16 +91,16 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         eventDimension = scpEvents.getViewport().getSize();
 
         /* Create animation engine and placeholder panel for animations. */
-        animationEngine = new GameAnimationEngine(dimension);
-        animationCanvas = new J2DCanvasPanel(dimension);
-        animationCanvas.setSize(dimension);
-        animationCanvas.setSleep(250);
-        animationEngine.initGame();
-        pnlGameAnimation.add(animationCanvas);
+        mainEngine = new GameAnimationEngine(dimension);
+        mainCanvas = new J2DCanvasPanel(dimension);
+        mainCanvas.setSize(dimension);
+        mainCanvas.setSleep(250);
+        mainEngine.initGame();
+        pnlGameAnimation.add(mainCanvas);
 
         /* Initialize animation engines and canvases. */
         canvases = new ArrayList<J2DCanvasPanel>();
-        gameEngines = new ArrayList<Game2D>();
+        engines = new ArrayList<Game2D>();
     }
 
     /**
@@ -414,7 +415,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         );
         pnlBlankLayout.setVerticalGroup(
             pnlBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 72, Short.MAX_VALUE)
+            .addGap(0, 68, Short.MAX_VALUE)
         );
 
         pnlManagement.add(pnlBlank);
@@ -454,8 +455,9 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
 
         scpEvents.setBackground(new java.awt.Color(255, 255, 255));
         scpEvents.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        scpEvents.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
+        scpEvents.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
         scpEvents.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        scpEvents.setDoubleBuffered(true);
 
         pnlEvents.setBackground(new java.awt.Color(255, 255, 255));
         pnlEvents.setPreferredSize(new java.awt.Dimension(594, 202));
@@ -565,21 +567,14 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
     }
 
     /**
-     * Add event to event panel.
-     *
-     * @param event
-     */
-    private void addEvent(Game2D engine, J2DCanvasPanel canvas) {
-        gameEngines.add(engine);
-        canvases.add(canvas);
-        pnlEvents.add(canvas);
-    }
-
-    /**
      * Clear all current events.
      */
     private void clearAllEvents() {
-        gameEngines.clear();
+        for (Game2D game : engines) {
+            game.deactivate();
+        }
+        pnlEvents.removeAll();
+        engines.clear();
         canvases.clear();
     }
 
@@ -780,8 +775,12 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
                 canvas.setSleep(250);
 
                 /* Add event to View. */
-                addEvent(engine, canvas);
+                engines.add(engine);
+                canvases.add(canvas);
+                pnlEvents.add(canvas);
             }
+
+            run = true;
         }
     }
 
@@ -818,16 +817,35 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
     public void start() {
         setVisible(true);
 
+        /* Run main animation. */
         new Thread(new Runnable() {
             @Override
             public void run() {
-                animationCanvas.run(animationEngine);
+                mainCanvas.run(mainEngine);
             }
         }).start();
 
-//        for (int i = 0; i < canvases.size(); i++) {
-//            canvases.get(i).drawStuff(gameEngines.get(i));
-//            canvases.get(i).panelDraw();
-//        }
+        /* Run event animations. */
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true) {
+                    if (run) {
+                        for (int i = 0; i < canvases.size(); i++) {
+                            final J2DCanvasPanel canvas = canvases.get(i);
+                            final Game2D engine = engines.get(i);
+                            new Thread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    canvas.run(engine);
+                                }
+                            }).start();
+                        }
+
+                        run = false;
+                    }
+                }
+            }
+        }).start();
     }
 }
