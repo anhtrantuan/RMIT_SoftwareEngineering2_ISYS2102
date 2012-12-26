@@ -15,7 +15,7 @@ import java.util.Map;
  *
  * @author satthuvdh
  */
-public class InvidiualEvent implements EventInterface {
+public class IndividualEvent implements EventInterface {
 
     public static Event sickDeveloper(Employee e) {
         e.sick();

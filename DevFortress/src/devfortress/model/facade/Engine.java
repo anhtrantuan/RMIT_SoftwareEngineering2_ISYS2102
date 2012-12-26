@@ -10,8 +10,10 @@ import devfortress.model.dificulity.EasyLevel;
 import devfortress.model.dificulity.GameLevel;
 import devfortress.model.dificulity.MediumLevel;
 import devfortress.model.employee.Employee;
+import devfortress.model.event.IndividualEvent;
 import devfortress.model.exception.*;
 import devfortress.model.project.Project;
+import devfortress.utilities.Event;
 import devfortress.utilities.Skill;
 import devfortress.utilities.Utilities;
 import java.util.*;
@@ -33,6 +35,7 @@ public class Engine extends Observable implements Model {
     private List<Employee> availableEmployees;
     private List<Project> availableProjects;
     private Utilities utilities;
+    private ArrayList<Event> events;
 
     public Engine() throws EmployeeNotExist {
         this(new Company());
@@ -48,6 +51,7 @@ public class Engine extends Observable implements Model {
         difficultLevel = new DifficultLevel();
         availableEmployees = generateEmployeeList();
         availableProjects = generateProjectList();
+        events = new ArrayList<Event>();
     }
 
     /**
@@ -64,7 +68,8 @@ public class Engine extends Observable implements Model {
         String message = String.format("Bought %d new %s: -$%.2f.",
                 quantity, item.getName() + (quantity > 1 ? "s" : ""),
                 (item.getPrice() * quantity));
-        notifyObservers(message);
+        DataObject data = new DataObject(message, null);
+        notifyObservers(data);
 
     }
 
@@ -86,7 +91,8 @@ public class Engine extends Observable implements Model {
         setChanged();
         String message = String.format("Hired new employee %s: -$%.2f.",
                 employee.getName(), employee.getSalary());
-        notifyObservers(message);
+        DataObject data = new DataObject(message, null);
+        notifyObservers(data);
     }
 
     @Override
@@ -104,7 +110,8 @@ public class Engine extends Observable implements Model {
         setChanged();
         String message = String.format("Contracted new project %s: +$%.2f.",
                 project.getName(), project.getPayment() / 2);
-        notifyObservers(message);
+        DataObject data = new DataObject(message, null);
+        notifyObservers(data);
     }
 
     /**
@@ -118,7 +125,8 @@ public class Engine extends Observable implements Model {
         setChanged();
         String message = String.format("Cancel project %s: -$%.2f.",
                 project.getName(), project.getPayment() * 0.8);
-        notifyObservers(message);
+        DataObject data = new DataObject(message, null);
+        notifyObservers(data);
     }
 
     /**
@@ -127,7 +135,12 @@ public class Engine extends Observable implements Model {
      */
     @Override
     public void eventOccur() {
-        //TODO do this next sprint
+        for (Employee employee : availableEmployees) {
+            events.add(level.generateEvent(employee, company));
+        }
+        String message = String.format("Event occurred!");
+        DataObject data = new DataObject(message, events);
+        notifyObservers(data);
     }
 
     /**
@@ -142,7 +155,8 @@ public class Engine extends Observable implements Model {
         setChanged();
         String message = String.format("Leveled up employees in project %s.",
                 project.getName());
-        notifyObservers(message);
+        DataObject data = new DataObject(message, null);
+        notifyObservers(data);
     }
 
     /**
@@ -155,7 +169,8 @@ public class Engine extends Observable implements Model {
         setChanged();
         String message = String.format("Paid salary: -$%.2f.",
                 company.calculateTotalSalary());
-        notifyObservers(message);
+        DataObject data = new DataObject(message, null);
+        notifyObservers(data);
 
     }
 
@@ -207,8 +222,6 @@ public class Engine extends Observable implements Model {
             nextWeek();
         }
 
-        generateEvent(level, company);
-
         for (Project project : company.getCurrentProjectList()) {
             if (project.checkProjectProcess()) {
                 succeededProject.add(project);
@@ -245,7 +258,8 @@ public class Engine extends Observable implements Model {
             String message = String.format("New turn began: Year %d Month %d Week %d.",
                     dateTime.getYear(), dateTime.getMonthOfYear(),
                     dateTime.getWeekOfMonth());
-            notifyObservers(message);
+            DataObject data = new DataObject(message, events);
+            notifyObservers(data);
         }
     }
 
@@ -256,25 +270,6 @@ public class Engine extends Observable implements Model {
         eventOccur();
         consumeFood();
         dateTime.nextWeek();
-    }
-
-    private void checkProject(List<Project> succeededProject, List<Project> failedProject) {
-        for (Project project : company.getCurrentProjectList()) {
-            if (project.checkProjectProcess()) {
-                System.out.println("success");
-                succeededProject.add(project);
-            } else {
-                System.out.println("fail");
-                failedProject.add(project);
-            }
-        }
-
-        for (Project proj : failedProject) {
-            company.finishProject(proj);
-        }
-        for (Project proj : succeededProject) {
-            company.cancelProject(proj);
-        }
     }
 
     @Override
@@ -353,7 +348,8 @@ public class Engine extends Observable implements Model {
         setChanged();
         String message = String.format("Assigned employee %s to skill %s in project %s.",
                 emp.getName(), field.toString(), proj.getName());
-        notifyObservers(message);
+        DataObject data = new DataObject(message, null);
+        notifyObservers(data);
     }
 
     private void consumeFood() {
@@ -386,18 +382,13 @@ public class Engine extends Observable implements Model {
         setChanged();
         String message = String.format("Unassigned employee %s from project %s.",
                 emp.getName(), proj.getName());
-        notifyObservers(message);
+        DataObject data = new DataObject(message, null);
+        notifyObservers(data);
     }
 
     @Override
     public Project getWorkingProjectOfEmployee(Employee emp) {
         return emp.getWorkingProject();
-    }
-
-    private void generateEvent(GameLevel level, Company company) {
-        for (Employee employee : availableEmployees) {
-            level.generateEvent(employee, company);
-        }
     }
 
     @Override

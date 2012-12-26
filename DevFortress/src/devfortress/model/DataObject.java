@@ -5,6 +5,7 @@
 package devfortress.model;
 
 import devfortress.utilities.Event;
+import java.util.ArrayList;
 
 /**
  *
@@ -13,7 +14,7 @@ import devfortress.utilities.Event;
 public class DataObject {
 
     private String log;
-    private Event event;
+    private ArrayList<Event> events;
 
     /**
      * Create data object to hold log message and event object.
@@ -21,9 +22,9 @@ public class DataObject {
      * @param log
      * @param event
      */
-    public DataObject(String log, Event event) {
+    public DataObject(String log, ArrayList<Event> events) {
         this.log = log;
-        this.event = event;
+        this.events = events;
     }
 
     /**
@@ -36,11 +37,11 @@ public class DataObject {
     }
 
     /**
-     * Get event object.
+     * Get event objectd.
      *
      * @return
      */
-    public Event getEvent() {
-        return event;
+    public ArrayList<Event> getEvents() {
+        return events;
     }
 }

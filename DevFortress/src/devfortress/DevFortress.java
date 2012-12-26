@@ -44,14 +44,7 @@ public class DevFortress {
         view = new DevFortressView(model);
         model.addObserver(view);
         Controller controller = new Controller(model, view);
-
-        /* Run and display View. */
-        Thread viewThread = new Thread(view);
-        viewThread.start();
-
-        /* Wait until View is active. */
-        while (!view.isActive()) {
-        }
+        view.start();
 
         try {
             /* Dummy Data

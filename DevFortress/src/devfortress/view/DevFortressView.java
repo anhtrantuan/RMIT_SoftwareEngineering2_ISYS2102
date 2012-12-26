@@ -7,16 +7,17 @@ package devfortress.view;
 import com.tabuto.j2dgf.Game2D;
 import com.tabuto.j2dgf.gui.J2DCanvasPanel;
 import devfortress.DevFortress;
+import devfortress.model.DataObject;
 import devfortress.model.DateTime;
 import devfortress.model.facade.Model;
 import devfortress.utilities.Constant;
+import devfortress.utilities.Event;
 import devfortress.view.animation.GameAnimationEngine;
 import devfortress.view.animation.events.DeveloperIsSickEventAnimation;
 import devfortress.view.models.ExpensesTreeModel;
 import devfortress.view.models.ProjectsTreeModel;
 import devfortress.view.renderers.ExpensesTreeCellRenderer;
 import devfortress.view.renderers.ProjectsTreeCellRenderer;
-import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
@@ -24,16 +25,14 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.BoxLayout;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.UIManager;
 
 /**
  *
  * @author tommy
  */
-public class DevFortressView extends javax.swing.JFrame implements View, Observer, Runnable {
+public class DevFortressView extends javax.swing.JFrame implements View, Observer {
 
     private Model model;
     private String logMessages;
@@ -94,7 +93,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         animationEngine = new GameAnimationEngine(dimension);
         animationCanvas = new J2DCanvasPanel(dimension);
         animationCanvas.setSize(dimension);
-        animationCanvas.setSleep(1000);
+        animationCanvas.setSleep(250);
         animationEngine.initGame();
         pnlGameAnimation.add(animationCanvas);
 
@@ -415,7 +414,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         );
         pnlBlankLayout.setVerticalGroup(
             pnlBlankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 68, Short.MAX_VALUE)
+            .addGap(0, 72, Short.MAX_VALUE)
         );
 
         pnlManagement.add(pnlBlank);
@@ -455,7 +454,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
 
         scpEvents.setBackground(new java.awt.Color(255, 255, 255));
         scpEvents.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
-        scpEvents.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
+        scpEvents.setHorizontalScrollBarPolicy(javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_ALWAYS);
         scpEvents.setVerticalScrollBarPolicy(javax.swing.ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
 
         pnlEvents.setBackground(new java.awt.Color(255, 255, 255));
@@ -524,8 +523,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pnlAnimation, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(scpEvents, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)))
+                        .addComponent(scpEvents, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addComponent(pnlStatusBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -564,14 +562,6 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
 
         /* Adjust sizes of Management panel and its child components. */
         treeExpansion(null);
-
-        DeveloperIsSickEventAnimation devSickEvent =
-                new DeveloperIsSickEventAnimation(eventDimension);
-        devSickEvent.initGame();
-        J2DCanvasPanel eventAnimationCanvas = new J2DCanvasPanel(eventDimension);
-        eventAnimationCanvas.setSize(eventDimension);
-        eventAnimationCanvas.setSleep(250);
-        addEvents(devSickEvent, eventAnimationCanvas);
     }
 
     /**
@@ -579,16 +569,16 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
      *
      * @param event
      */
-    private void addEvents(Game2D engine, J2DCanvasPanel canvas) {
+    private void addEvent(Game2D engine, J2DCanvasPanel canvas) {
         gameEngines.add(engine);
         canvases.add(canvas);
         pnlEvents.add(canvas);
     }
 
     /**
-     * Clear events.
+     * Clear all current events.
      */
-    private void clearEvents() {
+    private void clearAllEvents() {
         gameEngines.clear();
         canvases.clear();
     }
@@ -767,8 +757,46 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         /* Populate data. */
         populateData();
 
+        /* Get data object. */
+        DataObject data = (DataObject) arg;
+
         /* Append log message. */
-        logMessages += arg + "\n";
+        logMessages += data.getLog() + "\n";
+
+        /* Add events for display. */
+        if (data.getEvents() != null) {
+            clearAllEvents();
+            pnlEvents.setSize(eventDimension.width,
+                    eventDimension.height * data.getEvents().size());
+            pnlEvents.setPreferredSize(pnlEvents.getSize());
+            for (Event event : data.getEvents()) {
+                /* Create animation engine. */
+                Game2D engine = createAnimationEngine(event);
+                engine.initGame();
+
+                /* Create canvas panel to hold the game engine. */
+                J2DCanvasPanel canvas = new J2DCanvasPanel(eventDimension);
+                canvas.setSize(eventDimension);
+                canvas.setSleep(250);
+
+                /* Add event to View. */
+                addEvent(engine, canvas);
+            }
+        }
+    }
+
+    /**
+     * Create animation engine from event.
+     *
+     * @param event
+     * @return
+     */
+    private Game2D createAnimationEngine(Event event) {
+        // TODO Create animation engine
+//        if (event == Event.DEVELOPER_IS_SICK) {
+        return new DeveloperIsSickEventAnimation(eventDimension);
+//        }
+//        return null;
     }
 
     /**
@@ -785,26 +813,21 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
     }
 
     /**
-     * Runnable method allow View to be run in separate thread.
+     * Start View.
      */
-    @Override
-    public void run() {
+    public void start() {
         setVisible(true);
 
-        while (true) {
-            if (animationEngine.isActive()) {
-                animationCanvas.drawStuff(animationEngine);
-                animationCanvas.panelDraw();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                animationCanvas.run(animationEngine);
             }
-            for (int i = 0; i < canvases.size(); i++) {
-                canvases.get(i).drawStuff(gameEngines.get(i));
-                canvases.get(i).panelDraw();
-            }
-            try {
-                Thread.sleep(250);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(DevFortressView.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
+        }).start();
+
+//        for (int i = 0; i < canvases.size(); i++) {
+//            canvases.get(i).drawStuff(gameEngines.get(i));
+//            canvases.get(i).panelDraw();
+//        }
     }
 }

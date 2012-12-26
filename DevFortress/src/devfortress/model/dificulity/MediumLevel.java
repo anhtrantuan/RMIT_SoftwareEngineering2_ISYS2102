@@ -8,7 +8,7 @@ package devfortress.model.dificulity;
 import devfortress.model.Company;
 import devfortress.model.DateTime;
 import devfortress.model.employee.Employee;
-import devfortress.model.event.InvidiualEvent;
+import devfortress.model.event.IndividualEvent;
 import devfortress.model.event.ProjectEvent;
 import devfortress.model.project.DevFortressProjectBuilder;
 import devfortress.model.project.Project;
@@ -96,39 +96,39 @@ public class MediumLevel implements GameLevel {
     public Event generateEvent(Employee e, Company company) {
         Double r = new Random().nextDouble();
         if (r < 0.1) {
-            return InvidiualEvent.sickDeveloper(e);
+            return IndividualEvent.sickDeveloper(e);
         } else if (r < 0.15) {
-            return InvidiualEvent.requirementChange(e);
+            return IndividualEvent.requirementChange(e);
         } else if (r < 0.2) {
-            return InvidiualEvent.newTechnology(e);
+            return IndividualEvent.newTechnology(e);
         } else if (r < 0.25) {
-            return InvidiualEvent.solutionScale(e);
+            return IndividualEvent.solutionScale(e);
         } else if (r < 0.26) {
-            return InvidiualEvent.hacked(e);
+            return IndividualEvent.hacked(e);
         } else if (r < 0.31) {
-            return InvidiualEvent.featureCut(e);
+            return IndividualEvent.featureCut(e);
         } else if (r < 0.36) {
-            return InvidiualEvent.backupFailed(e);
+            return IndividualEvent.backupFailed(e);
         } else if (r < 0.41) {
-            return InvidiualEvent.holiday(e);
+            return IndividualEvent.holiday(e);
         } else if (r < 0.46) {
-            return InvidiualEvent.redundancies(e);
+            return IndividualEvent.redundancies(e);
         } else if (r < 0.47) {
-            return InvidiualEvent.bonus(e);
+            return IndividualEvent.bonus(e);
         } else if (r < 0.52) {
             return ProjectEvent.teamBuilding(e);
         } else if (r < 0.57) {
-            return InvidiualEvent.exploreTalent(e);
+            return IndividualEvent.exploreTalent(e);
         } else if (r < 0.62) {
-            return InvidiualEvent.getSponsor(e);
+            return IndividualEvent.getSponsor(e);
         } else if (r < 0.63) {
-            return InvidiualEvent.projectStolen(e);
+            return IndividualEvent.projectStolen(e);
         } else if (r < 0.64) {
-            return InvidiualEvent.employeeLeave(e);
+            return IndividualEvent.employeeLeave(e);
         } else if (r < 0.645) {
-            return InvidiualEvent.inspiration(e);
+            return IndividualEvent.inspiration(e);
         } else if (r < 0.695) {
-            return InvidiualEvent.developerHasBaby(e);
+            return IndividualEvent.developerHasBaby(e);
         } else if (r < 0.705) {
             return ProjectEvent.trainingSponsor(e);
         } else if (r < 0.755) {
