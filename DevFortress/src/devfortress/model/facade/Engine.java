@@ -16,6 +16,7 @@ import devfortress.utilities.Event;
 import devfortress.utilities.Skill;
 import devfortress.utilities.Utilities;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -233,6 +234,11 @@ public class Engine extends Observable implements Model {
             }
             
         } catch (MoneyRunOutException ex) {
+            int option = JOptionPane.showConfirmDialog(null,"YOU ARE OUT OF MONEY, YOU LOSE","GAME OVER!",JOptionPane.YES_OPTION);
+            if (option == JOptionPane.YES_OPTION) {
+                System.exit(0);
+            }
+            System.exit(0);
         } //        for (Project project : company.getCurrentProjectList()) {
         //            if (project.checkProjectProcess()) {
         //                succeededProject.add(project);
