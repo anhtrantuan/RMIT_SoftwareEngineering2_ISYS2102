@@ -180,4 +180,8 @@ public class DeveloperIsSickEventAnimation extends Game2D {
             Logger.getLogger(DeveloperIsSickEventAnimation.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public String getInformation(){
+        return "Employee is sick. His work drops a half";
+    }
 }

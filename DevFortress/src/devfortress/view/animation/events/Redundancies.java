@@ -78,4 +78,8 @@ public class Redundancies extends Game2D {
             Logger.getLogger(Redundancies.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public String getInformation(){
+        return "Company makes redundancies, one employee is fired";
+    }
 }

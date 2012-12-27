@@ -130,4 +130,8 @@ public class TeamBuildingExcercise extends Game2D {
             Logger.getLogger(WorkIsHacked.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public String getInformation(){
+        return "Team building excercise! All employee are happy but only produce a few points";
+    }
 }

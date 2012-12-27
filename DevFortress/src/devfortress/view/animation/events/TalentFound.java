@@ -78,7 +78,6 @@ public class TalentFound extends Game2D {
          * Draw sprites.
          */
         sprites.draw(g);
-        System.out.println(floor);
     }
 
     @Override
@@ -149,5 +148,10 @@ public class TalentFound extends Game2D {
         } catch (Exception ex) {
             Logger.getLogger(DeveloperIsSickEventAnimation.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public String getInformation(){
+        return "The employee turns out having talent in the working field, "
+                + "his training result will be double once next turn";
     }
 }

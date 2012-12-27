@@ -78,4 +78,8 @@ public class FeatureCut extends Game2D {
             Logger.getLogger(FeatureCut.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public String getInformation(){
+        return "Customer wants to cut out some features. Finish one field of the project";
+    }
 }

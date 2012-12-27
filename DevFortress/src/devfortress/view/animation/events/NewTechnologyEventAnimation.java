@@ -104,4 +104,8 @@ public class NewTechnologyEventAnimation extends Game2D {
             Logger.getLogger(NewTechnologyEventAnimation.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public String getInformation(){
+        return "A new technology is introduced helping remove some function points is remove from the project";
+    }
 }

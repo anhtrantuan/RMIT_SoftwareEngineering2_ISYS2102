@@ -108,4 +108,8 @@ public class Holiday extends Game2D {
             Logger.getLogger(Holiday.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public String getInformation(){
+        return "Employee leave for vacation, he doesn't contribute to the project";
+    }
 }

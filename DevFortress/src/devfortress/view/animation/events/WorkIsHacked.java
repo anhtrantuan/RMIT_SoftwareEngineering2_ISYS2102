@@ -78,4 +78,9 @@ public class WorkIsHacked extends Game2D {
             Logger.getLogger(WorkIsHacked.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public String getInformation(){
+        return "One part of the project is hacked,"
+                + " 0 function point is produced in that field";
+    }
 }

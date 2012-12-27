@@ -78,4 +78,8 @@ public class Bonus extends Game2D {
             Logger.getLogger(Bonus.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public String getInformation(){
+        return "Company got bonus at the end ofthe month for doing well!";
+    }
 }
