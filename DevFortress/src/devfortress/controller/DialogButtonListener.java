@@ -77,6 +77,7 @@ public class DialogButtonListener implements ActionListener {
             newDialog.pack();
             newDialog.setVisible(true);
         } else if (text.equals(Constant.BUY_BTN)) {
+            // TODO Create Buy Item dialog
         } else {
             try {
                 if (text.equals(Constant.HIRE)) {
