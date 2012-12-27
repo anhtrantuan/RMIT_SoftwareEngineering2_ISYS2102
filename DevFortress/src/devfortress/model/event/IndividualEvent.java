@@ -11,6 +11,8 @@ import devfortress.model.exception.EmployeeNotExist;
 import devfortress.model.project.Project;
 import devfortress.utilities.Event;
 import devfortress.utilities.Skill;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -30,7 +32,8 @@ public class IndividualEvent implements EventInterface {
             Map<Skill, Employee> skill = e.getWorkingProject().getSkill_employeeMap();
             Map<Skill, Integer> require = e.getWorkingProject().getSkillRequirementMap();
             for (Skill sk : skill.keySet()) {
-                if (skill.get(sk).equals(e)) {
+                if (skill.get(sk) != null
+                        && skill.get(sk).equals(e)) {
                     require.put(sk, require.get(sk) - 50);
                     e.getWorkingProject().decreaseRemainingPoint(50);
                 }
@@ -51,7 +54,8 @@ public class IndividualEvent implements EventInterface {
             Map<Skill, Employee> skill = e.getWorkingProject().getSkill_employeeMap();
             Map<Skill, Integer> require = e.getWorkingProject().getSkillRequirementMap();
             for (Skill sk : skill.keySet()) {
-                if (skill.get(sk).equals(e)) {
+                if (skill.get(sk) != null
+                        && skill.get(sk).equals(e)) {
                     int remainPoint = require.get(sk);
                     require.put(sk, 0);
                     e.getWorkingProject().decreaseRemainingPoint(remainPoint);
@@ -68,18 +72,22 @@ public class IndividualEvent implements EventInterface {
         return Event.HOLIDAY;
     }
 
-    public static Event redundancies(Employee e, Company c) {
+    public static Event redundancies(Employee e, Company c) throws EmployeeNotExist {
         Project p = e.getWorkingProject();
+        List<Employee> removeEmp = new ArrayList();
         if (p != null) {
             Map<Skill, Employee> skill = e.getWorkingProject().getSkill_employeeMap();
             for (Skill sk : skill.keySet()) {
-                if (skill.get(sk).equals(e)) {
-                    c.unassignEmployee(p, e);
+                if (skill.get(sk) != null && skill.get(sk).equals(e)) {
+                    removeEmp.add(e);
+                    
                 } else if (skill.get(sk) != null) {
                     skill.get(sk).sad();
                 }
             }
-            e.getOutOfWork();
+            for (Employee employee : removeEmp) {
+                c.removeEmployee(employee);
+            }
             return Event.REDUNDANCIES;
         }
         return Event.NO_EVENT;

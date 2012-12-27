@@ -16,6 +16,7 @@ import java.text.DecimalFormat;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 /**
@@ -351,7 +352,7 @@ public class AssignEmployeesPanel extends javax.swing.JPanel {
             model.assignEmployeeToProject(currentEmployee, project, skill);
             parent.setProject(model.getProjectByName(project.getName()));
         } catch (Exception ex) {
-            Logger.getLogger(AssignEmployeesPanel.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showConfirmDialog(null, "EMPLOYEE IS BUSY RIGHT NOW","ERROR",JOptionPane.OK_CANCEL_OPTION);
         }
     }
 }

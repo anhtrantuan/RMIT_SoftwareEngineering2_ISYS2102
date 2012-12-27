@@ -303,7 +303,7 @@ public class Project {
      * @param field
      */
     public boolean assignEmployeeToProject(Employee emp, Skill field) {
-        if (emp.getWorkingProject() == null) {
+        if (emp!=null && emp.getWorkingProject() == null) {
             if (emp.getMainSkill() == mainSkill) {
                 emp.happy();
             } else {
@@ -313,7 +313,10 @@ public class Project {
             emp.assignToProject(this);
             return true;
         } else {
-            emp.getWorkingProject().unassignEmployee(emp);
+            if(emp!=null){
+                emp.getWorkingProject().unassignEmployee(emp);
+            }
+            
         }
         
         return false;
@@ -321,7 +324,7 @@ public class Project {
     
     public void unassignEmployee(Employee emp) {
         for (Skill sk : skill_employeeMap.keySet()) {
-            if (skill_employeeMap.get(sk).equals(emp)) {
+            if (skill_employeeMap.get(sk)!=null && skill_employeeMap.get(sk).equals(emp)) {
                 skill_employeeMap.put(sk, null);
                 emp.getOutOfWork();
             }
