@@ -19,7 +19,7 @@ import javax.imageio.ImageIO;
  *
  * @author Sherlock
  */
-public class Redundancies extends Game2D {
+public class Redundancies extends Game2D implements EventAnimationEngine{
 
     private BufferedImage BGR_IMAGE;
     private Group<GameSprite> sprites;
@@ -79,6 +79,7 @@ public class Redundancies extends Game2D {
         }
     }
     
+    @Override
     public String getInformation(){
         return "Company makes redundancies, one employee is fired";
     }

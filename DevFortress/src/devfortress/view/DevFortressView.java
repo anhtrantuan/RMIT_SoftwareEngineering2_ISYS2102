@@ -883,9 +883,10 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
                     engines.add(engine);
                     canvases.add(canvas);
 
-                    // TODO Append event information to log
                     /* Append log message. */
-//                    logMessages += "EVENT: " + engine.getInformation() + "\n";
+                    logMessages += "EVENT: "
+                            + ((EventAnimationEngine) engine).getInformation()
+                            + "\n";
                 }
 
                 /* Show first event. */

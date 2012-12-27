@@ -19,14 +19,14 @@ import javax.imageio.ImageIO;
  *
  * @author Sherlock
  */
-public class ProjectIsStolen extends Game2D{
-    
+public class ProjectIsStolen extends Game2D implements EventAnimationEngine {
+
     private BufferedImage STEAL_IMAGE, STOLEN_ANNOUNCEMENT_IMAGE;
     private Group<GameSprite> sprites;
     private double widthScale, heightScale;
     private GameSprite steal, announcement;
     private long timestamp = 0;
-    private boolean firstScreen=true;
+    private boolean firstScreen = true;
 
     public ProjectIsStolen(Dimension dim) {
         super(dim);
@@ -56,11 +56,11 @@ public class ProjectIsStolen extends Game2D{
     public void drawStuff(Graphics g) {
         sprites.move();
         try {
-            if(firstScreen){
+            if (firstScreen) {
                 timestamp = System.currentTimeMillis();
                 firstScreen = false;
             }
-            if (System.currentTimeMillis() >= timestamp + 2000  && timestamp !=0) {
+            if (System.currentTimeMillis() >= timestamp + 2000 && timestamp != 0) {
                 sprites.clear();
                 sprites.add(announcement);
                 timestamp = 0;
@@ -103,8 +103,9 @@ public class ProjectIsStolen extends Game2D{
             Logger.getLogger(FeatureCut.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public String getInformation(){
+
+    @Override
+    public String getInformation() {
         return "An employee stole the project, deleted all backup,"
                 + " the project has failed, the employee has left company";
     }

@@ -19,7 +19,7 @@ import javax.imageio.ImageIO;
  *
  * @author Sherlock
  */
-public class FeatureCut extends Game2D {
+public class FeatureCut extends Game2D implements EventAnimationEngine {
 
     private BufferedImage BGR_IMAGE;
     private Group<GameSprite> sprites;
@@ -78,8 +78,9 @@ public class FeatureCut extends Game2D {
             Logger.getLogger(FeatureCut.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public String getInformation(){
+
+    @Override
+    public String getInformation() {
         return "Customer wants to cut out some features. Finish one field of the project";
     }
 }
