@@ -61,6 +61,7 @@ public class DeveloperIsSickEventAnimation extends Game2D {
         sprites.clear();
         sprites.add(floor);
         sprites.add(dev);
+        
         try {
             dev.setFrameIndex(0);
         } catch (Exception ex) {
@@ -108,7 +109,6 @@ public class DeveloperIsSickEventAnimation extends Game2D {
 
         /* Draw sprites. */
         if (!sprites.isEmpty()) {
-            System.out.println("draw");
             sprites.draw(g);
         }
     }
