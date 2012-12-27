@@ -97,7 +97,7 @@ public class MediumLevel implements GameLevel {
 
         projectBuilder.createNewProject();
         projectBuilder.addName(projectName);
-        projectBuilder.addTotalPoint(totalPoints);
+        projectBuilder.addTotalPoint(calculateTotalPoint(map));
         projectBuilder.addPayment(this.generateProjectPayment());
         projectBuilder.addProjectLvl(this.generateProjectLevel());
         projectBuilder.addProjectTime(projectTime);
@@ -122,7 +122,7 @@ public class MediumLevel implements GameLevel {
         } else if (r < 0.41) {
             return IndividualEvent.holiday(e);
         } else if (r < 0.46) {
-            return IndividualEvent.redundancies(e);
+            return IndividualEvent.redundancies(e,company);
         } else if (r < 0.47) {
             return IndividualEvent.bonus(e, company);
         } else if (r < 0.52) {
@@ -141,5 +141,13 @@ public class MediumLevel implements GameLevel {
             return ProjectEvent.gotSued(e, company);
         }
         return Event.NO_EVENT;
+    }
+
+    private int calculateTotalPoint(Map<Skill, Integer> sks) {
+        int cul = 0;
+        for (Skill sk : sks.keySet()) {
+            cul += sks.get(sk);
+        }
+        return cul;
     }
 }

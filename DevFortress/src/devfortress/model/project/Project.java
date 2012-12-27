@@ -171,15 +171,35 @@ public class Project {
 
     private int calculateBasicFunctionPoint(Employee employee) {
         int level;
+        int divisionNumber;
+        int basic = 0;
+        boolean configIncluded = false;
         if (employee.getMainSkill() == mainSkill) {
             level = employee.getSkillLevel(employee.getMainSkill());
         } else {
             level = employee.getLowestSkillLevel();
         }
-        return (level + (2 * employee.getDesignSkill())
+
+        for (Skill sk : skillRequirementMap.keySet()) {
+            if (sk == Skill.CONFIG_MANAGEMENT) {
+                configIncluded = true;
+            }
+        }
+        if (!configIncluded) {
+            divisionNumber = 8;
+        } else {
+            if ((10 - (skillRequirementMap.get(Skill.CONFIG_MANAGEMENT) + 2)) <= 0) {
+                divisionNumber = 1;
+            } else {
+                divisionNumber = (10 - (skillRequirementMap.get(Skill.CONFIG_MANAGEMENT) + 2));
+            }
+        }
+        basic = ((level + (2 * employee.getDesignSkill())
                 + (level * employee.getAlgorithmSkill())
-                + (employee.getTeamPlayerSkill() * skill_employeeMap.size())
-                / ((10 - employee.getConfigurationSkill()) + 2)) / 4;
+                + (employee.getTeamPlayerSkill() * skill_employeeMap.size()))
+                / divisionNumber) / 4;
+        
+        return basic;
 
     }
 
@@ -212,7 +232,7 @@ public class Project {
             finalPoint = finalPoint * 2;
             employee.havingBabyProgress();
         }
-
+        System.out.println(finalPoint);
         return finalPoint;
     }
 
@@ -308,9 +328,9 @@ public class Project {
 
     public void unassignEmployees() {
         for (Employee employee : skill_employeeMap.values()) {
-            if(employee!=null){
+            if (employee != null) {
                 employee.getOutOfWork();
-            
+
             }
         }
     }

@@ -68,13 +68,13 @@ public class IndividualEvent implements EventInterface {
         return Event.HOLIDAY;
     }
 
-    public static Event redundancies(Employee e) {
+    public static Event redundancies(Employee e, Company c) {
         Project p = e.getWorkingProject();
         if (p != null) {
             Map<Skill, Employee> skill = e.getWorkingProject().getSkill_employeeMap();
             for (Skill sk : skill.keySet()) {
                 if (skill.get(sk).equals(e)) {
-                    skill.put(sk, null);
+                    c.unassignEmployee(p, e);
                 } else if (skill.get(sk) != null) {
                     skill.get(sk).sad();
                 }

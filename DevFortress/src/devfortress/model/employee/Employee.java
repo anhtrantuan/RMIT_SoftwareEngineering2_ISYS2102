@@ -94,30 +94,26 @@ public class Employee {
     }
 
     public void skillLevelUp(Skill sk) {
-        if (skillList.get(sk) < 10) {
-            if (status[10]) {
-                if (skillList.containsKey(sk)) {
-                    int val = ((Integer) skillList.get(sk)).intValue();
-                    val = val + 3;
-                    if (val > 10) {
-                        val = 10;
-                    }
-                    skillList.put(sk, val);
-                } else {
-                    skillList.put(sk, 3);
+        if (status[10]) {
+            if (skillList.containsKey(sk)) {
+                int val = ((Integer) skillList.get(sk)).intValue();
+                val = val + 3;
+                if (val > 10) {
+                    val = 10;
                 }
-                status[10] = false;
+                skillList.put(sk, val);
             } else {
-                if (skillList.containsKey(sk)) {
-                    int val = ((Integer) skillList.get(sk)).intValue();
-                    skillList.put(sk, val + 1);
-                } else {
-                    skillList.put(sk, 1);
-                }
+                skillList.put(sk, 3);
             }
-
+            status[10] = false;
+        } else {
+            if (skillList.containsKey(sk)) {
+                int val = ((Integer) skillList.get(sk)).intValue();
+                skillList.put(sk, val + 1);
+            } else {
+                skillList.put(sk, 1);
+            }
         }
-
         getMainSkill();
     }
 
@@ -425,14 +421,15 @@ public class Employee {
 
     }
 
-    public float restoreMemento(SkillMemento memento) {
-        setSkillList(memento.restoreSkill());
+    public float restoreMemento(SkillMemento mem) {
+        setSkillList(mem.restoreSkill());
         this.memento.removeLast();
-        return memento.restorePrice();
+        return mem.restorePrice();
     }
 
     public void addMemento(SkillMemento mem) {
         memento.add(mem);
+        System.out.println(mem.restoreSkill());
     }
 
     public SkillMemento getMemento() {
@@ -441,13 +438,22 @@ public class Employee {
 
     public void saveState(float fee) {
         addMemento(createMemento(fee));
+
     }
 
     public float back() {
-        return this.restoreMemento(getMemento());
+        return restoreMemento(getMemento());
     }
 
     public boolean isLoyal() {
         return !status[11];
+    }
+
+    public boolean isHappy() {
+        return status[2];
+    }
+
+    public boolean isHungry() {
+        return status[1];
     }
 }
