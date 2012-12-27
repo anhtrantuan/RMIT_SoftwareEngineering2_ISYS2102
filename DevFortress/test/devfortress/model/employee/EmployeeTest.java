@@ -6,6 +6,7 @@ package devfortress.model.employee;
 
 import devfortress.utilities.Skill;
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashMap;
 import java.util.Map;
 import org.junit.After;
@@ -21,23 +22,23 @@ import static org.junit.Assert.*;
  */
 public class EmployeeTest {
 
-    private Map<Skill, Integer> list;
-    private Employee e;
+    private static Map<Skill, Integer> list;
+    private static Employee e;
 
     public EmployeeTest() {
-        e = new Employee();
+    }
 
-        list = new HashMap<Skill, Integer>();
+    @BeforeClass
+    public static void setUpClass() {
+        e = new Employee("employee1", new EnumMap<Skill, Integer>(Skill.class));
+
+        list = new EnumMap<Skill, Integer>(Skill.class);
         list.put(Skill.C, 1);
         list.put(Skill.COMMUNICATION, 2);
         list.put(Skill.C_SHARP, 3);
         list.put(Skill.C_PLUSS_PLUSS, 4);
 
         e.setSkillList(list);
-    }
-
-    @BeforeClass
-    public static void setUpClass() {
     }
 
     @AfterClass
@@ -59,13 +60,12 @@ public class EmployeeTest {
     public void skillLevelUp() {
         System.out.println("Skill Level Up Test");
         e.skillLevelUp(Skill.C);
-        assertEquals("Result", 2, e.getSkillList().get(Skill.C).intValue());
+        assertEquals(2, e.getSkillList().get(Skill.C).intValue());
     }
 
     @Test
     public void getMainSkill() {
         System.out.println("Get Main Skill");
-
         assertEquals(Skill.C_PLUSS_PLUSS, e.getMainSkill());
     }
 
@@ -76,14 +76,14 @@ public class EmployeeTest {
         e.skillLevelUp(Skill.C_SHARP);
         assertEquals(Skill.C_SHARP, e.getMainSkill());
     }
-    
+
     @Test
     public void getMagetLowestSkillLevelinSkill() {
         System.out.println("Get Lowest Skill level");
         e.skillLevelUp(Skill.C);
         assertEquals(1, e.getLowestSkillLevel());
     }
-    
+
     @Test
     public void getMagetLowestSkillLevelinSkill2() {
         System.out.println("Get Lowest Skill level with special skill");

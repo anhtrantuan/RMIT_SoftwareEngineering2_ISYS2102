@@ -26,7 +26,7 @@ public class Employee {
     private int loyalCountdown;
     private int eventCountdown;
     private LinkedList<SkillMemento> memento;
-  
+
     public Employee(String name, Map<Skill, Integer> skillList) {
         this.name = name;
         this.skillList = skillList;
@@ -94,7 +94,6 @@ public class Employee {
     }
 
     public void skillLevelUp(Skill sk) {
-
         if (skillList.get(sk) < 10) {
             if (status[10]) {
                 if (skillList.containsKey(sk)) {
@@ -111,7 +110,7 @@ public class Employee {
             } else {
                 if (skillList.containsKey(sk)) {
                     int val = ((Integer) skillList.get(sk)).intValue();
-                    skillList.put(sk, val);
+                    skillList.put(sk, val + 1);
                 } else {
                     skillList.put(sk, 1);
                 }
@@ -447,8 +446,8 @@ public class Employee {
     public float back() {
         return this.restoreMemento(getMemento());
     }
-    
-    public boolean isLoyal(){
+
+    public boolean isLoyal() {
         return !status[11];
     }
 }

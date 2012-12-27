@@ -14,6 +14,7 @@ import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.OvercrowdedException;
 import devfortress.model.exception.UnaffordableException;
 import devfortress.utilities.Skill;
+import java.util.EnumMap;
 import java.util.HashMap;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -36,9 +37,10 @@ public class DevFortressTest {
     }
 
     @BeforeClass
-    public static void setUpClass() {
+    public static void setUpClass() throws EmployeeNotExist {
+        company = new Engine();
         item = new Food(100, "pizza");
-        employee = new Employee("employee1", new HashMap<Skill, Integer>());
+        employee = new Employee("employee1", new EnumMap<Skill, Integer>(Skill.class));
     }
 
     @AfterClass
@@ -98,7 +100,6 @@ public class DevFortressTest {
 
     @Test
     public void testHireEmployee2() throws OvercrowdedException, UnaffordableException, MoneyRunOutException {
-
         System.out.println("Test hire employee");
         company.buyItem(new Computer(), 1);
         company.hireEmployee(employee);

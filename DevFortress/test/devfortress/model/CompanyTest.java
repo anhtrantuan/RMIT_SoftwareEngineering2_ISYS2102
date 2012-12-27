@@ -126,17 +126,33 @@ public class CompanyTest {
         assertEquals(null, company.getProjectByName("project2"));
     }
 
-   @Test
-   public void cancelProject() throws MoneyRunOutException{
-       System.out.println("Test cancel project: valid project");
-       company.cancelProject(project);
-       assertEquals(null, company.getProjectByName("project1"));
-   }
-   
-//   @Test
-//   public void cancelProject(){
-//       System.out.println("Test cancel project: invalid project");
-//       company.cancelProject(new Project);
-//   }
-   
+    @Test
+    public void cancelProject() throws MoneyRunOutException {
+        System.out.println("Test cancel project: valid project");
+        company.cancelProject(project);
+        assertEquals(null, company.getProjectByName("project1"));
+    }
+
+    @Test
+    public void addEmployee() {
+        System.out.println("Test add employee");
+        int numberEmp = company.getEmployeeList().size();
+        company.addEmployee(employee);
+        assertEquals(numberEmp, company.getEmployeeList().size() - 1);
+    }
+
+    @Test
+    public void addProject() {
+        System.out.println("Test add project");
+        int numberPro = company.getCurrentProjectList().size();
+        company.addProject(project);
+        assertEquals(numberPro, company.getCurrentProjectList().size() - 1);
+    }
+
+    @Test
+    public void clearItemList() {
+        System.out.println("Test clear item list");
+        company.clearItemList();
+        assertEquals(company.getItems().size(), 0);
+    }
 }
