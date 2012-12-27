@@ -173,6 +173,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         pnlStatusBar.setPreferredSize(new java.awt.Dimension(1024, 23));
 
         lblStatus.setBackground(new java.awt.Color(255, 255, 255));
+        lblStatus.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         lblStatus.setText("Status");
 
         javax.swing.GroupLayout pnlStatusBarLayout = new javax.swing.GroupLayout(pnlStatusBar);
@@ -204,7 +205,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         pnlControls.setMinimumSize(new java.awt.Dimension(0, 150));
         pnlControls.setPreferredSize(new java.awt.Dimension(0, 150));
 
-        btnSystem.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        btnSystem.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         btnSystem.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icSystem.png"))); // NOI18N
         btnSystem.setText(Constant.BUTTON_SYSTEM);
         btnSystem.setToolTipText("Manage ");
@@ -212,21 +213,21 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         btnSystem.setMinimumSize(new java.awt.Dimension(126, 50));
         btnSystem.setPreferredSize(new java.awt.Dimension(126, 50));
 
-        btnInformation.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        btnInformation.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         btnInformation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icInformation.png"))); // NOI18N
         btnInformation.setText(Constant.BUTTON_INFORMATION);
         btnInformation.setMaximumSize(new java.awt.Dimension(220, 40));
         btnInformation.setMinimumSize(new java.awt.Dimension(220, 40));
         btnInformation.setPreferredSize(new java.awt.Dimension(220, 40));
 
-        btnCurrentProjects.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
+        btnCurrentProjects.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         btnCurrentProjects.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icProjects.png"))); // NOI18N
         btnCurrentProjects.setText(Constant.BUTTTON_CURRENT_PROJECTS);
         btnCurrentProjects.setMaximumSize(new java.awt.Dimension(227, 40));
         btnCurrentProjects.setMinimumSize(new java.awt.Dimension(227, 40));
         btnCurrentProjects.setPreferredSize(new java.awt.Dimension(227, 40));
 
-        btnNextTurn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        btnNextTurn.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         btnNextTurn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icNextTurn.png"))); // NOI18N
         btnNextTurn.setText(Constant.BUTTON_NEXT_TURN);
         btnNextTurn.setMaximumSize(new java.awt.Dimension(131, 90));
@@ -269,7 +270,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         pnlStatusAndProjects.setLayout(new javax.swing.BoxLayout(pnlStatusAndProjects, javax.swing.BoxLayout.Y_AXIS));
 
         pnlStatus.setBackground(new java.awt.Color(255, 255, 255));
-        pnlStatus.setBorder(javax.swing.BorderFactory.createTitledBorder("Status"));
+        pnlStatus.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Status", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 14))); // NOI18N
         pnlStatus.setMinimumSize(new java.awt.Dimension(0, 0));
         pnlStatus.setPreferredSize(new java.awt.Dimension(0, 210));
         pnlStatus.setLayout(new javax.swing.BoxLayout(pnlStatus, javax.swing.BoxLayout.Y_AXIS));
@@ -280,7 +281,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         pnlDuration.setMinimumSize(new java.awt.Dimension(0, 36));
         pnlDuration.setPreferredSize(new java.awt.Dimension(0, 36));
 
-        lblDuration.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        lblDuration.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         lblDuration.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icDuration.png"))); // NOI18N
         lblDuration.setText("Duration");
 
@@ -303,7 +304,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         pnlBudget.setMinimumSize(new java.awt.Dimension(0, 36));
         pnlBudget.setPreferredSize(new java.awt.Dimension(0, 36));
 
-        lblBudget.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        lblBudget.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         lblBudget.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icBudget.png"))); // NOI18N
         lblBudget.setText("Budget");
 
@@ -326,7 +327,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         scpExpenses.setMinimumSize(new java.awt.Dimension(0, 42));
         scpExpenses.setPreferredSize(new java.awt.Dimension(14, 42));
 
-        treExpenses.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        treExpenses.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         treExpenses.setModel(new ExpensesTreeModel(null));
         treExpenses.setCellRenderer(new ExpensesTreeCellRenderer());
         treExpenses.setMaximumSize(new java.awt.Dimension(166, 32779));
@@ -351,7 +352,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         pnlEmployees.setMaximumSize(new java.awt.Dimension(32767, 36));
         pnlEmployees.setPreferredSize(new java.awt.Dimension(0, 36));
 
-        lblEmployees.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        lblEmployees.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         lblEmployees.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icEmployees.png"))); // NOI18N
         lblEmployees.setText("Employees");
         lblEmployees.setPreferredSize(new java.awt.Dimension(0, 24));
@@ -373,7 +374,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         pnlStatusAndProjects.add(rigidArea2);
 
         pnlProjects.setBackground(new java.awt.Color(255, 255, 255));
-        pnlProjects.setBorder(javax.swing.BorderFactory.createTitledBorder("Projects"));
+        pnlProjects.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Projects", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Arial", 0, 14))); // NOI18N
         pnlProjects.setMinimumSize(new java.awt.Dimension(0, 42));
         pnlProjects.setPreferredSize(new java.awt.Dimension(0, 42));
         pnlProjects.setLayout(new javax.swing.BoxLayout(pnlProjects, javax.swing.BoxLayout.Y_AXIS));
@@ -384,7 +385,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         scpProjects.setMinimumSize(new java.awt.Dimension(6, 42));
         scpProjects.setPreferredSize(new java.awt.Dimension(14, 42));
 
-        treProjects.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        treProjects.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         treProjects.setModel(new ProjectsTreeModel(null));
         treProjects.setCellRenderer(new ProjectsTreeCellRenderer());
         treProjects.setMaximumSize(new java.awt.Dimension(90, 32779));
@@ -547,6 +548,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         menuFile.setText("File");
 
         menuFile_Exit.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F4, java.awt.event.InputEvent.ALT_MASK));
+        menuFile_Exit.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         menuFile_Exit.setText("Exit");
         menuFile_Exit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -560,6 +562,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         menuEdit.setMnemonic('E');
         menuEdit.setText("Edit");
 
+        menuEdit_Preferences.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         menuEdit_Preferences.setText("Preferences");
         menuEdit.add(menuEdit_Preferences);
 
@@ -568,6 +571,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         menuView.setMnemonic('V');
         menuView.setText("View");
 
+        menuView_Summary.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         menuView_Summary.setText("Summary");
         menuView.add(menuView_Summary);
 
@@ -576,6 +580,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         menuHelp.setMnemonic('H');
         menuHelp.setText("Help");
 
+        menuHelp_About.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         menuHelp_About.setText("About");
         menuHelp.add(menuHelp_About);
 

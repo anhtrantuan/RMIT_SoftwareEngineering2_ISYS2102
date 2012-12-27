@@ -78,7 +78,7 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
 
         pnlTitle.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblTitle.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText(Constant.AVAILABLE_PROJECTS_LABEL);
 
@@ -100,10 +100,10 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
 
         pnlNameAndLevel.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblProjectLevel.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        lblProjectLevel.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         lblProjectLevel.setText("Project Level ");
 
-        lblProjectName.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        lblProjectName.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         lblProjectName.setText("Project Name");
 
         javax.swing.GroupLayout pnlNameAndLevelLayout = new javax.swing.GroupLayout(pnlNameAndLevel);
@@ -129,7 +129,7 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
 
         pnlMainSkill.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblMainSkill.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        lblMainSkill.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblMainSkill.setText(Constant.MAIN_SKILL_LABEL);
 
         javax.swing.GroupLayout pnlMainSkillLayout = new javax.swing.GroupLayout(pnlMainSkill);
@@ -149,7 +149,7 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
         add(pnlMainSkill);
 
         tblSkills.setAutoCreateRowSorter(true);
-        tblSkills.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        tblSkills.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         tblSkills.setModel(new devfortress.view.models.ProjectTableModel());
         tblSkills.setRowHeight(36);
         tblSkills.setRowSelectionAllowed(false);
@@ -159,7 +159,7 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
 
         pnlDue.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblDue.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        lblDue.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblDue.setText(Constant.PROJECT_DUE);
 
         javax.swing.GroupLayout pnlDueLayout = new javax.swing.GroupLayout(pnlDue);
@@ -182,7 +182,7 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
 
         pnlPay.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblPay.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        lblPay.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblPay.setText(Constant.PROJECT_PAY);
 
         javax.swing.GroupLayout pnlPayLayout = new javax.swing.GroupLayout(pnlPay);
@@ -254,14 +254,14 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
 
         pnlAcceptAndCancel.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnAccept.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        btnAccept.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         btnAccept.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icContract.png"))); // NOI18N
         btnAccept.setText(Constant.BUTTON_ACCEPT);
         btnAccept.setMaximumSize(new java.awt.Dimension(120, 40));
         btnAccept.setMinimumSize(new java.awt.Dimension(120, 40));
         btnAccept.setPreferredSize(new java.awt.Dimension(120, 40));
 
-        btnCancel.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        btnCancel.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icCancel.png"))); // NOI18N
         btnCancel.setText(Constant.CANCEL);
         btnCancel.setMaximumSize(new java.awt.Dimension(120, 40));

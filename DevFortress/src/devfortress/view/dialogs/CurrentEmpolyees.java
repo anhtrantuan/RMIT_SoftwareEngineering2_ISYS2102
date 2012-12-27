@@ -59,6 +59,7 @@ public class CurrentEmpolyees extends javax.swing.JPanel {
         tblEmployees = new javax.swing.JTable();
 
         tblEmployees.setAutoCreateRowSorter(true);
+        tblEmployees.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         tblEmployees.setModel(new EmployeesTableModel());
         scpEmployees.setViewportView(tblEmployees);
         tblEmployees.setRowHeight(36);

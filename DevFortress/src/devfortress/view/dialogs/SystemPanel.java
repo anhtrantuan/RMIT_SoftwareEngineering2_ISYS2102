@@ -56,7 +56,7 @@ public class SystemPanel extends javax.swing.JPanel {
 
         pnlTitle.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblTitle.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText(Constant.BUTTON_SYSTEM);
 

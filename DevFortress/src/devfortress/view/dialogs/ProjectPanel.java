@@ -74,7 +74,7 @@ public class ProjectPanel extends javax.swing.JPanel {
 
         pnlTitle.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblTitle.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText(Constant.PROJECT_INFORMATION);
 
@@ -96,10 +96,10 @@ public class ProjectPanel extends javax.swing.JPanel {
 
         pnlProjectNameAndLevel.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblProjectName.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        lblProjectName.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         lblProjectName.setText(Constant.PROJECT_NAME);
 
-        lblProjectLevel.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        lblProjectLevel.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         lblProjectLevel.setText(Constant.PROJECT_LEVEL);
 
         javax.swing.GroupLayout pnlProjectNameAndLevelLayout = new javax.swing.GroupLayout(pnlProjectNameAndLevel);
@@ -125,7 +125,7 @@ public class ProjectPanel extends javax.swing.JPanel {
 
         pnlMainSkill.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblMainSkill.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        lblMainSkill.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblMainSkill.setText(Constant.MAIN_SKILL_LABEL);
 
         javax.swing.GroupLayout pnlMainSkillLayout = new javax.swing.GroupLayout(pnlMainSkill);
@@ -147,7 +147,7 @@ public class ProjectPanel extends javax.swing.JPanel {
         scpFields.setBackground(new java.awt.Color(255, 255, 255));
 
         tblFields.setAutoCreateRowSorter(true);
-        tblFields.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        tblFields.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         tblFields.setModel(new ProjectInformationTableModel());
         tblFields.setRowHeight(36);
         tblFields.setRowSelectionAllowed(false);
@@ -157,7 +157,7 @@ public class ProjectPanel extends javax.swing.JPanel {
 
         pnlTotalRequiredPoints.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblTotalRequiredPoints.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        lblTotalRequiredPoints.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblTotalRequiredPoints.setText(Constant.TOTAL_REQUIRED_FUNCTIONPOINT_LABEL);
 
         javax.swing.GroupLayout pnlTotalRequiredPointsLayout = new javax.swing.GroupLayout(pnlTotalRequiredPoints);
@@ -178,7 +178,7 @@ public class ProjectPanel extends javax.swing.JPanel {
 
         pnlTotalProducedPoints.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblTotalProducedPoints.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        lblTotalProducedPoints.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblTotalProducedPoints.setText(Constant.TOTAL_PRODUCED_FUNCTION_POINT);
 
         javax.swing.GroupLayout pnlTotalProducedPointsLayout = new javax.swing.GroupLayout(pnlTotalProducedPoints);
@@ -199,7 +199,7 @@ public class ProjectPanel extends javax.swing.JPanel {
 
         pnlRemainingPoints.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblRemainingPoints.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        lblRemainingPoints.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblRemainingPoints.setText(Constant.PROJECT_REMAINING_POINTS);
 
         javax.swing.GroupLayout pnlRemainingPointsLayout = new javax.swing.GroupLayout(pnlRemainingPoints);
@@ -223,7 +223,7 @@ public class ProjectPanel extends javax.swing.JPanel {
         pnlCloseButton.setMinimumSize(new java.awt.Dimension(120, 60));
         pnlCloseButton.setPreferredSize(new java.awt.Dimension(120, 60));
 
-        btnClose.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        btnClose.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icCancel.png"))); // NOI18N
         btnClose.setText(Constant.CLOSE_BTN);
         btnClose.setMaximumSize(new java.awt.Dimension(120, 40));

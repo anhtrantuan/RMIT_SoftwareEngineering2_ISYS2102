@@ -76,7 +76,7 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
         pnlTitle.setBackground(new java.awt.Color(255, 255, 255));
 
         lblTitle.setBackground(new java.awt.Color(255, 255, 255));
-        lblTitle.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText(Constant.AVAILABLE_EMPLOYEES);
 
@@ -100,10 +100,10 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
 
         pnlNameAndMainSkill.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblName.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        lblName.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblName.setText(Constant.EMPLOYEE_NAME);
 
-        lblMainSkill.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        lblMainSkill.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblMainSkill.setText(Constant.MAIN_SKILL_LABEL);
 
         javax.swing.GroupLayout pnlNameAndMainSkillLayout = new javax.swing.GroupLayout(pnlNameAndMainSkill);
@@ -131,7 +131,7 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
         scpEmployees.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
         tblEmployees.setAutoCreateRowSorter(true);
-        tblEmployees.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        tblEmployees.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         tblEmployees.setModel(new devfortress.view.models.EmployeeTableModel());
         tblEmployees.setRowHeight(36);
         tblEmployees.setRowSelectionAllowed(false);
@@ -141,7 +141,7 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
 
         pnlSalary.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblSalary.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        lblSalary.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblSalary.setText(Constant.SALARY_LABEL);
 
         javax.swing.GroupLayout pnlSalaryLayout = new javax.swing.GroupLayout(pnlSalary);
@@ -212,14 +212,14 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
 
         pnlAcceptCancel.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnCancel.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        btnCancel.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icCancel.png"))); // NOI18N
         btnCancel.setText(Constant.CANCEL);
         btnCancel.setMaximumSize(new java.awt.Dimension(120, 40));
         btnCancel.setMinimumSize(new java.awt.Dimension(120, 40));
         btnCancel.setPreferredSize(new java.awt.Dimension(120, 40));
 
-        btnHire.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        btnHire.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         btnHire.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icHire.png"))); // NOI18N
         btnHire.setText(Constant.HIRE);
         btnHire.setMaximumSize(new java.awt.Dimension(120, 40));

@@ -22,6 +22,9 @@
                 <Property name="accelerator" type="javax.swing.KeyStroke" editor="org.netbeans.modules.form.editors.KeyStrokeEditor">
                   <KeyStroke key="Alt+F4"/>
                 </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="15" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Exit"/>
               </Properties>
               <Events>
@@ -38,6 +41,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuEdit_Preferences">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="15" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Preferences"/>
               </Properties>
             </MenuItem>
@@ -51,6 +57,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuView_Summary">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="15" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="Summary"/>
               </Properties>
             </MenuItem>
@@ -64,6 +73,9 @@
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="menuHelp_About">
               <Properties>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Arial" size="15" style="0"/>
+                </Property>
                 <Property name="text" type="java.lang.String" value="About"/>
               </Properties>
             </MenuItem>
@@ -173,6 +185,9 @@
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Arial" size="15" style="0"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Status"/>
           </Properties>
         </Component>
@@ -275,7 +290,7 @@
                 <Component class="javax.swing.JButton" name="btnSystem">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Ubuntu" size="24" style="1"/>
+                      <Font name="Arial" size="24" style="1"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/devfortress/view/resources/icSystem.png"/>
@@ -298,7 +313,7 @@
                 <Component class="javax.swing.JButton" name="btnInformation">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Ubuntu" size="13" style="1"/>
+                      <Font name="Arial" size="13" style="1"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/devfortress/view/resources/icInformation.png"/>
@@ -320,7 +335,7 @@
                 <Component class="javax.swing.JButton" name="btnCurrentProjects">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Ubuntu" size="13" style="1"/>
+                      <Font name="Arial" size="13" style="1"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/devfortress/view/resources/icProjects.png"/>
@@ -342,7 +357,7 @@
                 <Component class="javax.swing.JButton" name="btnNextTurn">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Ubuntu" size="14" style="1"/>
+                      <Font name="Arial" size="14" style="1"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/devfortress/view/resources/icNextTurn.png"/>
@@ -397,7 +412,9 @@
                     </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder title="Status"/>
+                        <TitledBorder title="Status">
+                          <Font PropertyName="font" name="Arial" size="14" style="0"/>
+                        </TitledBorder>
                       </Border>
                     </Property>
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -449,7 +466,7 @@
                         <Component class="javax.swing.JLabel" name="lblDuration">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Ubuntu" size="16" style="1"/>
+                              <Font name="Arial" size="16" style="1"/>
                             </Property>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/devfortress/view/resources/icDuration.png"/>
@@ -496,7 +513,7 @@
                         <Component class="javax.swing.JLabel" name="lblBudget">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Ubuntu" size="16" style="1"/>
+                              <Font name="Arial" size="16" style="1"/>
                             </Property>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/devfortress/view/resources/icBudget.png"/>
@@ -533,7 +550,7 @@
                         <Component class="javax.swing.JTree" name="treExpenses">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Ubuntu" size="16" style="1"/>
+                              <Font name="Arial" size="16" style="1"/>
                             </Property>
                             <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                               <Connection code="new ExpensesTreeModel(null)" type="code"/>
@@ -596,7 +613,7 @@
                         <Component class="javax.swing.JLabel" name="lblEmployees">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Ubuntu" size="16" style="1"/>
+                              <Font name="Arial" size="16" style="1"/>
                             </Property>
                             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                               <Image iconType="3" name="/devfortress/view/resources/icEmployees.png"/>
@@ -634,7 +651,9 @@
                     </Property>
                     <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                       <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                        <TitledBorder title="Projects"/>
+                        <TitledBorder title="Projects">
+                          <Font PropertyName="font" name="Arial" size="14" style="0"/>
+                        </TitledBorder>
                       </Border>
                     </Property>
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -676,7 +695,7 @@
                         <Component class="javax.swing.JTree" name="treProjects">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                              <Font name="Ubuntu" size="16" style="1"/>
+                              <Font name="Arial" size="16" style="1"/>
                             </Property>
                             <Property name="model" type="javax.swing.tree.TreeModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
                               <Connection code="new ProjectsTreeModel(null)" type="code"/>

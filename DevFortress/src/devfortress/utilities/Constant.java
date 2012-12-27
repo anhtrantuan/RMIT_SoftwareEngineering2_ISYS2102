@@ -82,5 +82,6 @@ public class Constant {
     public static String CLEAR_BTN = "Clear";
     public static String MUL_SIGN = "x";
     public static String EQUAL_SIGN = "=";
+    public static String DOLLAR_SIGN = "$";
     public static String TOTAL_COST_LBL = "Total cost: ";
 }
