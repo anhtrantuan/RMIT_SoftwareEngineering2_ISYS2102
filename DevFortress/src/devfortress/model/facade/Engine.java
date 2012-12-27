@@ -439,4 +439,15 @@ public class Engine extends Observable implements Model {
         Employee e = utilities.generateGoldenEmployee();
         availableEmployees.add(e);
     }
+
+    @Override
+    public Company getCompany() {
+        return this.company;
+    }
+
+    @Override
+    public void untrain(Employee emp) {
+        company.unTrain(emp);
+    }
+    
 }
