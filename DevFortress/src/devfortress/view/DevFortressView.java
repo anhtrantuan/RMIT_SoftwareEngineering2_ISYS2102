@@ -908,7 +908,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
     private Game2D createAnimationEngine(Event event) {
         // TODO Create animation engine
 //        if (event == Event.DEVELOPER_IS_SICK) {
-        return new Holiday(eventDimension);
+        return new TeamBuildingExcercise(eventDimension);
 //        }
 //        return null;
     }
