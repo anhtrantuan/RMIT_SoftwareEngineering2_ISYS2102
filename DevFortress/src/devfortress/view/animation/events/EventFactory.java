@@ -54,6 +54,6 @@ public class EventFactory {
             return new WorkIsHacked(dimension);
         }
 
-        return new Holiday(dimension);
+        return new DeveloperIsSickEventAnimation(dimension);
     }
 }

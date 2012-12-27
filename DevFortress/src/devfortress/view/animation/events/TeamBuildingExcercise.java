@@ -48,7 +48,7 @@ public class TeamBuildingExcercise extends Game2D {
     @Override
     public void deactivate() {
         super.deactivate();
-        
+        isWaiting = false;
         timestamp = 0;
         sprites.clear();
         sprites.add(bgr);
@@ -109,8 +109,8 @@ public class TeamBuildingExcercise extends Game2D {
         try {
             URL bgrURL = getClass().getResource("../../resources/imgSickFloor.png"),
                     rockLeeSequenceURL = getClass().getResource("../../resources/imgTeamBuilding.png"),
-                    mightGuyURL = getClass().getResource("../../resources/imgTeamBuildingMale.png"),
-                    rockLeeURL = getClass().getResource("../../resources/imgTeamBuildingFemale.png");
+                    mightGuyURL = getClass().getResource("../../resources/imgTeamBuildingMightGuy.png"),
+                    rockLeeURL = getClass().getResource("../../resources/imgTeamBuildingRockLee.png");
 
             BGR_IMAGE = ImageIO.read(bgrURL);
             ROCK_LEE_EXCERCISE_IMAGE = ImageIO.read(rockLeeSequenceURL);
