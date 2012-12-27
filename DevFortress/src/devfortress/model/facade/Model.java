@@ -4,6 +4,7 @@
  */
 package devfortress.model.facade;
 
+import devfortress.model.Company;
 import devfortress.model.DateTime;
 import devfortress.model.Item;
 import devfortress.model.employee.Employee;
@@ -76,8 +77,12 @@ public interface Model {
     Project getWorkingProjectOfEmployee(Employee emp);
 
     void train(Employee emp, Skill sk) throws UnaffordableException;
+    
+    void untrain(Employee emp);
 
     void drink(Employee emp);
 
     void createGoldenEmployee();
+
+    Company getCompany();
 }

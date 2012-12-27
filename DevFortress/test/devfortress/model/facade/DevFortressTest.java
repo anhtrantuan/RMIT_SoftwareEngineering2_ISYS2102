@@ -112,4 +112,29 @@ public class DevFortressTest {
         company.fireEmployee(employee);
         assertEquals("Result", 0, company.getEmployeeList().size());
     }
+    
+    @Test
+    public void createGoldenEmployee(){
+        System.out.println("Test create golden employee");
+    }
+    
+    @Test
+    public void drink(){
+        System.out.println("Test drink");
+    }
+    
+    @Test
+    public void train(){
+        System.out.println("Test train");
+    }
+    
+    @Test
+    public void untrain(){
+        System.out.println("Test untrain");
+    }
+    
+    @Test
+    public void getWorkingProjectOfEmployee(){
+        System.out.println("Test get working project of employee");
+    }
 }
