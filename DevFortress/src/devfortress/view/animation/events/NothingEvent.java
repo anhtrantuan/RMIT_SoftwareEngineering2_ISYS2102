@@ -80,6 +80,6 @@ public class NothingEvent extends Game2D implements EventAnimationEngine{
 
     @Override
     public String getInformation() {
-        return "Customer wants to cut out some features. Finish one field of the project";
+        return "No event occurs";
     }
 }
