@@ -9,6 +9,7 @@ import devfortress.utilities.Constant;
 import devfortress.view.models.EmployeeTableModel;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -21,6 +22,7 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
     private List<Employee> employeeList;
     private Employee currentEmployee;
     private EmployeeTableModel tableModel;
+    private DecimalFormat decimalFormatter;
 
     /**
      * Creates new form AvaiableEmployee,
@@ -35,9 +37,10 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
         tableModel = (EmployeeTableModel) tblEmployees.getModel();
         index = 0;
         employeeList = employees;
+        decimalFormatter = new DecimalFormat("$#,##0.0#");
         populateData();
         btnHire.addActionListener(buttonListener);
-        btnCancel.addActionListener(buttonListener);
+        btnCancel.addActionListener(buttonListener);        
     }
 
     /**
@@ -76,7 +79,7 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
         pnlTitle.setBackground(new java.awt.Color(255, 255, 255));
 
         lblTitle.setBackground(new java.awt.Color(255, 255, 255));
-        lblTitle.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText(Constant.AVAILABLE_EMPLOYEES);
 
@@ -100,10 +103,10 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
 
         pnlNameAndMainSkill.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblName.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        lblName.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblName.setText(Constant.EMPLOYEE_NAME);
 
-        lblMainSkill.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        lblMainSkill.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblMainSkill.setText(Constant.MAIN_SKILL_LABEL);
 
         javax.swing.GroupLayout pnlNameAndMainSkillLayout = new javax.swing.GroupLayout(pnlNameAndMainSkill);
@@ -131,7 +134,7 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
         scpEmployees.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
 
         tblEmployees.setAutoCreateRowSorter(true);
-        tblEmployees.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        tblEmployees.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         tblEmployees.setModel(new devfortress.view.models.EmployeeTableModel());
         tblEmployees.setRowHeight(36);
         tblEmployees.setRowSelectionAllowed(false);
@@ -141,7 +144,7 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
 
         pnlSalary.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblSalary.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        lblSalary.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblSalary.setText(Constant.SALARY_LABEL);
 
         javax.swing.GroupLayout pnlSalaryLayout = new javax.swing.GroupLayout(pnlSalary);
@@ -161,12 +164,15 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
         add(pnlSalary);
 
         pnlPreviousNext.setBackground(new java.awt.Color(255, 255, 255));
-        pnlPreviousNext.setMaximumSize(new java.awt.Dimension(122, 56));
-        pnlPreviousNext.setMinimumSize(new java.awt.Dimension(122, 56));
-        pnlPreviousNext.setPreferredSize(new java.awt.Dimension(122, 56));
+        pnlPreviousNext.setMaximumSize(new java.awt.Dimension(130, 60));
+        pnlPreviousNext.setMinimumSize(new java.awt.Dimension(130, 60));
+        pnlPreviousNext.setPreferredSize(new java.awt.Dimension(130, 60));
 
         btnPrevious.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         btnPrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icPrevious.png"))); // NOI18N
+        btnPrevious.setMaximumSize(new java.awt.Dimension(40, 40));
+        btnPrevious.setMinimumSize(new java.awt.Dimension(40, 40));
+        btnPrevious.setPreferredSize(new java.awt.Dimension(40, 40));
         btnPrevious.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPreviousActionPerformed(evt);
@@ -175,6 +181,9 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
 
         btnNext.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icNext.png"))); // NOI18N
+        btnNext.setMaximumSize(new java.awt.Dimension(40, 40));
+        btnNext.setMinimumSize(new java.awt.Dimension(40, 40));
+        btnNext.setPreferredSize(new java.awt.Dimension(40, 40));
         btnNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNextActionPerformed(evt);
@@ -186,34 +195,34 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
         pnlPreviousNextLayout.setHorizontalGroup(
             pnlPreviousNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPreviousNextLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnPrevious)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(btnNext)
-                .addContainerGap())
+                .addGap(15, 15, 15)
+                .addComponent(btnPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
         pnlPreviousNextLayout.setVerticalGroup(
             pnlPreviousNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPreviousNextLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(pnlPreviousNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnPrevious)
-                    .addComponent(btnNext))
-                .addGap(10, 10, 10))
+                .addGroup(pnlPreviousNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnNext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPrevious, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         add(pnlPreviousNext);
 
         pnlAcceptCancel.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnCancel.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        btnCancel.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icCancel.png"))); // NOI18N
         btnCancel.setText(Constant.CANCEL);
         btnCancel.setMaximumSize(new java.awt.Dimension(120, 40));
         btnCancel.setMinimumSize(new java.awt.Dimension(120, 40));
         btnCancel.setPreferredSize(new java.awt.Dimension(120, 40));
 
-        btnHire.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        btnHire.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         btnHire.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icHire.png"))); // NOI18N
         btnHire.setText(Constant.HIRE);
         btnHire.setMaximumSize(new java.awt.Dimension(120, 40));
@@ -293,8 +302,8 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
                     currentEmployee.getName()));
             lblMainSkill.setText(String.format("%s: %s", Constant.MAIN_SKILL_LABEL,
                     currentEmployee.getMainSkill().toString()));
-            lblSalary.setText(String.format("%s: $%.2f", Constant.SALARY_LABEL,
-                    currentEmployee.getSalary()));
+            lblSalary.setText(String.format("%s: %s", Constant.SALARY_LABEL,
+                    decimalFormatter.format(currentEmployee.getSalary())));
             tableModel.setSkillList(currentEmployee.getSkillList());
             btnHire.setActionCommand(String.valueOf(index));
         } else {

@@ -4,6 +4,8 @@
  */
 package devfortress.model;
 
+import devfortress.utilities.Constant;
+
 /**
  *
  * @author cathoanghuy
@@ -16,6 +18,10 @@ public class Food implements Item {
     public Food(float price, String name) {
         this.price = price;
         this.name = name;
+    }
+
+    public Food() {
+        this(Constant.PIZZA_PRICE, Constant.FOOD_PIZZA);
     }
 
     @Override

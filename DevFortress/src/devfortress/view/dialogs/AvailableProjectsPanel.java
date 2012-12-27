@@ -9,6 +9,7 @@ import devfortress.utilities.Constant;
 import devfortress.view.models.ProjectTableModel;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -21,6 +22,7 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
     private List<Project> projectList;
     private Project currentProject;
     private ProjectTableModel tableModel;
+    private DecimalFormat decimalFormatter;
 
     /**
      * Creates new form AvailableProjectsPanel.
@@ -35,9 +37,10 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
         tableModel = (ProjectTableModel) tblSkills.getModel();
         index = 0;
         projectList = availableProjectList;
+        decimalFormatter = new DecimalFormat("$#,##0.0#");
         populateData();
         btnAccept.addActionListener(buttonListener);
-        btnCancel.addActionListener(buttonListener);
+        btnCancel.addActionListener(buttonListener);        
     }
 
     /**
@@ -78,7 +81,7 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
 
         pnlTitle.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblTitle.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText(Constant.AVAILABLE_PROJECTS_LABEL);
 
@@ -100,10 +103,10 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
 
         pnlNameAndLevel.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblProjectLevel.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        lblProjectLevel.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         lblProjectLevel.setText("Project Level ");
 
-        lblProjectName.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        lblProjectName.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         lblProjectName.setText("Project Name");
 
         javax.swing.GroupLayout pnlNameAndLevelLayout = new javax.swing.GroupLayout(pnlNameAndLevel);
@@ -129,7 +132,7 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
 
         pnlMainSkill.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblMainSkill.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        lblMainSkill.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblMainSkill.setText(Constant.MAIN_SKILL_LABEL);
 
         javax.swing.GroupLayout pnlMainSkillLayout = new javax.swing.GroupLayout(pnlMainSkill);
@@ -149,7 +152,7 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
         add(pnlMainSkill);
 
         tblSkills.setAutoCreateRowSorter(true);
-        tblSkills.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        tblSkills.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         tblSkills.setModel(new devfortress.view.models.ProjectTableModel());
         tblSkills.setRowHeight(36);
         tblSkills.setRowSelectionAllowed(false);
@@ -159,7 +162,7 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
 
         pnlDue.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblDue.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        lblDue.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblDue.setText(Constant.PROJECT_DUE);
 
         javax.swing.GroupLayout pnlDueLayout = new javax.swing.GroupLayout(pnlDue);
@@ -182,7 +185,7 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
 
         pnlPay.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblPay.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        lblPay.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         lblPay.setText(Constant.PROJECT_PAY);
 
         javax.swing.GroupLayout pnlPayLayout = new javax.swing.GroupLayout(pnlPay);
@@ -202,13 +205,16 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
         add(pnlPay);
 
         pnlPreviousAndNext.setBackground(new java.awt.Color(255, 255, 255));
-        pnlPreviousAndNext.setMaximumSize(new java.awt.Dimension(122, 56));
-        pnlPreviousAndNext.setMinimumSize(new java.awt.Dimension(122, 56));
+        pnlPreviousAndNext.setMaximumSize(new java.awt.Dimension(130, 60));
+        pnlPreviousAndNext.setMinimumSize(new java.awt.Dimension(130, 60));
         pnlPreviousAndNext.setName(""); // NOI18N
-        pnlPreviousAndNext.setPreferredSize(new java.awt.Dimension(122, 56));
+        pnlPreviousAndNext.setPreferredSize(new java.awt.Dimension(130, 60));
 
         btnNext.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icNext.png"))); // NOI18N
+        btnNext.setMaximumSize(new java.awt.Dimension(40, 40));
+        btnNext.setMinimumSize(new java.awt.Dimension(40, 40));
+        btnNext.setPreferredSize(new java.awt.Dimension(40, 40));
         btnNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNextActionPerformed(evt);
@@ -217,6 +223,9 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
 
         btnPrevious.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         btnPrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icPrevious.png"))); // NOI18N
+        btnPrevious.setMaximumSize(new java.awt.Dimension(40, 40));
+        btnPrevious.setMinimumSize(new java.awt.Dimension(40, 40));
+        btnPrevious.setPreferredSize(new java.awt.Dimension(40, 40));
         btnPrevious.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPreviousActionPerformed(evt);
@@ -228,34 +237,34 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
         pnlPreviousAndNextLayout.setHorizontalGroup(
             pnlPreviousAndNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPreviousAndNextLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnPrevious)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                .addComponent(btnNext)
-                .addContainerGap())
+                .addGap(15, 15, 15)
+                .addComponent(btnPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(20, 20, 20)
+                .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(15, 15, 15))
         );
         pnlPreviousAndNextLayout.setVerticalGroup(
             pnlPreviousAndNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPreviousAndNextLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(pnlPreviousAndNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnNext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnPrevious, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnPrevious, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnNext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         add(pnlPreviousAndNext);
 
         pnlAcceptAndCancel.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnAccept.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        btnAccept.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         btnAccept.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icContract.png"))); // NOI18N
         btnAccept.setText(Constant.BUTTON_ACCEPT);
         btnAccept.setMaximumSize(new java.awt.Dimension(120, 40));
         btnAccept.setMinimumSize(new java.awt.Dimension(120, 40));
         btnAccept.setPreferredSize(new java.awt.Dimension(120, 40));
 
-        btnCancel.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        btnCancel.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icCancel.png"))); // NOI18N
         btnCancel.setText(Constant.CANCEL);
         btnCancel.setMaximumSize(new java.awt.Dimension(120, 40));
@@ -335,8 +344,8 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
                     projectList.get(index).getMainSkill().toString()));
             lblDue.setText(String.format("%s: %d Month(s)", Constant.PROJECT_DUE,
                     projectList.get(index).getProjectTime().getMonths()));
-            lblPay.setText(String.format("%s: $%.2f", Constant.PROJECT_PAY,
-                    projectList.get(index).getPayment()));
+            lblPay.setText(String.format("%s: %s", Constant.PROJECT_PAY,
+                    decimalFormatter.format(projectList.get(index).getPayment())));
             tableModel.setSkillList(currentProject.getOriginalSkillRequirementMap());
             btnAccept.setActionCommand(String.valueOf(index));
             btnAccept.setEnabled(true);

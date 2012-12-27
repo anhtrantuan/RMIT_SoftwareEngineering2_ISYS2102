@@ -19,7 +19,7 @@ public class Computer implements Item {
     }
 
     public Computer() {
-        this.price = 20;
+        this(Constant.COMPUTER_PRICE);
     }
 
     @Override

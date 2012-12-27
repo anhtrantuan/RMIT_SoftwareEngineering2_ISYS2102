@@ -64,7 +64,7 @@ public class CurrentProjectsPanel extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        lblTitle.setFont(new java.awt.Font("Ubuntu", 1, 24)); // NOI18N
+        lblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitle.setText(Constant.CURRENT_PROJECT_LABEL);
 
@@ -87,7 +87,7 @@ public class CurrentProjectsPanel extends javax.swing.JPanel {
         scpProject.setBackground(new java.awt.Color(255, 255, 255));
 
         tblProjects.setAutoCreateRowSorter(true);
-        tblProjects.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
+        tblProjects.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         tblProjects.setModel(new devfortress.view.models.CurrentProjectsTableModel());
         tblProjects.setRowHeight(36);
         tblProjects.setRowSelectionAllowed(false);
@@ -100,7 +100,7 @@ public class CurrentProjectsPanel extends javax.swing.JPanel {
         jPanel2.setMinimumSize(new java.awt.Dimension(120, 60));
         jPanel2.setPreferredSize(new java.awt.Dimension(120, 60));
 
-        btnClose.setFont(new java.awt.Font("Ubuntu", 1, 16)); // NOI18N
+        btnClose.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icCancel.png"))); // NOI18N
         btnClose.setText(Constant.CLOSE_BTN);
         btnClose.setMaximumSize(new java.awt.Dimension(120, 40));

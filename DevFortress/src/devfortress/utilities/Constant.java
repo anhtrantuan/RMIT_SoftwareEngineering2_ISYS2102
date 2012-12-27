@@ -16,11 +16,15 @@ public class Constant {
     public static int MAX_FUNCTION_POINT_DIFFICULT = 400;
     public static int PROJECT_MAX = 5;
     public static int EMPLOYEE_MAX = 10;
+    public static int BEER_PRICE = 30;
+    public static int PIZZA_PRICE = 50;
+    public static int COMPUTER_PRICE = 300;
     public static String BEER = "Beer";
     public static String COMPUTER = "Computer";
     public static String EXPENSE_FOODS = "Foods";
     public static String EXPENSE_BEERS = "Beers";
     public static String EXPENSE_COMPUTERS = "Computers";
+    public static String FOOD_PIZZA = "Pizza";
     /* Constants for View. */
     public static String BUTTON_SYSTEM = "System";
     public static String BUTTON_INFORMATION = "Information";
@@ -74,20 +78,14 @@ public class Constant {
     public static String TOTAL_PRODUCED_FUNCTION_POINT = "Total Produced Points";
     public static String NA = "N/A";
     public static String EMPLOYEE_LIST_BTN = "Employee List";
-    public static String HAVE_BEER_BTN = "Have beer";
+    public static String HAVE_BEER_BTN = "Have Beer";
     public static String TRAIN_BTN = "Train";
-    public static String UNTRAIN_BTN = "Train";
-    public static String BUY_BTN = "Buy item";
-    public static String TRAINING_FEE = "Training fee";
-    public static String CLEAR_BTN = "Clear";
-    public static String SHOP_LBL = "Shop";
-    public static String PLUS_SIGN = "+";
-    public static String MINUS_SIGN = "-";
-    public static String MULTIPLY_LBL = "Quantity Multiply by: ";
-    public static String MUL_SIGN = "x";
+    public static String UNTRAIN_BTN = "Untrain";
+    public static String BUY_BTN = "Buy Items";
+    public static String BUY = "Buy";
+    public static String TRAINING_FEE = "Training Fee";
+    public static String MUL_SIGN = "X";
     public static String EQUAL_SIGN = "=";
-    public static String TOTAL_COST_LBL = "Total cost: ";
-    public static int MUL_1 = 1;
-    public static int MUL_10 = 10;
-    public static int MUL_100 = 100;
+    public static String DOLLAR_SIGN = "$";
+    public static String TOTAL_COST_LBL = "Total Cost";
 }

@@ -5,6 +5,7 @@
 package devfortress.view.models;
 
 import devfortress.utilities.Constant;
+import java.text.DecimalFormat;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.Map;
@@ -18,6 +19,8 @@ import javax.swing.tree.TreeNode;
  */
 public class ExpensesTreeModel extends DefaultTreeModel {
 
+    private DecimalFormat decimalFormatter;
+
     /**
      * Constructor for ExpensesTreeModel.
      *
@@ -25,6 +28,7 @@ public class ExpensesTreeModel extends DefaultTreeModel {
      */
     public ExpensesTreeModel(TreeNode root) {
         super(root);
+        decimalFormatter = new DecimalFormat("$#,##0.0#");
 
         /* Init. */
         initialize();
@@ -35,12 +39,15 @@ public class ExpensesTreeModel extends DefaultTreeModel {
      */
     private void initialize() {
         DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(
-                String.format("%s: $%.2f", Constant.EXPENSE, 0f));
+                String.format("%s: %s", 
+                Constant.EXPENSE, decimalFormatter.format(0)));
         setRoot(rootNode);
-        insertNodeInto(new DefaultMutableTreeNode(String.format("%s: $%.2f",
-                Constant.EXPENSE_SALARIES, 0f)), rootNode, root.getChildCount());
-        insertNodeInto(new DefaultMutableTreeNode(String.format("%s: $%.2f",
-                Constant.EXPENSE_ITEMS, 0f)), rootNode, root.getChildCount());
+        insertNodeInto(new DefaultMutableTreeNode(String.format("%s: %s",
+                Constant.EXPENSE_SALARIES, decimalFormatter.format(0))),
+                rootNode, root.getChildCount());
+        insertNodeInto(new DefaultMutableTreeNode(String.format("%s: %s",
+                Constant.EXPENSE_ITEMS, decimalFormatter.format(0))),
+                rootNode, root.getChildCount());
     }
 
     /**
@@ -50,8 +57,8 @@ public class ExpensesTreeModel extends DefaultTreeModel {
      */
     public void setTotalExpense(float totalExpense) {
         DefaultMutableTreeNode rootNode = (DefaultMutableTreeNode) getRoot();
-        rootNode.setUserObject(String.format("%s: $%.2f", Constant.EXPENSE,
-                totalExpense));
+        rootNode.setUserObject(String.format("%s: %s", Constant.EXPENSE,
+                decimalFormatter.format(totalExpense)));
     }
 
     /**
@@ -61,8 +68,8 @@ public class ExpensesTreeModel extends DefaultTreeModel {
      */
     public void setSalaries(float salaries) {
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) getChild(root, 0);
-        node.setUserObject(String.format("%s: $%.2f", Constant.EXPENSE_SALARIES,
-                salaries));
+        node.setUserObject(String.format("%s: %s", Constant.EXPENSE_SALARIES,
+                decimalFormatter.format(salaries)));
     }
 
     /**
@@ -72,8 +79,8 @@ public class ExpensesTreeModel extends DefaultTreeModel {
      */
     public void setItemExpense(float itemExpenses) {
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) getChild(root, 1);
-        node.setUserObject(String.format("%s: $%.2f", Constant.EXPENSE_ITEMS,
-                itemExpenses));
+        node.setUserObject(String.format("%s: %s", Constant.EXPENSE_ITEMS,
+                decimalFormatter.format(itemExpenses)));
     }
 
     /**
@@ -102,7 +109,8 @@ public class ExpensesTreeModel extends DefaultTreeModel {
 
                 /* If item existed, update value. */
                 if (content.equals(name)) {
-                    child.setUserObject(String.format("%s: $%.2f", name, itemExpense));
+                    child.setUserObject(String.format("%s: %s", name,
+                            decimalFormatter.format(itemExpense)));
                     isNew = false;
                 }
             }
@@ -110,7 +118,8 @@ public class ExpensesTreeModel extends DefaultTreeModel {
             /* If item not existed, add new item to list. */
             if (isNew) {
                 insertNodeInto(new DefaultMutableTreeNode(
-                        String.format("%s: $%.2f", name, itemExpense)), node,
+                        String.format("%s: %s", name,
+                        decimalFormatter.format(itemExpense))), node,
                         node.getChildCount());
             }
         }

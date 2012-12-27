@@ -47,7 +47,8 @@ public class DevFortress {
         view.start();
 
         try {
-            /* Dummy Data
+            /* 
+             * Dummy Data
              * Start:
              */
             model.buyItem(new Beer(14), 1);
@@ -79,7 +80,8 @@ public class DevFortress {
         } catch (EmployeeIsBusyException ex) {
             Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
         }
-        /* Dummy Data
+        /* 
+         * Dummy Data
          * :End
          */
     }

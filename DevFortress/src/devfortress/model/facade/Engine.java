@@ -100,8 +100,9 @@ public class Engine extends Observable implements Model {
 
         String message = String.format("Fired employee %s: +$%.2f.",
                 employee.getName(), employee.getSalary());
+        DataObject data = new DataObject(message, null);
         setChanged();
-        notifyObservers(message);
+        notifyObservers(data);
     }
 
     @Override
