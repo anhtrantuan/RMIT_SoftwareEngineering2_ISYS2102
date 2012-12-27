@@ -6,7 +6,9 @@ package devfortress.controller;
 
 import devfortress.model.facade.Model;
 import devfortress.utilities.Constant;
+import devfortress.view.View;
 import devfortress.view.dialogs.CurrentProjectsPanel;
+import devfortress.view.dialogs.LogPanel;
 import devfortress.view.dialogs.SystemPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -23,14 +25,16 @@ import javax.swing.JFrame;
 public class MainScreenButtonListener implements ActionListener {
 
     private Model model;
+    private View view;
 
     /**
      * Constructor for MainScreenButtonListener.
      *
      * @param model
      */
-    public MainScreenButtonListener(Model model) {
+    public MainScreenButtonListener(Model model, View view) {
         this.model = model;
+        this.view = view;
     }
 
     @Override
@@ -54,8 +58,11 @@ public class MainScreenButtonListener implements ActionListener {
             } catch (Exception ex) {
                 Logger.getLogger(MainScreenButtonListener.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } else if (text.equals(Constant.BUTTON_INFORMATION)) {
-            throw new UnsupportedOperationException("Not supported yet!");
+        } else if (text.equals(Constant.LOG)) {
+            LogPanel panel = new LogPanel(view.getLog());
+            dialog.setContentPane(panel);
+            dialog.pack();
+            dialog.setVisible(true);
         } else if (text.equals(Constant.BUTTTON_CURRENT_PROJECTS)) {
             CurrentProjectsPanel panel =
                     new CurrentProjectsPanel(model.getProjectList(),

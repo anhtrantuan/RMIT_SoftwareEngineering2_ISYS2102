@@ -7,6 +7,7 @@ package devfortress.view.models;
 import devfortress.utilities.Constant;
 import java.text.DecimalFormat;
 import java.util.Enumeration;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -39,7 +40,7 @@ public class ExpensesTreeModel extends DefaultTreeModel {
      */
     private void initialize() {
         DefaultMutableTreeNode rootNode = new DefaultMutableTreeNode(
-                String.format("%s: %s", 
+                String.format("%s: %s",
                 Constant.EXPENSE, decimalFormatter.format(0)));
         setRoot(rootNode);
         insertNodeInto(new DefaultMutableTreeNode(String.format("%s: %s",
@@ -77,7 +78,7 @@ public class ExpensesTreeModel extends DefaultTreeModel {
      *
      * @param itemExpenses
      */
-    public void setItemExpense(float itemExpenses) {
+    public void setItemExpenses(float itemExpenses) {
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) getChild(root, 1);
         node.setUserObject(String.format("%s: %s", Constant.EXPENSE_ITEMS,
                 decimalFormatter.format(itemExpenses)));
@@ -91,8 +92,18 @@ public class ExpensesTreeModel extends DefaultTreeModel {
      */
     public void setExpenseItems(Map<String, Float> items) {
         DefaultMutableTreeNode node = (DefaultMutableTreeNode) getChild(root, 1);
+
+        /* Add empty item if list is empty. */
+        if (items.isEmpty()) {
+            items = new HashMap<String, Float>();
+            items.put(Constant.EXPENSE_FOODS, 0f);
+            items.put(Constant.EXPENSE_BEERS, 0f);
+            items.put(Constant.EXPENSE_COMPUTERS, 0f);
+        }
+
         /* Loop through item list. */
-        for (Iterator<String> iterator = items.keySet().iterator(); iterator.hasNext();) {
+        for (Iterator<String> iterator = items.keySet().iterator();
+                iterator.hasNext();) {
             boolean isNew = true;
 
             /* Get item name and value. */
@@ -100,8 +111,8 @@ public class ExpensesTreeModel extends DefaultTreeModel {
             float itemExpense = items.get(name);
 
             /* Loop through item tree to update. */
-            for (Enumeration<DefaultMutableTreeNode> enumeration = node.children();
-                    isNew && enumeration.hasMoreElements();) {
+            for (Enumeration<DefaultMutableTreeNode> enumeration =
+                    node.children(); isNew && enumeration.hasMoreElements();) {
                 /* Get string content of each child item. */
                 DefaultMutableTreeNode child = enumeration.nextElement();
                 String content = (String) child.getUserObject();

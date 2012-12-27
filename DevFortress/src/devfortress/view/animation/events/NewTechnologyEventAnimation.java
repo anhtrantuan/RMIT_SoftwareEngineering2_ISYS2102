@@ -19,7 +19,7 @@ import javax.imageio.ImageIO;
  *
  * @author Sherlock
  */
-public class NewTechnologyEventAnimation extends Game2D {
+public class NewTechnologyEventAnimation extends Game2D implements EventAnimationEngine {
 
     private BufferedImage BGR_IMAGE, MC_IMAGE;
     private Group<GameSprite> sprites;
@@ -46,12 +46,12 @@ public class NewTechnologyEventAnimation extends Game2D {
     @Override
     public void deactivate() {
         super.deactivate();
-        
+
         timestamp = 0;
         sprites.clear();
         sprites.add(bgr);
         sprites.add(mc);
-        
+
         try {
             mc.setFrameIndex(0);
         } catch (Exception ex) {
@@ -103,5 +103,10 @@ public class NewTechnologyEventAnimation extends Game2D {
         } catch (Exception ex) {
             Logger.getLogger(NewTechnologyEventAnimation.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public String getInformation() {
+        return "A new technology is introduced helping remove some function points is remove from the project";
     }
 }

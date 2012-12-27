@@ -42,6 +42,7 @@ public class Constant {
     public static String PROJECT_DUE = "Due";
     public static String EMPLOYEE_NAME = "Employee";
     public static String EMPLOYEE_STATUS = "Status";
+    public static String EMPLOYEE_HUNGRY = "Hungry";
     public static String EMPLOYEE_CURRENT_PROJECT = "Project";
     public static String EMPLOYEE_DETAILS = "Details";
     public static String EMPLOYEE_MANAGE = "Manage";
@@ -88,4 +89,7 @@ public class Constant {
     public static String EQUAL_SIGN = "=";
     public static String DOLLAR_SIGN = "$";
     public static String TOTAL_COST_LBL = "Total Cost";
+    public static String YES = "Yes";
+    public static String NO = "No";
+    public static String LOG = "Log";
 }

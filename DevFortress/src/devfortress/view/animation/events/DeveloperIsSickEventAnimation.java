@@ -21,7 +21,7 @@ import javax.imageio.ImageIO;
  *
  * @author Sherlock
  */
-public class DeveloperIsSickEventAnimation extends Game2D {
+public class DeveloperIsSickEventAnimation extends Game2D implements EventAnimationEngine{
 
     private BufferedImage FLOORS_IMAGE, BED_IMAGE, DEV_IMAGE, DOCTOR_IMAGE, DOCTOR_TALKING_IMAGE;
     private Group<GameSprite> sprites;
@@ -179,5 +179,10 @@ public class DeveloperIsSickEventAnimation extends Game2D {
         } catch (Exception ex) {
             Logger.getLogger(DeveloperIsSickEventAnimation.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    @Override
+    public String getInformation(){
+        return "Employee is sick. His work drops a half";
     }
 }

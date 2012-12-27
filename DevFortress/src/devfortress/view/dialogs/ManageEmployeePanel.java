@@ -3,7 +3,11 @@
  * and open the template in the editor.
  */
 package devfortress.view.dialogs;
+
+import devfortress.model.employee.Employee;
 import devfortress.utilities.Constant;
+import java.awt.event.ActionListener;
+import javax.swing.JPanel;
 
 /**
  *
@@ -11,11 +15,45 @@ import devfortress.utilities.Constant;
  */
 public class ManageEmployeePanel extends javax.swing.JPanel {
 
+    private CurrentEmpolyees parent;
+    private Employee employee;
+
     /**
      * Creates new form ManageEmployeePanel
      */
-    public ManageEmployeePanel() {
+    public ManageEmployeePanel(JPanel parent, Employee employee,
+            ActionListener buttonListener) {
         initComponents();
+        this.parent = (CurrentEmpolyees) parent;
+        this.employee = employee;
+        btnHaveBeer.addActionListener(buttonListener);
+        btnCancel.addActionListener(buttonListener);
+    }
+
+    /**
+     * Get current employee.
+     *
+     * @return
+     */
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    /**
+     * Set button listener for Train button.
+     *
+     * @param buttonListener
+     */
+    public void setTrainButtonListener(ActionListener buttonListener) {
+        btnTrain.addActionListener(buttonListener);
+    }
+
+    /**
+     * Let the employee have some beer.
+     */
+    public void haveBeer() {
+        employee.drink();
+        parent.update();
     }
 
     /**
@@ -27,62 +65,137 @@ public class ManageEmployeePanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        haveBeerBtn = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        pnlTitle = new javax.swing.JPanel();
+        lblTitle = new javax.swing.JLabel();
+        pnlHaveBeer = new javax.swing.JPanel();
+        btnHaveBeer = new javax.swing.JButton();
+        pnlTrain = new javax.swing.JPanel();
+        btnTrain = new javax.swing.JButton();
+        pnlCancel = new javax.swing.JPanel();
+        btnCancel = new javax.swing.JButton();
 
-        haveBeerBtn.setText(Constant.HAVE_BEER_BTN);
-        haveBeerBtn.setMaximumSize(new java.awt.Dimension(100, 25));
-        haveBeerBtn.setMinimumSize(new java.awt.Dimension(100, 25));
-        haveBeerBtn.setPreferredSize(new java.awt.Dimension(100, 25));
+        setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        setMaximumSize(new java.awt.Dimension(300, 306));
+        setMinimumSize(new java.awt.Dimension(300, 306));
+        setPreferredSize(new java.awt.Dimension(300, 306));
+        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
-        jButton1.setText(Constant.TRAIN_BTN);
-        jButton1.setMaximumSize(new java.awt.Dimension(100, 25));
-        jButton1.setMinimumSize(new java.awt.Dimension(100, 25));
+        pnlTitle.setBackground(new java.awt.Color(255, 255, 255));
+        pnlTitle.setMaximumSize(new java.awt.Dimension(260, 48));
+        pnlTitle.setMinimumSize(new java.awt.Dimension(260, 48));
+        pnlTitle.setPreferredSize(new java.awt.Dimension(260, 48));
 
-        jButton2.setText(Constant.BUTTON_FIRE);
-        jButton2.setMaximumSize(new java.awt.Dimension(100, 25));
-        jButton2.setMinimumSize(new java.awt.Dimension(100, 25));
-        jButton2.setPreferredSize(new java.awt.Dimension(100, 25));
+        lblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText(Constant.EMPLOYEE_MANAGE);
 
-        jButton3.setText(Constant.CLOSE_BTN);
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(33, 33, 33)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(haveBeerBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(jButton3)))
-                .addContainerGap(36, Short.MAX_VALUE))
+        javax.swing.GroupLayout pnlTitleLayout = new javax.swing.GroupLayout(pnlTitle);
+        pnlTitle.setLayout(pnlTitleLayout);
+        pnlTitleLayout.setHorizontalGroup(
+            pnlTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 260, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(haveBeerBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+        pnlTitleLayout.setVerticalGroup(
+            pnlTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTitleLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(lblTitle)
+                .addGap(10, 10, 10))
         );
+
+        add(pnlTitle);
+
+        pnlHaveBeer.setBackground(new java.awt.Color(255, 255, 255));
+        pnlHaveBeer.setMaximumSize(new java.awt.Dimension(240, 80));
+        pnlHaveBeer.setMinimumSize(new java.awt.Dimension(240, 80));
+        pnlHaveBeer.setPreferredSize(new java.awt.Dimension(240, 80));
+
+        btnHaveBeer.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        btnHaveBeer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icHaveBeer.png"))); // NOI18N
+        btnHaveBeer.setText(Constant.HAVE_BEER_BTN);
+        btnHaveBeer.setMaximumSize(new java.awt.Dimension(240, 60));
+        btnHaveBeer.setMinimumSize(new java.awt.Dimension(240, 60));
+        btnHaveBeer.setPreferredSize(new java.awt.Dimension(240, 60));
+
+        javax.swing.GroupLayout pnlHaveBeerLayout = new javax.swing.GroupLayout(pnlHaveBeer);
+        pnlHaveBeer.setLayout(pnlHaveBeerLayout);
+        pnlHaveBeerLayout.setHorizontalGroup(
+            pnlHaveBeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnHaveBeer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pnlHaveBeerLayout.setVerticalGroup(
+            pnlHaveBeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlHaveBeerLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(btnHaveBeer, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
+        );
+
+        add(pnlHaveBeer);
+
+        pnlTrain.setBackground(new java.awt.Color(255, 255, 255));
+        pnlTrain.setMaximumSize(new java.awt.Dimension(240, 80));
+        pnlTrain.setMinimumSize(new java.awt.Dimension(240, 80));
+        pnlTrain.setPreferredSize(new java.awt.Dimension(240, 80));
+
+        btnTrain.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        btnTrain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icTrain.png"))); // NOI18N
+        btnTrain.setText(Constant.TRAIN_BTN);
+        btnTrain.setMaximumSize(new java.awt.Dimension(240, 60));
+        btnTrain.setMinimumSize(new java.awt.Dimension(240, 60));
+        btnTrain.setPreferredSize(new java.awt.Dimension(240, 60));
+
+        javax.swing.GroupLayout pnlTrainLayout = new javax.swing.GroupLayout(pnlTrain);
+        pnlTrain.setLayout(pnlTrainLayout);
+        pnlTrainLayout.setHorizontalGroup(
+            pnlTrainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnTrain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pnlTrainLayout.setVerticalGroup(
+            pnlTrainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTrainLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(btnTrain, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
+        );
+
+        add(pnlTrain);
+
+        pnlCancel.setMaximumSize(new java.awt.Dimension(127, 58));
+        pnlCancel.setMinimumSize(new java.awt.Dimension(127, 58));
+        pnlCancel.setPreferredSize(new java.awt.Dimension(127, 58));
+
+        btnCancel.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icCancel.png"))); // NOI18N
+        btnCancel.setText(Constant.CLOSE_BTN);
+        btnCancel.setMaximumSize(new java.awt.Dimension(127, 48));
+        btnCancel.setMinimumSize(new java.awt.Dimension(127, 48));
+        btnCancel.setPreferredSize(new java.awt.Dimension(127, 48));
+
+        javax.swing.GroupLayout pnlCancelLayout = new javax.swing.GroupLayout(pnlCancel);
+        pnlCancel.setLayout(pnlCancelLayout);
+        pnlCancelLayout.setHorizontalGroup(
+            pnlCancelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnCancel, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pnlCancelLayout.setVerticalGroup(
+            pnlCancelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCancelLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        add(pnlCancel);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton haveBeerBtn;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton btnCancel;
+    private javax.swing.JButton btnHaveBeer;
+    private javax.swing.JButton btnTrain;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JPanel pnlCancel;
+    private javax.swing.JPanel pnlHaveBeer;
+    private javax.swing.JPanel pnlTitle;
+    private javax.swing.JPanel pnlTrain;
     // End of variables declaration//GEN-END:variables
 }

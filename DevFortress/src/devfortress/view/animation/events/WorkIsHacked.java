@@ -19,7 +19,7 @@ import javax.imageio.ImageIO;
  *
  * @author Sherlock
  */
-public class WorkIsHacked extends Game2D {
+public class WorkIsHacked extends Game2D implements EventAnimationEngine {
 
     private BufferedImage BGR_IMAGE;
     private Group<GameSprite> sprites;
@@ -45,7 +45,7 @@ public class WorkIsHacked extends Game2D {
     @Override
     public void deactivate() {
         super.deactivate();
-        
+
         timestamp = 0;
         sprites.clear();
         sprites.add(bgr);
@@ -77,5 +77,11 @@ public class WorkIsHacked extends Game2D {
         } catch (Exception ex) {
             Logger.getLogger(WorkIsHacked.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public String getInformation() {
+        return "One part of the project is hacked,"
+                + " 0 function point is produced in that field";
     }
 }

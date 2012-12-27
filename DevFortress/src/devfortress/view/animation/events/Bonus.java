@@ -19,7 +19,7 @@ import javax.imageio.ImageIO;
  *
  * @author Sherlock
  */
-public class Bonus extends Game2D {
+public class Bonus extends Game2D implements EventAnimationEngine {
 
     private BufferedImage BGR_IMAGE;
     private Group<GameSprite> sprites;
@@ -77,5 +77,10 @@ public class Bonus extends Game2D {
         } catch (Exception ex) {
             Logger.getLogger(Bonus.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Override
+    public String getInformation() {
+        return "Company got bonus at the end ofthe month for doing well!";
     }
 }

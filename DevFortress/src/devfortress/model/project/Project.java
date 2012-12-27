@@ -30,7 +30,7 @@ public class Project {
     private Skill mainSkill;
     private String name;
     private int totalPoints, remainingPoints, totalFunctionPointsDelivered;
-
+    
     public Project(String name, int totalPoints, float payment, int projectLevel,
             DateTime projectTime, Map<Skill, Integer> skillRequirementMap) {
         this.name = name;
@@ -45,99 +45,99 @@ public class Project {
         skill_employeeMap = new EnumMap<Skill, Employee>(Skill.class);
         calculateMainSkill();
     }
-
+    
     public Project() {
         skill_employeeMap = new EnumMap<Skill, Employee>(Skill.class);
     }
-
+    
     public float getPayment() {
         return payment;
     }
-
+    
     public void setPayment(float payment) {
         this.payment = payment;
     }
-
+    
     public int getProjectLevel() {
         return projectLevel;
     }
-
+    
     public void setProjectLevel(int projectLevel) {
         this.projectLevel = projectLevel;
     }
-
+    
     public DateTime getProjectTime() {
         return projectTime;
     }
-
+    
     public void setProjectTime(DateTime projectTime) {
         this.projectTime = projectTime;
     }
-
+    
     public DateTime getRemainingTime() {
         return remainingTime;
     }
-
+    
     public Map<Skill, Integer> getSkillRequirementMap() {
         return skillRequirementMap;
     }
-
+    
     public void setSkillRequirementMap(Map<Skill, Integer> skillRequirementMap) {
         this.skillRequirementMap = skillRequirementMap;
     }
-
+    
     public Map<Skill, Employee> getSkill_employeeMap() {
         return skill_employeeMap;
     }
-
+    
     public void setSkill_employeeMap(Map<Skill, Employee> skill_employeeMap) {
         this.skill_employeeMap = skill_employeeMap;
     }
-
+    
     public int getTotalPoints() {
         return totalPoints;
     }
-
+    
     public void setOriginalSkillRequirementMap(Map<Skill, Integer> originalSkillRequirementMap) {
         this.originalSkillRequirementMap = originalSkillRequirementMap;
     }
-
+    
     public void setRemainingTime(DateTime remainingTime) {
         this.remainingTime = remainingTime;
     }
-
+    
     public void setTotalPoints(int totalPoints) {
         this.totalPoints = totalPoints;
     }
-
+    
     public int getRemainingPoints() {
         return remainingPoints;
     }
-
+    
     public void setMainSkill(Skill mainSkill) {
         this.mainSkill = mainSkill;
     }
-
+    
     public void setRemainingPoints(int remainingPoints) {
         this.remainingPoints = remainingPoints;
     }
-
+    
     public void setTotalFunctionPointsDelivered(int totalFunctionPointsDelivered) {
         this.totalFunctionPointsDelivered = totalFunctionPointsDelivered;
     }
-
+    
     public int getTotalFunctionPointsDelivered() {
         return totalFunctionPointsDelivered;
     }
-
+    
     public String getName() {
         return name;
     }
-
+    
     public void setName(String name) {
         this.name = name;
     }
-
+    
     public void levelUp() {
         Random random = new Random();
         int lvlUpPercent = (projectLevel * 5) - 1;
@@ -151,7 +151,7 @@ public class Project {
             }
         }
     }
-
+    
     public Skill calculateMainSkill() {
         Skill main = null;
         int highest = 0;
@@ -168,21 +168,41 @@ public class Project {
         mainSkill = main;
         return main;
     }
-
+    
     private int calculateBasicFunctionPoint(Employee employee) {
         int level;
+        int divisionNumber;
+        int basic = 0;
+        boolean configIncluded = false;
         if (employee.getMainSkill() == mainSkill) {
             level = employee.getSkillLevel(employee.getMainSkill());
         } else {
             level = employee.getLowestSkillLevel();
         }
-        return (level + (2 * employee.getDesignSkill())
+        
+        for (Skill sk : skillRequirementMap.keySet()) {
+            if (sk == Skill.CONFIG_MANAGEMENT) {
+                configIncluded = true;
+            }
+        }
+        if (!configIncluded) {
+            divisionNumber = 8;
+        } else {
+            if ((10 - (skillRequirementMap.get(Skill.CONFIG_MANAGEMENT) + 2)) <= 0) {
+                divisionNumber = 1;
+            } else {
+                divisionNumber = (10 - (skillRequirementMap.get(Skill.CONFIG_MANAGEMENT) + 2));
+            }
+        }
+        basic = ((level + (2 * employee.getDesignSkill())
                 + (level * employee.getAlgorithmSkill())
-                + (employee.getTeamPlayerSkill() * skill_employeeMap.size())
-                / ((10 - employee.getConfigurationSkill()) + 2)) / 4;
-
+                + (employee.getTeamPlayerSkill() * skill_employeeMap.size()))
+                / divisionNumber) / 4;
+        
+        return basic;
+        
     }
-
+    
     private int calculateFinalFunctionPoint(int basicPoint, Employee employee) {
         boolean status[] = employee.getStatus();
         int finalPoint = basicPoint;
@@ -212,10 +232,10 @@ public class Project {
             finalPoint = finalPoint * 2;
             employee.havingBabyProgress();
         }
-
+        System.out.println(finalPoint);
         return finalPoint;
     }
-
+    
     public boolean checkProjectProcess() {
         int finish = 0;
         //totalFunctionPointsDelivered = 0;
@@ -233,18 +253,18 @@ public class Project {
                     skillRequirementMap.put(sk, functionPointRequire - functionPointProduced);
                 }
             }
-
+            
         }
         if (skillRequirementMap.size() == finish && remainingTime.getMonths() != 0) {
             return true;
         }
         return false;
     }
-
+    
     public Skill getMainSkill() {
         return mainSkill;
     }
-
+    
     public Map<Skill, Integer> getOriginalSkillRequirementMap() {
         return originalSkillRequirementMap;
     }
@@ -262,7 +282,7 @@ public class Project {
         }
         return false;
     }
-
+    
     @Override
     public int hashCode() {
         int hash = 3;
@@ -292,11 +312,13 @@ public class Project {
             skill_employeeMap.put(field, emp);
             emp.assignToProject(this);
             return true;
+        } else {
+            emp.getWorkingProject().unassignEmployee(emp);
         }
-
+        
         return false;
     }
-
+    
     public void unassignEmployee(Employee emp) {
         for (Skill sk : skill_employeeMap.keySet()) {
             if (skill_employeeMap.get(sk).equals(emp)) {
@@ -305,20 +327,20 @@ public class Project {
             }
         }
     }
-
+    
     public void unassignEmployees() {
         for (Employee employee : skill_employeeMap.values()) {
-            if(employee!=null){
+            if (employee != null) {
                 employee.getOutOfWork();
-            
+                
             }
         }
     }
-
+    
     public void increaeRemainingPoint(int point) {
         this.remainingPoints += point;
     }
-
+    
     public void decreaseRemainingPoint(int point) {
         this.remainingPoints -= point;
     }

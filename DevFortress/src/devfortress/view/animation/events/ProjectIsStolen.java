@@ -7,7 +7,6 @@ package devfortress.view.animation.events;
 import com.tabuto.j2dgf.Game2D;
 import com.tabuto.j2dgf.Group;
 import devfortress.view.animation.GameSprite;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -20,16 +19,16 @@ import javax.imageio.ImageIO;
  *
  * @author Sherlock
  */
-public class GoldenEmployee extends Game2D implements EventAnimationEngine {
+public class ProjectIsStolen extends Game2D implements EventAnimationEngine {
 
-    private BufferedImage GOLDEN_ANNOUNCEMENT_IMAGE, SATAN_IMAGE;
+    private BufferedImage STEAL_IMAGE, STOLEN_ANNOUNCEMENT_IMAGE;
     private Group<GameSprite> sprites;
     private double widthScale, heightScale;
-    private GameSprite announcement, satan;
+    private GameSprite steal, announcement;
     private long timestamp = 0;
     private boolean firstScreen = true;
 
-    public GoldenEmployee(Dimension dim) {
+    public ProjectIsStolen(Dimension dim) {
         super(dim);
     }
 
@@ -48,7 +47,7 @@ public class GoldenEmployee extends Game2D implements EventAnimationEngine {
     public void deactivate() {
         super.deactivate();
         sprites.clear();
-        sprites.add(announcement);
+        sprites.add(steal);
         timestamp = 0;
         firstScreen = true;
     }
@@ -63,7 +62,7 @@ public class GoldenEmployee extends Game2D implements EventAnimationEngine {
             }
             if (System.currentTimeMillis() >= timestamp + 2000 && timestamp != 0) {
                 sprites.clear();
-                sprites.add(satan);
+                sprites.add(announcement);
                 timestamp = 0;
             }
             if (!sprites.isEmpty()) {
@@ -82,23 +81,23 @@ public class GoldenEmployee extends Game2D implements EventAnimationEngine {
 
     @Override
     public void initGame() {
-        URL announcementURL = getClass().getResource("../../resources/imgGoldenEmpAnnouncement.png"),
-                satanURL = getClass().getResource("../../resources/imgSatan.png");
+        URL announcementURL = getClass().getResource("../../resources/imgStolen1.png"),
+                satanURL = getClass().getResource("../../resources/imgStolen2.png");
         try {
-            GOLDEN_ANNOUNCEMENT_IMAGE = ImageIO.read(announcementURL);
-            SATAN_IMAGE = ImageIO.read(satanURL);
-            widthScale = (double) DIM.width / GOLDEN_ANNOUNCEMENT_IMAGE.getWidth(null);
-            heightScale = (double) DIM.height / GOLDEN_ANNOUNCEMENT_IMAGE.getHeight(null);
+            STEAL_IMAGE = ImageIO.read(announcementURL);
+            STOLEN_ANNOUNCEMENT_IMAGE = ImageIO.read(satanURL);
+            widthScale = (double) DIM.width / STEAL_IMAGE.getWidth(null);
+            heightScale = (double) DIM.height / STEAL_IMAGE.getHeight(null);
             sprites = new Group<GameSprite>();
 
             /*
              * Add sprites.
              */
-            announcement = new GameSprite(DIM, 0, 0, GOLDEN_ANNOUNCEMENT_IMAGE);
-            satan = new GameSprite(DIM, 0, 0, SATAN_IMAGE);
+            steal = new GameSprite(DIM, 0, 0, STEAL_IMAGE);
+            announcement = new GameSprite(DIM, 0, 0, STOLEN_ANNOUNCEMENT_IMAGE);
+            steal.setScales(widthScale, heightScale);
             announcement.setScales(widthScale, heightScale);
-            satan.setScales(widthScale, heightScale);
-            sprites.add(announcement);
+            sprites.add(steal);
             timestamp = 0;
         } catch (Exception ex) {
             Logger.getLogger(FeatureCut.class.getName()).log(Level.SEVERE, null, ex);
@@ -107,6 +106,7 @@ public class GoldenEmployee extends Game2D implements EventAnimationEngine {
 
     @Override
     public String getInformation() {
-        return "One golden employee with nearly maximum skill is available to hire";
+        return "An employee stole the project, deleted all backup,"
+                + " the project has failed, the employee has left company";
     }
 }

@@ -4,7 +4,6 @@
  */
 package devfortress.controller;
 
-import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.facade.Model;
 import devfortress.model.project.Project;
 import devfortress.utilities.Constant;
@@ -62,7 +61,7 @@ public class ProjectsTableButtonListener implements ActionListener {
                 CurrentProjectsPanel panel =
                         (CurrentProjectsPanel) dialog.getContentPane();
                 panel.setProjectList(model.getProjectList());
-            } catch (MoneyRunOutException ex) {
+            } catch (Exception ex) {
                 Logger.getLogger(ProjectsTableButtonListener.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

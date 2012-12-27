@@ -55,6 +55,8 @@ public class SystemPanel extends javax.swing.JPanel {
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
         pnlTitle.setBackground(new java.awt.Color(255, 255, 255));
+        pnlTitle.setMaximumSize(new java.awt.Dimension(260, 48));
+        pnlTitle.setMinimumSize(new java.awt.Dimension(260, 48));
 
         lblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -99,7 +101,7 @@ public class SystemPanel extends javax.swing.JPanel {
         pnlContractLayout.setVerticalGroup(
             pnlContractLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlContractLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(10, 10, 10)
                 .addComponent(btnContract, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
         );
@@ -157,9 +159,9 @@ public class SystemPanel extends javax.swing.JPanel {
         pnlAllEmployeesLayout.setVerticalGroup(
             pnlAllEmployeesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlAllEmployeesLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addComponent(btnEmployeeList, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(10, 10, 10))
         );
 
         add(pnlAllEmployees);
@@ -185,34 +187,37 @@ public class SystemPanel extends javax.swing.JPanel {
         pnlBuyItemsLayout.setVerticalGroup(
             pnlBuyItemsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBuyItemsLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(10, 10, 10)
                 .addComponent(btnBuyItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(8, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         add(pnlBuyItems);
 
         pnlCloseButton.setBackground(new java.awt.Color(255, 255, 255));
-        pnlCloseButton.setMaximumSize(new java.awt.Dimension(127, 60));
-        pnlCloseButton.setMinimumSize(new java.awt.Dimension(127, 60));
-        pnlCloseButton.setPreferredSize(new java.awt.Dimension(127, 60));
+        pnlCloseButton.setMaximumSize(new java.awt.Dimension(127, 58));
+        pnlCloseButton.setMinimumSize(new java.awt.Dimension(127, 58));
+        pnlCloseButton.setPreferredSize(new java.awt.Dimension(127, 58));
 
         btnClose.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icCancel.png"))); // NOI18N
         btnClose.setText(Constant.CLOSE_BTN );
         btnClose.setActionCommand(Constant.CLOSE_BTN);
+        btnClose.setMaximumSize(new java.awt.Dimension(127, 48));
+        btnClose.setMinimumSize(new java.awt.Dimension(127, 48));
+        btnClose.setPreferredSize(new java.awt.Dimension(127, 48));
 
         javax.swing.GroupLayout pnlCloseButtonLayout = new javax.swing.GroupLayout(pnlCloseButton);
         pnlCloseButton.setLayout(pnlCloseButtonLayout);
         pnlCloseButtonLayout.setHorizontalGroup(
             pnlCloseButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, 127, Short.MAX_VALUE)
+            .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlCloseButtonLayout.setVerticalGroup(
             pnlCloseButtonLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlCloseButtonLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, 48, Short.MAX_VALUE))
+                .addGap(0, 10, Short.MAX_VALUE)
+                .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         add(pnlCloseButton);
