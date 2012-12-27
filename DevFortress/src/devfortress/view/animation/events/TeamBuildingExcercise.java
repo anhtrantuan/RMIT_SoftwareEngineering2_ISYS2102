@@ -7,7 +7,6 @@ package devfortress.view.animation.events;
 import com.tabuto.j2dgf.Game2D;
 import com.tabuto.j2dgf.Group;
 import devfortress.view.animation.GameSprite;
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
@@ -66,10 +65,9 @@ public class TeamBuildingExcercise extends Game2D {
     public void drawStuff(Graphics g) {
         sprites.move();
         try {
-            /*
-             * Draw sprites.
-             */
+            System.out.println("draw");
 
+            /* Draw sprites. */
             System.out.println(timestamp);
             if (timestamp != 0 && System.currentTimeMillis() >= timestamp + 2000 && isWaiting != true) {
 //            g.clearRect(0, 0, DIM.width, DIM.height);
@@ -102,20 +100,18 @@ public class TeamBuildingExcercise extends Game2D {
             if (!sprites.isEmpty()) {
                 sprites.draw(g);
             }
-
         } catch (Exception ex) {
             Logger.getLogger(DeveloperIsSickEventAnimation.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     @Override
     public void initGame() {
         try {
-            URL bgrURL = getClass().getResource("../../resources/sick_floor.png"),
-                    rockLeeSequenceURL = getClass().getResource("../../resources/rockLeeSequence.png"),
-                    mightGuyURL = getClass().getResource("../../resources/mightGuy.png"),
-                    rockLeeURL = getClass().getResource("../../resources/rockLee.png");
+            URL bgrURL = getClass().getResource("../../resources/imgSickFloor.png"),
+                    rockLeeSequenceURL = getClass().getResource("../../resources/imgTeamBuilding.png"),
+                    mightGuyURL = getClass().getResource("../../resources/imgTeamBuildingMale.png"),
+                    rockLeeURL = getClass().getResource("../../resources/imgTeamBuildingFemale.png");
 
             BGR_IMAGE = ImageIO.read(bgrURL);
             ROCK_LEE_EXCERCISE_IMAGE = ImageIO.read(rockLeeSequenceURL);
@@ -126,16 +122,11 @@ public class TeamBuildingExcercise extends Game2D {
             heightScale = (double) DIM.height / MIGHT_GUY_IMAGE.getHeight(null);
             sprites = new Group<GameSprite>();
 
-            /*
-             * Add sprites.
-             */
-
-
+            /* Add sprites. */
             mightGuy = new GameSprite(DIM, 0, 0, MIGHT_GUY_IMAGE);
             mightGuy.setScales(widthScale, heightScale);
             sprites.add(mightGuy);
             timestamp = System.currentTimeMillis();
-
         } catch (Exception ex) {
             Logger.getLogger(WorkIsHacked.class.getName()).log(Level.SEVERE, null, ex);
         }

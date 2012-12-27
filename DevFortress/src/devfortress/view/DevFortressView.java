@@ -33,7 +33,7 @@ import javax.swing.UIManager;
  * @author tommy
  */
 public class DevFortressView extends javax.swing.JFrame implements View, Observer {
-
+    
     private Model model;
     private String logMessages;
     private Dimension dimension, eventDimension;
@@ -69,7 +69,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
                 /* Else, setup look and feel to match current system. */
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             }
-
+            
         } catch (Exception ex) {
             Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -87,6 +87,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
     private void initialize() {
         /* Initialize components. */
         initComponents();
+        setLocationRelativeTo(null);
 
         /* Get animation panel dimension. */
         dimension = pnlGameAnimation.getSize();
@@ -214,9 +215,9 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         btnInformation.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         btnInformation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icInformation.png"))); // NOI18N
         btnInformation.setText(Constant.BUTTON_INFORMATION);
-        btnInformation.setMaximumSize(new java.awt.Dimension(227, 40));
-        btnInformation.setMinimumSize(new java.awt.Dimension(227, 40));
-        btnInformation.setPreferredSize(new java.awt.Dimension(227, 40));
+        btnInformation.setMaximumSize(new java.awt.Dimension(220, 40));
+        btnInformation.setMinimumSize(new java.awt.Dimension(220, 40));
+        btnInformation.setPreferredSize(new java.awt.Dimension(220, 40));
 
         btnCurrentProjects.setFont(new java.awt.Font("Ubuntu", 1, 13)); // NOI18N
         btnCurrentProjects.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icProjects.png"))); // NOI18N
@@ -228,9 +229,9 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         btnNextTurn.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         btnNextTurn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icNextTurn.png"))); // NOI18N
         btnNextTurn.setText(Constant.BUTTON_NEXT_TURN);
-        btnNextTurn.setMaximumSize(new java.awt.Dimension(128, 90));
-        btnNextTurn.setMinimumSize(new java.awt.Dimension(128, 90));
-        btnNextTurn.setPreferredSize(new java.awt.Dimension(136, 90));
+        btnNextTurn.setMaximumSize(new java.awt.Dimension(131, 90));
+        btnNextTurn.setMinimumSize(new java.awt.Dimension(131, 90));
+        btnNextTurn.setPreferredSize(new java.awt.Dimension(131, 90));
 
         javax.swing.GroupLayout pnlControlsLayout = new javax.swing.GroupLayout(pnlControls);
         pnlControls.setLayout(pnlControlsLayout);
@@ -239,11 +240,11 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
             .addGroup(pnlControlsLayout.createSequentialGroup()
                 .addGroup(pnlControlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(pnlControlsLayout.createSequentialGroup()
-                        .addGroup(pnlControlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(pnlControlsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(btnInformation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnCurrentProjects, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(10, 10, 10)
-                        .addComponent(btnNextTurn, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(btnCurrentProjects, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                        .addComponent(btnNextTurn, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnSystem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(0, 0, 0))
         );
@@ -601,8 +602,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(pnlAnimation, javax.swing.GroupLayout.PREFERRED_SIZE, 444, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(pnlEvents, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, 0)))
+                        .addComponent(pnlEvents, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addComponent(pnlStatusBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -763,7 +763,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         int response = JOptionPane.showConfirmDialog(this, "Do you really want to exit?",
                 "Exit Confirmation", JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE);
-
+        
         if (response == JOptionPane.YES_OPTION) {
             System.exit(0);
         }

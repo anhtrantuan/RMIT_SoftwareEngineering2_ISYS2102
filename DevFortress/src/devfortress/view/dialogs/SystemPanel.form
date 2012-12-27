@@ -191,9 +191,6 @@
               <Dimension value="[240, 60]"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnHireActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
@@ -358,9 +355,6 @@
               <Connection code="Constant.CLOSE_BTN" type="code"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCloseActionPerformed"/>
-          </Events>
         </Component>
       </SubComponents>
     </Container>
