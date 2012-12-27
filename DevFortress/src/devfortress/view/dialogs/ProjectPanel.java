@@ -6,7 +6,7 @@ package devfortress.view.dialogs;
 
 import devfortress.model.project.Project;
 import devfortress.utilities.Constant;
-import devfortress.view.editors.TableButtonCellEditor;
+import devfortress.view.editors.ProjectTableButtonCellEditor;
 import devfortress.view.models.ProjectInformationTableModel;
 import devfortress.view.renderers.TableButtonCellRenderer;
 import java.awt.Color;
@@ -295,7 +295,7 @@ public class ProjectPanel extends javax.swing.JPanel {
      */
     public void setTableButtonListener(ActionListener tableButtonListener) {
         tblFields.setDefaultEditor(JButton.class,
-                new TableButtonCellEditor(tableButtonListener));
+                new ProjectTableButtonCellEditor(tableButtonListener));
     }
 
     /**

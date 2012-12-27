@@ -26,6 +26,7 @@ public class EmployeesTableModel extends DefaultTableModel {
     public EmployeesTableModel() {
         addColumn(Constant.EMPLOYEE_NAME);
         addColumn(Constant.EMPLOYEE_STATUS);
+        addColumn(Constant.EMPLOYEE_HUNGRY);
         addColumn(Constant.EMPLOYEE_CURRENT_PROJECT);
         addColumn(Constant.EMPLOYEE_DETAILS);
         addColumn(Constant.EMPLOYEE_MANAGE);
@@ -93,12 +94,14 @@ public class EmployeesTableModel extends DefaultTableModel {
             }
             Project project = employee.getWorkingProject();
             if (project == null) {
-                addRow(new Object[]{employee.getName(), icon, Constant.NA,
-                            detailsButton, manageButton});
+                addRow(new Object[]{employee.getName(), icon,
+                            employee.isHungry() ? Constant.YES : Constant.NO,
+                            Constant.NA, detailsButton, manageButton});
             } else {
                 addRow(new Object[]{employee.getName(), icon,
-                            employee.getWorkingProject().getName(), detailsButton,
-                            manageButton});
+                            employee.isHungry() ? Constant.YES : Constant.NO,
+                            employee.getWorkingProject().getName(),
+                            detailsButton, manageButton});
             }
         }
     }

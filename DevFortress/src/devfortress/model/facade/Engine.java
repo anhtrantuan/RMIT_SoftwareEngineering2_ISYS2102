@@ -16,8 +16,6 @@ import devfortress.utilities.Event;
 import devfortress.utilities.Skill;
 import devfortress.utilities.Utilities;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -438,5 +436,18 @@ public class Engine extends Observable implements Model {
     public void createGoldenEmployee() {
         Employee e = utilities.generateGoldenEmployee();
         availableEmployees.add(e);
+    }
+
+    @Override
+    public List<Employee> getUnassignedEmployeeList() {
+        ArrayList<Employee> list = new ArrayList<Employee>();
+
+        for (Employee employee : company.getEmployeeList()) {
+            if (employee.getWorkingProject() == null) {
+                list.add(employee);
+            }
+        }
+
+        return list;
     }
 }
