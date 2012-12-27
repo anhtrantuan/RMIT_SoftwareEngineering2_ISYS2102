@@ -25,8 +25,8 @@ public class TeamBuildingExcercise extends Game2D {
     private Group<GameSprite> sprites;
     private double widthScale, heightScale;
     private GameSprite bgr, rockLee, mightGuy, rockLeeExcercise;
-    private int ROCK_LEE_SEQUENCE[] = new int[]{0, 0, 0, 1, 1, 1, 0, 0, 0, 2, 2, 2, 
-                                                3, 3, 3, 0, 0, 0, 4, 4, 4, 5, 5, 5,0,0,0};
+    private int ROCK_LEE_SEQUENCE[] = new int[]{0, 0, 0, 1, 1, 1, 0, 0, 0, 2, 2, 2,
+        3, 3, 3, 0, 0, 0, 4, 4, 4, 5, 5, 5, 0, 0, 0};
     private long timestamp = 0;
     private boolean isWaiting = false;
 
@@ -65,30 +65,28 @@ public class TeamBuildingExcercise extends Game2D {
     public void drawStuff(Graphics g) {
         sprites.move();
         try {
-            System.out.println("draw");
-
             /* Draw sprites. */
             System.out.println(timestamp);
-            if (timestamp != 0 && System.currentTimeMillis() >= timestamp + 2000 && isWaiting != true) {
+            if (timestamp != 0 && System.currentTimeMillis() >= timestamp + 2000
+                    && isWaiting != true) {
 //            g.clearRect(0, 0, DIM.width, DIM.height);
                 sprites.remove(mightGuy);
                 rockLee = new GameSprite(DIM, 0, 0, ROCK_LEE_FACE_IMAGE);
                 rockLee.setScales(widthScale, heightScale);
                 sprites.add(rockLee);
                 timestamp = System.currentTimeMillis();
-                System.out.println("end");
                 isWaiting = true;
             }
 
             if (timestamp != 0 && System.currentTimeMillis() >= timestamp + 2000) {
 //            g.clearRect(0, 0, DIM.width, DIM.height);
-                System.out.println("no");
                 sprites.remove(rockLee);
                 bgr = new GameSprite(DIM, 0, 0, BGR_IMAGE);
                 bgr.setScales(widthScale, heightScale);
                 sprites.add(bgr);
 
-                rockLeeExcercise = new GameSprite(DIM, 200, 10, ROCK_LEE_EXCERCISE_IMAGE, 23, 45);
+                rockLeeExcercise = new GameSprite(DIM, 200, 10,
+                        ROCK_LEE_EXCERCISE_IMAGE, 23, 45);
                 rockLeeExcercise.setScales(4, 4);
                 rockLeeExcercise.setFrameSequence(ROCK_LEE_SEQUENCE);
                 rockLeeExcercise.setFrameIndex(0);
@@ -101,7 +99,7 @@ public class TeamBuildingExcercise extends Game2D {
                 sprites.draw(g);
             }
         } catch (Exception ex) {
-            Logger.getLogger(DeveloperIsSickEventAnimation.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TeamBuildingExcercise.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

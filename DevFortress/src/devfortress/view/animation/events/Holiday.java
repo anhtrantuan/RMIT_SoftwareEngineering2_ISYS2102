@@ -105,7 +105,7 @@ public class Holiday extends Game2D {
             dancer2.setSpeed(0);
             sprites.add(dancer2);
         } catch (Exception ex) {
-            Logger.getLogger(WorkIsHacked.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Holiday.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

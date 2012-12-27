@@ -155,7 +155,7 @@ public class DeveloperIsSickEventAnimation extends Game2D {
             dev.setSpeed(0);
             sprites.add(dev);
         } catch (Exception ex) {
-            Logger.getLogger(GameAnimationEngine.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DeveloperIsSickEventAnimation.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

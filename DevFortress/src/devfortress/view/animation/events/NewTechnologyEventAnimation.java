@@ -54,7 +54,7 @@ public class NewTechnologyEventAnimation extends Game2D {
         try {
             mc.setFrameIndex(0);
         } catch (Exception ex) {
-            Logger.getLogger(DeveloperIsSickEventAnimation.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NewTechnologyEventAnimation.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -91,7 +91,8 @@ public class NewTechnologyEventAnimation extends Game2D {
             bgr.setScales(widthScale, heightScale);
             sprites.add(bgr);
 
-            mc = new GameSprite(DIM, 163 * widthScale, 4 * heightScale, MC_IMAGE, 26, 24);
+            mc = new GameSprite(DIM, 163 * widthScale, 4 * heightScale,
+                    MC_IMAGE, 26, 24);
             mc.setScales(widthScale, heightScale);
             mc.setFrameSequence(MC_SEQUENCE);
             mc.setFrameIndex(0);
@@ -99,7 +100,7 @@ public class NewTechnologyEventAnimation extends Game2D {
             mc.setSpeed(0);
             sprites.add(mc);
         } catch (Exception ex) {
-            Logger.getLogger(GameAnimationEngine.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(NewTechnologyEventAnimation.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

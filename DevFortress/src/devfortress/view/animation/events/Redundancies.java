@@ -76,7 +76,7 @@ public class Redundancies extends Game2D {
             bgr.setScales(widthScale, heightScale);
             sprites.add(bgr);
         } catch (IOException ex) {
-            Logger.getLogger(WorkIsHacked.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Redundancies.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }
