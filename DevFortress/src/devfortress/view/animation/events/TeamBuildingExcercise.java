@@ -49,18 +49,10 @@ public class TeamBuildingExcercise extends Game2D {
     public void deactivate() {
         super.deactivate();
         isWaiting = false;
-        timestamp = 0;
+        timestamp = -1;
         sprites.clear();
         sprites.add(bgr);
         sprites.add(mightGuy);
-        sprites.add(rockLee);
-        sprites.add(rockLeeExcercise);
-        
-        try {
-            rockLeeExcercise.setFrameIndex(0);
-        } catch (Exception ex) {
-            Logger.getLogger(Holiday.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     @Override
