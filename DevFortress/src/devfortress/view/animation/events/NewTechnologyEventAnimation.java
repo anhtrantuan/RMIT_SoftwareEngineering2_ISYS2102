@@ -6,7 +6,6 @@ package devfortress.view.animation.events;
 
 import com.tabuto.j2dgf.Game2D;
 import com.tabuto.j2dgf.Group;
-import devfortress.view.animation.GameAnimationEngine;
 import devfortress.view.animation.GameSprite;
 import java.awt.Dimension;
 import java.awt.Graphics;

@@ -6,7 +6,6 @@ package devfortress.view.animation.events;
 
 import com.tabuto.j2dgf.Game2D;
 import com.tabuto.j2dgf.Group;
-import devfortress.view.animation.GameAnimationEngine;
 import devfortress.view.animation.GameSprite;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -70,9 +69,7 @@ public class DeveloperIsSickEventAnimation extends Game2D {
 
     @Override
     public void drawStuff(Graphics g) {
-        /*
-         * Update sprites.
-         */
+        /* Update sprites. */
         sprites.move();
 
         if (timestamp == 0 && dev.getFrameIndex() == DEV_SEQUENCE.length - 1) {
@@ -107,7 +104,6 @@ public class DeveloperIsSickEventAnimation extends Game2D {
 //            doctor.moveTo(bed);
 //            doctor.move();
 //        }
-//        System.out.println("after moving");
 
         /* Draw sprites. */
         if (!sprites.isEmpty()) {

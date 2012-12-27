@@ -10,7 +10,6 @@ import devfortress.view.animation.GameSprite;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -75,7 +74,7 @@ public class FeatureCut extends Game2D {
             bgr = new GameSprite(DIM, 0, 0, BGR_IMAGE);
             bgr.setScales(widthScale, heightScale);
             sprites.add(bgr);
-        } catch (IOException ex) {
+        } catch (Exception ex) {
             Logger.getLogger(FeatureCut.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
