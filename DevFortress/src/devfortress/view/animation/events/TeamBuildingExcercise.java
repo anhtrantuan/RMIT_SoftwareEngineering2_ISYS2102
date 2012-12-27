@@ -26,7 +26,8 @@ public class TeamBuildingExcercise extends Game2D {
     private Group<GameSprite> sprites;
     private double widthScale, heightScale;
     private GameSprite bgr, rockLee, mightGuy, rockLeeExcercise;
-    private int ROCK_LEE_SEQUENCE[] = new int[]{0, 0, 0, 1, 1, 1, 0, 0, 0, 2, 2, 2, 3, 3, 3, 0, 0, 0, 4, 4, 4, 5, 5, 5};
+    private int ROCK_LEE_SEQUENCE[] = new int[]{0, 0, 0, 1, 1, 1, 0, 0, 0, 2, 2, 2, 
+                                                3, 3, 3, 0, 0, 0, 4, 4, 4, 5, 5, 5,0,0,0};
     private long timestamp = 0;
     private boolean isWaiting = false;
 
@@ -65,8 +66,6 @@ public class TeamBuildingExcercise extends Game2D {
     public void drawStuff(Graphics g) {
         sprites.move();
         try {
-            System.out.println("draw");
-
             /*
              * Draw sprites.
              */
