@@ -72,9 +72,11 @@ public class DialogButtonListener implements ActionListener {
             AllCurrentEmpolyees panel =
                     new AllCurrentEmpolyees(model.getEmployeeList(),
                     buttonListener);
+            panel.setTableButtonListener(new EmployeesTableButtonListener(model));
             newDialog.setContentPane(panel);
             newDialog.pack();
             newDialog.setVisible(true);
+        } else if (text.equals(Constant.BUY_BTN)) {
         } else {
             try {
                 if (text.equals(Constant.HIRE)) {
@@ -98,13 +100,7 @@ public class DialogButtonListener implements ActionListener {
 
                 dialog.setVisible(false);
                 dialog.dispose();
-            } catch (UnaffordableException ex) {
-                Logger.getLogger(DialogButtonListener.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (OvercrowdedException ex) {
-                Logger.getLogger(DialogButtonListener.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (EmployeeNotExist ex) {
-                Logger.getLogger(DialogButtonListener.class.getName()).log(Level.SEVERE, null, ex);
-            } catch(MoneyRunOutException ex){
+            } catch (Exception ex) {
                 Logger.getLogger(DialogButtonListener.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

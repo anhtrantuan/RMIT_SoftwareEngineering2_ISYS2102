@@ -116,11 +116,6 @@ public class SystemPanel extends javax.swing.JPanel {
         btnHire.setMaximumSize(new java.awt.Dimension(240, 60));
         btnHire.setMinimumSize(new java.awt.Dimension(240, 60));
         btnHire.setPreferredSize(new java.awt.Dimension(240, 60));
-        btnHire.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnHireActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout pnlHireLayout = new javax.swing.GroupLayout(pnlHire);
         pnlHire.setLayout(pnlHireLayout);
@@ -205,11 +200,6 @@ public class SystemPanel extends javax.swing.JPanel {
         btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icCancel.png"))); // NOI18N
         btnClose.setText(Constant.CLOSE_BTN );
         btnClose.setActionCommand(Constant.CLOSE_BTN);
-        btnClose.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCloseActionPerformed(evt);
-            }
-        });
 
         javax.swing.GroupLayout pnlCloseButtonLayout = new javax.swing.GroupLayout(pnlCloseButton);
         pnlCloseButton.setLayout(pnlCloseButtonLayout);
@@ -226,15 +216,6 @@ public class SystemPanel extends javax.swing.JPanel {
 
         add(pnlCloseButton);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnHireActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHireActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnHireActionPerformed
-
-    private void btnCloseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCloseActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnCloseActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBuyItem;
     private javax.swing.JButton btnClose;

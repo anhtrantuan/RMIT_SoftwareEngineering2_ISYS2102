@@ -53,9 +53,7 @@ public class MainScreenButtonListener implements ActionListener {
         } else if (text.equals(Constant.BUTTON_NEXT_TURN)) {
             try {
                 model.nextTurn();
-            } catch (MoneyRunOutException ex) {
-                Logger.getLogger(MainScreenButtonListener.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (EmployeeNotExist ex) {
+            } catch (Exception ex) {
                 Logger.getLogger(MainScreenButtonListener.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else if (text.equals(Constant.BUTTON_INFORMATION)) {
