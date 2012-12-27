@@ -5,9 +5,6 @@
 package devfortress.view.dialogs;
 
 import devfortress.utilities.Constant;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JLabel;
 
 /**
  *
@@ -16,13 +13,10 @@ import javax.swing.JLabel;
 public class BuyItemPanel extends javax.swing.JPanel {
 
     /**
-     * Creates new form BuyItemPanel
+     * Creates new form BuyItemPanel.
      */
-    private Icon pizzaImage, beerImage, comImage;
-
     public BuyItemPanel() {
         initComponents();
-        init();
     }
 
     /**
@@ -34,282 +28,393 @@ public class BuyItemPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel1 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         pnlFood = new javax.swing.JPanel();
+        lblFood = new javax.swing.JLabel();
         noPizzaLbl = new javax.swing.JLabel();
-        pizzaIncreaseBtn = new javax.swing.JButton();
-        pizzaDecreaseBtn = new javax.swing.JButton();
+        jSpinner1 = new javax.swing.JSpinner();
+        pizzaEqualSign = new javax.swing.JLabel();
+        priceOfPizza = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         pnlBeer = new javax.swing.JPanel();
-        beerIncreaseBtn = new javax.swing.JButton();
+        lblBeer = new javax.swing.JLabel();
         noBeerLbl = new javax.swing.JLabel();
-        beerDecreaseBtn = new javax.swing.JButton();
+        jSpinner2 = new javax.swing.JSpinner();
+        beerEqualSign = new javax.swing.JLabel();
+        priceOfBeer = new javax.swing.JLabel();
+        jPanel4 = new javax.swing.JPanel();
         pnlComputer = new javax.swing.JPanel();
-        comIncreaseBtn = new javax.swing.JButton();
-        comDecreaseBtn = new javax.swing.JButton();
+        lblComputer = new javax.swing.JLabel();
         noComLbl = new javax.swing.JLabel();
+        jSpinner3 = new javax.swing.JSpinner();
+        comEqualSign = new javax.swing.JLabel();
+        priceOfCom = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        totalCostLbl = new javax.swing.JLabel();
+        totalCost = new javax.swing.JLabel();
+        jPanel6 = new javax.swing.JPanel();
+        budgetLbl = new javax.swing.JLabel();
+        budget = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
         clearAllBtn = new javax.swing.JButton();
         Buy = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        totalShoppingPrice = new javax.swing.JLabel();
-        priceOfPizza = new javax.swing.JLabel();
-        pizzaEqualSign = new javax.swing.JLabel();
-        beerEqualSign = new javax.swing.JLabel();
-        comEqualSign = new javax.swing.JLabel();
-        priceOfBeer = new javax.swing.JLabel();
-        priceOfCom = new javax.swing.JLabel();
-        totalCostLbl = new javax.swing.JLabel();
-        budgetLbl = new javax.swing.JLabel();
-        totalCost = new javax.swing.JLabel();
-        budget = new javax.swing.JLabel();
 
+        setBackground(new java.awt.Color(255, 255, 255));
         setPreferredSize(new java.awt.Dimension(400, 700));
+        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
-        pnlFood.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText(Constant.BUY_BTN);
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addContainerGap())
+        );
+
+        add(jPanel1);
+
+        pnlFood.setBackground(new java.awt.Color(255, 255, 255));
+        pnlFood.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        pnlFood.setMaximumSize(new java.awt.Dimension(90, 90));
+        pnlFood.setMinimumSize(new java.awt.Dimension(90, 90));
         pnlFood.setPreferredSize(new java.awt.Dimension(90, 90));
+
+        lblFood.setBackground(new java.awt.Color(255, 255, 255));
+        lblFood.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblFood.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icPizza.png"))); // NOI18N
 
         javax.swing.GroupLayout pnlFoodLayout = new javax.swing.GroupLayout(pnlFood);
         pnlFood.setLayout(pnlFoodLayout);
         pnlFoodLayout.setHorizontalGroup(
             pnlFoodLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFoodLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(lblFood, javax.swing.GroupLayout.PREFERRED_SIZE, 62, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         pnlFoodLayout.setVerticalGroup(
             pnlFoodLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlFoodLayout.createSequentialGroup()
+                .addContainerGap(15, Short.MAX_VALUE)
+                .addComponent(lblFood)
+                .addContainerGap())
         );
 
-        noPizzaLbl.setText("x");
+        noPizzaLbl.setText(Constant.MUL_SIGN);
 
-        pizzaIncreaseBtn.setText(Constant.PLUS_SIGN);
+        jSpinner1.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
 
-        pizzaDecreaseBtn.setText(Constant.MINUS_SIGN);
+        pizzaEqualSign.setText(Constant.EQUAL_SIGN);
 
-        pnlBeer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        priceOfPizza.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        priceOfPizza.setText("jLabel2");
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(32, 32, 32)
+                .addComponent(pnlFood, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43)
+                .addComponent(noPizzaLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(82, 82, 82)
+                .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(56, 56, 56)
+                .addComponent(pizzaEqualSign, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 350, Short.MAX_VALUE)
+                .addComponent(priceOfPizza, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addGap(0, 21, Short.MAX_VALUE)
+                .addComponent(pnlFood, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(35, 35, 35)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(noPizzaLbl)
+                    .addComponent(jSpinner1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(pizzaEqualSign)
+                    .addComponent(priceOfPizza))
+                .addContainerGap())
+        );
+
+        add(jPanel2);
+
+        pnlBeer.setBackground(new java.awt.Color(255, 255, 255));
+        pnlBeer.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        pnlBeer.setMaximumSize(new java.awt.Dimension(90, 90));
+        pnlBeer.setMinimumSize(new java.awt.Dimension(90, 90));
         pnlBeer.setPreferredSize(new java.awt.Dimension(90, 90));
+
+        lblBeer.setBackground(new java.awt.Color(255, 255, 255));
+        lblBeer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icBeer.png"))); // NOI18N
 
         javax.swing.GroupLayout pnlBeerLayout = new javax.swing.GroupLayout(pnlBeer);
         pnlBeer.setLayout(pnlBeerLayout);
         pnlBeerLayout.setHorizontalGroup(
             pnlBeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
+            .addGroup(pnlBeerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblBeer, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         pnlBeerLayout.setVerticalGroup(
             pnlBeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
+            .addGroup(pnlBeerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblBeer, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
-        beerIncreaseBtn.setText(Constant.PLUS_SIGN);
+        noBeerLbl.setText(Constant.MUL_SIGN);
 
-        noBeerLbl.setText("x");
+        jSpinner2.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
 
-        beerDecreaseBtn.setText(Constant.MINUS_SIGN);
+        beerEqualSign.setText(Constant.EQUAL_SIGN);
 
-        pnlComputer.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        priceOfBeer.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        priceOfBeer.setText("jLabel2");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(pnlBeer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(noBeerLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(102, 102, 102)
+                .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(74, 74, 74)
+                .addComponent(beerEqualSign, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(priceOfBeer)
+                .addGap(59, 59, 59))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(pnlBeer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(31, 31, 31)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(noBeerLbl)
+                            .addComponent(jSpinner2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(beerEqualSign)
+                                .addComponent(priceOfBeer)))))
+                .addContainerGap(32, Short.MAX_VALUE))
+        );
+
+        add(jPanel3);
+
+        pnlComputer.setBackground(new java.awt.Color(255, 255, 255));
+        pnlComputer.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+        pnlComputer.setMaximumSize(new java.awt.Dimension(90, 90));
+        pnlComputer.setMinimumSize(new java.awt.Dimension(90, 90));
         pnlComputer.setPreferredSize(new java.awt.Dimension(90, 90));
+
+        lblComputer.setBackground(new java.awt.Color(255, 255, 255));
+        lblComputer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icComputer.png"))); // NOI18N
 
         javax.swing.GroupLayout pnlComputerLayout = new javax.swing.GroupLayout(pnlComputer);
         pnlComputer.setLayout(pnlComputerLayout);
         pnlComputerLayout.setHorizontalGroup(
             pnlComputerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlComputerLayout.createSequentialGroup()
+                .addContainerGap(28, Short.MAX_VALUE)
+                .addComponent(lblComputer, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         pnlComputerLayout.setVerticalGroup(
             pnlComputerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 88, Short.MAX_VALUE)
+            .addGroup(pnlComputerLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(lblComputer, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
         );
 
-        comIncreaseBtn.setText(Constant.PLUS_SIGN);
+        noComLbl.setText(Constant.MUL_SIGN);
 
-        comDecreaseBtn.setText(Constant.MINUS_SIGN);
+        jSpinner3.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(1), Integer.valueOf(1), null, Integer.valueOf(1)));
 
-        noComLbl.setText("x");
+        comEqualSign.setText(Constant.EQUAL_SIGN);
+
+        priceOfCom.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        priceOfCom.setText("jLabel3");
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(pnlComputer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(noComLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84)
+                .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 401, Short.MAX_VALUE)
+                .addComponent(comEqualSign, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(priceOfCom)
+                .addGap(67, 67, 67))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addComponent(pnlComputer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(noComLbl)
+                            .addComponent(jSpinner3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(39, 39, 39))))
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(comEqualSign)
+                    .addComponent(priceOfCom))
+                .addGap(0, 0, Short.MAX_VALUE))
+        );
+
+        add(jPanel4);
+
+        totalCostLbl.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        totalCostLbl.setText(Constant.TOTAL_COST_LBL);
+
+        totalCost.setText("jLabel2");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(56, 56, 56)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(289, 289, 289)
+                        .addComponent(totalCost))
+                    .addComponent(totalCostLbl))
+                .addContainerGap(482, Short.MAX_VALUE))
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(totalCostLbl)
+                    .addComponent(totalCost))
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+
+        add(jPanel5);
+
+        budgetLbl.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        budgetLbl.setText(Constant.BUDGET);
+
+        budget.setText("jLabel3");
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(95, 95, 95)
+                .addComponent(budgetLbl)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 524, Short.MAX_VALUE)
+                .addComponent(budget)
+                .addGap(135, 135, 135))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(budget)
+                    .addComponent(budgetLbl))
+                .addGap(29, 29, 29))
+        );
+
+        add(jPanel6);
 
         clearAllBtn.setText(Constant.CLEAR_BTN);
 
         Buy.setText(Constant.BUY_BTN);
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 24)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText(Constant.SHOP_LBL);
-
-        totalShoppingPrice.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        totalShoppingPrice.setText(Constant.TOTAL);
-
-        priceOfPizza.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        priceOfPizza.setText("jLabel2");
-
-        pizzaEqualSign.setText(Constant.EQUAL_SIGN);
-
-        beerEqualSign.setText(Constant.EQUAL_SIGN);
-
-        comEqualSign.setText(Constant.EQUAL_SIGN);
-
-        priceOfBeer.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        priceOfBeer.setText("jLabel2");
-
-        priceOfCom.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        priceOfCom.setText("jLabel3");
-
-        totalCostLbl.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        totalCostLbl.setText(Constant.TOTAL_COST_LBL);
-
-        budgetLbl.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        budgetLbl.setText(Constant.BUDGET);
-
-        totalCost.setText("jLabel2");
-
-        budget.setText("jLabel3");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(191, 191, 191)
-                            .addComponent(totalShoppingPrice)
-                            .addContainerGap(107, Short.MAX_VALUE))
-                        .addGroup(layout.createSequentialGroup()
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(pnlBeer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(beerIncreaseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(noBeerLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(beerDecreaseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(162, 162, 162)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                                .addComponent(comEqualSign, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                                                .addComponent(beerEqualSign, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
-                                                .addComponent(pizzaEqualSign, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(pnlFood, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(noPizzaLbl, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(pizzaIncreaseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                                                .addComponent(pizzaDecreaseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(priceOfBeer)
-                                        .addComponent(priceOfCom)
-                                        .addComponent(priceOfPizza, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addContainerGap(93, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(pnlComputer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(noComLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(comIncreaseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(comDecreaseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(totalCostLbl)
-                                    .addComponent(budgetLbl)))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(21, 21, 21)
-                                .addComponent(clearAllBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(68, 68, 68)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(budget)
-                                    .addComponent(totalCost)))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                                .addComponent(Buy, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(30, 30, 30))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(66, 66, 66))))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel1)
-                .addGap(60, 60, 60)
-                .addComponent(totalShoppingPrice)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlFood, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(pizzaIncreaseBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(noPizzaLbl)
-                            .addComponent(priceOfPizza)
-                            .addComponent(pizzaEqualSign))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(pizzaDecreaseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addComponent(pnlBeer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(beerIncreaseBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(noBeerLbl)
-                            .addComponent(beerEqualSign)
-                            .addComponent(priceOfBeer))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(beerDecreaseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(27, 27, 27)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnlComputer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(9, 9, 9)
-                        .addComponent(comIncreaseBtn)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(noComLbl)
-                            .addComponent(comEqualSign)
-                            .addComponent(priceOfCom))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(comDecreaseBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(totalCostLbl)
-                    .addComponent(totalCost))
-                .addGap(26, 26, 26)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(budgetLbl)
-                    .addComponent(budget))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 80, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addComponent(clearAllBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 580, Short.MAX_VALUE)
+                .addComponent(Buy, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(65, 65, 65))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addContainerGap(34, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(clearAllBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Buy, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
+
+        add(jPanel7);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Buy;
-    private javax.swing.JButton beerDecreaseBtn;
     private javax.swing.JLabel beerEqualSign;
-    private javax.swing.JButton beerIncreaseBtn;
     private javax.swing.JLabel budget;
     private javax.swing.JLabel budgetLbl;
     private javax.swing.JButton clearAllBtn;
-    private javax.swing.JButton comDecreaseBtn;
     private javax.swing.JLabel comEqualSign;
-    private javax.swing.JButton comIncreaseBtn;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JSpinner jSpinner1;
+    private javax.swing.JSpinner jSpinner2;
+    private javax.swing.JSpinner jSpinner3;
+    private javax.swing.JLabel lblBeer;
+    private javax.swing.JLabel lblComputer;
+    private javax.swing.JLabel lblFood;
     private javax.swing.JLabel noBeerLbl;
     private javax.swing.JLabel noComLbl;
     private javax.swing.JLabel noPizzaLbl;
-    private javax.swing.JButton pizzaDecreaseBtn;
     private javax.swing.JLabel pizzaEqualSign;
-    private javax.swing.JButton pizzaIncreaseBtn;
     private javax.swing.JPanel pnlBeer;
     private javax.swing.JPanel pnlComputer;
     private javax.swing.JPanel pnlFood;
@@ -318,18 +423,5 @@ public class BuyItemPanel extends javax.swing.JPanel {
     private javax.swing.JLabel priceOfPizza;
     private javax.swing.JLabel totalCost;
     private javax.swing.JLabel totalCostLbl;
-    private javax.swing.JLabel totalShoppingPrice;
     // End of variables declaration//GEN-END:variables
-
-    private void init() {
-        pizzaImage = new ImageIcon("icBudget.png");
-//          beerImage = ImageIO.read(new File("image name and path"));
-//          comImage = ImageIO.read(new File("image name and path"));
-//       } catch (IOException ex) {
-        // handle exception...
-
-        JLabel l = new JLabel();
-        l.setIcon(pizzaImage);
-        pnlFood.add(l);
-    }
 }
