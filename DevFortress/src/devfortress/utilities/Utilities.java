@@ -139,9 +139,23 @@ public class Utilities {
         }
         return false;
     }
+
+    /**
+     * create employee that have many skill with full level
+     *
+     * @return
+     */
+    public Employee generateGoldenEmployee() {
+        employeeBuilder.createNewEmployee();
+        employeeBuilder.addName(generateEmployeeName());
+        employeeBuilder.addSkillList(goldenSkillList());
+        return employeeBuilder.getEmployee();
+    }
+
     /**
      * Create a list of skill that have full level for each skill
-     * @return 
+     *
+     * @return
      */
     private Map<Skill, Integer> goldenSkillList() {
         Map<Skill, Integer> map = new EnumMap<Skill, Integer>(Skill.class);
@@ -150,16 +164,5 @@ public class Utilities {
             map.put(Skill.randomSkill(), 10);
         }
         return map;
-    }
-
-    /**
-     * create employee that have many skill with full level
-     * @return 
-     */
-    public Employee generateGoldenEmployee() {
-        employeeBuilder.createNewEmployee();
-        employeeBuilder.addName(generateEmployeeName());
-        employeeBuilder.addSkillList(goldenSkillList());
-        return employeeBuilder.getEmployee();
     }
 }

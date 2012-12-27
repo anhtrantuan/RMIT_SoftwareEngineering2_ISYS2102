@@ -297,7 +297,7 @@ public class Company {
     public boolean assignEmployeeToProject(Employee emp, Project proj, Skill field) {
         return proj.assignEmployeeToProject(emp, field);
     }
-
+    
     /**
      *
      * @param proj
@@ -319,7 +319,6 @@ public class Company {
     }
 
     public void consumeItem() {
-
         for (Employee employee : employeeList) {
             if (foodStock > 0) {
                 employee.eat();

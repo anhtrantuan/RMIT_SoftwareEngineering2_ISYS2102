@@ -11,12 +11,9 @@ import devfortress.model.difficulty.EasyTest;
 import devfortress.model.difficulty.MediumTest;
 import devfortress.model.employee.EmployeeBuilderTest;
 import devfortress.model.employee.EmployeeTest;
+import devfortress.model.event.EventTest;
 import devfortress.model.facade.DevFortressTest;
 import devfortress.utilities.UtilityTest;
-import org.junit.After;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
@@ -26,6 +23,6 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({CompanyTest.class, DateTime.class, DifficultTest.class, MediumTest.class,
-    EasyTest.class, EmployeeBuilderTest.class, EmployeeTest.class, UtilityTest.class, DevFortressTest.class})
+    EasyTest.class, EmployeeBuilderTest.class, EmployeeTest.class, UtilityTest.class, DevFortressTest.class, EventTest.class})
 public class DevfortressTestSuit {
 }

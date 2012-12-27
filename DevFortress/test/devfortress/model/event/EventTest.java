@@ -16,7 +16,7 @@ import org.junit.runners.Suite;
  * @author Cat Hoang Huy
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({})
+@Suite.SuiteClasses({IndividualEventTest.class, ProjectEventTest.class})
 public class EventTest {
 
     @BeforeClass
