@@ -26,8 +26,8 @@ public class AllCurrentEmpolyees extends javax.swing.JPanel {
     public AllCurrentEmpolyees(List employeeList,ActionListener buttonListener) {
         this.employeeList = employeeList;
         initComponents();
-        devListScroll.getViewport().setBackground(Color.white);
-        employeeTable.setDefaultRenderer(JButton.class,
+        scpEmployees.getViewport().setBackground(Color.white);
+        tblEmployees.setDefaultRenderer(JButton.class,
                 new TableButtonCellRenderer());
         populateData();
     }
@@ -40,7 +40,7 @@ public class AllCurrentEmpolyees extends javax.swing.JPanel {
     
     public void setTableButtonListener(ActionListener tableButtonListener) {
         /* Set cell renderer for Employee table. */
-        employeeTable.setDefaultEditor(JButton.class,
+        tblEmployees.setDefaultEditor(JButton.class,
                 new TableButtonCellEditor(tableButtonListener));
     }
 
@@ -53,32 +53,33 @@ public class AllCurrentEmpolyees extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        devListScroll = new javax.swing.JScrollPane();
-        employeeTable = new javax.swing.JTable();
+        scpEmployees = new javax.swing.JScrollPane();
+        tblEmployees = new javax.swing.JTable();
 
-        employeeTable.setModel(new EmployeesTableModel());
-        devListScroll.setViewportView(employeeTable);
-        employeeTable.setRowHeight(36);
+        tblEmployees.setAutoCreateRowSorter(true);
+        tblEmployees.setModel(new EmployeesTableModel());
+        scpEmployees.setViewportView(tblEmployees);
+        tblEmployees.setRowHeight(36);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(devListScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
+            .addComponent(scpEmployees, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(devListScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+            .addComponent(scpEmployees, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane devListScroll;
-    private javax.swing.JTable employeeTable;
+    private javax.swing.JScrollPane scpEmployees;
+    private javax.swing.JTable tblEmployees;
     // End of variables declaration//GEN-END:variables
     private void populateData() {
         /* Update Developers table. */
         EmployeesTableModel tblDevelopersModel =
-                (EmployeesTableModel) employeeTable.getModel();
+                (EmployeesTableModel) tblEmployees.getModel();
         tblDevelopersModel.setEmployeeList(employeeList);
     }
 }

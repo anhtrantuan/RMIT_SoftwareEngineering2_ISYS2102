@@ -188,7 +188,7 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
             .addGroup(pnlPreviousNextLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnPrevious)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
                 .addComponent(btnNext)
                 .addContainerGap())
         );
