@@ -124,23 +124,23 @@ public class DevFortressTest {
         assertEquals("Result", 10, emp.getSkillList().get(emp.getMainSkill()).intValue());
     }
     
-    @Test
-    public void drink(){
-        System.out.println("Test drink");
-    }
-    
-    @Test
-    public void train(){
-        System.out.println("Test train");
-    }
-    
-    @Test
-    public void untrain(){
-        System.out.println("Test untrain");
-    }
-    
-    @Test
-    public void getWorkingProjectOfEmployee(){
-        System.out.println("Test get working project of employee");
-    }
+//    @Test
+//    public void drink(){
+//        System.out.println("Test drink");
+//    }
+//    
+//    @Test
+//    public void train(){
+//        System.out.println("Test train");
+//    }
+//    
+//    @Test
+//    public void untrain(){
+//        System.out.println("Test untrain");
+//    }
+//    
+//    @Test
+//    public void getWorkingProjectOfEmployee(){
+//        System.out.println("Test get working project of employee");
+//    }
 }

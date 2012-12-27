@@ -463,4 +463,8 @@ public class Employee {
     public boolean isHack() {
         return status[5];
     }
+
+    public boolean isInHoliday() {
+        return status[6];
+    }
 }

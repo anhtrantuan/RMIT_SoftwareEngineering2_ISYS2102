@@ -89,15 +89,21 @@ public class IndividualEventTest {
     @Test
     public void holiday() {
         System.out.println("Test holiday event");
+        event.holiday(e1);
+        assertTrue(e1.isInHoliday());
     }
 
     @Test
     public void redundancies() {
         System.out.println("Test redundancies event");
+        event.redundancies(e1, model.getCompany());
     }
 
     @Test
     public void bonus() {
         System.out.println("Test bonus");
+        float money = model.getBudget();
+        event.bonus(e1, model.getCompany());
+        assertEquals(money + 5000, model.getBudget(), 0);
     }
 }

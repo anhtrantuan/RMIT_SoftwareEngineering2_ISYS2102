@@ -46,40 +46,6 @@ public class DevFortress {
         Controller controller = new Controller(model, view);
         view.start();
 
-        try {
-            /* 
-             * Dummy Data
-             * Start:
-             */
-            model.buyItem(new Beer(14), 1);
-            model.buyItem(new Computer(0), 10);
-            model.buyItem(new Food(20, "Pizza"), 4);
-            model.buyItem(new Food(20, "Coffee"), 4);
-        } catch (UnaffordableException ex) {
-            Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-
-        EasyLevel level = new EasyLevel();
-        List<Project> projects = Utilities.getInstance().generateProjectList(level, 1, model);
-        model.takeProject(projects.get(0));
-        List<Employee> employees = Utilities.getInstance().generateEmployeeList(level, 1, model);
-
-        try {
-
-            model.hireEmployee(employees.get(0));
-
-        } catch (OvercrowdedException ex) {
-            Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (UnaffordableException ex) {
-            Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        try {
-            model.assignEmployeeToProject(employees.get(0), projects.get(0), projects.get(0).getMainSkill());
-        } catch (EmployeeIsBusyException ex) {
-            Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
-        }
         /* 
          * Dummy Data
          * :End
