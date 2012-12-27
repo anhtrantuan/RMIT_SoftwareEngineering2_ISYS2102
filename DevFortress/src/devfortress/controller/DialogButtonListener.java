@@ -5,15 +5,13 @@
 package devfortress.controller;
 
 import devfortress.model.employee.Employee;
-import devfortress.model.exception.EmployeeNotExist;
-import devfortress.model.exception.MoneyRunOutException;
-import devfortress.model.exception.OvercrowdedException;
-import devfortress.model.exception.UnaffordableException;
 import devfortress.model.facade.Model;
 import devfortress.utilities.Constant;
-import devfortress.view.dialogs.AllCurrentEmpolyees;
 import devfortress.view.dialogs.AvailableEmployeesPanel;
 import devfortress.view.dialogs.AvailableProjectsPanel;
+import devfortress.view.dialogs.BuyItemPanel;
+import devfortress.view.dialogs.CurrentEmpolyees;
+import devfortress.view.dialogs.EmployeePanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.logging.Level;
@@ -60,6 +58,7 @@ public class DialogButtonListener implements ActionListener {
                     buttonListener);
             newDialog.setContentPane(panel);
             newDialog.pack();
+            newDialog.setLocationRelativeTo(null);
             newDialog.setVisible(true);
         } else if (text.equals(Constant.BUTTON_HIRE)) {
             AvailableEmployeesPanel panel =
@@ -67,17 +66,22 @@ public class DialogButtonListener implements ActionListener {
                     buttonListener);
             newDialog.setContentPane(panel);
             newDialog.pack();
+            newDialog.setLocationRelativeTo(null);
             newDialog.setVisible(true);
         } else if (text.equals(Constant.EMPLOYEE_LIST_BTN)) {
-            AllCurrentEmpolyees panel =
-                    new AllCurrentEmpolyees(model.getEmployeeList(),
-                    buttonListener);
-            panel.setTableButtonListener(new EmployeesTableButtonListener(model));
+            CurrentEmpolyees panel = new CurrentEmpolyees(model, buttonListener);
+            panel.setTableButtonListener(new EmployeesTableButtonListener(panel,
+                    model));
             newDialog.setContentPane(panel);
             newDialog.pack();
+            newDialog.setLocationRelativeTo(null);
             newDialog.setVisible(true);
         } else if (text.equals(Constant.BUY_BTN)) {
-            // TODO Create Buy Item dialog
+            BuyItemPanel panel = new BuyItemPanel();
+            newDialog.setContentPane(panel);
+            newDialog.pack();
+            newDialog.setLocationRelativeTo(null);
+            newDialog.setVisible(true);
         } else {
             try {
                 if (text.equals(Constant.HIRE)) {
@@ -91,6 +95,8 @@ public class DialogButtonListener implements ActionListener {
                     Employee employee =
                             model.getEmployeeByName(e.getActionCommand());
                     model.fireEmployee(employee);
+                    EmployeePanel panel = (EmployeePanel) dialog.getContentPane();
+                    panel.updateEmployeeList();
                 } else if (text.equals(Constant.BUTTON_ACCEPT)) {
                     AvailableProjectsPanel panel =
                             (AvailableProjectsPanel) dialog.getContentPane();

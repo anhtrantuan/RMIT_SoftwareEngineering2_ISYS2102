@@ -33,7 +33,7 @@ import javax.swing.UIManager;
  * @author tommy
  */
 public class DevFortressView extends javax.swing.JFrame implements View, Observer {
-
+    
     private Model model;
     private String logMessages;
     private Dimension dimension, eventDimension;
@@ -69,7 +69,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
                 /* Else, setup look and feel to match current system. */
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             }
-
+            
         } catch (Exception ex) {
             Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -87,6 +87,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
     private void initialize() {
         /* Initialize components. */
         initComponents();
+        setLocationRelativeTo(null);
 
         /* Get animation panel dimension. */
         dimension = pnlGameAnimation.getSize();
@@ -762,7 +763,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         int response = JOptionPane.showConfirmDialog(this, "Do you really want to exit?",
                 "Exit Confirmation", JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE);
-
+        
         if (response == JOptionPane.YES_OPTION) {
             System.exit(0);
         }

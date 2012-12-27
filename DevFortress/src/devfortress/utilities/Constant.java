@@ -83,7 +83,6 @@ public class Constant {
     public static String SHOP_LBL = "Shop";
     public static String PLUS_SIGN = "+";
     public static String MINUS_SIGN = "-";
-    public static String MULTIPLY_LBL = "Quantity Multiply by: ";
     public static String MUL_SIGN = "x";
     public static String EQUAL_SIGN = "=";
     public static String TOTAL_COST_LBL = "Total cost: ";

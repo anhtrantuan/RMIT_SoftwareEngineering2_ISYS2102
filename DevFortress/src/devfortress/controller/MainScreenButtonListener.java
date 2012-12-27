@@ -4,8 +4,6 @@
  */
 package devfortress.controller;
 
-import devfortress.model.exception.EmployeeNotExist;
-import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.facade.Model;
 import devfortress.utilities.Constant;
 import devfortress.view.dialogs.CurrentProjectsPanel;

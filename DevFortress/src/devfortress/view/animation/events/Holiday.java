@@ -10,7 +10,6 @@ import devfortress.view.animation.GameSprite;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.net.URL;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,28 +47,26 @@ public class Holiday extends Game2D {
     @Override
     public void deactivate() {
         super.deactivate();
+
         timestamp = 0;
         sprites.clear();
         sprites.add(bgr);
         sprites.add(dancer1);
         sprites.add(dancer2);
+
         try {
             dancer1.setFrameIndex(0);
             dancer2.setFrameIndex(0);
         } catch (Exception ex) {
             Logger.getLogger(Holiday.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-
-
     }
 
     @Override
     public void drawStuff(Graphics g) {
         sprites.move();
-        /*
-         * Draw sprites.
-         */
+
+        /* Draw sprites. */
         if (!sprites.isEmpty()) {
             sprites.draw(g);
         }
@@ -78,8 +75,8 @@ public class Holiday extends Game2D {
     @Override
     public void initGame() {
         try {
-            URL bgrURL = getClass().getResource("../../resources/holiday.png"),
-                    dancerURL = getClass().getResource("../../resources/dancer.png");
+            URL bgrURL = getClass().getResource("../../resources/imgoliday.png"),
+                    dancerURL = getClass().getResource("../../resources/imgDancer.png");
 
             BGR_IMAGE = ImageIO.read(bgrURL);
             DANCER_IMAGE = ImageIO.read(dancerURL);
@@ -87,15 +84,12 @@ public class Holiday extends Game2D {
             heightScale = (double) DIM.height / BGR_IMAGE.getHeight(null);
             sprites = new Group<GameSprite>();
 
-            /*
-             * Add sprites.
-             */
+            /* Add sprites. */
             bgr = new GameSprite(DIM, 0, 0, BGR_IMAGE);
             bgr.setScales(widthScale, heightScale);
             sprites.add(bgr);
 
             dancer1 = new GameSprite(DIM, 223 * widthScale, 90 * heightScale, DANCER_IMAGE, dancerSize[0], dancerSize[1]);
-
             dancer1.setScales(widthScale, heightScale);
             dancer1.setFrameSequence(DANCER_SEQUENCE);
             dancer1.setFrameIndex(0);
@@ -110,7 +104,6 @@ public class Holiday extends Game2D {
             dancer2.setAngleDegree(0);
             dancer2.setSpeed(0);
             sprites.add(dancer2);
-
         } catch (Exception ex) {
             Logger.getLogger(WorkIsHacked.class.getName()).log(Level.SEVERE, null, ex);
         }

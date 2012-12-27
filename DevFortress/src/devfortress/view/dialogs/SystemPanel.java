@@ -22,6 +22,7 @@ public class SystemPanel extends javax.swing.JPanel {
         btnHire.addActionListener(buttonListener);
         btnClose.addActionListener(buttonListener);
         btnEmployeeList.addActionListener(buttonListener);
+        btnBuyItem.addActionListener(buttonListener);
     }
 
     /**

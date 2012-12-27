@@ -20,7 +20,8 @@ import javax.imageio.ImageIO;
  *
  * @author Sherlock
  */
-public class FeatureCut extends Game2D{
+public class FeatureCut extends Game2D {
+
     private BufferedImage BGR_IMAGE;
     private Group<GameSprite> sprites;
     private double widthScale, heightScale;
@@ -45,18 +46,17 @@ public class FeatureCut extends Game2D{
     @Override
     public void deactivate() {
         super.deactivate();
+
         timestamp = 0;
         sprites.clear();
         sprites.add(bgr);
-        
     }
 
     @Override
     public void drawStuff(Graphics g) {
         sprites.move();
-        /*
-         * Draw sprites.
-         */
+
+        /* Draw sprites. */
         if (!sprites.isEmpty()) {
             sprites.draw(g);
         }
@@ -64,16 +64,14 @@ public class FeatureCut extends Game2D{
 
     @Override
     public void initGame() {
-        URL bgrURL = getClass().getResource("../../resources/featureCut.png");
+        URL bgrURL = getClass().getResource("../../resources/imgFeatureCut.png");
         try {
             BGR_IMAGE = ImageIO.read(bgrURL);
             widthScale = (double) DIM.width / BGR_IMAGE.getWidth(null);
             heightScale = (double) DIM.height / BGR_IMAGE.getHeight(null);
             sprites = new Group<GameSprite>();
 
-            /*
-             * Add sprites.
-             */
+            /* Add sprites. */
             bgr = new GameSprite(DIM, 0, 0, BGR_IMAGE);
             bgr.setScales(widthScale, heightScale);
             sprites.add(bgr);

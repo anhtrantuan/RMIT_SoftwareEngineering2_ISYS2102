@@ -35,4 +35,5 @@ public enum Event {
     WAR_ERUPTS,
     COMPANY_IS_BURNT_DOWN_BY_ANONYMOUS,
     ZOMBIE_APOCALYPSE,
-    NO_EVENT}
+    NO_EVENT
+}
