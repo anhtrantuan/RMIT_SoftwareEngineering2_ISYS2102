@@ -28,10 +28,11 @@ public class DeveloperIsSickEventAnimation extends Game2D {
     private Group<GameSprite> sprites;
     private double widthScale, heightScale;
     private GameSprite dev, doctor, bed, doctor_talking, floor;
-    private int DOC_TALKING_SPRITE1[] = new int[]{0, 0, 207, 104},
-            DOC_TALKING_SPRITE2[] = new int[]{0, 111, 207, 88},
+    private int DOC_TALKING_CROP1[] = new int[]{0, 0, 207, 104},
+            DOC_TALKING_CROP2[] = new int[]{0, 111, 207, 88},
             DEV_SEQUENCE[] = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 10, 10},
             DOC_SEQUENCE[] = new int[]{3, 2, 1, 0};
+    
     private long timestamp = 0;
 
     /**
@@ -90,13 +91,17 @@ public class DeveloperIsSickEventAnimation extends Game2D {
                 bed.setScales(3, 3);
                 sprites.add(bed);
 
-                doctor = new GameSprite(DIM, 496, 20, DOCTOR_IMAGE, 16, 30);
-                doctor.setScales(3, 3);
-                doctor.setFrameSequence(DOC_SEQUENCE);
-                doctor.setFrameIndex(3);
-                doctor.setAngleDegree(0);
-                doctor.setSpeed(30);
+                doctor = new GameSprite(DIM, 108, 35, DOCTOR_IMAGE, 16, 30);
+                doctor.setScales(3, 3);          
+                doctor.setFrameIndex(0);
                 sprites.add(doctor);
+                
+                doctor_talking = new GameSprite(DIM, 110, 323, DOCTOR_TALKING_IMAGE.getSubimage(
+                    DOC_TALKING_CROP1[0], DOC_TALKING_CROP1[1], DOC_TALKING_CROP1[2], DOC_TALKING_CROP1[3]));
+                doctor_talking.setScales(2, 2);          
+                doctor_talking.setFrameIndex(0);
+                sprites.add(doctor_talking);
+                
             } catch (Exception ex) {
                 Logger.getLogger(DeveloperIsSickEventAnimation.class.getName()).log(Level.SEVERE, null, ex);
             }
