@@ -28,7 +28,7 @@ public class TeamBuildingExcercise extends Game2D implements EventAnimationEngin
     private int ROCK_LEE_SEQUENCE[] = new int[]{0, 0, 0, 1, 1, 1, 0, 0, 0, 2, 2, 2,
         3, 3, 3, 0, 0, 0, 4, 4, 4, 5, 5, 5, 0, 0, 0};
     private long timestamp = 0;
-    private boolean isWaiting = false;
+    private boolean isWaiting = false, firstScreen = true;
 
     public TeamBuildingExcercise(Dimension dim) {
         super(dim);
@@ -49,10 +49,10 @@ public class TeamBuildingExcercise extends Game2D implements EventAnimationEngin
     public void deactivate() {
         super.deactivate();
         isWaiting = false;
+        firstScreen = true;
         timestamp = -1;
         sprites.clear();
-        sprites.add(bgr);
-        sprites.add(mightGuy);
+
     }
 
     @Override
@@ -62,6 +62,12 @@ public class TeamBuildingExcercise extends Game2D implements EventAnimationEngin
             /*
              * Draw sprites.
              */
+            if (firstScreen) {
+                sprites.add(bgr);
+                sprites.add(mightGuy);
+                timestamp= System.currentTimeMillis();
+                firstScreen = false;
+            }
             if (timestamp != 0 && System.currentTimeMillis() >= timestamp + 2000
                     && isWaiting != true) {
 //            g.clearRect(0, 0, DIM.width, DIM.height);
@@ -76,10 +82,7 @@ public class TeamBuildingExcercise extends Game2D implements EventAnimationEngin
             if (timestamp != 0 && System.currentTimeMillis() >= timestamp + 2000) {
 //            g.clearRect(0, 0, DIM.width, DIM.height);
                 sprites.remove(rockLee);
-
                 sprites.add(bgr);
-
-
                 sprites.add(rockLeeExcercise);
                 timestamp = 0;
             }
