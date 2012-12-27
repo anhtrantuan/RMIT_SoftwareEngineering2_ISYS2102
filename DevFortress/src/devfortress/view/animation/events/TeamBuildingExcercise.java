@@ -48,12 +48,14 @@ public class TeamBuildingExcercise extends Game2D {
     @Override
     public void deactivate() {
         super.deactivate();
+        
         timestamp = 0;
         sprites.clear();
         sprites.add(bgr);
         sprites.add(mightGuy);
         sprites.add(rockLee);
         sprites.add(rockLeeExcercise);
+        
         try {
             rockLeeExcercise.setFrameIndex(0);
         } catch (Exception ex) {
@@ -66,7 +68,6 @@ public class TeamBuildingExcercise extends Game2D {
         sprites.move();
         try {
             /* Draw sprites. */
-            System.out.println(timestamp);
             if (timestamp != 0 && System.currentTimeMillis() >= timestamp + 2000
                     && isWaiting != true) {
 //            g.clearRect(0, 0, DIM.width, DIM.height);

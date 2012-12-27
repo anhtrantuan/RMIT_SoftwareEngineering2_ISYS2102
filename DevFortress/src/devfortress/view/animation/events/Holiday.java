@@ -75,7 +75,7 @@ public class Holiday extends Game2D {
     @Override
     public void initGame() {
         try {
-            URL bgrURL = getClass().getResource("../../resources/imgoliday.png"),
+            URL bgrURL = getClass().getResource("../../resources/imgHoliday.png"),
                     dancerURL = getClass().getResource("../../resources/imgDancer.png");
 
             BGR_IMAGE = ImageIO.read(bgrURL);

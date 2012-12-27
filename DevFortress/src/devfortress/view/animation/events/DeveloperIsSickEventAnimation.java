@@ -56,6 +56,7 @@ public class DeveloperIsSickEventAnimation extends Game2D {
     @Override
     public void deactivate() {
         super.deactivate();
+        
         timestamp = 0;
         sprites.clear();
         sprites.add(floor);
