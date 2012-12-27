@@ -161,12 +161,15 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
         add(pnlSalary);
 
         pnlPreviousNext.setBackground(new java.awt.Color(255, 255, 255));
-        pnlPreviousNext.setMaximumSize(new java.awt.Dimension(122, 56));
-        pnlPreviousNext.setMinimumSize(new java.awt.Dimension(122, 56));
-        pnlPreviousNext.setPreferredSize(new java.awt.Dimension(122, 56));
+        pnlPreviousNext.setMaximumSize(new java.awt.Dimension(130, 60));
+        pnlPreviousNext.setMinimumSize(new java.awt.Dimension(130, 60));
+        pnlPreviousNext.setPreferredSize(new java.awt.Dimension(130, 60));
 
         btnPrevious.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         btnPrevious.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icPrevious.png"))); // NOI18N
+        btnPrevious.setMaximumSize(new java.awt.Dimension(40, 40));
+        btnPrevious.setMinimumSize(new java.awt.Dimension(40, 40));
+        btnPrevious.setPreferredSize(new java.awt.Dimension(40, 40));
         btnPrevious.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPreviousActionPerformed(evt);
@@ -175,6 +178,9 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
 
         btnNext.setFont(new java.awt.Font("Ubuntu", 1, 14)); // NOI18N
         btnNext.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icNext.png"))); // NOI18N
+        btnNext.setMaximumSize(new java.awt.Dimension(40, 40));
+        btnNext.setMinimumSize(new java.awt.Dimension(40, 40));
+        btnNext.setPreferredSize(new java.awt.Dimension(40, 40));
         btnNext.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNextActionPerformed(evt);
@@ -187,19 +193,19 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
             pnlPreviousNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPreviousNextLayout.createSequentialGroup()
                 .addGap(15, 15, 15)
-                .addComponent(btnPrevious)
+                .addComponent(btnPrevious, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(20, 20, 20)
-                .addComponent(btnNext)
+                .addComponent(btnNext, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15))
         );
         pnlPreviousNextLayout.setVerticalGroup(
             pnlPreviousNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPreviousNextLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addGroup(pnlPreviousNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnPrevious)
-                    .addComponent(btnNext))
-                .addGap(10, 10, 10))
+                .addGroup(pnlPreviousNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnNext, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnPrevious, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(10, Short.MAX_VALUE))
         );
 
         add(pnlPreviousNext);
