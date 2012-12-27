@@ -16,6 +16,7 @@ import devfortress.model.exception.UnaffordableException;
 import devfortress.utilities.Skill;
 import java.util.EnumMap;
 import java.util.HashMap;
+import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
@@ -115,7 +116,12 @@ public class DevFortressTest {
     
     @Test
     public void createGoldenEmployee(){
-        System.out.println("Test create golden employee");
+        System.out.println("Test create Golden employee");
+        int highest;
+        company.createGoldenEmployee();
+        List<Employee> list = company.getAvailableEmployeeList();
+        Employee emp = list.get(list.size()-1);
+        assertEquals("Result", 10, emp.getSkillList().get(emp.getMainSkill()).intValue());
     }
     
     @Test
