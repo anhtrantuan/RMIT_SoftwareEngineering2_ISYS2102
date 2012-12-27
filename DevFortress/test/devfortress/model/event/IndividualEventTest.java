@@ -67,46 +67,37 @@ public class IndividualEventTest {
     @Test
     public void developerSick() {
         System.out.println("test developer is sick event");
+        event.sickDeveloper(e1);
+        assertTrue(e1.isSick());
     }
-    
+
     @Test
-    public void newTech(){
+    public void newTech() {
         System.out.println("Test new technology invent event");
+        int re = p.getRemainingPoints();
+        event.newTechnology(e1);
+        assertEquals(re - 50, p.getRemainingPoints());
     }
-    
+
     @Test
-    public void hacked(){
+    public void hacked() {
         System.out.println("Test hack event");
+        event.hacked(e1);
+        assertTrue(e1.isHack());
     }
-    
+
     @Test
-    public void featureCut(){
-        System.out.println("Test feature cut event");
-    }
-    
-    @Test
-    public void holiday(){
+    public void holiday() {
         System.out.println("Test holiday event");
     }
-    
+
     @Test
-    public void redundancies(){
+    public void redundancies() {
         System.out.println("Test redundancies event");
     }
-    
+
     @Test
-    public void bonus(){
+    public void bonus() {
         System.out.println("Test bonus");
     }
-    
-    @Test
-    public void exploreTalent(){
-        System.out.println("Test explore talent event");
-    }
-    
-    @Test
-    public void developerHasBaby(){
-        System.out.println("Test developer has baby event");
-    }
 }
-

@@ -456,4 +456,12 @@ public class Employee {
     public boolean isHungry() {
         return status[1];
     }
+
+    public boolean isSick() {
+        return status[4];
+    }
+
+    public boolean isHack() {
+        return status[5];
+    }
 }

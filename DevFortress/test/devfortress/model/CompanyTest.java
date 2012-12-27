@@ -171,7 +171,7 @@ public class CompanyTest {
         Employee e = new Employee("employee1", new HashMap<Skill, Integer>());
         company.trainEmployee(e, Skill.C);
         company.unTrain(e);
-        assertEquals(null, e.getSkillList());
+        assertEquals(0, e.getSkillList());
     }
 
     @Test
