@@ -218,7 +218,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
 
         btnInformation.setFont(new java.awt.Font("Arial", 1, 13)); // NOI18N
         btnInformation.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icInformation.png"))); // NOI18N
-        btnInformation.setText(Constant.BUTTON_INFORMATION);
+        btnInformation.setText(Constant.LOG);
         btnInformation.setMaximumSize(new java.awt.Dimension(220, 40));
         btnInformation.setMinimumSize(new java.awt.Dimension(220, 40));
         btnInformation.setPreferredSize(new java.awt.Dimension(220, 40));
@@ -631,7 +631,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
                 (ExpensesTreeModel) treExpenses.getModel();
         treExpensesModel.setTotalExpense(model.getExpenses());
         treExpensesModel.setSalaries(model.getTotalSalary());
-        treExpensesModel.setItemExpense(model.getItemExpenses());
+        treExpensesModel.setItemExpenses(model.getItemExpenses());
         treExpensesModel.setExpenseItems(model.getItems());
         treExpensesModel.reload();
         lblEmployees.setText(String.format("%s: %d", Constant.EMPLOYEES,
@@ -864,11 +864,9 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         /* Get data object. */
         DataObject data = (DataObject) arg;
 
-        /* Append log message. */
-        logMessages += data.getLog() + "\n";
-
         /* Add events for display. */
         if (data.getEvents() != null) {
+            logMessages = data.getLog() + "\n";
             clearAllEvents();
             if (!data.getEvents().isEmpty()) {
                 for (Event event : data.getEvents()) {
@@ -884,12 +882,20 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
                     /* Add event to View. */
                     engines.add(engine);
                     canvases.add(canvas);
+
+                    /* Append log message. */
+                    logMessages += "EVENT: "
+                            + ((EventAnimationEngine) engine).getInformation()
+                            + "\n";
                 }
 
                 /* Show first event. */
                 index = 0;
                 showCurrentEvent();
             }
+        } else {
+            /* Append log message. */
+            logMessages += data.getLog() + "\n";
         }
     }
 
@@ -944,5 +950,15 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
                 }
             }
         }).start();
+    }
+
+    /**
+     * Get log messages.
+     *
+     * @return
+     */
+    @Override
+    public String getLog() {
+        return logMessages;
     }
 }

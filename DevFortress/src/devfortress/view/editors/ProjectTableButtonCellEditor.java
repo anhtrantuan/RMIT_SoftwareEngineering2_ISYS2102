@@ -17,18 +17,18 @@ import javax.swing.JTable;
  *
  * @author tommy
  */
-public class TableButtonCellEditor extends DefaultCellEditor {
+public class ProjectTableButtonCellEditor extends DefaultCellEditor {
 
     private ActionListener buttonListener;
     private String buttonText;
     private Icon icon;
 
     /**
-     * Constructor for TableButtonCellEditor.
+     * Constructor for ProjectTableButtonCellEditor.
      *
      * @param checkBox
      */
-    public TableButtonCellEditor(ActionListener buttonListener) {
+    public ProjectTableButtonCellEditor(ActionListener buttonListener) {
         super(new JCheckBox());
         this.buttonListener = buttonListener;
     }
@@ -52,14 +52,10 @@ public class TableButtonCellEditor extends DefaultCellEditor {
         buttonText = button.getText();
         icon = button.getIcon();
 
-        /* Set employee's name or row index as button's action command. */
-        String name = (String) table.getValueAt(row, 0);
-        if (name.equals(Constant.NA)) {
-            button.setActionCommand(String.format("%d",
-                    table.convertRowIndexToModel(row)));
-        } else {
-            button.setActionCommand(name);
-        }
+        /* Set button's action command. */
+        String name = (String) table.getValueAt(row, 0),
+                skill = (String) table.getValueAt(row, 1);
+        button.setActionCommand(String.format("%s:%s", skill, name));
 
         /* Return button component. */
         return button;

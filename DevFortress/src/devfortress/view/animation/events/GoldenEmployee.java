@@ -20,14 +20,14 @@ import javax.imageio.ImageIO;
  *
  * @author Sherlock
  */
-public class GoldenEmployee extends Game2D {
+public class GoldenEmployee extends Game2D implements EventAnimationEngine {
 
     private BufferedImage GOLDEN_ANNOUNCEMENT_IMAGE, SATAN_IMAGE;
     private Group<GameSprite> sprites;
     private double widthScale, heightScale;
     private GameSprite announcement, satan;
     private long timestamp = 0;
-    private boolean firstScreen=true;
+    private boolean firstScreen = true;
 
     public GoldenEmployee(Dimension dim) {
         super(dim);
@@ -57,11 +57,11 @@ public class GoldenEmployee extends Game2D {
     public void drawStuff(Graphics g) {
         sprites.move();
         try {
-            if(firstScreen){
+            if (firstScreen) {
                 timestamp = System.currentTimeMillis();
                 firstScreen = false;
             }
-            if (System.currentTimeMillis() >= timestamp + 2000  && timestamp !=0) {
+            if (System.currentTimeMillis() >= timestamp + 2000 && timestamp != 0) {
                 sprites.clear();
                 sprites.add(satan);
                 timestamp = 0;
@@ -104,8 +104,9 @@ public class GoldenEmployee extends Game2D {
             Logger.getLogger(FeatureCut.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public String getInformation(){
+
+    @Override
+    public String getInformation() {
         return "One golden employee with nearly maximum skill is available to hire";
     }
 }

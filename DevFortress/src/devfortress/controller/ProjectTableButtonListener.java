@@ -5,17 +5,14 @@
 package devfortress.controller;
 
 import devfortress.model.employee.Employee;
-import devfortress.model.exception.EmployeeNotExist;
 import devfortress.model.facade.Model;
 import devfortress.model.project.Project;
 import devfortress.utilities.Constant;
 import devfortress.utilities.Skill;
+import devfortress.view.dialogs.AssignEmployeesPanel;
 import devfortress.view.dialogs.ProjectPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 
@@ -24,7 +21,7 @@ import javax.swing.JDialog;
  * @author tommy
  */
 public class ProjectTableButtonListener implements ActionListener {
-    
+
     private Model model;
     private JDialog dialog;
 
@@ -37,35 +34,37 @@ public class ProjectTableButtonListener implements ActionListener {
         this.model = model;
         this.dialog = dialog;
     }
-    
+
     @Override
     public void actionPerformed(ActionEvent e) {
-        String text = ((JButton) e.getSource()).getText();
-        
+        JButton button = (JButton) e.getSource();
+        String text = button.getText(),
+                action = button.getActionCommand(),
+                actions[] = action.split(":");
+
         ProjectPanel panel = (ProjectPanel) dialog.getContentPane();
-        
         Project project = panel.getProject();
-        Map<Skill, Employee> skillEmployeeMap = project.getSkill_employeeMap();
-        
+
         if (text.equals(Constant.ASSIGN)) {
-            throw new UnsupportedOperationException("Not supported yet!");
+            JDialog newDialog = new JDialog(dialog, text, true);
+            newDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+
+            DialogButtonListener buttonListener =
+                    new DialogButtonListener(model, newDialog);
+
+            System.out.println(actions[0]);
+            Skill skill = Skill.valueOf(actions[0]);
+            AssignEmployeesPanel assignPanel = new AssignEmployeesPanel(panel,
+                    model, project, skill, buttonListener);
+
+            newDialog.setContentPane(assignPanel);
+            newDialog.pack();
+            newDialog.setVisible(true);
         } else if (text.equals(Constant.UNASSIGN)) {
-            
-                Employee employee = model.getEmployeeByName(e.getActionCommand());
-                Skill skill = null;
-                
-                Skill skills[] = new Skill[skillEmployeeMap.size()];
-                skillEmployeeMap.keySet().toArray(skills);
-                
-                for (int i = 0; i < skills.length; i++) {
-                    if (skillEmployeeMap.get(skills[i]).equals(employee)) {
-                        skill = skills[i];
-                        i = skills.length;
-                    }
-                }
-                model.unassignEmployee(project, employee);
-                panel.setProject(model.getProjectByName(project.getName()));
-            
+            Employee employee = model.getEmployeeByName(actions[1]);
+            System.out.println(project == null);
+            model.unassignEmployee(project, employee);
+            panel.setProject(model.getProjectByName(project.getName()));
         }
     }
 }

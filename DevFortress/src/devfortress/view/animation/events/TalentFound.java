@@ -21,7 +21,7 @@ import javax.imageio.ImageIO;
  *
  * @author Sherlock
  */
-public class TalentFound extends Game2D {
+public class TalentFound extends Game2D implements EventAnimationEngine {
 
     private BufferedImage FLOORS_IMAGE, DEV_IMAGE, TABLES_IMAGE, CHAIRS_IMAGE, PROS_SPRITE_IMAGE, PROS_TALKING_IMAGE;
     private Group<GameSprite> sprites;
@@ -156,8 +156,9 @@ public class TalentFound extends Game2D {
             Logger.getLogger(DeveloperIsSickEventAnimation.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
-    public String getInformation(){
+
+    @Override
+    public String getInformation() {
         return "The employee turns out having talent in the working field, "
                 + "his training result will be double once next turn";
     }
