@@ -34,7 +34,7 @@ public class EasyLevel implements GameLevel {
         Random random = new Random();
         int numOfField = random.nextInt(3) + 4;
         for (int i = 0; i < numOfField; i++) {
-            map.put(Skill.randomSkill(), random.nextInt(3) + 1);
+            map.put(Skill.randomSkill(), random.nextInt(3) + 3);
         }
         return map;
     }

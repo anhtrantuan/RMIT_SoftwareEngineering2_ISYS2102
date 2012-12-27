@@ -8,6 +8,10 @@ import devfortress.model.Beer;
 import devfortress.model.Computer;
 import devfortress.model.Food;
 import devfortress.model.employee.Employee;
+import devfortress.model.exception.EmployeeNotExist;
+import devfortress.model.exception.MoneyRunOutException;
+import devfortress.model.exception.OvercrowdedException;
+import devfortress.model.exception.UnaffordableException;
 import devfortress.model.facade.Model;
 import devfortress.utilities.Constant;
 import devfortress.view.dialogs.AssignEmployeesPanel;
@@ -189,13 +193,23 @@ public class DialogButtonListener implements ActionListener {
                     AssignEmployeesPanel panel =
                             (AssignEmployeesPanel) dialog.getContentPane();
                     panel.assign();
-                    
+
                     dialog.setVisible(false);
                     dialog.dispose();
                 }
             }
-        } catch (Exception ex) {
-            Logger.getLogger(DialogButtonListener.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (UnaffordableException ex) {
+            JOptionPane.showConfirmDialog(null, "YOU DO NOT HAVE ENOUGH MONEY!!!", "ERROR", JOptionPane.OK_CANCEL_OPTION);
+        } catch (MoneyRunOutException ex) {
+            int option = JOptionPane.showConfirmDialog(null, "YOU ARE OUT OF MONEY, YOU LOSE", "GAME OVER!", JOptionPane.YES_OPTION);
+            if (option == JOptionPane.YES_OPTION) {
+                System.exit(0);
+            }
+            System.exit(0);
+        } catch (EmployeeNotExist ex) {
+            JOptionPane.showConfirmDialog(null, "EMPLOYEE NOT EXIST!!!", "ERROR", JOptionPane.OK_CANCEL_OPTION);
+        } catch (OvercrowdedException ex) {
+            JOptionPane.showConfirmDialog(null, "NOT ENOUGH COMPUTER, BUY MORE!!!", "ERROR", JOptionPane.OK_CANCEL_OPTION);
         }
     }
 }
