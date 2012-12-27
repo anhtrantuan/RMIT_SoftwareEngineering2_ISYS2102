@@ -59,7 +59,9 @@ public class TeamBuildingExcercise extends Game2D implements EventAnimationEngin
     public void drawStuff(Graphics g) {
         sprites.move();
         try {
-            /* Draw sprites. */
+            /*
+             * Draw sprites.
+             */
             if (timestamp != 0 && System.currentTimeMillis() >= timestamp + 2000
                     && isWaiting != true) {
 //            g.clearRect(0, 0, DIM.width, DIM.height);
@@ -74,17 +76,10 @@ public class TeamBuildingExcercise extends Game2D implements EventAnimationEngin
             if (timestamp != 0 && System.currentTimeMillis() >= timestamp + 2000) {
 //            g.clearRect(0, 0, DIM.width, DIM.height);
                 sprites.remove(rockLee);
-                bgr = new GameSprite(DIM, 0, 0, BGR_IMAGE);
-                bgr.setScales(widthScale, heightScale);
+
                 sprites.add(bgr);
 
-                rockLeeExcercise = new GameSprite(DIM, 200, 10,
-                        ROCK_LEE_EXCERCISE_IMAGE, 23, 45);
-                rockLeeExcercise.setScales(4, 4);
-                rockLeeExcercise.setFrameSequence(ROCK_LEE_SEQUENCE);
-                rockLeeExcercise.setFrameIndex(0);
-                rockLeeExcercise.setAngleDegree(0);
-                rockLeeExcercise.setSpeed(0);
+
                 sprites.add(rockLeeExcercise);
                 timestamp = 0;
             }
@@ -113,10 +108,22 @@ public class TeamBuildingExcercise extends Game2D implements EventAnimationEngin
             heightScale = (double) DIM.height / MIGHT_GUY_IMAGE.getHeight(null);
             sprites = new Group<GameSprite>();
 
-            /* Add sprites. */
+            /*
+             * Add sprites.
+             */
             mightGuy = new GameSprite(DIM, 0, 0, MIGHT_GUY_IMAGE);
             mightGuy.setScales(widthScale, heightScale);
             sprites.add(mightGuy);
+            bgr = new GameSprite(DIM, 0, 0, BGR_IMAGE);
+            bgr.setScales(widthScale, heightScale);
+            rockLeeExcercise = new GameSprite(DIM, 200, 10,
+                    ROCK_LEE_EXCERCISE_IMAGE, 23, 45);
+            rockLeeExcercise.setScales(4, 4);
+            rockLeeExcercise.setFrameSequence(ROCK_LEE_SEQUENCE);
+            rockLeeExcercise.setFrameIndex(0);
+            rockLeeExcercise.setAngleDegree(0);
+            rockLeeExcercise.setSpeed(0);
+
             timestamp = System.currentTimeMillis();
         } catch (Exception ex) {
             Logger.getLogger(WorkIsHacked.class.getName()).log(Level.SEVERE, null, ex);

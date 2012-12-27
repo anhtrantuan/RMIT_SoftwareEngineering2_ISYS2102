@@ -231,6 +231,7 @@ public class Engine extends Observable implements Model {
             for (int i = 0; i < 4; i++) {
                 nextWeek(succeededProject, failedProject);
             }
+            
         } catch (MoneyRunOutException ex) {
         } //        for (Project project : company.getCurrentProjectList()) {
         //            if (project.checkProjectProcess()) {
@@ -260,6 +261,7 @@ public class Engine extends Observable implements Model {
                     dateTime.getYear(), dateTime.getMonthOfYear(),
                     dateTime.getWeekOfMonth());
             DataObject data = new DataObject(message, events);
+            
             setChanged();
             notifyObservers(data);
         }
@@ -276,7 +278,7 @@ public class Engine extends Observable implements Model {
             if (project.checkProjectProcess()) {
                 succeededProject.add(project);
             } else {
-                project.getRemainingTime().nextTurn();
+                project.getRemainingTime().nextWeekTurn();
                 if (project.getRemainingTime().getMonths() == 0) {
                     failedProject.add(project);
                 }

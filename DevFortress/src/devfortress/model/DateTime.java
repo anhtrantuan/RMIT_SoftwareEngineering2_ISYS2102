@@ -73,7 +73,19 @@ public class DateTime {
         }
     }
 
-    public void nextTurn() {
+    public void nextWeekTurn() {
+        if(monthOfYear ==0 || weekOfMonth>1){
+            weekOfMonth--;
+        }
+        else{
+            weekOfMonth =4;
+            monthOfYear--;
+            
+        }
+        
+    }
+    
+    public void nextTurn(){
         if (year == 0 || monthOfYear > 1) {
             monthOfYear--;
         } else {
