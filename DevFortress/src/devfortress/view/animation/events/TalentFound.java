@@ -33,7 +33,8 @@ public class TalentFound extends Game2D {
             EMPLOYEE_SIZES[] = new int[]{20, 30},
             EMPLOYEE2_CROP[] = new int[]{120, 30, 40, 30},
             EMPLOYEE3_SEQUENCE[] = new int[]{0, 1},
-            CHAIR_FRONT_RIGHT_CROP[] = new int[]{15, 0, 15, 27};
+            CHAIR_FRONT_RIGHT_CROP[] = new int[]{15, 0, 15, 27},
+            PROS_TALKING_SEQUENCE[]=new int[]{0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,1,1,1,1,1,1,1,1,1};
 
     /**
      * Constructor to create new game sick event animation.
@@ -78,7 +79,6 @@ public class TalentFound extends Game2D {
          */
         sprites.draw(g);
         System.out.println(floor);
-        System.out.println("drawing");
     }
 
     @Override
@@ -114,13 +114,13 @@ public class TalentFound extends Game2D {
             floor.setScales(widthScale, heightScale);
             sprites.add(floor);
 
-            chair = new GameSprite(DIM, 295, 146, CHAIRS_IMAGE.getSubimage(
+            chair = new GameSprite(DIM, 370, 50, CHAIRS_IMAGE.getSubimage(
                     CHAIR_FRONT_RIGHT_CROP[0], CHAIR_FRONT_RIGHT_CROP[1],
                     CHAIR_FRONT_RIGHT_CROP[2], CHAIR_FRONT_RIGHT_CROP[3]));
             chair.setScales(widthScale*2.5, heightScale*2.5);
             sprites.add(chair);
 
-            dev = new GameSprite(DIM, 293, 141, DEV_IMAGE.getSubimage(
+            dev = new GameSprite(DIM, 368, 45, DEV_IMAGE.getSubimage(
                     EMPLOYEE2_CROP[0], EMPLOYEE2_CROP[1], EMPLOYEE2_CROP[2],
                     EMPLOYEE2_CROP[3]), EMPLOYEE_SIZES[0], EMPLOYEE_SIZES[1]);
             dev.setScales(widthScale*2.5, heightScale*2.5);
@@ -129,11 +129,22 @@ public class TalentFound extends Game2D {
             dev.setSpeed(0);
             sprites.add(dev);
             
-            table = new GameSprite(DIM, 280, 150, TABLES_IMAGE.getSubimage(
+            table = new GameSprite(DIM, 355, 54, TABLES_IMAGE.getSubimage(
                     TABLE_BACK_CROP[0], TABLE_BACK_CROP[1], TABLE_BACK_CROP[2],
                     TABLE_BACK_CROP[3]));
             table.setScales(widthScale*2.5, heightScale*2.5);
             sprites.add(table);
+            
+            pros = new GameSprite(DIM, 328, 45,PROS_SPRITE_IMAGE);
+            pros.setScales(widthScale*2.5, heightScale*2.5);
+            sprites.add(pros);
+            
+            pros_talking = new GameSprite(DIM, 2, 2,PROS_TALKING_IMAGE,287,110);
+            pros_talking.setScales(widthScale*1.2, heightScale*1.2);
+            pros_talking.setFrameSequence(PROS_TALKING_SEQUENCE);
+            pros_talking.setAngleDegree(0);
+            pros_talking.setSpeed(0);
+            sprites.add(pros_talking);
 
         } catch (Exception ex) {
             Logger.getLogger(DeveloperIsSickEventAnimation.class.getName()).log(Level.SEVERE, null, ex);
