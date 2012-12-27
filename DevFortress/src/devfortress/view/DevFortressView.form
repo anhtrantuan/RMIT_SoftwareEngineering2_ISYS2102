@@ -240,12 +240,12 @@
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="1" attributes="0">
                               <Group type="102" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="btnInformation" pref="230" max="32767" attributes="0"/>
-                                      <Component id="btnCurrentProjects" max="32767" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                      <Component id="btnInformation" max="32767" attributes="0"/>
+                                      <Component id="btnCurrentProjects" pref="0" max="32767" attributes="0"/>
                                   </Group>
-                                  <EmptySpace min="-2" pref="10" max="-2" attributes="0"/>
-                                  <Component id="btnNextTurn" min="-2" pref="121" max="-2" attributes="0"/>
+                                  <EmptySpace pref="10" max="32767" attributes="0"/>
+                                  <Component id="btnNextTurn" min="-2" pref="131" max="-2" attributes="0"/>
                               </Group>
                               <Component id="btnSystem" max="32767" attributes="0"/>
                           </Group>
@@ -307,13 +307,13 @@
                       <Connection code="Constant.BUTTON_INFORMATION" type="code"/>
                     </Property>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[227, 40]"/>
+                      <Dimension value="[220, 40]"/>
                     </Property>
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[227, 40]"/>
+                      <Dimension value="[220, 40]"/>
                     </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[227, 40]"/>
+                      <Dimension value="[220, 40]"/>
                     </Property>
                   </Properties>
                 </Component>
@@ -351,13 +351,13 @@
                       <Connection code="Constant.BUTTON_NEXT_TURN" type="code"/>
                     </Property>
                     <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[128, 90]"/>
+                      <Dimension value="[131, 90]"/>
                     </Property>
                     <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[128, 90]"/>
+                      <Dimension value="[131, 90]"/>
                     </Property>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[136, 90]"/>
+                      <Dimension value="[131, 90]"/>
                     </Property>
                   </Properties>
                 </Component>
