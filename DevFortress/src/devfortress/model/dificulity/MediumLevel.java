@@ -10,6 +10,7 @@ import devfortress.model.DateTime;
 import devfortress.model.employee.Employee;
 import devfortress.model.event.IndividualEvent;
 import devfortress.model.event.ProjectEvent;
+import devfortress.model.facade.Model;
 import devfortress.model.project.DevFortressProjectBuilder;
 import devfortress.model.project.Project;
 import devfortress.model.project.ProjectBuilder;
@@ -105,22 +106,19 @@ public class MediumLevel implements GameLevel {
     }
 
     @Override
-    public Event generateEvent(Employee e, Company company) {
+    public Event generateEvent(Employee e, Company company, Model model) {
         Double r = new Random().nextDouble();
         if (r < 0.1) {
             return IndividualEvent.sickDeveloper(e);
         } else if (r < 0.15) {
-            return IndividualEvent.requirementChange(e);
         } else if (r < 0.2) {
             return IndividualEvent.newTechnology(e);
         } else if (r < 0.25) {
-            return IndividualEvent.solutionScale(e);
         } else if (r < 0.26) {
             return IndividualEvent.hacked(e);
         } else if (r < 0.31) {
             return IndividualEvent.featureCut(e);
         } else if (r < 0.36) {
-            return IndividualEvent.backupFailed(e);
         } else if (r < 0.41) {
             return IndividualEvent.holiday(e);
         } else if (r < 0.46) {
@@ -132,19 +130,15 @@ public class MediumLevel implements GameLevel {
         } else if (r < 0.57) {
             return IndividualEvent.exploreTalent(e);
         } else if (r < 0.62) {
-            return IndividualEvent.getSponsor(e);
         } else if (r < 0.63) {
-            return IndividualEvent.projectStolen(e);
+            return IndividualEvent.projectStolen(e, company);
         } else if (r < 0.64) {
-            return IndividualEvent.employeeLeave(e);
         } else if (r < 0.645) {
-            return IndividualEvent.inspiration(e);
         } else if (r < 0.695) {
             return IndividualEvent.developerHasBaby(e);
         } else if (r < 0.705) {
-            return ProjectEvent.trainingSponsor(e);
         } else if (r < 0.755) {
-            return ProjectEvent.gotSued(e,company);
+            return ProjectEvent.gotSued(e, company);
         }
         return Event.NO_EVENT;
     }

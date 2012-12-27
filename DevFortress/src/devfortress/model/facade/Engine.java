@@ -141,7 +141,7 @@ public class Engine extends Observable implements Model {
         String message = "";
 
         for (Employee employee : company.getEmployeeList()) {
-            Event event = level.generateEvent(employee, company);
+            Event event = level.generateEvent(employee, company, this);
             events.add(event);
             if (company.getEmployeeList().indexOf(employee) != 0) {
                 message += '\n';
@@ -229,11 +229,51 @@ public class Engine extends Observable implements Model {
         }
 
         events.clear();
+        try {
+            for (int i = 0; i < 4; i++) {
+                nextWeek(succeededProject, failedProject);
+            }
+        } catch (MoneyRunOutException ex) {
+        } //        for (Project project : company.getCurrentProjectList()) {
+        //            if (project.checkProjectProcess()) {
+        //                succeededProject.add(project);
+        //            } else {
+        //                project.getRemainingTime().nextTurn();
+        //                if (project.getRemainingTime().getMonths() == 0) {
+        //                    failedProject.add(project);
+        //                }
+        //            }
+        //        }
+        //
+        //        for (Project proj : failedProject) {
+        //            company.cancelProject(proj);
+        //        }
+        //        for (Project proj : succeededProject) {
+        //            company.finishProject(proj);
+        //        }
+        finally {
+            availableProjects = generateProjectList();
+            availableEmployees = generateEmployeeList();
+            paySalary();
 
-        for (int i = 0; i < 4; i++) {
-            nextWeek();
+            company.clearItemList();
+
+            String message = String.format("New turn began: Year %d Month %d Week %d.",
+                    dateTime.getYear(), dateTime.getMonthOfYear(),
+                    dateTime.getWeekOfMonth());
+            DataObject data = new DataObject(message, events);
+            setChanged();
+            notifyObservers(data);
         }
 
+    }
+
+    /**
+     * Increase the week number by one
+     */
+    private void nextWeek(List< Project> succeededProject, List< Project> failedProject) throws MoneyRunOutException {
+        eventOccur();
+        consumeFood();
         for (Project project : company.getCurrentProjectList()) {
             if (project.checkProjectProcess()) {
                 succeededProject.add(project);
@@ -252,32 +292,7 @@ public class Engine extends Observable implements Model {
             company.finishProject(proj);
         }
 
-        availableProjects = generateProjectList();
-        availableEmployees = generateEmployeeList();
-        paySalary();
-
-        try {
-            checkBudget();
-        } catch (MoneyRunOutException ex) {
-            Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            company.clearItemList();
-
-            String message = String.format("New turn began: Year %d Month %d Week %d.",
-                    dateTime.getYear(), dateTime.getMonthOfYear(),
-                    dateTime.getWeekOfMonth());
-            DataObject data = new DataObject(message, events);
-            setChanged();
-            notifyObservers(data);
-        }
-    }
-
-    /**
-     * Increase the week number by one
-     */
-    private void nextWeek() {
-        eventOccur();
-        consumeFood();
+        checkBudget();
         dateTime.nextWeek();
     }
 
@@ -417,5 +432,11 @@ public class Engine extends Observable implements Model {
     @Override
     public void drink(Employee emp) {
         company.drinkBeer(emp);
+    }
+
+    @Override
+    public void createGoldenEmployee() {
+        Employee e = utilities.generateGoldenEmployee();
+        availableEmployees.add(e);
     }
 }

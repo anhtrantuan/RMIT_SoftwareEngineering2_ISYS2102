@@ -7,6 +7,7 @@ package devfortress.model.event;
 
 import devfortress.model.Company;
 import devfortress.model.employee.Employee;
+import devfortress.model.exception.EmployeeNotExist;
 import devfortress.model.project.Project;
 import devfortress.utilities.Event;
 import devfortress.utilities.Skill;
@@ -17,28 +18,12 @@ import java.util.Map;
  * @author satthuvdh
  */
 public class IndividualEvent implements EventInterface {
-    
+
     public static Event sickDeveloper(Employee e) {
         e.sick();
         return Event.DEVELOPER_IS_SICK;
     }
-    
-    public static Event requirementChange(Employee e) {
-        Project p = e.getWorkingProject();
-        if (p != null) {
-            Map<Skill, Employee> skill = e.getWorkingProject().getSkill_employeeMap();
-            Map<Skill, Integer> require = e.getWorkingProject().getSkillRequirementMap();
-            for (Skill sk : skill.keySet()) {
-                if (skill.get(sk).equals(e)) {
-                    require.put(sk, require.get(sk) + 20);
-                    e.getWorkingProject().increaeRemainingPoint(20);
-                }
-            }
-            return Event.REQUIREMENT_CHANGE;
-        }
-        return Event.NO_EVENT;
-    }
-    
+
     public static Event newTechnology(Employee e) {
         Project p = e.getWorkingProject();
         if (p != null) {
@@ -54,28 +39,12 @@ public class IndividualEvent implements EventInterface {
         }
         return Event.NO_EVENT;
     }
-    
-    public static Event solutionScale(Employee e) {
-        Project p = e.getWorkingProject();
-        if (p != null) {
-            Map<Skill, Employee> skill = e.getWorkingProject().getSkill_employeeMap();
-            Map<Skill, Integer> require = e.getWorkingProject().getSkillRequirementMap();
-            for (Skill sk : skill.keySet()) {
-                if (skill.get(sk).equals(e)) {
-                    require.put(sk, require.get(sk) + 10);
-                    e.getWorkingProject().increaeRemainingPoint(10);
-                }
-            }
-            return Event.SOLUSTIONDOEST_NOT_SCALE;
-        }
-        return Event.NO_EVENT;
-    }
-    
+
     public static Event hacked(Employee e) {
         e.getHacked();
         return Event.HACKED;
     }
-    
+
     public static Event featureCut(Employee e) {
         Project p = e.getWorkingProject();
         if (p != null) {
@@ -89,32 +58,16 @@ public class IndividualEvent implements EventInterface {
                 }
             }
             return Event.FEATURE_CUT;
-            
+
         }
         return Event.NO_EVENT;
     }
-    
-    public static Event backupFailed(Employee e) {
-        Project p = e.getWorkingProject();
-        if (p != null) {
-            Map<Skill, Employee> skill = e.getWorkingProject().getSkill_employeeMap();
-            Map<Skill, Integer> require = e.getWorkingProject().getSkillRequirementMap();
-            for (Skill sk : skill.keySet()) {
-                if (skill.get(sk).equals(e)) {
-                    require.put(sk, require.get(sk) + 25);
-                    e.getWorkingProject().increaeRemainingPoint(25);
-                }
-            }
-            return Event.BACKUP_FAIL;
-        }
-        return Event.NO_EVENT;
-    }
-    
+
     public static Event holiday(Employee e) {
         e.goHoliday();
         return Event.HOLIDAY;
     }
-    
+
     public static Event redundancies(Employee e) {
         Project p = e.getWorkingProject();
         if (p != null) {
@@ -131,44 +84,36 @@ public class IndividualEvent implements EventInterface {
         }
         return Event.NO_EVENT;
     }
-    
+
     public static Event bonus(Employee e, Company c) {
         c.increaseMoney(5000);
         return Event.BONUS;
     }
-    
+
     public static Event exploreTalent(Employee e) {
-        System.out.println("explore talent");
+        e.getTalented();
         return Event.EXPLORE_THE_EMPLOYEE_HAVING_TALENT;
     }
-    
-    public static Event getSponsor(Employee e) {
-        
-        return Event.GET_SPONSOR_FOR_CURRENT_PROJECT;
+
+    public static Event projectStolen(Employee e, Company c) {
+        try {
+            Project p = e.getWorkingProject();
+            if (p != null) {
+                c.cancelProject(p);
+                c.removeEmployee(e);
+                return Event.PROJECT_IS_STOLEN_BY_EMPLOYEE;
+            } else {
+                return Event.NO_EVENT;
+            }
+        } catch (EmployeeNotExist ex) {
+        } finally {
+            return Event.NO_EVENT;
+        }
+
     }
-    
-    public static Event projectStolen(Employee e) {
-        
-        return Event.PROJECT_IS_STOLEN_BY_EMPLOYEE;
-    }
-    
-    public static Event employeeLeave(Employee e) {
-        
-        return Event.EMPLOYEES_LEAVE_FOR_ANOTHER_COMPANY;
-    }
-    
-    public static Event inspiration(Employee e) {
-        
-        return Event.INSPIRATION;
-    }
-    
+
     public static Event developerHasBaby(Employee e) {
-        
+        e.hasBaby();
         return Event.DEVELOPER_HAS_BABY;
-    }
-    
-    public static Event accident(Employee e) {
-        
-        return Event.ACCIDENT_OCCURS_TO_EMPLOYEE;
     }
 }

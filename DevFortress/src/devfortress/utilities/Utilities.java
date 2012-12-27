@@ -98,7 +98,7 @@ public class Utilities {
     }
 
     public List<Employee> generateEmployeeList(GameLevel level,
-            int numberOfEmployee, Model model){
+            int numberOfEmployee, Model model) {
         List<Employee> employees = new ArrayList<Employee>();
         for (int i = 0; i < numberOfEmployee; i++) {
             Employee employee;
@@ -138,5 +138,28 @@ public class Utilities {
             }
         }
         return false;
+    }
+    /**
+     * Create a list of skill that have full level for each skill
+     * @return 
+     */
+    private Map<Skill, Integer> goldenSkillList() {
+        Map<Skill, Integer> map = new EnumMap<Skill, Integer>(Skill.class);
+        Random random = new Random();
+        for (int i = 0; i < 15; i++) {
+            map.put(Skill.randomSkill(), 10);
+        }
+        return map;
+    }
+
+    /**
+     * create employee that have many skill with full level
+     * @return 
+     */
+    public Employee generateGoldenEmployee() {
+        employeeBuilder.createNewEmployee();
+        employeeBuilder.addName(generateEmployeeName());
+        employeeBuilder.addSkillList(goldenSkillList());
+        return employeeBuilder.getEmployee();
     }
 }

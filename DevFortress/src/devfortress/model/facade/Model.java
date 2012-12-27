@@ -78,4 +78,6 @@ public interface Model {
     void train(Employee emp, Skill sk) throws UnaffordableException;
 
     void drink(Employee emp);
+
+    void createGoldenEmployee();
 }

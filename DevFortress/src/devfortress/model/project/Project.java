@@ -179,7 +179,7 @@ public class Project {
         return (level + (2 * employee.getDesignSkill())
                 + (level * employee.getAlgorithmSkill())
                 + (employee.getTeamPlayerSkill() * skill_employeeMap.size())
-                / ((10 - employee.getConfigurationSkill()) + 2));
+                / ((10 - employee.getConfigurationSkill()) + 2)) / 4;
 
     }
 
@@ -198,15 +198,19 @@ public class Project {
         }
         if (status[4] == true) {
             finalPoint = finalPoint / 2;
+            employee.getHealthy();
         }
         if (status[5] == true) {
             finalPoint = 0;
+            employee.hackingSolved();
         }
         if (status[7] == true) {
             finalPoint = 5;
+            employee.talentedDone();
         }
         if (status[8] == true || status[9] == true) {
             finalPoint = finalPoint * 2;
+            employee.havingBabyProgress();
         }
 
         return finalPoint;
