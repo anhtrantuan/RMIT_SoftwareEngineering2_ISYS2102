@@ -4,7 +4,6 @@
  */
 package devfortress.model.memento;
 
-import devfortress.model.employee.Employee;
 import devfortress.utilities.Skill;
 import java.util.Map;
 

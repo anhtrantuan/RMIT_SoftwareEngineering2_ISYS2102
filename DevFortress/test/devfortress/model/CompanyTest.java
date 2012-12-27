@@ -9,7 +9,9 @@ import devfortress.model.exception.EmployeeNotExist;
 import devfortress.model.exception.MoneyRunOutException;
 import devfortress.model.exception.UnaffordableException;
 import devfortress.model.project.Project;
+import devfortress.utilities.Constant;
 import devfortress.utilities.Skill;
+import java.util.EnumMap;
 import java.util.HashMap;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -154,5 +156,38 @@ public class CompanyTest {
         System.out.println("Test clear item list");
         company.clearItemList();
         assertEquals(company.getItems().size(), 0);
+    }
+
+    @Test
+    public void train() throws UnaffordableException {
+        System.out.println("Test train");
+        company.trainEmployee(employee, Skill.C);
+        assertEquals(Skill.C, employee.getMainSkill());
+    }
+
+    @Test
+    public void untrain() throws UnaffordableException {
+        System.out.println("Test untrain");
+        Employee e = new Employee("employee1", new HashMap<Skill, Integer>());
+        company.trainEmployee(e, Skill.C);
+        company.unTrain(e);
+        assertEquals(null, e.getSkillList());
+    }
+
+    @Test
+    public void drinkBeer() throws UnaffordableException {
+        System.out.println("Test drink beer");
+        company.buyItem(new Food(10, Constant.EXPENSE_BEERS), 3);
+        employee.sad();
+        company.drinkBeer(employee);
+        assertTrue(employee.isHappy() == true);
+    }
+
+    @Test
+    public void consumeItem() {
+        System.out.println("Test consume item");
+        employee.getHungry();
+        company.consumeItem();
+        assertTrue(employee.isHungry());
     }
 }
