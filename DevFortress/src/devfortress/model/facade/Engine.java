@@ -22,7 +22,7 @@ import java.util.*;
  * @author cathoanghuy
  */
 public class Engine extends Observable implements Model {
-
+    
     private Company company;
     private GameLevel level;
     private DateTime dateTime;
@@ -33,11 +33,11 @@ public class Engine extends Observable implements Model {
     private List<Project> availableProjects;
     private Utilities utilities;
     private ArrayList<Event> events;
-
+    
     public Engine() throws EmployeeNotExist {
         this(new Company());
     }
-
+    
     public Engine(Company company) throws EmployeeNotExist {
         utilities = Utilities.getInstance();
         this.company = company;
@@ -60,7 +60,7 @@ public class Engine extends Observable implements Model {
     @Override
     public void buyItem(Item item, int quantity) throws UnaffordableException {
         company.buyItem(item, quantity);
-
+        
         String message = String.format("Bought %d new %s%s: -$%.2f.",
                 quantity, item.getName(), (quantity > 1 ? "s" : ""),
                 (item.getPrice() * quantity));
@@ -84,29 +84,29 @@ public class Engine extends Observable implements Model {
             throw new OvercrowdedException();
         }
         company.addEmployee(employee);
-
+        
         String message = String.format("Hired new employee %s: -$%.2f.",
                 employee.getName(), employee.getSalary());
         DataObject data = new DataObject(message, null);
         setChanged();
         notifyObservers(data);
     }
-
+    
     @Override
     public void fireEmployee(Employee employee) throws EmployeeNotExist {
         company.removeEmployee(employee);
-
+        
         String message = String.format("Fired employee %s: +$%.2f.",
                 employee.getName(), employee.getSalary());
         DataObject data = new DataObject(message, null);
         setChanged();
         notifyObservers(data);
     }
-
+    
     @Override
     public void takeProject(Project project) {
         company.addProject(project);
-
+        
         String message = String.format("Contracted new project %s: +$%.2f.",
                 project.getName(), project.getPayment() / 2);
         DataObject data = new DataObject(message, null);
@@ -122,7 +122,7 @@ public class Engine extends Observable implements Model {
     @Override
     public void cancelProject(Project project) {
         company.cancelProject(project);
-
+        
         String message = String.format("Cancel project %s: -$%.2f.",
                 project.getName(), project.getPayment() * 0.8);
         DataObject data = new DataObject(message, null);
@@ -137,7 +137,7 @@ public class Engine extends Observable implements Model {
     @Override
     public void eventOccur() {
         String message = "";
-
+        
         for (Employee employee : company.getEmployeeList()) {
             Event event = level.generateEvent(employee, company, this);
             events.add(event);
@@ -146,7 +146,7 @@ public class Engine extends Observable implements Model {
             }
             message += String.format("Event %s occurred!", event.toString());
         }
-
+        
         DataObject data = new DataObject(message, null);
         setChanged();
         notifyObservers(data);
@@ -161,7 +161,7 @@ public class Engine extends Observable implements Model {
     @Override
     public void levelUp(Project project) {
         project.levelUp();
-
+        
         String message = String.format("Leveled up employees in project %s.",
                 project.getName());
         DataObject data = new DataObject(message, null);
@@ -175,7 +175,7 @@ public class Engine extends Observable implements Model {
     @Override
     public void paySalary() {
         company.paySalary();
-
+        
         String message = String.format("Paid salary: -$%.2f.",
                 company.calculateTotalSalary());
         DataObject data = new DataObject(message, null);
@@ -217,7 +217,7 @@ public class Engine extends Observable implements Model {
     public void nextTurn() {
         List<Project> succeededProject = new ArrayList();
         List<Project> failedProject = new ArrayList();
-
+        
         if (dateTime.getYear() < 2) {
             level = easyLevel;
         } else if (dateTime.getYear() < 4) {
@@ -225,7 +225,7 @@ public class Engine extends Observable implements Model {
         } else {
             level = difficultLevel;
         }
-
+        
         events.clear();
         try {
             for (int i = 0; i < 4; i++) {
@@ -253,9 +253,9 @@ public class Engine extends Observable implements Model {
             availableProjects = generateProjectList();
             availableEmployees = generateEmployeeList();
             paySalary();
-
+            
             company.clearItemList();
-
+            
             String message = String.format("New turn began: Year %d Month %d Week %d.",
                     dateTime.getYear(), dateTime.getMonthOfYear(),
                     dateTime.getWeekOfMonth());
@@ -263,7 +263,7 @@ public class Engine extends Observable implements Model {
             setChanged();
             notifyObservers(data);
         }
-
+        
     }
 
     /**
@@ -282,58 +282,58 @@ public class Engine extends Observable implements Model {
                 }
             }
         }
-
+        
         for (Project proj : failedProject) {
             company.cancelProject(proj);
         }
         for (Project proj : succeededProject) {
             company.finishProject(proj);
         }
-
+        
         checkBudget();
         dateTime.nextWeek();
     }
-
+    
     @Override
     public Map<String, Float> getItems() {
         return company.getItems();
     }
-
+    
     @Override
     public List<Employee> getEmployeeList() {
         return company.getEmployeeList();
     }
-
+    
     @Override
     public List<Project> getProjectList() {
         return company.getCurrentProjectList();
     }
-
+    
     @Override
     public DateTime getCurrentTimePlayed() {
         return dateTime;
     }
-
+    
     @Override
     public float getBudget() {
         return company.getMoney();
     }
-
+    
     @Override
     public float getTotalSalary() {
         return company.calculateTotalSalary();
     }
-
+    
     @Override
     public float getExpenses() {
         return company.getExpenses();
     }
-
+    
     @Override
     public float getItemExpenses() {
         return company.getItemExpenses();
     }
-
+    
     @Override
     public Map<String, Float> getExpenseItems() {
         return company.getItems();
@@ -360,21 +360,21 @@ public class Engine extends Observable implements Model {
     public Project getProjectByName(String name) {
         return company.getProjectByName(name);
     }
-
+    
     @Override
     public void assignEmployeeToProject(Employee emp, Project proj, Skill field)
             throws EmployeeIsBusyException {
         if (!company.assignEmployeeToProject(emp, proj, field)) {
             throw new EmployeeIsBusyException();
         }
-
+        
         String message = String.format("Assigned employee %s to skill %s in project %s.",
                 emp.getName(), field.toString(), proj.getName());
         DataObject data = new DataObject(message, null);
         setChanged();
         notifyObservers(data);
     }
-
+    
     private void consumeFood() {
         company.consumeItem();
     }
@@ -398,56 +398,66 @@ public class Engine extends Observable implements Model {
     public List<Project> getAvailableProjectList() {
         return availableProjects;
     }
-
+    
     @Override
     public void unassignEmployee(Project proj, Employee emp) {
         company.unassignEmployee(proj, emp);
-
+        
         String message = String.format("Unassigned employee %s from project %s.",
                 emp.getName(), proj.getName());
         DataObject data = new DataObject(message, null);
         setChanged();
         notifyObservers(data);
     }
-
+    
     @Override
     public Project getWorkingProjectOfEmployee(Employee emp) {
         return emp.getWorkingProject();
     }
-
+    
     @Override
     public void train(Employee emp, Skill sk) throws UnaffordableException {
         company.trainEmployee(emp, sk);
     }
-
+    
     @Override
     public void checkBudget() throws MoneyRunOutException {
         if (company.getMoney() <= 0) {
             throw new MoneyRunOutException();
         }
     }
-
+    
     @Override
     public void drink(Employee emp) {
         company.drinkBeer(emp);
     }
-
+    
     @Override
     public void createGoldenEmployee() {
         Employee e = utilities.generateGoldenEmployee();
         availableEmployees.add(e);
     }
-
+    
     @Override
     public List<Employee> getUnassignedEmployeeList() {
         ArrayList<Employee> list = new ArrayList<Employee>();
-
+        
         for (Employee employee : company.getEmployeeList()) {
             if (employee.getWorkingProject() == null) {
                 list.add(employee);
             }
         }
-
+        
         return list;
+    }
+    
+    @Override
+    public void untrain(Employee emp) {
+        company.unTrain(emp);
+    }
+    
+    @Override
+    public Company getCompany() {
+        return company;
     }
 }

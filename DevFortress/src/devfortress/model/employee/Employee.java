@@ -7,7 +7,6 @@ package devfortress.model.employee;
 import devfortress.model.memento.SkillMemento;
 import devfortress.model.project.Project;
 import devfortress.utilities.Skill;
-import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -455,9 +454,5 @@ public class Employee {
 
     public boolean isHappy() {
         return status[2];
-    }
-
-    public boolean isHungry() {
-        return status[1];
     }
 }
