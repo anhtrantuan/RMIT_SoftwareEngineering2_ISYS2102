@@ -53,7 +53,11 @@ public class EventFactory {
         if (event == Event.HACKED) {
             return new WorkIsHacked(dimension);
         }
+        
+        if (event == Event.GOLDEN_EMPLOYEE) {
+            return new GoldenEmployee(dimension);
+        }
 
-        return new DeveloperIsSickEventAnimation(dimension);
+        return new GoldenEmployee(dimension);
     }
 }

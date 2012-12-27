@@ -30,11 +30,13 @@ public class DeveloperIsSickEventAnimation extends Game2D {
     private int DOC_TALKING_CROP1[] = new int[]{0, 0, 207, 104},
             DOC_TALKING_CROP2[] = new int[]{0, 111, 207, 88},
             DEV_SEQUENCE[] = new int[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 10, 10},
-            DOC__TALKING_SEQUENCE[] = new int[]{0, 0, 0, 0, 1, 1, 1, 1},
+            DOC_TALKING_SEQUENCE[] = new int[]{0, 0, 0, 0, 0, 0, 0, 0, 0,
+                                                1, 1, 1, 1, 1, 1, 1, 1, 1},
             DOC_MOVING_CROP[] = new int[]{48, 0, 16, 30};
     private long timestamp = 0;
     private boolean isWaiting = false;
     private boolean firstScreen = true;
+    private boolean secondScreen = true;
 
     /**
      * Constructor to create new game sick event animation.
@@ -65,6 +67,8 @@ public class DeveloperIsSickEventAnimation extends Game2D {
         sprites.add(floor);
         sprites.add(dev);
         isWaiting = false;
+        firstScreen = true;
+        secondScreen = true;
         try {
             dev.setFrameIndex(0);
         } catch (Exception ex) {
@@ -78,10 +82,8 @@ public class DeveloperIsSickEventAnimation extends Game2D {
          * Update sprites.
          */
         sprites.move();
-        System.out.println("move");
         try {
             if (timestamp == 0 && dev.getFrameIndex() == DEV_SEQUENCE.length - 1 && firstScreen) {
-                System.out.println("first");
                 sprites.clear();
                 g.setColor(Color.black);
                 g.fillRect(0, 0, DIM.width, DIM.height);
@@ -90,36 +92,18 @@ public class DeveloperIsSickEventAnimation extends Game2D {
             }
 
             if (timestamp != 0 && System.currentTimeMillis() >= timestamp + 1000 && isWaiting != true) {
-                System.out.println("run");
                 sprites.add(floor);
-                bed = new GameSprite(DIM, 10, 10, BED_IMAGE);
-                bed.setScales(3, 3);
                 sprites.add(bed);
-
-                doctor = new GameSprite(DIM, 108, 35, DOCTOR_IMAGE.getSubimage(
-                        DOC_MOVING_CROP[0], DOC_MOVING_CROP[1], DOC_MOVING_CROP[2], DOC_MOVING_CROP[3]));
-                doctor.setScales(3, 3);
                 sprites.add(doctor);
                 isWaiting = true;
             }
 
-            if (timestamp != 0 && System.currentTimeMillis() >= timestamp + 2500) {
-                System.out.println("this");
-                if (doctor_talking == null) {
-                    doctor_talking = new GameSprite(DIM, 200, 50, DOCTOR_TALKING_IMAGE, 207, 104);
-                }
-                System.out.println(doctor_talking);
-                doctor_talking.setScales(1.5, 1.5);
-                doctor_talking.setFrameIndex(0);
-                doctor_talking.setAngleDegree(0);
-                doctor_talking.setSpeed(0);
-                doctor_talking.setFrameSequence(DOC__TALKING_SEQUENCE);
+            if (timestamp != 0 && System.currentTimeMillis() >= timestamp + 1500 && secondScreen) {
                 sprites.add(doctor_talking);
-
+                secondScreen = false;
             }
 
             if (!sprites.isEmpty()) {
-                System.out.println("draw");
                 sprites.draw(g);
             }
         } catch (Exception ex) {
@@ -179,6 +163,19 @@ public class DeveloperIsSickEventAnimation extends Game2D {
             dev.setAngleDegree(0);
             dev.setSpeed(0);
             sprites.add(dev);
+
+            bed = new GameSprite(DIM, 10, 10, BED_IMAGE);
+            bed.setScales(3, 3);
+            doctor = new GameSprite(DIM, 108, 35, DOCTOR_IMAGE.getSubimage(
+                    DOC_MOVING_CROP[0], DOC_MOVING_CROP[1], DOC_MOVING_CROP[2], DOC_MOVING_CROP[3]));
+            doctor.setScales(3, 3);
+            doctor_talking = new GameSprite(DIM, 200, 50, DOCTOR_TALKING_IMAGE, 207, 104);
+            doctor_talking.setScales(1.5, 1.5);
+            doctor_talking.setFrameIndex(0);
+            doctor_talking.setAngleDegree(0);
+            doctor_talking.setSpeed(0);
+            doctor_talking.setFrameSequence(DOC_TALKING_SEQUENCE);
+
         } catch (Exception ex) {
             Logger.getLogger(DeveloperIsSickEventAnimation.class.getName()).log(Level.SEVERE, null, ex);
         }
