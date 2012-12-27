@@ -56,13 +56,9 @@ public class TeamBuildingExcercise extends Game2D {
         sprites.add(rockLeeExcercise);
         try {
             rockLeeExcercise.setFrameIndex(0);
-
         } catch (Exception ex) {
             Logger.getLogger(Holiday.class.getName()).log(Level.SEVERE, null, ex);
         }
-
-
-
     }
 
     @Override

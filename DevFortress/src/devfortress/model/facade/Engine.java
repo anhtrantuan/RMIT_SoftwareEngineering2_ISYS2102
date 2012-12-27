@@ -227,6 +227,8 @@ public class Engine extends Observable implements Model {
             level = difficultLevel;
         }
 
+        events.clear();
+
         for (int i = 0; i < 4; i++) {
             nextWeek();
         }

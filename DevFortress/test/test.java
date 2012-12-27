@@ -1,8 +1,5 @@
 
 import devfortress.model.exception.EmployeeNotExist;
-import devfortress.model.facade.Engine;
-import devfortress.model.facade.Model;
-import devfortress.view.DevFortressView;
 import devfortress.view.dialogs.BuyItemPanel;
 import java.io.IOException;
 import javax.swing.JFrame;

@@ -866,7 +866,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
             if (!data.getEvents().isEmpty()) {
                 for (Event event : data.getEvents()) {
                     /* Create animation engine. */
-                    Game2D engine = createAnimationEngine(event);
+                    Game2D engine = EventFactory.createEvent(eventDimension, event);
                     engine.initGame();
 
                     /* Create canvas panel to hold the game engine. */
@@ -897,20 +897,6 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         pnlEvent.add(currentCanvas);
         btnPrevious.setEnabled(index > 0);
         btnNext.setEnabled(canvases.size() > index + 1);
-    }
-
-    /**
-     * Create animation engine from event.
-     *
-     * @param event
-     * @return
-     */
-    private Game2D createAnimationEngine(Event event) {
-        // TODO Create animation engine
-//        if (event == Event.DEVELOPER_IS_SICK) {
-        return new Holiday(eventDimension);
-//        }
-//        return null;
     }
 
     /**
