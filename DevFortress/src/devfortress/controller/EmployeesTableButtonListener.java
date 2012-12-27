@@ -5,17 +5,15 @@
 package devfortress.controller;
 
 import devfortress.model.employee.Employee;
-import devfortress.model.exception.EmployeeNotExist;
 import devfortress.model.facade.Model;
 import devfortress.utilities.Constant;
 import devfortress.view.dialogs.EmployeePanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JPanel;
 
 /**
  *
@@ -23,6 +21,7 @@ import javax.swing.JFrame;
  */
 public class EmployeesTableButtonListener implements ActionListener {
 
+    private JPanel parent;
     private Model model;
 
     /**
@@ -30,7 +29,8 @@ public class EmployeesTableButtonListener implements ActionListener {
      *
      * @param model
      */
-    public EmployeesTableButtonListener(Model model) {
+    public EmployeesTableButtonListener(JPanel parent, Model model) {
+        this.parent = parent;
         this.model = model;
     }
 
@@ -47,7 +47,8 @@ public class EmployeesTableButtonListener implements ActionListener {
             DialogButtonListener buttonListener =
                     new DialogButtonListener(model, newDialog);
 
-            EmployeePanel panel = new EmployeePanel(employee, buttonListener);
+            EmployeePanel panel = new EmployeePanel(parent, employee,
+                    buttonListener);
 
             newDialog.setContentPane(panel);
             newDialog.pack();

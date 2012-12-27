@@ -16,28 +16,29 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="devListScroll" alignment="0" pref="665" max="32767" attributes="0"/>
+          <Component id="scpEmployees" alignment="0" pref="665" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="devListScroll" alignment="0" pref="442" max="32767" attributes="0"/>
+          <Component id="scpEmployees" alignment="0" pref="442" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Container class="javax.swing.JScrollPane" name="devListScroll">
+    <Container class="javax.swing.JScrollPane" name="scpEmployees">
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="employeeTable">
+        <Component class="javax.swing.JTable" name="tblEmployees">
           <Properties>
+            <Property name="autoCreateRowSorter" type="boolean" value="true"/>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new EmployeesTableModel()" type="code"/>
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="employeeTable.setRowHeight(36);"/>
+            <AuxValue name="JavaCodeGenerator_AddingCodePost" type="java.lang.String" value="tblEmployees.setRowHeight(36);"/>
           </AuxValues>
         </Component>
       </SubComponents>

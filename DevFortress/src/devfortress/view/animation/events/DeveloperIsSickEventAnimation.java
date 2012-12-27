@@ -6,7 +6,6 @@ package devfortress.view.animation.events;
 
 import com.tabuto.j2dgf.Game2D;
 import com.tabuto.j2dgf.Group;
-import devfortress.view.animation.GameAnimationEngine;
 import devfortress.view.animation.GameSprite;
 import java.awt.Color;
 import java.awt.Dimension;
@@ -58,10 +57,12 @@ public class DeveloperIsSickEventAnimation extends Game2D {
     @Override
     public void deactivate() {
         super.deactivate();
+        
         timestamp = 0;
         sprites.clear();
         sprites.add(floor);
         sprites.add(dev);
+        
         try {
             dev.setFrameIndex(0);
         } catch (Exception ex) {
@@ -71,9 +72,7 @@ public class DeveloperIsSickEventAnimation extends Game2D {
 
     @Override
     public void drawStuff(Graphics g) {
-        /*
-         * Update sprites.
-         */
+        /* Update sprites. */
         sprites.move();
 
         if (timestamp == 0 && dev.getFrameIndex() == DEV_SEQUENCE.length - 1) {
@@ -112,12 +111,9 @@ public class DeveloperIsSickEventAnimation extends Game2D {
 //            doctor.moveTo(bed);
 //            doctor.move();
 //        }
-//        System.out.println("after moving");
-        /*
-         * Draw sprites.
-         */
+
+        /* Draw sprites. */
         if (!sprites.isEmpty()) {
-            System.out.println("draw");
             sprites.draw(g);
         }
     }
@@ -125,40 +121,30 @@ public class DeveloperIsSickEventAnimation extends Game2D {
     @Override
     public void initGame() {
         try {
-            /*
-             * Get resource URLs.
-             */
-            URL floorsURL = getClass().getResource("../../resources/sick_floor.png"),
-                    bedURL = getClass().getResource("../../resources/sickbed.png"),
-                    devURL = getClass().getResource("../../resources/sick.png"),
-                    doctorURL = getClass().getResource("../../resources/doctor_moving.png"),
-                    doctorTalkingURL = getClass().getResource("../../resources/doctor_talking.png");
+            /* Get resource URLs. */
+            URL floorsURL = getClass().getResource("../../resources/imgSickFloor.png"),
+                    bedURL = getClass().getResource("../../resources/imgSickBed.png"),
+                    devURL = getClass().getResource("../../resources/imgSick.png"),
+                    doctorURL = getClass().getResource("../../resources/imgDoctorMoving.png"),
+                    doctorTalkingURL = getClass().getResource("../../resources/imgDoctorTalking.png");
 
-            /*
-             * Load resource into place.
-             */
+            /* Load resource into place. */
             FLOORS_IMAGE = ImageIO.read(floorsURL);
             BED_IMAGE = ImageIO.read(bedURL);
             DEV_IMAGE = ImageIO.read(devURL);
             DOCTOR_IMAGE = ImageIO.read(doctorURL);
             DOCTOR_TALKING_IMAGE = ImageIO.read(doctorTalkingURL);
 
-            /*
-             * Calculate scale ratios.
-             */
+            /* Calculate scale ratios. */
             widthScale = (double) DIM.width / FLOORS_IMAGE.getWidth(null);
             heightScale = (double) DIM.height / FLOORS_IMAGE.getHeight(null);
 
-            /*
-             * Create sprite group.
-             */
+            /* Create sprite group. */
             sprites = new Group<GameSprite>();
 
             Random random = new Random();
 
-            /*
-             * Add sprites.
-             */
+            /* Add sprites. */
             floor = new GameSprite(DIM, 0, 0, FLOORS_IMAGE);
             floor.setScales(widthScale, heightScale);
             sprites.add(floor);
@@ -170,16 +156,8 @@ public class DeveloperIsSickEventAnimation extends Game2D {
             dev.setAngleDegree(0);
             dev.setSpeed(0);
             sprites.add(dev);
-
-
-
-//            chair1 = new GameSprite(DIM, 133, 90, CHAIRS_IMAGE.getSubimage(
-//                    CHAIR_FRONT_RIGHT_CROP[0], CHAIR_FRONT_RIGHT_CROP[1],
-//                    CHAIR_FRONT_RIGHT_CROP[2], CHAIR_FRONT_RIGHT_CROP[3]));
-//            chair1.setScales(widthScale, heightScale);
-//            sprites.add(chair1);
         } catch (Exception ex) {
-            Logger.getLogger(GameAnimationEngine.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(DeveloperIsSickEventAnimation.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 }

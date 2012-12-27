@@ -4,43 +4,45 @@
  */
 package devfortress.view.dialogs;
 
-import devfortress.model.employee.Employee;
+import devfortress.model.facade.Model;
 import devfortress.view.editors.TableButtonCellEditor;
 import devfortress.view.models.EmployeesTableModel;
 import devfortress.view.renderers.TableButtonCellRenderer;
 import java.awt.Color;
 import java.awt.event.ActionListener;
-import java.util.List;
 import javax.swing.JButton;
 
 /**
  *
  * @author Sherlock
  */
-public class AllCurrentEmpolyees extends javax.swing.JPanel {
+public class CurrentEmpolyees extends javax.swing.JPanel {
+
+    private Model model;
 
     /**
-     * Creates new form AllCurrentEmpolyees
+     * Create current employees panel.
+     *
+     * @param employeeList
+     * @param buttonListener
      */
-    List<Employee> employeeList;
-    public AllCurrentEmpolyees(List employeeList,ActionListener buttonListener) {
-        this.employeeList = employeeList;
+    public CurrentEmpolyees(Model model, ActionListener buttonListener) {
         initComponents();
-        devListScroll.getViewport().setBackground(Color.white);
-        employeeTable.setDefaultRenderer(JButton.class,
+        this.model = model;
+        scpEmployees.getViewport().setBackground(Color.white);
+        tblEmployees.setDefaultRenderer(JButton.class,
                 new TableButtonCellRenderer());
         populateData();
     }
-    
+
     /**
      * Set button listener for Employee table.
      *
      * @param tableButtonListener
      */
-    
     public void setTableButtonListener(ActionListener tableButtonListener) {
         /* Set cell renderer for Employee table. */
-        employeeTable.setDefaultEditor(JButton.class,
+        tblEmployees.setDefaultEditor(JButton.class,
                 new TableButtonCellEditor(tableButtonListener));
     }
 
@@ -53,32 +55,46 @@ public class AllCurrentEmpolyees extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        devListScroll = new javax.swing.JScrollPane();
-        employeeTable = new javax.swing.JTable();
+        scpEmployees = new javax.swing.JScrollPane();
+        tblEmployees = new javax.swing.JTable();
 
-        employeeTable.setModel(new EmployeesTableModel());
-        devListScroll.setViewportView(employeeTable);
-        employeeTable.setRowHeight(36);
+        tblEmployees.setAutoCreateRowSorter(true);
+        tblEmployees.setModel(new EmployeesTableModel());
+        scpEmployees.setViewportView(tblEmployees);
+        tblEmployees.setRowHeight(36);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(devListScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
+            .addComponent(scpEmployees, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(devListScroll, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+            .addComponent(scpEmployees, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane devListScroll;
-    private javax.swing.JTable employeeTable;
+    private javax.swing.JScrollPane scpEmployees;
+    private javax.swing.JTable tblEmployees;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * Populate data to table.
+     *
+     * @param model
+     */
     private void populateData() {
         /* Update Developers table. */
         EmployeesTableModel tblDevelopersModel =
-                (EmployeesTableModel) employeeTable.getModel();
-        tblDevelopersModel.setEmployeeList(employeeList);
+                (EmployeesTableModel) tblEmployees.getModel();
+        tblDevelopersModel.setEmployeeList(model.getEmployeeList());
+    }
+
+    /**
+     * Update current employees table.
+     */
+    public void update() {
+        populateData();
     }
 }

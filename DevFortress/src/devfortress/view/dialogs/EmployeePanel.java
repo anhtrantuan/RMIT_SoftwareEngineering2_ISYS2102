@@ -9,28 +9,40 @@ import devfortress.utilities.Constant;
 import devfortress.view.models.EmployeeTableModel;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import javax.swing.JDialog;
+import javax.swing.JPanel;
 
 /**
  *
  * @author cathoanghuy
  */
 public class EmployeePanel extends javax.swing.JPanel {
-    
+
+    private CurrentEmpolyees parent;
     private Employee employee;
     private EmployeeTableModel tableModel;
 
     /**
      * Creates new form EmployeeInformation
      */
-    public EmployeePanel(Employee employee, ActionListener buttonListener) {
+    public EmployeePanel(JPanel parent, Employee employee,
+            ActionListener buttonListener) {
         initComponents();
         scpSkills.getViewport().setBackground(Color.white);
+        this.parent = (CurrentEmpolyees) parent;
         this.employee = employee;
         tableModel = (EmployeeTableModel) tblSkills.getModel();
         populateData();
         btnFire.addActionListener(buttonListener);
         btnFire.setActionCommand(employee.getName());
         btnCancel.addActionListener(buttonListener);
+    }
+
+    /**
+     * Update employee list in the parent dialog.
+     */
+    public void updateEmployeeList() {
+        parent.update();
     }
 
     /**
