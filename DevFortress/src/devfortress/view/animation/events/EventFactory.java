@@ -58,6 +58,6 @@ public class EventFactory {
             return new GoldenEmployee(dimension);
         }
 
-        return new GoldenEmployee(dimension);
+        return new Holiday(dimension);
     }
 }

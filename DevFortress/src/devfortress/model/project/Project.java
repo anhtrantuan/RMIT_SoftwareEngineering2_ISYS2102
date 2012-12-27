@@ -308,7 +308,10 @@ public class Project {
 
     public void unassignEmployees() {
         for (Employee employee : skill_employeeMap.values()) {
-            employee.getOutOfWork();
+            if(employee!=null){
+                employee.getOutOfWork();
+            
+            }
         }
     }
 
