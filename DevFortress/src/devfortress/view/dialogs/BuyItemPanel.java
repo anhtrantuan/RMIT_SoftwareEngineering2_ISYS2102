@@ -6,6 +6,7 @@ package devfortress.view.dialogs;
 
 import devfortress.model.facade.Model;
 import devfortress.utilities.Constant;
+import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 
 /**
@@ -13,14 +14,14 @@ import java.text.DecimalFormat;
  * @author Sherlock
  */
 public class BuyItemPanel extends javax.swing.JPanel {
-
+    
     private Model model;
     private DecimalFormat decimalFormatter;
 
     /**
      * Creates new form BuyItemPanel.
      */
-    public BuyItemPanel(Model model) {
+    public BuyItemPanel(Model model, ActionListener buttonListener) {
         this.model = model;
         initComponents();
         decimalFormatter = new DecimalFormat("#,##0.0#");
@@ -29,6 +30,8 @@ public class BuyItemPanel extends javax.swing.JPanel {
         lblComputerTotal.setText(decimalFormatter.format(0));
         lblTotalValue.setText(decimalFormatter.format(0));
         lblBudgetValue.setText(decimalFormatter.format(model.getBudget()));
+        btnBuy.addActionListener(buttonListener);
+        btnCancel.addActionListener(buttonListener);
     }
 
     /**
@@ -75,8 +78,8 @@ public class BuyItemPanel extends javax.swing.JPanel {
         lblBudgetValue = new javax.swing.JLabel();
         lblDolSign5 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        clearAllBtn = new javax.swing.JButton();
-        Buy = new javax.swing.JButton();
+        btnBuy = new javax.swing.JButton();
+        btnCancel = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
@@ -296,23 +299,18 @@ public class BuyItemPanel extends javax.swing.JPanel {
         pnlBuyBeerLayout.setVerticalGroup(
             pnlBuyBeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlBuyBeerLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
                 .addGroup(pnlBuyBeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBuyBeerLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(pnlBuyBeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlBuyBeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblMulSign2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(spnBeer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(pnlBeer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(pnlBuyBeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblMulSign2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(spnBeer, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pnlBeer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlBuyBeerLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addGroup(pnlBuyBeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnlBuyBeerLayout.createSequentialGroup()
-                                .addComponent(lblEquSign2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBuyBeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(lblDolSign2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(lblBeerTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(lblEquSign2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlBuyBeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lblDolSign2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lblBeerTotal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(10, 10, 10))
         );
 
@@ -527,19 +525,19 @@ public class BuyItemPanel extends javax.swing.JPanel {
         jPanel7.setMinimumSize(new java.awt.Dimension(0, 60));
         jPanel7.setPreferredSize(new java.awt.Dimension(0, 60));
 
-        clearAllBtn.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        clearAllBtn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icBuyItems.png"))); // NOI18N
-        clearAllBtn.setText(Constant.BUY);
-        clearAllBtn.setMaximumSize(new java.awt.Dimension(120, 40));
-        clearAllBtn.setMinimumSize(new java.awt.Dimension(120, 40));
-        clearAllBtn.setPreferredSize(new java.awt.Dimension(120, 40));
+        btnBuy.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        btnBuy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icBuyItems.png"))); // NOI18N
+        btnBuy.setText(Constant.BUY);
+        btnBuy.setMaximumSize(new java.awt.Dimension(120, 40));
+        btnBuy.setMinimumSize(new java.awt.Dimension(120, 40));
+        btnBuy.setPreferredSize(new java.awt.Dimension(120, 40));
 
-        Buy.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        Buy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icCancel.png"))); // NOI18N
-        Buy.setText(Constant.CANCEL);
-        Buy.setMaximumSize(new java.awt.Dimension(120, 40));
-        Buy.setMinimumSize(new java.awt.Dimension(120, 40));
-        Buy.setPreferredSize(new java.awt.Dimension(120, 40));
+        btnCancel.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        btnCancel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icCancel.png"))); // NOI18N
+        btnCancel.setText(Constant.CANCEL);
+        btnCancel.setMaximumSize(new java.awt.Dimension(120, 40));
+        btnCancel.setMinimumSize(new java.awt.Dimension(120, 40));
+        btnCancel.setPreferredSize(new java.awt.Dimension(120, 40));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -547,9 +545,9 @@ public class BuyItemPanel extends javax.swing.JPanel {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(clearAllBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnBuy, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(290, 290, 290)
-                .addComponent(Buy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
         );
         jPanel7Layout.setVerticalGroup(
@@ -557,8 +555,8 @@ public class BuyItemPanel extends javax.swing.JPanel {
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addGap(10, 10, 10)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(clearAllBtn, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(Buy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnBuy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnCancel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10))
         );
 
@@ -566,12 +564,64 @@ public class BuyItemPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     /**
+     * Get amount of food bought.
+     *
+     * @return
+     */
+    public int getFoodQuantity() {
+        return Integer.parseInt(spnFood.getValue().toString());
+    }
+
+    /**
+     * Get amount of beer bought.
+     *
+     * @return
+     */
+    public int getBeerQuantity() {
+        return Integer.parseInt(spnBeer.getValue().toString());
+    }
+
+    /**
+     * Get number of computers bought.
+     *
+     * @return
+     */
+    public int getComputerQuantity() {
+        return Integer.parseInt(spnComputer.getValue().toString());
+    }
+
+    /**
+     * Calculate total price of items.
+     *
+     * @return
+     */
+    public double getTotal() {
+        int foodQuantity = getFoodQuantity(), beerQuantity = getBeerQuantity(),
+                computerQuantity = getComputerQuantity();
+        double total = foodQuantity * Constant.PIZZA_PRICE + beerQuantity
+                * Constant.BEER_PRICE + computerQuantity
+                * Constant.COMPUTER_PRICE;
+        return total;
+    }
+
+    /**
+     * Update total prices of items.
+     */
+    private void updateTotals() {
+        double total = getTotal();
+        lblTotalValue.setText(decimalFormatter.format(total));
+    }
+
+    /**
      * Update total food price when quantity changed.
      *
      * @param evt
      */
     private void spnFoodStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnFoodStateChanged
-        int quantity = Integer.parseInt(spnFood.getValue().toString());
+        int quantity = getFoodQuantity();
+        double total = quantity * Constant.PIZZA_PRICE;
+        lblFoodTotal.setText(decimalFormatter.format(total));
+        updateTotals();
     }//GEN-LAST:event_spnFoodStateChanged
 
     /**
@@ -580,7 +630,10 @@ public class BuyItemPanel extends javax.swing.JPanel {
      * @param evt
      */
     private void spnBeerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnBeerStateChanged
-        // TODO add your handling code here:
+        int quantity = getBeerQuantity();
+        double total = quantity * Constant.BEER_PRICE;
+        lblBeerTotal.setText(decimalFormatter.format(total));
+        updateTotals();
     }//GEN-LAST:event_spnBeerStateChanged
 
     /**
@@ -589,11 +642,14 @@ public class BuyItemPanel extends javax.swing.JPanel {
      * @param evt
      */
     private void spnComputerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_spnComputerStateChanged
-        // TODO add your handling code here:
+        int quantity = getComputerQuantity();
+        double total = quantity * Constant.COMPUTER_PRICE;
+        lblComputerTotal.setText(decimalFormatter.format(total));
+        updateTotals();
     }//GEN-LAST:event_spnComputerStateChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Buy;
-    private javax.swing.JButton clearAllBtn;
+    private javax.swing.JButton btnBuy;
+    private javax.swing.JButton btnCancel;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;

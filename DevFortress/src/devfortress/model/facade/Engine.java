@@ -16,8 +16,6 @@ import devfortress.utilities.Event;
 import devfortress.utilities.Skill;
 import devfortress.utilities.Utilities;
 import java.util.*;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -441,13 +439,15 @@ public class Engine extends Observable implements Model {
     }
 
     @Override
-    public Company getCompany() {
-        return this.company;
-    }
+    public List<Employee> getUnassignedEmployeeList() {
+        ArrayList<Employee> list = new ArrayList<Employee>();
 
-    @Override
-    public void untrain(Employee emp) {
-        company.unTrain(emp);
+        for (Employee employee : company.getEmployeeList()) {
+            if (employee.getWorkingProject() == null) {
+                list.add(employee);
+            }
+        }
+
+        return list;
     }
-    
 }

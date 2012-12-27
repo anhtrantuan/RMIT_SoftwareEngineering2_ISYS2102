@@ -13,4 +13,6 @@ import java.awt.event.ActionListener;
 public interface View {
 
     void addButtonListener(ActionListener buttonListener);
+
+    String getLog();
 }

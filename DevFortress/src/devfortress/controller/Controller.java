@@ -28,6 +28,6 @@ public class Controller {
         this.view = view;
 
         /* Set up button listeners. */
-        view.addButtonListener(new MainScreenButtonListener(model));
+        view.addButtonListener(new MainScreenButtonListener(model, view));
     }
 }

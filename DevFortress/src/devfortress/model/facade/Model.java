@@ -83,6 +83,6 @@ public interface Model {
     void drink(Employee emp);
 
     void createGoldenEmployee();
-
-    Company getCompany();
+    
+    List<Employee> getUnassignedEmployeeList();
 }

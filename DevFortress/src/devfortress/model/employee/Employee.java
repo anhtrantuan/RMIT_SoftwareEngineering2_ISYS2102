@@ -73,6 +73,10 @@ public class Employee {
         loyalCountdown = 36;
     }
 
+    public boolean isHungry() {
+        return status[1];
+    }
+
     public String getName() {
         return name;
     }

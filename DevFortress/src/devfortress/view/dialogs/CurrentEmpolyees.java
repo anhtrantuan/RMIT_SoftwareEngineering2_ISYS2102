@@ -23,10 +23,9 @@ public class CurrentEmpolyees extends javax.swing.JPanel {
     /**
      * Create current employees panel.
      *
-     * @param employeeList
-     * @param buttonListener
+     * @param model
      */
-    public CurrentEmpolyees(Model model, ActionListener buttonListener) {
+    public CurrentEmpolyees(Model model) {
         initComponents();
         this.model = model;
         scpEmployees.getViewport().setBackground(Color.white);
@@ -58,6 +57,9 @@ public class CurrentEmpolyees extends javax.swing.JPanel {
         scpEmployees = new javax.swing.JScrollPane();
         tblEmployees = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
         tblEmployees.setAutoCreateRowSorter(true);
         tblEmployees.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         tblEmployees.setModel(new EmployeesTableModel());
@@ -68,11 +70,11 @@ public class CurrentEmpolyees extends javax.swing.JPanel {
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scpEmployees, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE)
+            .addComponent(scpEmployees, javax.swing.GroupLayout.DEFAULT_SIZE, 645, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scpEmployees, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+            .addComponent(scpEmployees, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
         );
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
