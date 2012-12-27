@@ -9,6 +9,8 @@ import devfortress.model.DateTime;
 import devfortress.model.employee.Employee;
 import devfortress.model.event.IndividualEvent;
 import devfortress.model.event.ProjectEvent;
+import devfortress.model.exception.EmployeeNotExist;
+import devfortress.model.facade.Model;
 import devfortress.model.project.DevFortressProjectBuilder;
 import devfortress.model.project.Project;
 import devfortress.model.project.ProjectBuilder;
@@ -18,6 +20,8 @@ import devfortress.utilities.Skill;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -104,22 +108,19 @@ public class DifficultLevel implements GameLevel {
     }
 
     @Override
-    public Event generateEvent(Employee e, Company company) {
+    public Event generateEvent(Employee e, Company company, Model model) {
         Double r = new Random().nextDouble();
         if (r < 0.1) {
             return IndividualEvent.sickDeveloper(e);
         } else if (r < 0.15) {
-            return IndividualEvent.requirementChange(e);
         } else if (r < 0.2) {
             return IndividualEvent.newTechnology(e);
         } else if (r < 0.25) {
-            return IndividualEvent.solutionScale(e);
         } else if (r < 0.26) {
             return IndividualEvent.hacked(e);
         } else if (r < 0.31) {
             return IndividualEvent.featureCut(e);
         } else if (r < 0.36) {
-            return IndividualEvent.backupFailed(e);
         } else if (r < 0.41) {
             return IndividualEvent.holiday(e);
         } else if (r < 0.46) {
@@ -131,31 +132,34 @@ public class DifficultLevel implements GameLevel {
         } else if (r < 0.57) {
             return IndividualEvent.exploreTalent(e);
         } else if (r < 0.62) {
-            return IndividualEvent.getSponsor(e);
         } else if (r < 0.63) {
-            return IndividualEvent.projectStolen(e);
+            return IndividualEvent.projectStolen(e, company);
         } else if (r < 0.64) {
-            return IndividualEvent.employeeLeave(e);
         } else if (r < 0.645) {
-            return IndividualEvent.inspiration(e);
         } else if (r < 0.695) {
             return IndividualEvent.developerHasBaby(e);
         } else if (r < 0.705) {
-            return ProjectEvent.trainingSponsor(e);
         } else if (r < 0.755) {
             return ProjectEvent.gotSued(e, company);
         } else if (r < 0.765) {
-            return IndividualEvent.accident(e);
         } else if (r < 0.77) {
             return ProjectEvent.killDeveloper(e, company);
         } else if (r < 0.771) {
-            return ProjectEvent.GoldenEmployee(e);
+            return ProjectEvent.GoldenEmployee(e, model);
         } else if (r < 0.776) {
-            return ProjectEvent.companyBurnt(e);
+            try {
+                return ProjectEvent.companyBurnt(e, company);
+            } catch (EmployeeNotExist ex) {
+                Logger.getLogger(DifficultLevel.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else if (r < 0.781) {
-            return ProjectEvent.warErrupt(e);
+            try {
+                return ProjectEvent.warErrupt(e, company);
+            } catch (EmployeeNotExist ex) {
+                Logger.getLogger(DifficultLevel.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else if (r < 0.782) {
-            return ProjectEvent.zombie(e);
+            return ProjectEvent.zombie(e, company);
         }
         return Event.NO_EVENT;
     }

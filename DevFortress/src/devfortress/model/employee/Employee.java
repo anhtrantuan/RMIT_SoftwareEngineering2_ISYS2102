@@ -23,7 +23,7 @@ public class Employee {
     private Map<Skill, Integer> skillList;
     private boolean status[];
     private Project workingProject;
-    private int royalCountdown;
+    private int loyalCountdown;
     private int eventCountdown;
     private LinkedList<SkillMemento> memento;
   
@@ -48,7 +48,7 @@ public class Employee {
         status[9] = false;
         status[10] = false;
         status[11] = false;
-        royalCountdown = 36;
+        loyalCountdown = 36;
 
     }
 
@@ -57,7 +57,7 @@ public class Employee {
         workingProject = null;
         //0 is having beer, 1 is full, 2 is happy, 3 is working,
         //4 is sick, 5 is hacked, 6 is in holiday, 7 team buidling;
-        //8 is inspired, 9 is having baby, 10 is talented, 11 is royal
+        //8 is inspired, 9 is having baby, 10 is talented, 11 is loyal
         status[0] = false;
         status[1] = true;
         status[2] = true;
@@ -70,7 +70,7 @@ public class Employee {
         status[9] = false;
         status[10] = false;
         status[11] = false;;
-        royalCountdown = 36;
+        loyalCountdown = 36;
     }
 
     public String getName() {
@@ -270,7 +270,7 @@ public class Employee {
         status[8] = false;
     }
 
-    public void haveBaby() {
+    public void hasBaby() {
         eventCountdown = 3;
         status[9] = true;
     }
@@ -393,10 +393,10 @@ public class Employee {
     }
 
     public void checkRoyal() {
-        if (royalCountdown == 0) {
+        if (loyalCountdown == 0) {
             status[11] = true;
         } else {
-            royalCountdown--;
+            loyalCountdown--;
         }
     }
 
@@ -446,5 +446,9 @@ public class Employee {
 
     public float back() {
         return this.restoreMemento(getMemento());
+    }
+    
+    public boolean isLoyal(){
+        return !status[11];
     }
 }
