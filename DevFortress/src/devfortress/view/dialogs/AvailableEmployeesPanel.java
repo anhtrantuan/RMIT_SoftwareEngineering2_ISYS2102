@@ -186,11 +186,11 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
         pnlPreviousNextLayout.setHorizontalGroup(
             pnlPreviousNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPreviousNextLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(15, 15, 15)
                 .addComponent(btnPrevious)
-                .addGap(26, 26, 26)
+                .addGap(20, 20, 20)
                 .addComponent(btnNext)
-                .addContainerGap())
+                .addGap(15, 15, 15))
         );
         pnlPreviousNextLayout.setVerticalGroup(
             pnlPreviousNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

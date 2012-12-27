@@ -228,11 +228,11 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
         pnlPreviousAndNextLayout.setHorizontalGroup(
             pnlPreviousAndNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlPreviousAndNextLayout.createSequentialGroup()
-                .addContainerGap()
+                .addGap(15, 15, 15)
                 .addComponent(btnPrevious)
-                .addGap(26, 26, 26)
+                .addGap(20, 20, 20)
                 .addComponent(btnNext)
-                .addContainerGap())
+                .addGap(15, 15, 15))
         );
         pnlPreviousAndNextLayout.setVerticalGroup(
             pnlPreviousAndNextLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
