@@ -18,6 +18,10 @@ public class Beer implements Item {
         this.price = price;
     }
 
+    public Beer() {
+        this(Constant.BEER_PRICE);
+    }
+
     @Override
     public float getPrice() {
         return this.price;

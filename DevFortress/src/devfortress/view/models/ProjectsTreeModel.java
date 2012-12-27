@@ -6,6 +6,7 @@ package devfortress.view.models;
 
 import devfortress.model.project.Project;
 import devfortress.utilities.Constant;
+import java.text.DecimalFormat;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.ListIterator;
@@ -19,6 +20,8 @@ import javax.swing.tree.TreeNode;
  */
 public class ProjectsTreeModel extends DefaultTreeModel {
 
+    private DecimalFormat decimalFormatter;
+
     /**
      * Constructor for ProjectsTreeModel.
      *
@@ -27,6 +30,7 @@ public class ProjectsTreeModel extends DefaultTreeModel {
     public ProjectsTreeModel(TreeNode root) {
         super(root);
         setRoot(new DefaultMutableTreeNode("Projects"));
+        decimalFormatter = new DecimalFormat("$#,##0.0#");
     }
 
     /**
@@ -66,8 +70,9 @@ public class ProjectsTreeModel extends DefaultTreeModel {
                             Constant.PROJECT_REMAINING_POINTS,
                             project.getRemainingPoints()));
                     child = (DefaultMutableTreeNode) node.getChildAt(2);
-                    child.setUserObject(String.format("%s: $%.2f",
-                            Constant.PROJECT_PAY, project.getPayment()));
+                    child.setUserObject(String.format("%s: %s",
+                            Constant.PROJECT_PAY,
+                            decimalFormatter.format(project.getPayment())));
                     child = (DefaultMutableTreeNode) node.getChildAt(3);
                     child.setUserObject(String.format("%s: %d Months",
                             Constant.PROJECT_DUE,
@@ -85,13 +90,16 @@ public class ProjectsTreeModel extends DefaultTreeModel {
                         Constant.PROJECT_POINTS, project.getTotalPoints()));
                 insertNodeInto(child, node, node.getChildCount());
                 child = new DefaultMutableTreeNode(String.format("%s: %d Points",
-                        Constant.PROJECT_REMAINING_POINTS, project.getRemainingPoints()));
+                        Constant.PROJECT_REMAINING_POINTS,
+                        project.getRemainingPoints()));
                 insertNodeInto(child, node, node.getChildCount());
-                child = new DefaultMutableTreeNode(String.format("%s: $%.2f",
-                        Constant.PROJECT_PAY, project.getPayment()));
+                child = new DefaultMutableTreeNode(String.format("%s: %s",
+                        Constant.PROJECT_PAY,
+                        decimalFormatter.format(project.getPayment())));
                 insertNodeInto(child, node, node.getChildCount());
                 child = new DefaultMutableTreeNode(String.format("%s: %d Months",
-                        Constant.PROJECT_DUE, project.getRemainingTime().getMonths()));
+                        Constant.PROJECT_DUE,
+                        project.getRemainingTime().getMonths()));
                 insertNodeInto(child, node, node.getChildCount());
             }
         }

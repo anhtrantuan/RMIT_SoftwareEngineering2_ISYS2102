@@ -9,7 +9,7 @@ import devfortress.utilities.Constant;
 import devfortress.view.models.EmployeeTableModel;
 import java.awt.Color;
 import java.awt.event.ActionListener;
-import javax.swing.JDialog;
+import java.text.DecimalFormat;
 import javax.swing.JPanel;
 
 /**
@@ -21,6 +21,7 @@ public class EmployeePanel extends javax.swing.JPanel {
     private CurrentEmpolyees parent;
     private Employee employee;
     private EmployeeTableModel tableModel;
+    private DecimalFormat decimalFormatter;
 
     /**
      * Creates new form EmployeeInformation
@@ -32,6 +33,7 @@ public class EmployeePanel extends javax.swing.JPanel {
         this.parent = (CurrentEmpolyees) parent;
         this.employee = employee;
         tableModel = (EmployeeTableModel) tblSkills.getModel();
+        decimalFormatter = new DecimalFormat("$#,##0.0#");
         populateData();
         btnFire.addActionListener(buttonListener);
         btnFire.setActionCommand(employee.getName());
@@ -218,8 +220,8 @@ public class EmployeePanel extends javax.swing.JPanel {
                 employee.getName()));
         lblMainSkill.setText(String.format("%s: %s", Constant.MAIN_SKILL_LABEL,
                 employee.getMainSkill().toString()));
-        lblSalary.setText(String.format("%s: $%.2f", Constant.SALARY_LABEL,
-                employee.getSalary()));
+        lblSalary.setText(String.format("%s: %s", Constant.SALARY_LABEL,
+                decimalFormatter.format(employee.getSalary())));
         tableModel.setSkillList(employee.getSkillList());
     }
 }

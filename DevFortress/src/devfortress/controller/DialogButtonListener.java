@@ -77,7 +77,7 @@ public class DialogButtonListener implements ActionListener {
             newDialog.setLocationRelativeTo(null);
             newDialog.setVisible(true);
         } else if (text.equals(Constant.BUY_BTN)) {
-            BuyItemPanel panel = new BuyItemPanel();
+            BuyItemPanel panel = new BuyItemPanel(model);
             newDialog.setContentPane(panel);
             newDialog.pack();
             newDialog.setLocationRelativeTo(null);

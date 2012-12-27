@@ -9,6 +9,7 @@ import devfortress.utilities.Constant;
 import devfortress.view.models.ProjectTableModel;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.util.List;
 
 /**
@@ -21,6 +22,7 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
     private List<Project> projectList;
     private Project currentProject;
     private ProjectTableModel tableModel;
+    private DecimalFormat decimalFormatter;
 
     /**
      * Creates new form AvailableProjectsPanel.
@@ -35,9 +37,10 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
         tableModel = (ProjectTableModel) tblSkills.getModel();
         index = 0;
         projectList = availableProjectList;
+        decimalFormatter = new DecimalFormat("$#,##0.0#");
         populateData();
         btnAccept.addActionListener(buttonListener);
-        btnCancel.addActionListener(buttonListener);
+        btnCancel.addActionListener(buttonListener);        
     }
 
     /**
@@ -341,8 +344,8 @@ public class AvailableProjectsPanel extends javax.swing.JPanel {
                     projectList.get(index).getMainSkill().toString()));
             lblDue.setText(String.format("%s: %d Month(s)", Constant.PROJECT_DUE,
                     projectList.get(index).getProjectTime().getMonths()));
-            lblPay.setText(String.format("%s: $%.2f", Constant.PROJECT_PAY,
-                    projectList.get(index).getPayment()));
+            lblPay.setText(String.format("%s: %s", Constant.PROJECT_PAY,
+                    decimalFormatter.format(projectList.get(index).getPayment())));
             tableModel.setSkillList(currentProject.getOriginalSkillRequirementMap());
             btnAccept.setActionCommand(String.valueOf(index));
             btnAccept.setEnabled(true);

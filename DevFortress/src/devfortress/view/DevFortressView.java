@@ -20,6 +20,7 @@ import devfortress.view.renderers.ExpensesTreeCellRenderer;
 import devfortress.view.renderers.ProjectsTreeCellRenderer;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
@@ -33,8 +34,9 @@ import javax.swing.UIManager;
  * @author tommy
  */
 public class DevFortressView extends javax.swing.JFrame implements View, Observer {
-    
+
     private Model model;
+    private DecimalFormat decimalFormatter;
     private String logMessages;
     private Dimension dimension, eventDimension;
     private J2DCanvasPanel mainCanvas;
@@ -52,6 +54,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
      */
     public DevFortressView(Model model) {
         this.model = model;
+        decimalFormatter = new DecimalFormat("$#,###.0#");
         logMessages = "";
 
         /* Set theme for View. */
@@ -69,7 +72,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
                 /* Else, setup look and feel to match current system. */
                 UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
             }
-            
+
         } catch (Exception ex) {
             Logger.getLogger(DevFortress.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -623,8 +626,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         lblDuration.setText(String.format("%s: Y%d M%d W%d", Constant.DURATION,
                 duration.getYear(), duration.getMonthOfYear(),
                 duration.getWeekOfMonth()));
-        lblBudget.setText(String.format("%s: $%.2f", Constant.BUDGET,
-                model.getBudget()));
+        lblBudget.setText(decimalFormatter.format(model.getBudget()));
         ExpensesTreeModel treExpensesModel =
                 (ExpensesTreeModel) treExpenses.getModel();
         treExpensesModel.setTotalExpense(model.getExpenses());
@@ -768,7 +770,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         int response = JOptionPane.showConfirmDialog(this, "Do you really want to exit?",
                 "Exit Confirmation", JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE);
-        
+
         if (response == JOptionPane.YES_OPTION) {
             System.exit(0);
         }
