@@ -80,9 +80,7 @@ public class IndividualEvent implements EventInterface {
             Map<Skill, Employee> skill = p.getSkill_employeeMap();
             for (Skill sk : skill.keySet()) {
                 if (skill.get(sk) != null && skill.get(sk).equals(e)) {
-                    System.out.println("add to remove");
-                    removeEmp.add(e);
-
+                    c.addEmployeeToRemoveList(e);
                 } else if (skill.get(sk) != null) {
                     skill.get(sk).sad();
                 }

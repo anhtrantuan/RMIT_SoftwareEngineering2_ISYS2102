@@ -16,6 +16,8 @@ import devfortress.utilities.Event;
 import devfortress.utilities.Skill;
 import devfortress.utilities.Utilities;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -147,7 +149,14 @@ public class Engine extends Observable implements Model {
             }
             message += String.format("Event %s occurred!", event.toString());
         }
-
+        for (Employee employee : company.getEmployeeRemovedList()) {
+            try {
+                fireEmployee(employee);
+            } catch (EmployeeNotExist ex) {
+                Logger.getLogger(Engine.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        company.getEmployeeRemovedList().clear();
         DataObject data = new DataObject(message, null);
         setChanged();
         notifyObservers(data);

@@ -29,12 +29,14 @@ public class Company {
     private float expenses;
     private Map<String, Float> items;
     private int foodStock, beerStock;
+    private ArrayList<Employee> removeEmployeeList;
 //    private LinkedHashMap<>
 
     public Company() {
         this(1000f, new ArrayList<Employee>(),
                 new HashMap<Computer, Employee>(),
                 new ArrayList<Project>(), new HashMap<String, Float>());
+        removeEmployeeList = new ArrayList<Employee>();
     }
 
     public Company(float money, List<Employee> empList,
@@ -45,6 +47,7 @@ public class Company {
         this.computerList = computerList;
         currentProjectList = projectList;
         items = itemsList;
+        removeEmployeeList = new ArrayList<Employee>();
         expenses = 0;
     }
 
@@ -343,4 +346,13 @@ public class Company {
     public void unTrain(Employee em) {
         budget += em.back();
     }
+    
+    public void addEmployeeToRemoveList(Employee e){
+        removeEmployeeList.add(e);
+    }
+    
+    public ArrayList<Employee> getEmployeeRemovedList(){
+        return removeEmployeeList;
+    }
+    
 }
