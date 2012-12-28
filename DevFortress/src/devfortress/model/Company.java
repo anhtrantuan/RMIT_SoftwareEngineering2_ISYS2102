@@ -110,7 +110,7 @@ public class Company {
         }
         calculateTotalSalary();
         employeeList.remove(emp);
-        increaseMoney(emp.getSalary());
+        //increaseMoney(emp.getSalary());
         expenses -= emp.getSalary();
     }
 

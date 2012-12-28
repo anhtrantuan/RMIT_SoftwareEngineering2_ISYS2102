@@ -19,13 +19,13 @@ import javax.imageio.ImageIO;
  *
  * @author Sherlock
  */
-public class HavingBaby extends Game2D implements EventAnimationEngine{
+public class DevKillEachOther extends Game2D implements EventAnimationEngine{
     private BufferedImage BGR_IMAGE;
     private Group<GameSprite> sprites;
     private double widthScale, heightScale;
     private GameSprite bgr;
 
-    public HavingBaby(Dimension dim) {
+    public DevKillEachOther(Dimension dim){
         super(dim);
     }
 
@@ -59,7 +59,7 @@ public class HavingBaby extends Game2D implements EventAnimationEngine{
 
     @Override
     public void initGame() {
-        URL bgrURL = getClass().getResource("../../resources/imgHavingBaby.png");
+        URL bgrURL = getClass().getResource("../../resources/imgKilling.png");
         try {
             BGR_IMAGE = ImageIO.read(bgrURL);
             widthScale = (double) DIM.width / BGR_IMAGE.getWidth(null);
@@ -77,7 +77,7 @@ public class HavingBaby extends Game2D implements EventAnimationEngine{
 
     @Override
     public String getInformation() {
-        return "Employee has a baby, he will work harder and produces double function point"
-                + " but also require double salary";
+        return "The employee has too much stress, he cannot control him self"
+                + "and kill another employee. He now is put in jail";
     }
 }

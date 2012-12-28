@@ -58,6 +58,6 @@ public class EventFactory {
             return new GoldenEmployee(dimension);
         }
 
-        return new HavingBaby(dimension);
+        return new DevKillEachOther(dimension);
     }
 }

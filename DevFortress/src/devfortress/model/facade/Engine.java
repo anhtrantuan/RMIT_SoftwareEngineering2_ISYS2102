@@ -95,8 +95,8 @@ public class Engine extends Observable implements Model {
 
     @Override
     public void fireEmployee(Employee employee) throws EmployeeNotExist {
+        utilities.unassignComputerToEmployee(company, employee);
         company.removeEmployee(employee);
-
         String message = String.format("Fired employee %s: +$%.2f.",
                 employee.getName(), employee.getSalary());
         DataObject data = new DataObject(message, null);

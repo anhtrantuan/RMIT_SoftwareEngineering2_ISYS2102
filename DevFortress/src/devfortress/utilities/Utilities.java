@@ -129,7 +129,7 @@ public class Utilities {
      *
      */
     public boolean assignComputerToEmployee(Company company, Employee employee) {
-        //assume that Company will automatically buy computer for new employee in case of lacking computer
+       
         Map<Computer, Employee> computerMap = company.getComputerList();
         for (Computer com : computerMap.keySet()) {
             if (computerMap.get(com) == null) {
@@ -138,6 +138,17 @@ public class Utilities {
             }
         }
         return false;
+    }
+    
+    public void unassignComputerToEmployee(Company company, Employee employee) {
+        Map<Computer, Employee> computerMap = company.getComputerList();
+        for (Computer com : computerMap.keySet()) {
+            if(com != null){
+                if(computerMap.get(com)!= null && computerMap.get(com)==employee){
+                    computerMap.put(com,null);
+                }
+            }
+        }
     }
 
     /**
