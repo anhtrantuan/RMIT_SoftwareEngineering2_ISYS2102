@@ -21,6 +21,7 @@ import devfortress.view.dialogs.BuyItemPanel;
 import devfortress.view.dialogs.CurrentEmpolyees;
 import devfortress.view.dialogs.EmployeePanel;
 import devfortress.view.dialogs.ManageEmployeePanel;
+import devfortress.view.dialogs.TrainingPanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
@@ -91,6 +92,16 @@ public class DialogButtonListener implements ActionListener {
                 newDialog.setContentPane(panel);
                 newDialog.pack();
                 newDialog.setLocationRelativeTo(null);
+                newDialog.setVisible(true);
+            } else if (text.equals(Constant.TRAIN_BTN)) {
+                ManageEmployeePanel panel =
+                        (ManageEmployeePanel) dialog.getContentPane();
+                TrainingPanel newPanel = new TrainingPanel(panel,
+                        panel.getEmployee(), buttonListener);
+                newPanel.setTableButtonListener(new SkillsTableButtonListener(newPanel,
+                        model));
+                newDialog.setContentPane(newPanel);
+                newDialog.pack();
                 newDialog.setVisible(true);
             } else if (text.equals(Constant.BUY)) {
                 BuyItemPanel panel = (BuyItemPanel) dialog.getContentPane();
@@ -227,18 +238,22 @@ public class DialogButtonListener implements ActionListener {
                 }
             }
         } catch (UnaffordableException ex) {
-            JOptionPane.showConfirmDialog(null, "YOU DO NOT HAVE ENOUGH MONEY!!!", "ERROR", JOptionPane.OK_CANCEL_OPTION);
+            JOptionPane.showMessageDialog(null,
+                    "YOU DO NOT HAVE ENOUGH MONEY!!!", "ERROR",
+                    JOptionPane.WARNING_MESSAGE);
         } catch (MoneyRunOutException ex) {
-            System.out.println("OVER 2");
-            int option = JOptionPane.showConfirmDialog(null, "YOU ARE OUT OF MONEY, YOU LOSE", "GAME OVER!", JOptionPane.YES_OPTION);
-            if (option == JOptionPane.YES_OPTION) {
-                System.exit(0);
-            }
+            JOptionPane.showMessageDialog(null,
+                    "YOU ARE OUT OF MONEY, YOU LOSE", "GAME OVER!",
+                    JOptionPane.INFORMATION_MESSAGE);
             System.exit(0);
         } catch (EmployeeNotExist ex) {
-            JOptionPane.showConfirmDialog(null, "EMPLOYEE NOT EXIST!!!", "ERROR", JOptionPane.OK_CANCEL_OPTION);
+            JOptionPane.showMessageDialog(null,
+                    "EMPLOYEE NOT EXIST!!!", "ERROR",
+                    JOptionPane.WARNING_MESSAGE);
         } catch (OvercrowdedException ex) {
-            JOptionPane.showConfirmDialog(null, "NOT ENOUGH COMPUTER, BUY MORE!!!", "ERROR", JOptionPane.OK_CANCEL_OPTION);
+            JOptionPane.showMessageDialog(null,
+                    "NOT ENOUGH COMPUTER, BUY MORE!!!", "ERROR",
+                    JOptionPane.WARNING_MESSAGE);
         }
     }
 }

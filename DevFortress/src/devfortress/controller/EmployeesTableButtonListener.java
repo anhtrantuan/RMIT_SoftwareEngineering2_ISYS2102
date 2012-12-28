@@ -52,8 +52,6 @@ public class EmployeesTableButtonListener implements ActionListener {
         } else if (text.equals(Constant.EMPLOYEE_MANAGE)) {
             ManageEmployeePanel panel = new ManageEmployeePanel(parent, employee,
                     buttonListener);
-            panel.setTrainButtonListener(new TrainButtonListener(model, parent,
-                    employee));
             newDialog.setContentPane(panel);
         }
 

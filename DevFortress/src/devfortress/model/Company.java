@@ -78,7 +78,6 @@ public class Company {
     public void addEmployee(Employee newEmp) {
         employeeList.add(newEmp);
         calculateTotalSalary();
-        decreaseMoney(newEmp.getSalary());
         expenses += newEmp.getSalary();
     }
 

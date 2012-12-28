@@ -29,6 +29,7 @@ public class ProjectsTableButtonListener implements ActionListener {
      * Constructor for ProjectsTableButtonListener.
      *
      * @param model
+     * @param dialog
      */
     public ProjectsTableButtonListener(Model model, JDialog dialog) {
         this.model = model;

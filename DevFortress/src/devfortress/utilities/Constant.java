@@ -59,7 +59,6 @@ public class Constant {
     public static String HIRE = "Hire";
     public static String BUTTON_FIRE = "Fire";
     public static String BUTTON_ACCEPT = "Accept";
-    public static String OK = "Ok";
     public static String TOTAL = "Total";
     public static String DEVELOPER_LABEL = "Developer";
     public static String PRODUCED_FUNCTION_POINT = "Produced Points";

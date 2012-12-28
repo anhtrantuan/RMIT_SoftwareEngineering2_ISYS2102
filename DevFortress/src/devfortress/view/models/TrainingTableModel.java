@@ -9,6 +9,7 @@ import devfortress.utilities.Constant;
 import devfortress.utilities.Skill;
 import java.util.Iterator;
 import java.util.Map;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.table.DefaultTableModel;
 
@@ -16,13 +17,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Sherlock
  */
-public class TrainingTableModel extends DefaultTableModel{
+public class TrainingTableModel extends DefaultTableModel {
+
     public TrainingTableModel() {
         addColumn(Constant.SKILL_LABEL);
         addColumn(Constant.SKILL_LVL_LABEL);
         addColumn(Constant.TRAINING_FEE);
         addColumn(Constant.TRAIN_BTN);
-        addColumn(Constant.UNTRAIN_BTN);
     }
 
     /**
@@ -30,18 +31,21 @@ public class TrainingTableModel extends DefaultTableModel{
      *
      * @param skillList
      */
-    public void setSkillList(Employee e,Map<Skill, Integer> skillList) {
+    public void setSkillList(Employee e, Map<Skill, Integer> skillList) {
         /* Reset table. */
         setRowCount(0);
+
+        ImageIcon icTrain = new ImageIcon(getClass().
+                getResource("/devfortress/view/resources/icTrain.png"));
 
         /* Add new records. */
         if (skillList != null) {
             for (Iterator<Skill> iterator = skillList.keySet().iterator();
                     iterator.hasNext();) {
-                JButton trainBtn = new JButton(Constant.TRAIN_BTN),
-                        untrainBtn = new JButton(Constant.UNTRAIN_BTN);
                 Skill skill = iterator.next();
-                addRow(new Object[]{skill.toString(), skillList.get(skill),e.getTrainingFee(skill),trainBtn,untrainBtn});
+                JButton button = new JButton(Constant.TRAIN_BTN, icTrain);
+                addRow(new Object[]{skill.toString(), skillList.get(skill),
+                            e.getTrainingFee(skill), button});
             }
         }
     }

@@ -5,11 +5,15 @@
 package devfortress.view.dialogs;
 
 import devfortress.model.employee.Employee;
+import devfortress.model.facade.Model;
 import devfortress.utilities.Constant;
-import devfortress.view.models.EmployeeTableModel;
+import devfortress.view.editors.TableButtonCellEditor;
 import devfortress.view.models.TrainingTableModel;
+import devfortress.view.renderers.TableButtonCellRenderer;
 import java.awt.Color;
 import java.awt.event.ActionListener;
+import javax.swing.JButton;
+import javax.swing.JPanel;
 
 /**
  *
@@ -17,19 +21,60 @@ import java.awt.event.ActionListener;
  */
 public class TrainingPanel extends javax.swing.JPanel {
 
+    private ManageEmployeePanel parent;
     private Employee employee;
-    private TrainingTableModel tableModel;
 
     /**
      * Creates new form TrainingPanel
      */
-    public TrainingPanel(Employee employee, ActionListener buttonListener) {
+    public TrainingPanel(JPanel parent, Employee employee,
+            ActionListener buttonListener) {
+        this.parent = (ManageEmployeePanel) parent;
+        this.employee = employee;
         initComponents();
         scpSkills.getViewport().setBackground(Color.white);
-        this.employee = employee;
-        tableModel = (TrainingTableModel) skillTable.getModel();
+        tblSkills.setDefaultRenderer(JButton.class,
+                new TableButtonCellRenderer());
         populateData();
-        closeBtn.addActionListener(buttonListener);
+        btnClose.addActionListener(buttonListener);
+    }
+
+    /**
+     * Set button listener for Skills table.
+     *
+     * @param tableButtonListener
+     */
+    public void setTableButtonListener(ActionListener tableButtonListener) {
+        /* Set cell renderer for Skills table. */
+        tblSkills.setDefaultEditor(JButton.class,
+                new TableButtonCellEditor(tableButtonListener));
+    }
+
+    /**
+     * Return current employee.
+     *
+     * @return
+     */
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    /**
+     * Populate data to table.
+     */
+    private void populateData() {
+        TrainingTableModel tableModel = (TrainingTableModel) tblSkills.getModel();
+        tableModel.setSkillList(employee, employee.getSkillList());
+    }
+
+    /**
+     * Update skills table.
+     */
+    public void update() {
+        Model model = parent.getModel();
+        employee = model.getEmployeeByName(employee.getName());
+        populateData();
+        parent.update();
     }
 
     /**
@@ -41,66 +86,92 @@ public class TrainingPanel extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        nameLbl = new javax.swing.JLabel();
+        pnlTitle = new javax.swing.JPanel();
+        lblTitle = new javax.swing.JLabel();
         scpSkills = new javax.swing.JScrollPane();
-        skillTable = new javax.swing.JTable();
-        closeBtn = new javax.swing.JButton();
+        tblSkills = new javax.swing.JTable();
+        pnlClose = new javax.swing.JPanel();
+        btnClose = new javax.swing.JButton();
 
-        nameLbl.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        nameLbl.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        nameLbl.setText("jLabel1");
+        setBackground(new java.awt.Color(255, 255, 255));
+        setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
+        setMaximumSize(new java.awt.Dimension(520, 520));
+        setMinimumSize(new java.awt.Dimension(520, 520));
+        setPreferredSize(new java.awt.Dimension(520, 520));
+        setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
-        skillTable.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
-            }
-        ));
-        scpSkills.setViewportView(skillTable);
+        pnlTitle.setBackground(new java.awt.Color(255, 255, 255));
+        pnlTitle.setMaximumSize(new java.awt.Dimension(480, 58));
+        pnlTitle.setMinimumSize(new java.awt.Dimension(480, 58));
+        pnlTitle.setPreferredSize(new java.awt.Dimension(480, 58));
 
-        closeBtn.setText(Constant.CLOSE_BTN);
+        lblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        lblTitle.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblTitle.setText(employee.getName());
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(scpSkills, javax.swing.GroupLayout.DEFAULT_SIZE, 464, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(nameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 407, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(closeBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 114, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(172, 172, 172))
+        javax.swing.GroupLayout pnlTitleLayout = new javax.swing.GroupLayout(pnlTitle);
+        pnlTitle.setLayout(pnlTitleLayout);
+        pnlTitleLayout.setHorizontalGroup(
+            pnlTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(lblTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(nameLbl, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(scpSkills, javax.swing.GroupLayout.PREFERRED_SIZE, 299, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(closeBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 52, Short.MAX_VALUE)
-                .addContainerGap())
+        pnlTitleLayout.setVerticalGroup(
+            pnlTitleLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlTitleLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(lblTitle)
+                .addGap(20, 20, 20))
         );
+
+        add(pnlTitle);
+
+        scpSkills.setBackground(new java.awt.Color(255, 255, 255));
+        scpSkills.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED));
+
+        tblSkills.setAutoCreateRowSorter(true);
+        tblSkills.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        tblSkills.setModel(new TrainingTableModel());
+        tblSkills.setMaximumSize(new java.awt.Dimension(0, 0));
+        tblSkills.setMinimumSize(new java.awt.Dimension(0, 0));
+        tblSkills.setPreferredSize(new java.awt.Dimension(0, 0));
+        scpSkills.setViewportView(tblSkills);
+
+        add(scpSkills);
+
+        pnlClose.setBackground(new java.awt.Color(255, 255, 255));
+        pnlClose.setMaximumSize(new java.awt.Dimension(120, 70));
+        pnlClose.setMinimumSize(new java.awt.Dimension(120, 70));
+        pnlClose.setPreferredSize(new java.awt.Dimension(120, 70));
+
+        btnClose.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        btnClose.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icCancel.png"))); // NOI18N
+        btnClose.setText(Constant.CLOSE_BTN);
+        btnClose.setMaximumSize(new java.awt.Dimension(120, 40));
+        btnClose.setMinimumSize(new java.awt.Dimension(120, 40));
+        btnClose.setPreferredSize(new java.awt.Dimension(120, 40));
+
+        javax.swing.GroupLayout pnlCloseLayout = new javax.swing.GroupLayout(pnlClose);
+        pnlClose.setLayout(pnlCloseLayout);
+        pnlCloseLayout.setHorizontalGroup(
+            pnlCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnClose, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pnlCloseLayout.setVerticalGroup(
+            pnlCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlCloseLayout.createSequentialGroup()
+                .addGap(20, 20, 20)
+                .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
+        );
+
+        add(pnlClose);
     }// </editor-fold>//GEN-END:initComponents
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton closeBtn;
-    private javax.swing.JLabel nameLbl;
+    private javax.swing.JButton btnClose;
+    private javax.swing.JLabel lblTitle;
+    private javax.swing.JPanel pnlClose;
+    private javax.swing.JPanel pnlTitle;
     private javax.swing.JScrollPane scpSkills;
-    private javax.swing.JTable skillTable;
+    private javax.swing.JTable tblSkills;
     // End of variables declaration//GEN-END:variables
-
-    private void populateData() {
-        nameLbl.setText(String.format("%s: %s", Constant.EMPLOYEE_NAME,
-                employee.getName()));
-        tableModel.setSkillList(employee,employee.getSkillList());
-    }
 }
