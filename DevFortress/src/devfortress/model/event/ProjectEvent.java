@@ -27,7 +27,9 @@ public class ProjectEvent implements EventInterface {
         Map<Skill, Employee> emList = p.getSkill_employeeMap();
         if (p != null) {
             for (Skill sk : emList.keySet()) {
-                emList.get(sk).getTeamBuilding();
+                if (emList.get(sk) != null){
+                    emList.get(sk).getTeamBuilding();
+                }                
             }
             return Event.TEAM_BUILDING_EXERCISE;
         }

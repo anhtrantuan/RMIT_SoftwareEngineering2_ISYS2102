@@ -10,6 +10,7 @@ import devfortress.model.DateTime;
 import devfortress.model.employee.Employee;
 import devfortress.model.event.IndividualEvent;
 import devfortress.model.event.ProjectEvent;
+import devfortress.model.exception.EmployeeNotExist;
 import devfortress.model.facade.Model;
 import devfortress.model.project.DevFortressProjectBuilder;
 import devfortress.model.project.Project;
@@ -20,6 +21,8 @@ import devfortress.utilities.Skill;
 import java.util.EnumMap;
 import java.util.Map;
 import java.util.Random;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -122,7 +125,11 @@ public class MediumLevel implements GameLevel {
         } else if (r < 0.41) {
             return IndividualEvent.holiday(e);
         } else if (r < 0.46) {
-            return IndividualEvent.redundancies(e,company);
+            try {
+                return IndividualEvent.redundancies(e,company);
+            } catch (EmployeeNotExist ex) {
+                Logger.getLogger(MediumLevel.class.getName()).log(Level.SEVERE, null, ex);
+            }
         } else if (r < 0.47) {
             return IndividualEvent.bonus(e, company);
         } else if (r < 0.52) {

@@ -8,6 +8,7 @@ import devfortress.model.DateTime;
 import devfortress.model.employee.Employee;
 import devfortress.utilities.Skill;
 import java.util.EnumMap;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
@@ -27,6 +28,7 @@ public class Project {
     private Map<Skill, Integer> skillRequirementMap;
     private Map<Skill, Employee> skill_employeeMap;
     private Map<Skill, Integer> originalSkillRequirementMap;
+    private Map<Skill, Integer> produceSkillRequirementMap;
     private Skill mainSkill;
     private String name;
     private int totalPoints, remainingPoints, totalFunctionPointsDelivered;
@@ -232,7 +234,6 @@ public class Project {
             finalPoint = finalPoint * 2;
             employee.havingBabyProgress();
         }
-        System.out.println(finalPoint);
         return finalPoint;
     }
     
