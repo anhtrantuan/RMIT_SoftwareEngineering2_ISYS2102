@@ -104,27 +104,6 @@ public class EasyLevel implements GameLevel {
     @Override
     public Event generateEvent(Employee e, Company company, Model model) {
         Double r = new Random().nextDouble();
-//        if (r < 0.1) {
-//            return IndividualEvent.sickDeveloper(e);
-//        } else if (r < 0.15) {
-//        } else if (r < 0.2) {
-//            return IndividualEvent.newTechnology(e);
-//        } else if (r < 0.25) {
-//        } else if (r < 0.26) {
-//            return IndividualEvent.hacked(e);
-//        } else if (r < 0.31) {
-//            return IndividualEvent.featureCut(e);
-//        } else if (r < 0.36) {
-//        } else if (r < 0.41) {
-//            return IndividualEvent.holiday(e);
-//        } else if (r < 0.46) {
-//            return IndividualEvent.redundancies(e,company);
-//        } else if (r < 0.47) {
-//            return IndividualEvent.bonus(e, company);
-//        } else if (r < 0.52) {
-//            return ProjectEvent.teamBuilding(e);
-//        }
-//        return Event.NO_EVENT;
         if (r < 0.1) {
             return IndividualEvent.sickDeveloper(e);
         } else if (r < 0.15) {
@@ -139,48 +118,14 @@ public class EasyLevel implements GameLevel {
         } else if (r < 0.41) {
             return IndividualEvent.holiday(e);
         } else if (r < 0.46) {
-            try {
-                return IndividualEvent.redundancies(e,company);
-            } catch (EmployeeNotExist ex) {
-                Logger.getLogger(EasyLevel.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            return IndividualEvent.redundancies(e,company);
         } else if (r < 0.47) {
             return IndividualEvent.bonus(e, company);
         } else if (r < 0.52) {
             return ProjectEvent.teamBuilding(e);
-        } else if (r < 0.57) {
-            return IndividualEvent.exploreTalent(e);
-        } else if (r < 0.62) {
-        } else if (r < 0.63) {
-            return IndividualEvent.projectStolen(e, company);
-        } else if (r < 0.64) {
-        } else if (r < 0.645) {
-        } else if (r < 0.695) {
-            return IndividualEvent.developerHasBaby(e);
-        } else if (r < 0.705) {
-        } else if (r < 0.755) {
-            return ProjectEvent.gotSued(e, company);
-        } else if (r < 0.765) {
-        } else if (r < 0.77) {
-            return ProjectEvent.killDeveloper(e, company);
-        } else if (r < 0.771) {
-            return ProjectEvent.GoldenEmployee(e, model);
-        } else if (r < 0.776) {
-            try {
-                return ProjectEvent.companyBurnt(e, company);
-            } catch (EmployeeNotExist ex) {
-                JOptionPane.showConfirmDialog(null,"EMPLOYEE NOT EXIST!!!","ERROR", JOptionPane.OK_CANCEL_OPTION);
-            }
-        } else if (r < 0.781) {
-            try {
-                return ProjectEvent.warErrupt(e, company);
-            } catch (EmployeeNotExist ex) {
-                JOptionPane.showConfirmDialog(null,"EMPLOYEE NOT EXIST!!!","ERROR", JOptionPane.OK_CANCEL_OPTION);
-            }
-        } else if (r < 0.782) {
-            return ProjectEvent.zombie(e, company);
         }
         return Event.NO_EVENT;
+        
     }
 
     private int calculateTotalPoint(Map<Skill, Integer> sks) {

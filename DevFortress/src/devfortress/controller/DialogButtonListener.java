@@ -229,6 +229,7 @@ public class DialogButtonListener implements ActionListener {
         } catch (UnaffordableException ex) {
             JOptionPane.showConfirmDialog(null, "YOU DO NOT HAVE ENOUGH MONEY!!!", "ERROR", JOptionPane.OK_CANCEL_OPTION);
         } catch (MoneyRunOutException ex) {
+            System.out.println("OVER 2");
             int option = JOptionPane.showConfirmDialog(null, "YOU ARE OUT OF MONEY, YOU LOSE", "GAME OVER!", JOptionPane.YES_OPTION);
             if (option == JOptionPane.YES_OPTION) {
                 System.exit(0);
