@@ -92,4 +92,9 @@ public class Constant {
     public static String YES = "Yes";
     public static String NO = "No";
     public static String LOG = "Log";
+    public static String GAME = "DevFortress v1.0";
+    public static String AUTHOR1 = "Tran Tuan Anh - s3269999";
+    public static String AUTHOR2 = "Dang Quang Binh - s3274973";
+    public static String AUTHOR3 = "HoangHuyCat - s3275199";
+    public static String COPYRIGHT = "Copyright © 2012 RMIT International University. All Rights Reserved.";
 }

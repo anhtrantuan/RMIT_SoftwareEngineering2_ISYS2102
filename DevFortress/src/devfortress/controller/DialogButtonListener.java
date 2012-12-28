@@ -98,8 +98,9 @@ public class DialogButtonListener implements ActionListener {
                         (ManageEmployeePanel) dialog.getContentPane();
                 TrainingPanel newPanel = new TrainingPanel(panel,
                         panel.getEmployee(), buttonListener);
-                newPanel.setTableButtonListener(new SkillsTableButtonListener(newPanel,
-                        model));
+                SkillsTableButtonListener tableButtonListener =
+                        new SkillsTableButtonListener(newPanel, model);
+                newPanel.setTableButtonListener(tableButtonListener);
                 newDialog.setContentPane(newPanel);
                 newDialog.pack();
                 newDialog.setVisible(true);

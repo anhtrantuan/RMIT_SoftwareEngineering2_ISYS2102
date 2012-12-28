@@ -27,31 +27,13 @@ public class Employee {
     private LinkedList<SkillMemento> memento;
 
     public Employee(String name, Map<Skill, Integer> skillList) {
+        this();
         this.name = name;
         this.skillList = skillList;
-        memento = new LinkedList<SkillMemento>();
-        status = new boolean[12];
-        workingProject = null;
-        //0 is having beer, 1 is full, 2 is happy, 3 is working,
-        //4 is sick, 5 is hacked, 6 is in holiday, 7 team buidling;
-        //8 is inspired, 9 is having baby, 10 is talented
-        status[0] = false;
-        status[1] = true;
-        status[2] = true;
-        status[3] = false;
-        status[4] = false;
-        status[5] = false;
-        status[6] = false;
-        status[7] = false;
-        status[8] = false;
-        status[9] = false;
-        status[10] = false;
-        status[11] = false;
-        loyalCountdown = 36;
-
     }
 
     public Employee() {
+        memento = new LinkedList<SkillMemento>();
         status = new boolean[12];
         workingProject = null;
         //0 is having beer, 1 is full, 2 is happy, 3 is working,
@@ -421,7 +403,6 @@ public class Employee {
 
     public SkillMemento createMemento(float price) {
         return new SkillMemento(skillList, price);
-
     }
 
     public float restoreMemento(SkillMemento mem) {
@@ -432,7 +413,6 @@ public class Employee {
 
     public void addMemento(SkillMemento mem) {
         memento.add(mem);
-        System.out.println(mem.restoreSkill());
     }
 
     public SkillMemento getMemento() {
@@ -441,7 +421,6 @@ public class Employee {
 
     public void saveState(float fee) {
         addMemento(createMemento(fee));
-
     }
 
     public float back() {

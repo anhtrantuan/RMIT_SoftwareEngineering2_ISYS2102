@@ -19,7 +19,6 @@ public class SkillMemento {
     public SkillMemento(Map<Skill, Integer> skillList, float price) {
         this.skillList = skillList;
         this.price = price;
-
     }
 
     public Map<Skill, Integer> restoreSkill() {

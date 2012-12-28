@@ -242,7 +242,6 @@ public class Engine extends Observable implements Model {
                 nextWeek(succeededProject, failedProject);
             }
         } catch (MoneyRunOutException ex) {
-            System.out.println("GAME over 1");
             JOptionPane.showMessageDialog(null,
                     "YOU ARE OUT OF MONEY, YOU LOSE!", "GAME OVER",
                     JOptionPane.INFORMATION_MESSAGE);

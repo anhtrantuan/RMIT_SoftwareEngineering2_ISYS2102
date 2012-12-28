@@ -7,6 +7,7 @@ package devfortress.view;
 import com.tabuto.j2dgf.Game2D;
 import com.tabuto.j2dgf.gui.J2DCanvasPanel;
 import devfortress.DevFortress;
+import devfortress.controller.DialogButtonListener;
 import devfortress.model.DataObject;
 import devfortress.model.DateTime;
 import devfortress.model.facade.Model;
@@ -14,6 +15,7 @@ import devfortress.utilities.Constant;
 import devfortress.utilities.Event;
 import devfortress.view.animation.GameAnimationEngine;
 import devfortress.view.animation.events.*;
+import devfortress.view.dialogs.AboutPanel;
 import devfortress.view.models.ExpensesTreeModel;
 import devfortress.view.models.ProjectsTreeModel;
 import devfortress.view.renderers.ExpensesTreeCellRenderer;
@@ -26,6 +28,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
@@ -153,10 +156,6 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         menu = new javax.swing.JMenuBar();
         menuFile = new javax.swing.JMenu();
         menuFile_Exit = new javax.swing.JMenuItem();
-        menuEdit = new javax.swing.JMenu();
-        menuEdit_Preferences = new javax.swing.JMenuItem();
-        menuView = new javax.swing.JMenu();
-        menuView_Summary = new javax.swing.JMenuItem();
         menuHelp = new javax.swing.JMenu();
         menuHelp_About = new javax.swing.JMenuItem();
 
@@ -562,29 +561,16 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
 
         menu.add(menuFile);
 
-        menuEdit.setMnemonic('E');
-        menuEdit.setText("Edit");
-
-        menuEdit_Preferences.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        menuEdit_Preferences.setText("Preferences");
-        menuEdit.add(menuEdit_Preferences);
-
-        menu.add(menuEdit);
-
-        menuView.setMnemonic('V');
-        menuView.setText("View");
-
-        menuView_Summary.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
-        menuView_Summary.setText("Summary");
-        menuView.add(menuView_Summary);
-
-        menu.add(menuView);
-
         menuHelp.setMnemonic('H');
         menuHelp.setText("Help");
 
         menuHelp_About.setFont(new java.awt.Font("Arial", 0, 15)); // NOI18N
         menuHelp_About.setText("About");
+        menuHelp_About.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuHelp_AboutActionPerformed(evt);
+            }
+        });
         menuHelp.add(menuHelp_About);
 
         menu.add(menuHelp);
@@ -806,6 +792,18 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         index++;
         showCurrentEvent();
     }//GEN-LAST:event_btnNextActionPerformed
+
+    private void menuHelp_AboutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuHelp_AboutActionPerformed
+        JDialog newDialog = new JDialog(this, "About", true);
+        newDialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+        DialogButtonListener buttonListener =
+                new DialogButtonListener(model, newDialog);
+        AboutPanel panel = new AboutPanel(buttonListener);
+        newDialog.setContentPane(panel);
+        newDialog.pack();
+        newDialog.setLocationRelativeTo(null);
+        newDialog.setVisible(true);
+    }//GEN-LAST:event_menuHelp_AboutActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCurrentProjects;
     private javax.swing.JButton btnInformation;
@@ -818,14 +816,10 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
     private javax.swing.JLabel lblEmployees;
     private javax.swing.JLabel lblStatus;
     private javax.swing.JMenuBar menu;
-    private javax.swing.JMenu menuEdit;
-    private javax.swing.JMenuItem menuEdit_Preferences;
     private javax.swing.JMenu menuFile;
     private javax.swing.JMenuItem menuFile_Exit;
     private javax.swing.JMenu menuHelp;
     private javax.swing.JMenuItem menuHelp_About;
-    private javax.swing.JMenu menuView;
-    private javax.swing.JMenuItem menuView_Summary;
     private javax.swing.JPanel pnlAnimation;
     private javax.swing.JPanel pnlBlank;
     private javax.swing.JPanel pnlBudget;
@@ -946,6 +940,13 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
                 while (true) {
                     if (!(currentEngine == null || currentCanvas == null)) {
                         currentCanvas.run(currentEngine);
+
+                        /* Pause a bit to avoid NullPointerException. */
+                        try {
+                            Thread.sleep(10);
+                        } catch (InterruptedException ex) {
+                            Logger.getLogger(DevFortressView.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
                 }
             }

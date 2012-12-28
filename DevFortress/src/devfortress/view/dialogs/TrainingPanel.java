@@ -23,58 +23,26 @@ public class TrainingPanel extends javax.swing.JPanel {
 
     private ManageEmployeePanel parent;
     private Employee employee;
+    private TrainingTableModel tableModel;
 
     /**
-     * Creates new form TrainingPanel
+     * Creates new form TrainingPanel.
+     *
+     * @param parent
+     * @param employee
+     * @param buttonListener
      */
     public TrainingPanel(JPanel parent, Employee employee,
             ActionListener buttonListener) {
-        this.parent = (ManageEmployeePanel) parent;
         this.employee = employee;
         initComponents();
+        this.parent = (ManageEmployeePanel) parent;
         scpSkills.getViewport().setBackground(Color.white);
-        tblSkills.setDefaultRenderer(JButton.class,
-                new TableButtonCellRenderer());
+        tableModel = (TrainingTableModel) tblSkills.getModel();
         populateData();
         btnClose.addActionListener(buttonListener);
-    }
-
-    /**
-     * Set button listener for Skills table.
-     *
-     * @param tableButtonListener
-     */
-    public void setTableButtonListener(ActionListener tableButtonListener) {
-        /* Set cell renderer for Skills table. */
-        tblSkills.setDefaultEditor(JButton.class,
-                new TableButtonCellEditor(tableButtonListener));
-    }
-
-    /**
-     * Return current employee.
-     *
-     * @return
-     */
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    /**
-     * Populate data to table.
-     */
-    private void populateData() {
-        TrainingTableModel tableModel = (TrainingTableModel) tblSkills.getModel();
-        tableModel.setSkillList(employee, employee.getSkillList());
-    }
-
-    /**
-     * Update skills table.
-     */
-    public void update() {
-        Model model = parent.getModel();
-        employee = model.getEmployeeByName(employee.getName());
-        populateData();
-        parent.update();
+        tblSkills.setDefaultRenderer(JButton.class,
+                new TableButtonCellRenderer());
     }
 
     /**
@@ -101,8 +69,6 @@ public class TrainingPanel extends javax.swing.JPanel {
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
         pnlTitle.setBackground(new java.awt.Color(255, 255, 255));
-        pnlTitle.setMaximumSize(new java.awt.Dimension(480, 58));
-        pnlTitle.setMinimumSize(new java.awt.Dimension(480, 58));
         pnlTitle.setPreferredSize(new java.awt.Dimension(480, 58));
 
         lblTitle.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -131,9 +97,8 @@ public class TrainingPanel extends javax.swing.JPanel {
         tblSkills.setAutoCreateRowSorter(true);
         tblSkills.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         tblSkills.setModel(new TrainingTableModel());
-        tblSkills.setMaximumSize(new java.awt.Dimension(0, 0));
-        tblSkills.setMinimumSize(new java.awt.Dimension(0, 0));
-        tblSkills.setPreferredSize(new java.awt.Dimension(0, 0));
+        tblSkills.setRowHeight(36);
+        tblSkills.setRowSelectionAllowed(false);
         scpSkills.setViewportView(tblSkills);
 
         add(scpSkills);
@@ -160,7 +125,7 @@ public class TrainingPanel extends javax.swing.JPanel {
             pnlCloseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlCloseLayout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnClose, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
         );
 
@@ -174,4 +139,40 @@ public class TrainingPanel extends javax.swing.JPanel {
     private javax.swing.JScrollPane scpSkills;
     private javax.swing.JTable tblSkills;
     // End of variables declaration//GEN-END:variables
+
+    /**
+     * Return current employee.
+     *
+     * @return
+     */
+    public Employee getEmployee() {
+        return employee;
+    }
+    
+    /**
+     * Set button cell listener for Project table.
+     *
+     * @param tableButtonListener
+     */
+    public void setTableButtonListener(ActionListener tableButtonListener) {
+        tblSkills.setDefaultEditor(JButton.class,
+                new TableButtonCellEditor(tableButtonListener));
+    }
+
+    /**
+     * Populate data to table.
+     */
+    private void populateData() {
+        tableModel.setEmployee(employee);
+    }
+
+    /**
+     * Update skills table.
+     */
+    public void update() {
+        Model model = parent.getModel();
+        employee = model.getEmployeeByName(employee.getName());
+        populateData();
+        parent.update();
+    }
 }

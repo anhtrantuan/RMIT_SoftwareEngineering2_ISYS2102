@@ -75,9 +75,9 @@ public class CurrentProjectsTableModel extends DefaultTableModel {
         /* Add new records. */
         if (projectList.size() > 0) {
             ImageIcon icInformation = new ImageIcon(getClass().
-                    getResource("../resources/icInformation.png")),
+                    getResource("/devfortress/view/resources/icInformation.png")),
                     icCancelProject = new ImageIcon(getClass().
-                    getResource("../resources/icCancelProject.png"));
+                    getResource("/devfortress/view/resources/icCancelProject.png"));
             for (ListIterator<Project> iterator = projectList.listIterator();
                     iterator.hasNext();) {
                 Project project = iterator.next();
