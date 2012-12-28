@@ -232,7 +232,7 @@ public class Engine extends Observable implements Model {
             for (int i = 0; i < 4; i++) {
                 nextWeek(succeededProject, failedProject);
             }
-        } catch (Exception ex) {
+        } catch (MoneyRunOutException ex) {
             System.out.println("GAME over 1");
             JOptionPane.showMessageDialog(null,
                     "YOU ARE OUT OF MONEY, YOU LOSE!", "GAME OVER",

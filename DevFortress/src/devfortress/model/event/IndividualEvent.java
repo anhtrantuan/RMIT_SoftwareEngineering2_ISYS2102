@@ -11,6 +11,7 @@ import devfortress.model.exception.EmployeeNotExist;
 import devfortress.model.project.Project;
 import devfortress.utilities.Event;
 import devfortress.utilities.Skill;
+import devfortress.utilities.Utilities;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -76,16 +77,20 @@ public class IndividualEvent implements EventInterface {
         Project p = e.getWorkingProject();
         List<Employee> removeEmp = new ArrayList();
         if (p != null) {
-            Map<Skill, Employee> skill = e.getWorkingProject().getSkill_employeeMap();
+            Map<Skill, Employee> skill = p.getSkill_employeeMap();
             for (Skill sk : skill.keySet()) {
                 if (skill.get(sk) != null && skill.get(sk).equals(e)) {
+                    System.out.println("add to remove");
                     removeEmp.add(e);
-                    
+
                 } else if (skill.get(sk) != null) {
                     skill.get(sk).sad();
                 }
             }
             for (Employee employee : removeEmp) {
+                System.out.println("remove");
+                
+                Utilities.getInstance().unassignComputerToEmployee(c, employee);
                 c.removeEmployee(employee);
             }
             return Event.REDUNDANCIES;
@@ -108,6 +113,7 @@ public class IndividualEvent implements EventInterface {
             Project p = e.getWorkingProject();
             if (p != null) {
                 c.cancelProject(p);
+                Utilities.getInstance().unassignComputerToEmployee(c, e);
                 c.removeEmployee(e);
                 return Event.PROJECT_IS_STOLEN_BY_EMPLOYEE;
             } else {
