@@ -318,12 +318,10 @@ public class Company {
         }
     }
 
-    public void consumeItem() {
-        for (Employee employee : employeeList) {
-            if (foodStock > 0) {
-                employee.eat();
-                foodStock--;
-            }
+    public void consumeFood(Employee emp) {
+        if (foodStock > 0) {
+            emp.eat();
+            foodStock--;
         }
     }
 

@@ -80,11 +80,17 @@ public interface Model {
 
     void untrain(Employee emp);
 
-    void drink(Employee emp);
+    void consumeFood(Employee emp);
+
+    void drinkBeer(Employee emp);
 
     void createGoldenEmployee();
 
     List<Employee> getUnassignedEmployeeList();
 
     Company getCompany();
+
+    int getFoodStock();
+
+    int getBeerStock();
 }

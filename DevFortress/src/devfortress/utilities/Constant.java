@@ -79,7 +79,8 @@ public class Constant {
     public static String TOTAL_PRODUCED_FUNCTION_POINT = "Total Produced Points";
     public static String NA = "N/A";
     public static String EMPLOYEE_LIST_BTN = "Employee List";
-    public static String HAVE_BEER_BTN = "Have Beer";
+    public static String GIVE_FOOD_BTN = "Give Food";
+    public static String GIVE_BEER_BTN = "Have Beer";
     public static String TRAIN_BTN = "Train";
     public static String UNTRAIN_BTN = "Untrain";
     public static String BUY_BTN = "Buy Items";

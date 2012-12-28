@@ -202,7 +202,7 @@ public class Employee {
     }
 
     public void eat() {
-        status[1] = true;
+        status[1] = false;
     }
 
     public void getHungry() {

@@ -52,7 +52,6 @@ public class ProjectTableButtonListener implements ActionListener {
             DialogButtonListener buttonListener =
                     new DialogButtonListener(model, newDialog);
 
-            System.out.println(actions[0]);
             Skill skill = Skill.valueOf(actions[0]);
             AssignEmployeesPanel assignPanel = new AssignEmployeesPanel(panel,
                     model, project, skill, buttonListener);
@@ -62,7 +61,6 @@ public class ProjectTableButtonListener implements ActionListener {
             newDialog.setVisible(true);
         } else if (text.equals(Constant.UNASSIGN)) {
             Employee employee = model.getEmployeeByName(actions[1]);
-            System.out.println(project == null);
             model.unassignEmployee(project, employee);
             panel.setProject(model.getProjectByName(project.getName()));
         }

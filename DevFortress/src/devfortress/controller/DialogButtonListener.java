@@ -23,8 +23,6 @@ import devfortress.view.dialogs.EmployeePanel;
 import devfortress.view.dialogs.ManageEmployeePanel;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JOptionPane;
@@ -124,19 +122,49 @@ public class DialogButtonListener implements ActionListener {
                         dialog.dispose();
                     }
                 }
-            } else if (text.equals(Constant.HAVE_BEER_BTN)) {
+            } else if (text.equals(Constant.GIVE_FOOD_BTN)) {
                 int option = JOptionPane.showConfirmDialog(dialog,
-                        "Are you sure you want to let this employee have beer?",
+                        "Are you sure you want to feed this employee?",
                         "Drink Confirmation", JOptionPane.YES_NO_OPTION,
                         JOptionPane.QUESTION_MESSAGE);
                 if (option == JOptionPane.YES_OPTION) {
-                    ManageEmployeePanel panel =
-                            (ManageEmployeePanel) dialog.getContentPane();
-                    panel.haveBeer();
+                    if (model.getFoodStock() > 0) {
+                        ManageEmployeePanel panel =
+                                (ManageEmployeePanel) dialog.getContentPane();
+                        model.consumeFood(panel.getEmployee());
+                        panel.update();
 
-                    JOptionPane.showMessageDialog(dialog,
-                            "An employee has just had some beer and is now happy!",
-                            "Drink Status", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(dialog,
+                                "An employee has just had some food and is now full!",
+                                "Eat Status", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(dialog,
+                                "Cannot feed employee! Food stock run out!",
+                                "No Food Remained",
+                                JOptionPane.WARNING_MESSAGE);
+                    }
+                }
+            } else if (text.equals(Constant.GIVE_BEER_BTN)) {
+                int option = JOptionPane.showConfirmDialog(dialog,
+                        "Are you sure you want to give this employee some beer?",
+                        "Drink Confirmation", JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE);
+                if (option == JOptionPane.YES_OPTION) {
+                    if (model.getBeerStock() > 0) {
+                        ManageEmployeePanel panel =
+                                (ManageEmployeePanel) dialog.getContentPane();
+                        model.drinkBeer(panel.getEmployee());
+                        panel.update();
+
+                        JOptionPane.showMessageDialog(dialog,
+                                "An employee has just had some beer and is now happy!",
+                                "Drink Status", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(dialog,
+                                "Cannot give beer to employee! Beer stock run out!",
+                                "No Beer Remained",
+                                JOptionPane.WARNING_MESSAGE);
+                    }
                 }
             } else if (text.equals(Constant.BUTTON_ACCEPT)) {
                 int option = JOptionPane.showConfirmDialog(dialog,

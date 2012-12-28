@@ -138,26 +138,15 @@ public class Engine extends Observable implements Model {
     @Override
     public void eventOccur() {
         String message = "";
-        Iterator<Employee> it = company.getEmployeeList().iterator();
-        while (it.hasNext()) {
-            Employee e = it.next();
-            Event event = level.generateEvent(e, company, this);
+
+        for (Employee employee : company.getEmployeeList()) {
+            Event event = level.generateEvent(employee, company, this);
             events.add(event);
-            if (company.getEmployeeList().indexOf(e) != 0) {
+            if (company.getEmployeeList().indexOf(employee) != 0) {
                 message += '\n';
             }
             message += String.format("Event %s occurred!", event.toString());
-
         }
-
-//        for (Employee employee : company.getEmployeeList()) {
-//            Event event = level.generateEvent(employee, company, this);
-//            events.add(event);
-//            if (company.getEmployeeList().indexOf(employee) != 0) {
-//                message += '\n';
-//            }
-//            message += String.format("Event %s occurred!", event.toString());
-//        }
 
         DataObject data = new DataObject(message, null);
         setChanged();
@@ -243,31 +232,12 @@ public class Engine extends Observable implements Model {
             for (int i = 0; i < 4; i++) {
                 nextWeek(succeededProject, failedProject);
             }
-
-        } catch (MoneyRunOutException ex) {
-            int option = JOptionPane.showConfirmDialog(null, "YOU ARE OUT OF MONEY, YOU LOSE", "GAME OVER!", JOptionPane.YES_OPTION);
-            if (option == JOptionPane.YES_OPTION) {
-                System.exit(0);
-            }
-            System.exit(0);
-        } //        for (Project project : company.getCurrentProjectList()) {
-        //            if (project.checkProjectProcess()) {
-        //                succeededProject.add(project);
-        //            } else {
-        //                project.getRemainingTime().nextTurn();
-        //                if (project.getRemainingTime().getMonths() == 0) {
-        //                    failedProject.add(project);
-        //                }
-        //            }
-        //        }
-        //
-        //        for (Project proj : failedProject) {
-        //            company.cancelProject(proj);
-        //        }
-        //        for (Project proj : succeededProject) {
-        //            company.finishProject(proj);
-        //        }
-        finally {
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null,
+                    "YOU ARE OUT OF MONEY, YOU LOSE!", "GAME OVER",
+                    JOptionPane.INFORMATION_MESSAGE);
+//            System.exit(0);
+        } finally {
             availableProjects = generateProjectList();
             availableEmployees = generateEmployeeList();
             paySalary();
@@ -282,7 +252,6 @@ public class Engine extends Observable implements Model {
             setChanged();
             notifyObservers(data);
         }
-
     }
 
     /**
@@ -290,7 +259,6 @@ public class Engine extends Observable implements Model {
      */
     private void nextWeek(List< Project> succeededProject, List< Project> failedProject) throws MoneyRunOutException {
         eventOccur();
-        consumeFood();
         for (Project project : company.getCurrentProjectList()) {
             if (project.checkProjectProcess()) {
                 succeededProject.add(project);
@@ -394,8 +362,9 @@ public class Engine extends Observable implements Model {
         notifyObservers(data);
     }
 
-    private void consumeFood() {
-        company.consumeItem();
+    @Override
+    public void consumeFood(Employee emp) {
+        company.consumeFood(emp);
     }
 
     /**
@@ -447,7 +416,7 @@ public class Engine extends Observable implements Model {
     }
 
     @Override
-    public void drink(Employee emp) {
+    public void drinkBeer(Employee emp) {
         company.drinkBeer(emp);
     }
 
@@ -478,5 +447,15 @@ public class Engine extends Observable implements Model {
     @Override
     public Company getCompany() {
         return company;
+    }
+
+    @Override
+    public int getFoodStock() {
+        return company.getFoodStock();
+    }
+
+    @Override
+    public int getBeerStock() {
+        return company.getBeerStock();
     }
 }

@@ -14,8 +14,6 @@ import java.awt.Color;
 import java.awt.event.ActionListener;
 import java.text.DecimalFormat;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
@@ -24,7 +22,7 @@ import javax.swing.JPanel;
  * @author cathoanghuy
  */
 public class AssignEmployeesPanel extends javax.swing.JPanel {
-    
+
     private int index;
     private ProjectPanel parent;
     private Model model;
@@ -240,6 +238,7 @@ public class AssignEmployeesPanel extends javax.swing.JPanel {
         btnAssign.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         btnAssign.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icHire.png"))); // NOI18N
         btnAssign.setText(Constant.ASSIGN);
+        btnAssign.setEnabled(false);
         btnAssign.setMaximumSize(new java.awt.Dimension(120, 40));
         btnAssign.setMinimumSize(new java.awt.Dimension(120, 40));
         btnAssign.setPreferredSize(new java.awt.Dimension(120, 40));
@@ -278,7 +277,7 @@ public class AssignEmployeesPanel extends javax.swing.JPanel {
             populateData();
         }
     }//GEN-LAST:event_btnPreviousActionPerformed
-    
+
     private void btnNextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextActionPerformed
         if (index < employeeList.size() - 1) {
             btnPrevious.setEnabled(true);
@@ -321,6 +320,7 @@ public class AssignEmployeesPanel extends javax.swing.JPanel {
                     decimalFormatter.format(currentEmployee.getSalary())));
             tableModel.setSkillList(currentEmployee.getSkillList());
             btnAssign.setActionCommand(String.valueOf(index));
+            btnAssign.setEnabled(true);
         } else {
             lblName.setText(String.format("%s: %s", Constant.EMPLOYEE_NAME,
                     Constant.NA));
@@ -329,6 +329,7 @@ public class AssignEmployeesPanel extends javax.swing.JPanel {
             lblSalary.setText(String.format("%s: %s", Constant.SALARY_LABEL,
                     Constant.NA));
             tableModel.setSkillList(null);
+            btnAssign.setEnabled(false);
         }
 
         /* Update buttons' availability. */
@@ -352,7 +353,7 @@ public class AssignEmployeesPanel extends javax.swing.JPanel {
             model.assignEmployeeToProject(currentEmployee, project, skill);
             parent.setProject(model.getProjectByName(project.getName()));
         } catch (Exception ex) {
-            JOptionPane.showConfirmDialog(null, "EMPLOYEE IS BUSY RIGHT NOW","ERROR",JOptionPane.OK_CANCEL_OPTION);
+            JOptionPane.showConfirmDialog(null, "EMPLOYEE IS BUSY RIGHT NOW", "ERROR", JOptionPane.OK_CANCEL_OPTION);
         }
     }
 }

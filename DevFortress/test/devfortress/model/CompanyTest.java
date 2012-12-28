@@ -184,10 +184,10 @@ public class CompanyTest {
 //    }
 
 //    @Test
-//    public void consumeItem() {
+//    public void consumeFood() {
 //        System.out.println("Test consume item");
 //        employee.getHungry();
-//        company.consumeItem();
+//        company.consumeFood();
 //        assertTrue(employee.isHungry());
 //    }
 }

@@ -26,7 +26,8 @@ public class ManageEmployeePanel extends javax.swing.JPanel {
         initComponents();
         this.parent = (CurrentEmpolyees) parent;
         this.employee = employee;
-        btnHaveBeer.addActionListener(buttonListener);
+        btnGiveFood.addActionListener(buttonListener);
+        btnGiveBeer.addActionListener(buttonListener);
         btnCancel.addActionListener(buttonListener);
     }
 
@@ -49,10 +50,9 @@ public class ManageEmployeePanel extends javax.swing.JPanel {
     }
 
     /**
-     * Let the employee have some beer.
+     * Update parent panel.
      */
-    public void haveBeer() {
-        employee.drink();
+    public void update() {
         parent.update();
     }
 
@@ -67,8 +67,10 @@ public class ManageEmployeePanel extends javax.swing.JPanel {
 
         pnlTitle = new javax.swing.JPanel();
         lblTitle = new javax.swing.JLabel();
+        pnlGiveFood = new javax.swing.JPanel();
+        btnGiveFood = new javax.swing.JButton();
         pnlHaveBeer = new javax.swing.JPanel();
-        btnHaveBeer = new javax.swing.JButton();
+        btnGiveBeer = new javax.swing.JButton();
         pnlTrain = new javax.swing.JPanel();
         btnTrain = new javax.swing.JButton();
         pnlCancel = new javax.swing.JPanel();
@@ -76,9 +78,9 @@ public class ManageEmployeePanel extends javax.swing.JPanel {
 
         setBackground(new java.awt.Color(255, 255, 255));
         setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 20, 20, 20));
-        setMaximumSize(new java.awt.Dimension(300, 306));
-        setMinimumSize(new java.awt.Dimension(300, 306));
-        setPreferredSize(new java.awt.Dimension(300, 306));
+        setMaximumSize(new java.awt.Dimension(300, 386));
+        setMinimumSize(new java.awt.Dimension(300, 386));
+        setPreferredSize(new java.awt.Dimension(300, 386));
         setLayout(new javax.swing.BoxLayout(this, javax.swing.BoxLayout.Y_AXIS));
 
         pnlTitle.setBackground(new java.awt.Color(255, 255, 255));
@@ -106,29 +108,61 @@ public class ManageEmployeePanel extends javax.swing.JPanel {
 
         add(pnlTitle);
 
+        pnlGiveFood.setBackground(new java.awt.Color(255, 255, 255));
+        pnlGiveFood.setMaximumSize(new java.awt.Dimension(240, 80));
+        pnlGiveFood.setMinimumSize(new java.awt.Dimension(240, 80));
+
+        btnGiveFood.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        btnGiveFood.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icGiveFood.png"))); // NOI18N
+        btnGiveFood.setText(Constant.GIVE_FOOD_BTN);
+        btnGiveFood.setMaximumSize(new java.awt.Dimension(240, 60));
+        btnGiveFood.setMinimumSize(new java.awt.Dimension(240, 60));
+        btnGiveFood.setPreferredSize(new java.awt.Dimension(240, 60));
+        btnGiveFood.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGiveFoodActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout pnlGiveFoodLayout = new javax.swing.GroupLayout(pnlGiveFood);
+        pnlGiveFood.setLayout(pnlGiveFoodLayout);
+        pnlGiveFoodLayout.setHorizontalGroup(
+            pnlGiveFoodLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(btnGiveFood, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        pnlGiveFoodLayout.setVerticalGroup(
+            pnlGiveFoodLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(pnlGiveFoodLayout.createSequentialGroup()
+                .addGap(10, 10, 10)
+                .addComponent(btnGiveFood, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10))
+        );
+
+        add(pnlGiveFood);
+
         pnlHaveBeer.setBackground(new java.awt.Color(255, 255, 255));
         pnlHaveBeer.setMaximumSize(new java.awt.Dimension(240, 80));
         pnlHaveBeer.setMinimumSize(new java.awt.Dimension(240, 80));
         pnlHaveBeer.setPreferredSize(new java.awt.Dimension(240, 80));
 
-        btnHaveBeer.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        btnHaveBeer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icHaveBeer.png"))); // NOI18N
-        btnHaveBeer.setText(Constant.HAVE_BEER_BTN);
-        btnHaveBeer.setMaximumSize(new java.awt.Dimension(240, 60));
-        btnHaveBeer.setMinimumSize(new java.awt.Dimension(240, 60));
-        btnHaveBeer.setPreferredSize(new java.awt.Dimension(240, 60));
+        btnGiveBeer.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        btnGiveBeer.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icGiveBeer.png"))); // NOI18N
+        btnGiveBeer.setText(Constant.GIVE_BEER_BTN);
+        btnGiveBeer.setMaximumSize(new java.awt.Dimension(240, 60));
+        btnGiveBeer.setMinimumSize(new java.awt.Dimension(240, 60));
+        btnGiveBeer.setPreferredSize(new java.awt.Dimension(240, 60));
 
         javax.swing.GroupLayout pnlHaveBeerLayout = new javax.swing.GroupLayout(pnlHaveBeer);
         pnlHaveBeer.setLayout(pnlHaveBeerLayout);
         pnlHaveBeerLayout.setHorizontalGroup(
             pnlHaveBeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnHaveBeer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(btnGiveBeer, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         pnlHaveBeerLayout.setVerticalGroup(
             pnlHaveBeerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlHaveBeerLayout.createSequentialGroup()
                 .addGap(10, 10, 10)
-                .addComponent(btnHaveBeer, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnGiveBeer, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(10, 10, 10))
         );
 
@@ -188,12 +222,18 @@ public class ManageEmployeePanel extends javax.swing.JPanel {
 
         add(pnlCancel);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnGiveFoodActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGiveFoodActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnGiveFoodActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancel;
-    private javax.swing.JButton btnHaveBeer;
+    private javax.swing.JButton btnGiveBeer;
+    private javax.swing.JButton btnGiveFood;
     private javax.swing.JButton btnTrain;
     private javax.swing.JLabel lblTitle;
     private javax.swing.JPanel pnlCancel;
+    private javax.swing.JPanel pnlGiveFood;
     private javax.swing.JPanel pnlHaveBeer;
     private javax.swing.JPanel pnlTitle;
     private javax.swing.JPanel pnlTrain;

@@ -40,7 +40,7 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
         decimalFormatter = new DecimalFormat("$#,##0.0#");
         populateData();
         btnHire.addActionListener(buttonListener);
-        btnCancel.addActionListener(buttonListener);        
+        btnCancel.addActionListener(buttonListener);
     }
 
     /**
@@ -225,6 +225,7 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
         btnHire.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         btnHire.setIcon(new javax.swing.ImageIcon(getClass().getResource("/devfortress/view/resources/icHire.png"))); // NOI18N
         btnHire.setText(Constant.HIRE);
+        btnHire.setEnabled(false);
         btnHire.setMaximumSize(new java.awt.Dimension(120, 40));
         btnHire.setMinimumSize(new java.awt.Dimension(120, 40));
         btnHire.setPreferredSize(new java.awt.Dimension(120, 40));
@@ -306,6 +307,7 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
                     decimalFormatter.format(currentEmployee.getSalary())));
             tableModel.setSkillList(currentEmployee.getSkillList());
             btnHire.setActionCommand(String.valueOf(index));
+            btnHire.setEnabled(true);
         } else {
             lblName.setText(String.format("%s: %s", Constant.EMPLOYEE_NAME,
                     Constant.NA));
@@ -314,6 +316,7 @@ public class AvailableEmployeesPanel extends javax.swing.JPanel {
             lblSalary.setText(String.format("%s: %s", Constant.SALARY_LABEL,
                     Constant.NA));
             tableModel.setSkillList(null);
+            btnHire.setEnabled(false);
         }
 
         /* Update buttons' availability. */

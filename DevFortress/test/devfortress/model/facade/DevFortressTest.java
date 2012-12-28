@@ -125,8 +125,8 @@ public class DevFortressTest {
     }
     
 //    @Test
-//    public void drink(){
-//        System.out.println("Test drink");
+//    public void drinkBeer(){
+//        System.out.println("Test drinkBeer");
 //    }
 //    
 //    @Test
