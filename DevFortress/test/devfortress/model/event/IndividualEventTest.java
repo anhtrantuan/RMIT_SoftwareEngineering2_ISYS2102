@@ -94,7 +94,7 @@ public class IndividualEventTest {
     }
 
     @Test
-    public void redundancies() {
+    public void redundancies() throws EmployeeNotExist {
         System.out.println("Test redundancies event");
         event.redundancies(e1, model.getCompany());
     }
