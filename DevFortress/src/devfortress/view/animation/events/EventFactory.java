@@ -57,7 +57,33 @@ public class EventFactory {
         if (event == Event.GOLDEN_EMPLOYEE) {
             return new GoldenEmployee(dimension);
         }
+        
+        if (event == Event.EXPLORE_THE_EMPLOYEE_HAVING_TALENT) {
+            return new TalentFound(dimension);
+        }
+        if (event == Event.PROJECT_IS_STOLEN_BY_EMPLOYEE) {
+            return new ProjectIsStolen(dimension);
+        }
+        if (event == Event.DEVELOPER_HAS_BABY) {
+            return new HavingBaby(dimension);
+        }
+        if (event == Event.GOT_SUED_BY_ANOTHER_COMPANY) {
+            return new GetSued(dimension);
+        }
+        if (event == Event.DEVELOPER_KILLS_ANOTHER_DEVELOPER) {
+            return new DevKillEachOther(dimension);
+        }
+        
+        if (event == Event.WAR_ERUPTS) {
+            return new WarErupts(dimension);
+        }
+        if (event == Event.COMPANY_IS_BURNT_DOWN_BY_ANONYMOUS) {
+            return new CompanyIsBurnt(dimension);
+        }
+//        if (event == Event.ZOMBIE_APOCALYPSE) {
+//            return new DevKillEachOther(dimension);
+//        }
 
-        return new CompanyIsBurnt(dimension);
+        return new NothingEvent(dimension);
     }
 }
