@@ -246,7 +246,7 @@ public class Engine extends Observable implements Model {
             JOptionPane.showMessageDialog(null,
                     "YOU ARE OUT OF MONEY, YOU LOSE!", "GAME OVER",
                     JOptionPane.INFORMATION_MESSAGE);
-//            System.exit(0);
+            System.exit(0);
         } finally {
             availableProjects = generateProjectList();
             availableEmployees = generateEmployeeList();

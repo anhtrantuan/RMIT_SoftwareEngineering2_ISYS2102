@@ -86,8 +86,6 @@ public class IndividualEvent implements EventInterface {
                 }
             }
             for (Employee employee : removeEmp) {
-                System.out.println("remove");
-                
                 Utilities.getInstance().unassignComputerToEmployee(c, employee);
                 c.removeEmployee(employee);
             }

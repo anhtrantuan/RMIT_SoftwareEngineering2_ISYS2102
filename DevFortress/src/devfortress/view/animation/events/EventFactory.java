@@ -80,9 +80,9 @@ public class EventFactory {
         if (event == Event.COMPANY_IS_BURNT_DOWN_BY_ANONYMOUS) {
             return new CompanyIsBurnt(dimension);
         }
-//        if (event == Event.ZOMBIE_APOCALYPSE) {
-//            return new DevKillEachOther(dimension);
-//        }
+        if (event == Event.ZOMBIE_APOCALYPSE) {
+            return new ZombieApocalypse(dimension);
+        }
 
         return new NothingEvent(dimension);
     }
