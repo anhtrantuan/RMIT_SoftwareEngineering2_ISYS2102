@@ -119,13 +119,12 @@ public class DifficultLevel implements GameLevel {
         } else if (r < 0.26) {
             return IndividualEvent.hacked(e);
         } else if (r < 0.31) {
-            return IndividualEvent.featureCut(e);
         } else if (r < 0.36) {
         } else if (r < 0.41) {
             return IndividualEvent.holiday(e);
         } else if (r < 0.46) {
             try {
-                return IndividualEvent.redundancies(e,company);
+                return IndividualEvent.redundancies(e, company);
             } catch (EmployeeNotExist ex) {
                 Logger.getLogger(DifficultLevel.class.getName()).log(Level.SEVERE, null, ex);
             }
