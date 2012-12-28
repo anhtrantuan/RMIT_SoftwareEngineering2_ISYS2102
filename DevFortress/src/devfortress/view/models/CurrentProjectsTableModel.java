@@ -74,18 +74,17 @@ public class CurrentProjectsTableModel extends DefaultTableModel {
 
         /* Add new records. */
         if (projectList.size() > 0) {
+            ImageIcon icInformation = new ImageIcon(getClass().
+                    getResource("../resources/icInformation.png")),
+                    icCancelProject = new ImageIcon(getClass().
+                    getResource("../resources/icCancelProject.png"));
             for (ListIterator<Project> iterator = projectList.listIterator();
                     iterator.hasNext();) {
                 Project project = iterator.next();
                 JButton informationButton = new JButton(Constant.BUTTON_INFORMATION,
-                        new ImageIcon(getClass().
-                        getResource("/devfortress/view/resources/icInformation.png"))),
-                        cancelButton = new JButton(Constant.CANCEL,
-                        new ImageIcon(getClass().
-                        getResource("/devfortress/view/resources/icCancelProject.png")));
-                addRow(new Object[]{project.getName(),
-                            informationButton,
-                            cancelButton});
+                        icInformation),
+                        cancelButton = new JButton(Constant.CANCEL, icCancelProject);
+                addRow(new Object[]{project.getName(), informationButton, cancelButton});
             }
         }
 

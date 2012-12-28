@@ -5,6 +5,7 @@
 package devfortress.view.dialogs;
 
 import devfortress.model.employee.Employee;
+import devfortress.model.facade.Model;
 import devfortress.utilities.Constant;
 import java.awt.event.ActionListener;
 import javax.swing.JPanel;
@@ -28,7 +29,26 @@ public class ManageEmployeePanel extends javax.swing.JPanel {
         this.employee = employee;
         btnGiveFood.addActionListener(buttonListener);
         btnGiveBeer.addActionListener(buttonListener);
+        btnTrain.addActionListener(buttonListener);
         btnCancel.addActionListener(buttonListener);
+    }
+
+    /**
+     * Get parent panel.
+     *
+     * @return
+     */
+    public JPanel getParentPanel() {
+        return parent;
+    }
+
+    /**
+     * Get game model.
+     *
+     * @return
+     */
+    public Model getModel() {
+        return parent.getModel();
     }
 
     /**
@@ -41,18 +61,10 @@ public class ManageEmployeePanel extends javax.swing.JPanel {
     }
 
     /**
-     * Set button listener for Train button.
-     *
-     * @param buttonListener
-     */
-    public void setTrainButtonListener(ActionListener buttonListener) {
-        btnTrain.addActionListener(buttonListener);
-    }
-
-    /**
      * Update parent panel.
      */
     public void update() {
+        employee = parent.getModel().getEmployeeByName(employee.getName());
         parent.update();
     }
 

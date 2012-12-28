@@ -74,31 +74,27 @@ public class ProjectInformationTableModel extends DefaultTableModel {
         Map<Skill, Integer> skillPointMap = project.getSkillRequirementMap();
         Map<Skill, Integer> originalSkillPointMap =
                 project.getOriginalSkillRequirementMap();
-        /*
-         * Reset table.
-         */
+
+        /* Reset table. */
         setRowCount(0);
 
-        /*
-         * Add new records.
-         */
+        ImageIcon icHire = new ImageIcon(getClass().
+                getResource("/devfortress/view/resources/icHire.png")),
+                icFire = new ImageIcon(getClass().
+                getResource("/devfortress/view/resources/icFire.png"));
+        /* Add new records. */
         for (Iterator<Skill> iterator = originalSkillPointMap.keySet().iterator();
                 iterator.hasNext();) {
             Skill skill = iterator.next();
             Employee employee = skillEmployeeMap.get(skill);
-            JButton button = new JButton();
             if (employee == null) {
-                button.setText(Constant.ASSIGN);
-                button.setIcon(new ImageIcon(getClass().
-                        getResource("/devfortress/view/resources/icHire.png")));
+                JButton button = new JButton(Constant.ASSIGN, icHire);
                 addRow(new Object[]{Constant.NA, skill.toString(),
                             skillPointMap.get(skill).intValue(),
                             originalSkillPointMap.get(skill).intValue(),
                             button});
             } else {
-                button.setText(Constant.UNASSIGN);
-                button.setIcon(new ImageIcon(getClass().
-                        getResource("/devfortress/view/resources/icFire.png")));
+                JButton button = new JButton(Constant.UNASSIGN, icFire);
                 addRow(new Object[]{skillEmployeeMap.get(skill).getName(),
                             skill.toString(),
                             skillPointMap.get(skill).intValue(),

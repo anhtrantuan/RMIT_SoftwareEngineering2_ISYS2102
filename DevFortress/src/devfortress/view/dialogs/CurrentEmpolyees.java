@@ -35,6 +35,15 @@ public class CurrentEmpolyees extends javax.swing.JPanel {
     }
 
     /**
+     * Get game model.
+     *
+     * @return
+     */
+    public Model getModel() {
+        return model;
+    }
+
+    /**
      * Set button listener for Employee table.
      *
      * @param tableButtonListener

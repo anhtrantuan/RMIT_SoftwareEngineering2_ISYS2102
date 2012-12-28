@@ -334,8 +334,8 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
         treExpenses.setModel(new ExpensesTreeModel(null));
         treExpenses.setCellRenderer(new ExpensesTreeCellRenderer());
         treExpenses.setMaximumSize(new java.awt.Dimension(166, 32779));
-        treExpenses.setMinimumSize(new java.awt.Dimension(0, 30));
-        treExpenses.setPreferredSize(new java.awt.Dimension(0, 30));
+        treExpenses.setMinimumSize(new java.awt.Dimension(0, 90));
+        treExpenses.setPreferredSize(new java.awt.Dimension(0, 90));
         treExpenses.setRowHeight(30);
         treExpenses.setSelectionModel(null);
         treExpenses.addTreeExpansionListener(new javax.swing.event.TreeExpansionListener() {
@@ -680,7 +680,7 @@ public class DevFortressView extends javax.swing.JFrame implements View, Observe
                 pnlManagementSizeIncrement;
         pnlStatusSizeIncrement = (treExpenses.getRowCount()
                 * treExpenses.getRowHeight()) - scpExpensesViewportSize.height;
-        if (pnlManagementSize.height == 0) {
+        if (pnlManagement.getPreferredSize().height == 0) {
             pnlStatusSizeIncrement += treExpenses.getRowHeight() * 0.5;
         }
         pnlProjectsSizeIncrement = (treProjects.getRowCount()

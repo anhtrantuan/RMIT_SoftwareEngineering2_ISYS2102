@@ -74,23 +74,27 @@ public class EmployeesTableModel extends DefaultTableModel {
         /* Reset table. */
         setRowCount(0);
 
+        ImageIcon icInformation = new ImageIcon(getClass().
+                getResource("/devfortress/view/resources/icInformation.png")),
+                icManage = new ImageIcon(getClass().
+                getResource("/devfortress/view/resources/icManage.png")),
+                icHappy = new ImageIcon(getClass().
+                getResource("/devfortress/view/resources/icHappy.png")),
+                icUnhappy = new ImageIcon(getClass().
+                getResource("/devfortress/view/resources/icUnhappy.png"));
         /* Add new records. */
         for (ListIterator<Employee> iterator = employeeList.listIterator();
                 iterator.hasNext();) {
             JButton detailsButton = new JButton(Constant.EMPLOYEE_DETAILS,
-                    new ImageIcon(getClass().
-                    getResource("/devfortress/view/resources/icInformation.png"))),
+                    icInformation),
                     manageButton = new JButton(Constant.EMPLOYEE_MANAGE,
-                    new ImageIcon(getClass().
-                    getResource("/devfortress/view/resources/icManage.png")));
+                    icManage);
             Employee employee = iterator.next();
             ImageIcon icon;
             if (employee.getStatus()[2]) {
-                icon = new ImageIcon(getClass().
-                        getResource("/devfortress/view/resources/icHappy.png"));
+                icon = icHappy;
             } else {
-                icon = new ImageIcon(getClass().
-                        getResource("/devfortress/view/resources/icUnhappy.png"));
+                icon = icUnhappy;
             }
             Project project = employee.getWorkingProject();
             if (project == null) {
